@@ -90,9 +90,9 @@ export default function Configurator() {
                 <span className="step-indicator">Steg 2 av 9</span>
                 <h2 className="step-title">Hva er anledningen?</h2>
                 <p className="step-description">Velg det som passer best</p>
-                <div className="options">
+                <div className="pill-options">
                   {['Ledergruppetur', 'Teambuilding', 'Strategisamling', 'Kick-off', 'Julebord/firmafest', 'Konferanse', 'Privat arrangement'].map(option => (
-                    <label key={option} className="option-card">
+                    <label key={option} className="pill-option">
                       <input
                         type="radio"
                         name="anledning"
@@ -100,7 +100,7 @@ export default function Configurator() {
                         checked={formData.anledning === option}
                         onChange={(e) => updateField('anledning', e.target.value)}
                       />
-                      <span>{option}</span>
+                      <span className="pill-label">{option}</span>
                     </label>
                   ))}
                 </div>
@@ -118,9 +118,9 @@ export default function Configurator() {
               <div className="step active" data-step="3">
                 <span className="step-indicator">Steg 3 av 9</span>
                 <h2 className="step-title">Hvor mange er dere?</h2>
-                <div className="options">
+                <div className="pill-options">
                   {['5-15 personer', '15-30 personer', '30-60 personer', '60-110 personer', 'Over 110 personer'].map(option => (
-                    <label key={option} className="option-card">
+                    <label key={option} className="pill-option">
                       <input
                         type="radio"
                         name="antall"
@@ -128,7 +128,7 @@ export default function Configurator() {
                         checked={formData.antall === option}
                         onChange={(e) => updateField('antall', e.target.value)}
                       />
-                      <span>{option}</span>
+                      <span className="pill-label">{option}</span>
                     </label>
                   ))}
                 </div>
@@ -146,9 +146,9 @@ export default function Configurator() {
               <div className="step active" data-step="4">
                 <span className="step-indicator">Steg 4 av 9</span>
                 <h2 className="step-title">Hvor lenge vil dere være?</h2>
-                <div className="options">
+                <div className="pill-options">
                   {['1 natt', '2 netter', '3+ netter'].map(option => (
-                    <label key={option} className="option-card">
+                    <label key={option} className="pill-option">
                       <input
                         type="radio"
                         name="varighet"
@@ -156,7 +156,7 @@ export default function Configurator() {
                         checked={formData.varighet === option}
                         onChange={(e) => updateField('varighet', e.target.value)}
                       />
-                      <span>{option}</span>
+                      <span className="pill-label">{option}</span>
                     </label>
                   ))}
                 </div>
@@ -175,9 +175,9 @@ export default function Configurator() {
                 <span className="step-indicator">Steg 5 av 9</span>
                 <h2 className="step-title">Hvilke aktiviteter?</h2>
                 <p className="step-description">Velg én eller flere (eller ingen)</p>
-                <div className="options">
+                <div className="pill-options">
                   {['Guidet tur på vidda', 'Skiturer', 'Breføring', 'Sykling på Rallarvegen', 'Kun opphold'].map(option => (
-                    <label key={option} className="option-card">
+                    <label key={option} className="pill-option">
                       <input
                         type="checkbox"
                         name="aktiviteter"
@@ -185,7 +185,7 @@ export default function Configurator() {
                         checked={formData.aktiviteter.includes(option)}
                         onChange={() => toggleActivity(option)}
                       />
-                      <span>{option}</span>
+                      <span className="pill-label">{option}</span>
                     </label>
                   ))}
                 </div>
@@ -201,9 +201,9 @@ export default function Configurator() {
               <div className="step active" data-step="6">
                 <span className="step-indicator">Steg 6 av 9</span>
                 <h2 className="step-title">Når passer det?</h2>
-                <div className="options">
+                <div className="pill-options">
                   {['Vinter (nov-apr)', 'Sommer (mai-okt)', 'Fleksibelt'].map(option => (
-                    <label key={option} className="option-card">
+                    <label key={option} className="pill-option">
                       <input
                         type="radio"
                         name="tidspunkt"
@@ -211,7 +211,7 @@ export default function Configurator() {
                         checked={formData.tidspunkt === option}
                         onChange={(e) => updateField('tidspunkt', e.target.value)}
                       />
-                      <span>{option}</span>
+                      <span className="pill-label">{option}</span>
                     </label>
                   ))}
                 </div>
@@ -227,21 +227,25 @@ export default function Configurator() {
             {/* Step 7: Bedriftsnavn */}
             {currentStep === 7 && (
               <div className="step active" data-step="7">
-                <span className="step-indicator">Steg 7 av 9</span>
-                <h2 className="step-title">Hvilken bedrift?</h2>
-                <input
-                  type="text"
-                  className="input-text"
-                  placeholder="Bedriftsnavn"
-                  value={formData.bedriftsnavn}
-                  onChange={(e) => updateField('bedriftsnavn', e.target.value)}
-                />
-                {formData.bedriftsnavn && (
-                  <div className="step-nav">
-                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                    <button onClick={nextStep} className="btn btn-primary">Neste</button>
+                <div className="step-content step-content-centered">
+                  <span className="step-indicator">Steg 7 av 9</span>
+                  <h2 className="step-title">Hvilken bedrift?</h2>
+                  <div className="company-input">
+                    <input
+                      type="text"
+                      className="input-large"
+                      placeholder="Bedriftsnavn"
+                      value={formData.bedriftsnavn}
+                      onChange={(e) => updateField('bedriftsnavn', e.target.value)}
+                    />
                   </div>
-                )}
+                  {formData.bedriftsnavn && (
+                    <div className="step-nav">
+                      <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                      <button onClick={nextStep} className="btn btn-primary">Neste</button>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
 
@@ -250,28 +254,31 @@ export default function Configurator() {
               <div className="step active" data-step="8">
                 <span className="step-indicator">Steg 8 av 9</span>
                 <h2 className="step-title">Dine kontaktopplysninger</h2>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className="input-text"
-                    placeholder="Fullt navn"
-                    value={formData.navn}
-                    onChange={(e) => updateField('navn', e.target.value)}
-                  />
-                  <input
-                    type="email"
-                    className="input-text"
-                    placeholder="E-post"
-                    value={formData.epost}
-                    onChange={(e) => updateField('epost', e.target.value)}
-                  />
-                  <input
-                    type="tel"
-                    className="input-text"
-                    placeholder="Telefon"
-                    value={formData.telefon}
-                    onChange={(e) => updateField('telefon', e.target.value)}
-                  />
+                <div className="contact-form">
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      placeholder="Fullt navn"
+                      value={formData.navn}
+                      onChange={(e) => updateField('navn', e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="email"
+                      placeholder="E-post"
+                      value={formData.epost}
+                      onChange={(e) => updateField('epost', e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="tel"
+                      placeholder="Telefon"
+                      value={formData.telefon}
+                      onChange={(e) => updateField('telefon', e.target.value)}
+                    />
+                  </div>
                 </div>
                 {formData.navn && formData.epost && (
                   <div className="step-nav">
@@ -287,13 +294,15 @@ export default function Configurator() {
               <div className="step active" data-step="9">
                 <span className="step-indicator">Steg 9 av 9</span>
                 <h2 className="step-title">Noe mer vi bør vite?</h2>
-                <textarea
-                  className="textarea"
-                  placeholder="F.eks. allergier, spesielle ønsker, eller annet vi bør vite"
-                  value={formData.merknad}
-                  onChange={(e) => updateField('merknad', e.target.value)}
-                  rows={4}
-                />
+                <p className="step-description">Valgfritt</p>
+                <div className="form-group">
+                  <textarea
+                    placeholder="F.eks. allergier, spesielle ønsker, eller annet vi bør vite"
+                    value={formData.merknad}
+                    onChange={(e) => updateField('merknad', e.target.value)}
+                    rows={5}
+                  />
+                </div>
                 <div className="step-nav">
                   <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
                   <button className="btn btn-primary" onClick={() => alert('Takk for henvendelsen! Vi tar kontakt snart.')}>
