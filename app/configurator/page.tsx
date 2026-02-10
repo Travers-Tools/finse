@@ -86,141 +86,166 @@ export default function Configurator() {
 
             {/* Step 2: Anledning */}
             {currentStep === 2 && (
-              <div className="step active" data-step="2">
-                <span className="step-indicator">Steg 2 av 9</span>
-                <h2 className="step-title">Hva er anledningen?</h2>
-                <p className="step-description">Velg det som passer best</p>
-                <div className="pill-options">
-                  {['Ledergruppetur', 'Teambuilding', 'Strategisamling', 'Kick-off', 'Julebord/firmafest', 'Konferanse', 'Privat arrangement'].map(option => (
-                    <label key={option} className="pill-option">
-                      <input
-                        type="radio"
-                        name="anledning"
-                        value={option}
-                        checked={formData.anledning === option}
-                        onChange={(e) => updateField('anledning', e.target.value)}
-                      />
-                      <span className="pill-label">{option}</span>
-                    </label>
-                  ))}
-                </div>
-                {formData.anledning && (
-                  <div className="step-nav">
-                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                    <button onClick={nextStep} className="btn btn-primary">Neste</button>
+              <div className="step step-with-image active" data-step="2">
+                <div className="step-content">
+                  <span className="step-indicator">Steg 2 av 10</span>
+                  <h2 className="step-title">Hva er anledningen?</h2>
+                  <p className="step-description">Velg det som passer best</p>
+                  <div className="options-grid options-grid-3">
+                    {['Ledergruppetur', 'Teambuilding', 'Strategisamling', 'Kick-off', 'Julebord/firmafest', 'Konferanse', 'Privat arrangement'].map(option => (
+                      <label key={option} className="pill-option">
+                        <input
+                          type="radio"
+                          name="anledning"
+                          value={option}
+                          checked={formData.anledning === option}
+                          onChange={(e) => updateField('anledning', e.target.value)}
+                        />
+                        <span className="pill-label">{option}</span>
+                      </label>
+                    ))}
                   </div>
-                )}
+                  {formData.anledning && (
+                    <div className="step-nav">
+                      <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                      <button onClick={nextStep} className="btn btn-primary">Neste</button>
+                    </div>
+                  )}
+                </div>
+                <div className="step-image">
+                  <img src="/assets/images/finse.jpg" alt="Finse" />
+                </div>
               </div>
             )}
 
             {/* Step 3: Antall */}
             {currentStep === 3 && (
-              <div className="step active" data-step="3">
-                <span className="step-indicator">Steg 3 av 9</span>
-                <h2 className="step-title">Hvor mange er dere?</h2>
-                <div className="pill-options">
-                  {['5-15 personer', '15-30 personer', '30-60 personer', '60-110 personer', 'Over 110 personer'].map(option => (
-                    <label key={option} className="pill-option">
-                      <input
-                        type="radio"
-                        name="antall"
-                        value={option}
-                        checked={formData.antall === option}
-                        onChange={(e) => updateField('antall', e.target.value)}
-                      />
-                      <span className="pill-label">{option}</span>
-                    </label>
-                  ))}
-                </div>
-                {formData.antall && (
-                  <div className="step-nav">
-                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                    <button onClick={nextStep} className="btn btn-primary">Neste</button>
+              <div className="step step-with-image active" data-step="3">
+                <div className="step-content">
+                  <span className="step-indicator">Steg 3 av 10</span>
+                  <h2 className="step-title">Hvor mange er dere?</h2>
+                  <div className="options-grid">
+                    {['5-15 personer', '15-30 personer', '30-60 personer', '60-110 personer', 'Over 110 personer'].map(option => (
+                      <label key={option} className="pill-option">
+                        <input
+                          type="radio"
+                          name="antall"
+                          value={option}
+                          checked={formData.antall === option}
+                          onChange={(e) => updateField('antall', e.target.value)}
+                        />
+                        <span className="pill-label">{option}</span>
+                      </label>
+                    ))}
                   </div>
-                )}
+                  {formData.antall && (
+                    <div className="step-nav">
+                      <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                      <button onClick={nextStep} className="btn btn-primary">Neste</button>
+                    </div>
+                  )}
+                </div>
+                <div className="step-image">
+                  <img src="/assets/images/oss.JPG" alt="Finse team" />
+                </div>
               </div>
             )}
 
             {/* Step 4: Varighet */}
             {currentStep === 4 && (
-              <div className="step active" data-step="4">
-                <span className="step-indicator">Steg 4 av 9</span>
-                <h2 className="step-title">Hvor lenge vil dere være?</h2>
-                <div className="pill-options">
-                  {['1 natt', '2 netter', '3+ netter'].map(option => (
-                    <label key={option} className="pill-option">
-                      <input
-                        type="radio"
-                        name="varighet"
-                        value={option}
-                        checked={formData.varighet === option}
-                        onChange={(e) => updateField('varighet', e.target.value)}
-                      />
-                      <span className="pill-label">{option}</span>
-                    </label>
-                  ))}
-                </div>
-                {formData.varighet && (
-                  <div className="step-nav">
-                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                    <button onClick={nextStep} className="btn btn-primary">Neste</button>
+              <div className="step step-with-image active" data-step="4">
+                <div className="step-content">
+                  <span className="step-indicator">Steg 4 av 10</span>
+                  <h2 className="step-title">Hvor lenge vil dere være?</h2>
+                  <div className="options-grid options-grid-3">
+                    {['1 natt', '2 netter', '3+ netter'].map(option => (
+                      <label key={option} className="pill-option">
+                        <input
+                          type="radio"
+                          name="varighet"
+                          value={option}
+                          checked={formData.varighet === option}
+                          onChange={(e) => updateField('varighet', e.target.value)}
+                        />
+                        <span className="pill-label">{option}</span>
+                      </label>
+                    ))}
                   </div>
-                )}
+                  {formData.varighet && (
+                    <div className="step-nav">
+                      <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                      <button onClick={nextStep} className="btn btn-primary">Neste</button>
+                    </div>
+                  )}
+                </div>
+                <div className="step-image">
+                  <img src="/assets/images/finse1222__182.JPG" alt="Finse rom" />
+                </div>
               </div>
             )}
 
             {/* Step 5: Aktiviteter */}
             {currentStep === 5 && (
-              <div className="step active" data-step="5">
-                <span className="step-indicator">Steg 5 av 9</span>
-                <h2 className="step-title">Hvilke aktiviteter?</h2>
-                <p className="step-description">Velg én eller flere (eller ingen)</p>
-                <div className="pill-options">
-                  {['Guidet tur på vidda', 'Skiturer', 'Breføring', 'Sykling på Rallarvegen', 'Kun opphold'].map(option => (
-                    <label key={option} className="pill-option">
-                      <input
-                        type="checkbox"
-                        name="aktiviteter"
-                        value={option}
-                        checked={formData.aktiviteter.includes(option)}
-                        onChange={() => toggleActivity(option)}
-                      />
-                      <span className="pill-label">{option}</span>
-                    </label>
-                  ))}
+              <div className="step step-with-image active" data-step="5">
+                <div className="step-content">
+                  <span className="step-indicator">Steg 5 av 10</span>
+                  <h2 className="step-title">Hvilke aktiviteter?</h2>
+                  <p className="step-description">Velg én eller flere (eller ingen)</p>
+                  <div className="options-grid">
+                    {['Guidet tur på vidda', 'Skiturer', 'Breføring', 'Sykling på Rallarvegen', 'Kun opphold'].map(option => (
+                      <label key={option} className="pill-option">
+                        <input
+                          type="checkbox"
+                          name="aktiviteter"
+                          value={option}
+                          checked={formData.aktiviteter.includes(option)}
+                          onChange={() => toggleActivity(option)}
+                        />
+                        <span className="pill-label">{option}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <div className="step-nav">
+                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                    <button onClick={nextStep} className="btn btn-primary">Neste</button>
+                  </div>
                 </div>
-                <div className="step-nav">
-                  <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                  <button onClick={nextStep} className="btn btn-primary">Neste</button>
+                <div className="step-image">
+                  <img src="/assets/images/tur.png" alt="På tur" />
                 </div>
               </div>
             )}
 
             {/* Step 6: Tidspunkt */}
             {currentStep === 6 && (
-              <div className="step active" data-step="6">
-                <span className="step-indicator">Steg 6 av 9</span>
-                <h2 className="step-title">Når passer det?</h2>
-                <div className="pill-options">
-                  {['Vinter (nov-apr)', 'Sommer (mai-okt)', 'Fleksibelt'].map(option => (
-                    <label key={option} className="pill-option">
-                      <input
-                        type="radio"
-                        name="tidspunkt"
-                        value={option}
-                        checked={formData.tidspunkt === option}
-                        onChange={(e) => updateField('tidspunkt', e.target.value)}
-                      />
-                      <span className="pill-label">{option}</span>
-                    </label>
-                  ))}
-                </div>
-                {formData.tidspunkt && (
-                  <div className="step-nav">
-                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                    <button onClick={goToSummary} className="btn btn-primary">Neste</button>
+              <div className="step step-with-image active" data-step="6">
+                <div className="step-content">
+                  <span className="step-indicator">Steg 6 av 10</span>
+                  <h2 className="step-title">Når passer det?</h2>
+                  <div className="options-grid options-grid-3">
+                    {['Vinter (nov-apr)', 'Sommer (mai-okt)', 'Fleksibelt'].map(option => (
+                      <label key={option} className="pill-option">
+                        <input
+                          type="radio"
+                          name="tidspunkt"
+                          value={option}
+                          checked={formData.tidspunkt === option}
+                          onChange={(e) => updateField('tidspunkt', e.target.value)}
+                        />
+                        <span className="pill-label">{option}</span>
+                      </label>
+                    ))}
                   </div>
-                )}
+                  {formData.tidspunkt && (
+                    <div className="step-nav">
+                      <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
+                      <button onClick={goToSummary} className="btn btn-primary">Neste</button>
+                    </div>
+                  )}
+                </div>
+                <div className="step-image">
+                  <img src="/assets/images/tog.png" alt="Tog til Finse" />
+                </div>
               </div>
             )}
 
