@@ -1182,6 +1182,8 @@ a {
 
 .pill-option {
     cursor: pointer;
+    display: block;
+    width: 100%;
 }
 
 .pill-option input {
@@ -1191,16 +1193,18 @@ a {
 }
 
 .pill-label {
-    display: inline-block;
-    padding: 0.75rem 1.25rem;
+    display: block;
+    padding: 0.875rem 1.25rem;
     font-family: var(--font-sans);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 400;
     color: #fff;
     background: #49401E;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 6px;
     transition: all var(--transition-fast);
+    text-align: center;
+    width: 100%;
 }
 
 .pill-option:hover .pill-label {
@@ -1245,7 +1249,7 @@ a {
 }
 
 .options-grid-3 {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .options-grid-checkbox {
