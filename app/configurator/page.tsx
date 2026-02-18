@@ -20,7 +20,7 @@ export default function Configurator() {
     merknad: ''
   })
 
-  const totalSteps = 10
+  const totalSteps = 9
 
   const updateField = (field: string, value: string | string[]) => {
     setFormData(prev => ({ ...prev, [field]: value }))
@@ -88,7 +88,7 @@ export default function Configurator() {
             {currentStep === 2 && (
               <div className="step step-with-image active" data-step="2">
                 <div className="step-content">
-                  <span className="step-indicator">Steg 2 av 10</span>
+                  <span className="step-indicator">Steg 2 av 9</span>
                   <h2 className="step-title">Hva er anledningen?</h2>
                   <p className="step-description">Velg det som passer best</p>
                   <div className="options-grid options-grid-3">
@@ -122,7 +122,7 @@ export default function Configurator() {
             {currentStep === 3 && (
               <div className="step step-with-image active" data-step="3">
                 <div className="step-content">
-                  <span className="step-indicator">Steg 3 av 10</span>
+                  <span className="step-indicator">Steg 3 av 9</span>
                   <h2 className="step-title">Hvor mange er dere?</h2>
                   <div className="options-grid">
                     {['5-15 personer', '15-30 personer', '30-60 personer', '60-110 personer', 'Over 110 personer'].map(option => (
@@ -155,7 +155,7 @@ export default function Configurator() {
             {currentStep === 4 && (
               <div className="step step-with-image active" data-step="4">
                 <div className="step-content">
-                  <span className="step-indicator">Steg 4 av 10</span>
+                  <span className="step-indicator">Steg 4 av 9</span>
                   <h2 className="step-title">Hvor lenge vil dere være?</h2>
                   <div className="options-grid options-grid-3">
                     {['1 natt', '2 netter', '3+ netter'].map(option => (
@@ -188,7 +188,7 @@ export default function Configurator() {
             {currentStep === 5 && (
               <div className="step step-with-image active" data-step="5">
                 <div className="step-content">
-                  <span className="step-indicator">Steg 5 av 10</span>
+                  <span className="step-indicator">Steg 5 av 9</span>
                   <h2 className="step-title">Hvilke aktiviteter?</h2>
                   <p className="step-description">Velg én eller flere (eller ingen)</p>
                   <div className="options-grid">
@@ -216,44 +216,11 @@ export default function Configurator() {
               </div>
             )}
 
-            {/* Step 6: Tidspunkt */}
+            {/* Step 6: Bedriftsnavn */}
             {currentStep === 6 && (
-              <div className="step step-with-image active" data-step="6">
-                <div className="step-content">
-                  <span className="step-indicator">Steg 6 av 10</span>
-                  <h2 className="step-title">Når passer det?</h2>
-                  <div className="options-grid options-grid-3">
-                    {['Vinter (nov-apr)', 'Sommer (mai-okt)', 'Fleksibelt'].map(option => (
-                      <label key={option} className="pill-option">
-                        <input
-                          type="radio"
-                          name="tidspunkt"
-                          value={option}
-                          checked={formData.tidspunkt === option}
-                          onChange={(e) => updateField('tidspunkt', e.target.value)}
-                        />
-                        <span className="pill-label">{option}</span>
-                      </label>
-                    ))}
-                  </div>
-                  <div className="step-nav">
-                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                    {formData.tidspunkt && (
-                      <button onClick={goToSummary} className="btn btn-primary">Neste</button>
-                    )}
-                  </div>
-                </div>
-                <div className="step-image">
-                  <img src="/assets/images/tog.png" alt="Tog til Finse" />
-                </div>
-              </div>
-            )}
-
-            {/* Step 7: Bedriftsnavn */}
-            {currentStep === 7 && (
               <div className="step active" data-step="7">
                 <div className="step-content step-content-centered">
-                  <span className="step-indicator">Steg 7 av 9</span>
+                  <span className="step-indicator">Steg 6 av 9</span>
                   <h2 className="step-title">Hvilken bedrift?</h2>
                   <div className="company-input">
                     <input
@@ -274,10 +241,10 @@ export default function Configurator() {
               </div>
             )}
 
-            {/* Step 8: Kontaktinfo */}
-            {currentStep === 8 && (
-              <div className="step active" data-step="8">
-                <span className="step-indicator">Steg 8 av 9</span>
+            {/* Step 7: Kontaktinfo */}
+            {currentStep === 7 && (
+              <div className="step active" data-step="7">
+                <span className="step-indicator">Steg 7 av 9</span>
                 <h2 className="step-title">Dine kontaktopplysninger</h2>
                 <div className="contact-form">
                   <div className="form-group">
@@ -314,10 +281,10 @@ export default function Configurator() {
               </div>
             )}
 
-            {/* Step 9: Merknad */}
-            {currentStep === 9 && (
-              <div className="step active" data-step="9">
-                <span className="step-indicator">Steg 9 av 10</span>
+            {/* Step 8: Merknad */}
+            {currentStep === 8 && (
+              <div className="step active" data-step="8">
+                <span className="step-indicator">Steg 8 av 9</span>
                 <h2 className="step-title">Noe mer vi bør vite?</h2>
                 <p className="step-description">Valgfritt</p>
                 <div className="form-group">
@@ -337,9 +304,9 @@ export default function Configurator() {
               </div>
             )}
 
-            {/* Step 10: Summary */}
-            {currentStep === 10 && (
-              <div className="step step-onepager active" data-step="10">
+            {/* Step 9: Summary */}
+            {currentStep === 9 && (
+              <div className="step step-onepager active" data-step="9">
                 <div className="onepager">
                   <div className="onepager-header">
                     <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" className="onepager-logo" />
