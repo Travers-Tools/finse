@@ -1,0 +1,631 @@
+/* ========================================
+   Configurator v2 – Hotel Finse 1222
+   ======================================== */
+
+/* ── Background ── */
+.konfig-bg {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('/assets/images/Finse_konfig_backgroundimage.JPG') center/cover no-repeat;
+  background-attachment: fixed;
+  z-index: 200;
+}
+
+.konfig-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+/* ── Card ── */
+.konfig-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 860px;
+  min-height: 400px;
+  background: #111111;
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 24px;
+}
+
+.konfig-card--success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+/* ── Progress bar ── */
+.konfig-progress {
+  display: flex;
+  gap: 3px;
+}
+
+.konfig-seg {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background 300ms ease;
+}
+
+.konfig-seg.filled {
+  background: #fff;
+}
+
+/* ── Body: two-column layout ── */
+.konfig-body {
+  display: flex;
+  flex: 1;
+}
+
+.konfig-left {
+  flex: 0 0 58%;
+  padding: 44px 48px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.konfig-right {
+  flex: 0 0 42%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Right column images ── */
+.konfig-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.konfig-img.visible {
+  opacity: 1;
+}
+
+/* ── Step transitions ── */
+.konfig-step {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1;
+}
+
+.konfig-step.slide-right {
+  animation: slideFromRight 250ms ease;
+}
+
+.konfig-step.slide-left {
+  animation: slideFromLeft 250ms ease;
+}
+
+@keyframes slideFromRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideFromLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Typography ── */
+.konfig-indicator {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.konfig-title {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.konfig-subtitle {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+}
+
+.konfig-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+/* ── Pill buttons ── */
+.konfig-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.konfig-pills--grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.konfig-pill {
+  padding: 10px 20px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 150ms ease;
+  white-space: nowrap;
+}
+
+.konfig-pill:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.konfig-pill.selected {
+  border-color: #5BB8C4;
+  background: rgba(91, 184, 196, 0.15);
+  color: #5BB8C4;
+}
+
+/* ── Block buttons (duration, meeting room) ── */
+.konfig-blocks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.konfig-blocks--half {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 12px;
+}
+
+.konfig-block {
+  padding: 10px 20px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.konfig-block:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.konfig-block.selected {
+  border-color: #5BB8C4;
+  background: rgba(91, 184, 196, 0.15);
+  color: #5BB8C4;
+}
+
+/* ── Input fields ── */
+.konfig-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.konfig-input {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 13px 16px;
+  transition: border-color 150ms ease;
+  outline: none;
+  width: 100%;
+}
+
+.konfig-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.konfig-input:focus {
+  border-color: #5BB8C4;
+}
+
+input[type="month"].konfig-input {
+  color-scheme: dark;
+}
+
+.konfig-textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+/* ── Form grid (step 5) ── */
+.konfig-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ── Date tip ── */
+.konfig-tip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.konfig-tip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.konfig-tip-dot.good {
+  background: #4CAF50;
+}
+
+.konfig-tip-dot.info {
+  background: #FFA726;
+}
+
+/* ── Divider ── */
+.konfig-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Room cards ── */
+.konfig-rooms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.konfig-room {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 150ms ease;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.konfig-room:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.konfig-room.selected {
+  border-color: #5BB8C4;
+  background: rgba(91, 184, 196, 0.08);
+  color: #5BB8C4;
+}
+
+.konfig-room-name {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.konfig-room.selected .konfig-room-name {
+  color: #5BB8C4;
+}
+
+.konfig-room-price {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ── Toggle (iOS-style) ── */
+.konfig-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.konfig-toggle-label {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.konfig-toggle {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.konfig-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.konfig-toggle-track {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 13px;
+  transition: background 200ms ease;
+}
+
+.konfig-toggle-track::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 200ms ease;
+}
+
+.konfig-toggle input:checked + .konfig-toggle-track {
+  background: #5BB8C4;
+}
+
+.konfig-toggle input:checked + .konfig-toggle-track::after {
+  transform: translateX(22px);
+}
+
+/* ── Navigation buttons ── */
+.konfig-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.konfig-back {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: color 150ms ease;
+}
+
+.konfig-back:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.konfig-next {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: #5BB8C4;
+  border: none;
+  border-radius: 100px;
+  padding: 11px 28px;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.konfig-next:hover {
+  background: #4da8b4;
+}
+
+/* ── Submit button (step 5) ── */
+.konfig-submit {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: #5BB8C4;
+  border: none;
+  border-radius: 100px;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.konfig-submit:hover:not(:disabled) {
+  background: #4da8b4;
+}
+
+.konfig-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.konfig-hint {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+  text-align: center;
+  margin: 0;
+}
+
+/* ── Summary panel (step 5 right side) ── */
+.konfig-summary {
+  position: absolute;
+  inset: 0;
+  background: #0d0d0d;
+  padding: 44px 32px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: fadeIn 300ms ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.konfig-summary-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 24px 0;
+}
+
+.konfig-summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.konfig-summary-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.konfig-summary-key {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.konfig-summary-val {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.konfig-summary-note {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: auto;
+  padding-top: 20px;
+  line-height: 1.5;
+}
+
+/* ── Success state ── */
+.konfig-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  text-align: center;
+  gap: 24px;
+}
+
+.konfig-success-title {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* ── Responsive: below 768px ── */
+@media (max-width: 768px) {
+  .konfig-card {
+    max-width: 100%;
+    margin: 0 24px;
+    border-radius: 16px;
+  }
+
+  .konfig-right {
+    display: none;
+  }
+
+  .konfig-left {
+    flex: 1;
+    padding: 32px 24px;
+  }
+
+  .konfig-body {
+    min-height: 360px;
+  }
+
+  .konfig-title {
+    font-size: 28px;
+  }
+
+  .konfig-pills--grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .konfig-blocks {
+    grid-template-columns: 1fr;
+  }
+
+  .konfig-blocks--half {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .konfig-rooms {
+    grid-template-columns: 1fr;
+  }
+
+  .konfig-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .konfig-card {
+    margin: 0 16px;
+    border-radius: 12px;
+  }
+
+  .konfig-left {
+    padding: 24px 20px;
+  }
+
+  .konfig-pills--grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .konfig-pill {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}

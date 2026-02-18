@@ -1,399 +1,421 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
-import Header from '../components/Header'
+import './configurator.css'
+
+const STEP_IMAGES = [
+  '/assets/images/finse.jpg',
+  '/assets/images/finse1222__182.JPG',
+  '/assets/images/finse1222__242.JPG',
+  '/assets/images/tur.png',
+]
+
+const MONTHS = [
+  'Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni',
+  'Juli', 'August', 'September', 'Oktober', 'November', 'Desember',
+]
 
 export default function Configurator() {
-  const [currentStep, setCurrentStep] = useState(1)
-  const [formData, setFormData] = useState({
+  const [step, setStep] = useState(1)
+  const [dir, setDir] = useState<1 | -1>(1)
+  const [submitted, setSubmitted] = useState(false)
+
+  const [form, setForm] = useState({
     anledning: '',
-    antall: '',
+    dato: '',
     varighet: '',
-    aktiviteter: [] as string[],
-    tidspunkt: '',
-    forpleining: '',
-    bedriftsnavn: '',
+    antall: '',
+    romtype: '',
+    dagAktiviteter: [] as string[],
+    kveldAktiviteter: [] as string[],
+    moterom: false,
+    moteromTid: '',
     navn: '',
+    bedrift: '',
     epost: '',
     telefon: '',
-    merknad: ''
+    merknad: '',
   })
 
-  const totalSteps = 9
+  const TOTAL = 5
 
-  const updateField = (field: string, value: string | string[]) => {
-    setFormData(prev => ({ ...prev, [field]: value }))
+  const goTo = (target: number) => {
+    setDir(target > step ? 1 : -1)
+    setStep(target)
+  }
+  const next = () => { if (step < TOTAL) goTo(step + 1) }
+  const prev = () => { if (step > 1) goTo(step - 1) }
+
+  const set = (field: string, value: string | boolean) =>
+    setForm(p => ({ ...p, [field]: value }))
+
+  const selectAnledning = (val: string) => {
+    set('anledning', val)
+    setTimeout(() => goTo(2), 300)
   }
 
-  const toggleActivity = (activity: string) => {
-    setFormData(prev => ({
-      ...prev,
-      aktiviteter: prev.aktiviteter.includes(activity)
-        ? prev.aktiviteter.filter(a => a !== activity)
-        : [...prev.aktiviteter, activity]
+  const toggleDag = (val: string) => {
+    if (val === 'Bare opphold') {
+      setForm(p => ({
+        ...p,
+        dagAktiviteter: p.dagAktiviteter.includes(val) ? [] : [val],
+      }))
+    } else {
+      setForm(p => ({
+        ...p,
+        dagAktiviteter: p.dagAktiviteter.includes(val)
+          ? p.dagAktiviteter.filter(v => v !== val)
+          : [...p.dagAktiviteter.filter(v => v !== 'Bare opphold'), val],
+      }))
+    }
+  }
+
+  const toggleKveld = (val: string) => {
+    setForm(p => ({
+      ...p,
+      kveldAktiviteter: p.kveldAktiviteter.includes(val)
+        ? p.kveldAktiviteter.filter(v => v !== val)
+        : [...p.kveldAktiviteter, val],
     }))
   }
 
-  const nextStep = () => {
-    if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1)
-    }
+  const dateTip = (() => {
+    if (!form.dato) return null
+    const m = parseInt(form.dato.split('-')[1])
+    if ([1, 2, 3, 10, 11].includes(m))
+      return { type: 'good', text: 'Hverdager i lavsesongen gir best pris' }
+    if ([7, 8].includes(m))
+      return { type: 'info', text: 'Sommerhøysesong — god tilgjengelighet, noe høyere pris' }
+    return null
+  })()
+
+  const formatDate = (d: string) => {
+    if (!d) return ''
+    const [y, m] = d.split('-')
+    return `${MONTHS[parseInt(m) - 1]} ${y}`
   }
 
-  const prevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1)
-    }
+  const handleSubmit = () => {
+    console.log('Form data:', form)
+    setSubmitted(true)
   }
 
-  const goToSummary = () => {
-    setCurrentStep(7)
+  const summaryItems = [
+    { label: 'Anledning', value: form.anledning },
+    { label: 'Ønsket dato', value: formatDate(form.dato) },
+    { label: 'Varighet', value: form.varighet },
+    { label: 'Antall gjester', value: form.antall },
+    { label: 'Romtype', value: form.romtype },
+    { label: 'Aktiviteter (dag)', value: form.dagAktiviteter.join(', ') },
+    { label: 'Aktiviteter (kveld)', value: form.kveldAktiviteter.join(', ') },
+    { label: 'Møterom', value: form.moterom ? (form.moteromTid || 'Ja') : '' },
+  ].filter(item => item.value)
+
+  if (submitted) {
+    return (
+      <div className="konfig-bg">
+        <div className="konfig-overlay" />
+        <div className="konfig-card konfig-card--success">
+          <div className="konfig-success">
+            <div className="konfig-success-check">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="24" fill="#5BB8C4" />
+                <path d="M15 24L21 30L33 18" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <h2 className="konfig-success-title">
+              Takk! Vi tar kontakt<br />innen én arbeidsdag.
+            </h2>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
-    <div className="configurator-page">
-      <Header />
-      
-      <main className="configurator">
-        <div className="configurator-card">
-          {/* Progress bar */}
-          <div className="progress-bar">
-            {[...Array(totalSteps)].map((_, i) => (
-              <div
-                key={i}
-                className={`progress-step ${i < currentStep ? 'active' : ''} ${i + 1 === currentStep ? 'current' : ''}`}
-                data-step={i + 1}
-              />
-            ))}
-          </div>
+    <div className="konfig-bg">
+      <div className="konfig-overlay" />
+      <div className="konfig-card">
+        <div className="konfig-progress">
+          {Array.from({ length: TOTAL }, (_, i) => (
+            <div key={i} className={`konfig-seg ${i < step ? 'filled' : ''}`} />
+          ))}
+        </div>
 
-          <div className="steps-container">
-            {/* Step 1: Intro */}
-            {currentStep === 1 && (
-              <div className="step step-intro active" data-step="1">
-                <div className="step-content">
-                  <span className="step-indicator">Steg 1 av 9</span>
-                  <h1 className="step-title">Skreddersy ditt<br />bedriftsopphold på Finse 1222</h1>
-                  <p className="step-description">Fortell oss om hva dere trenger og se hva vi kan tilby.<br />Tar maks 2 minutter.</p>
-                  <button className="btn btn-tertiary" onClick={nextStep}>La oss komme i gang</button>
-                </div>
-                <div className="step-image">
-                  <img src="/assets/images/finse.jpg" alt="Finse 1222" />
-                </div>
-              </div>
-            )}
+        <div className="konfig-body">
+          <div className="konfig-left">
+            <div className={`konfig-step ${dir > 0 ? 'slide-right' : 'slide-left'}`} key={step}>
+              <span className="konfig-indicator">STEG {step} AV {TOTAL}</span>
 
-            {/* Step 2: Anledning */}
-            {currentStep === 2 && (
-              <div className="step step-with-image active" data-step="2">
-                <div className="step-content">
-                  <span className="step-indicator">Steg 2 av 9</span>
-                  <h2 className="step-title">Hva er anledningen?</h2>
-                  <p className="step-description">Velg det som passer best</p>
-                  <div className="options-grid options-grid-3">
-                    {['Ledergruppetur', 'Teambuilding', 'Strategisamling', 'Kick-off', 'Julebord/firmafest', 'Konferanse', 'Privat arrangement'].map(option => (
-                      <label key={option} className="pill-option">
-                        <input
-                          type="radio"
-                          name="anledning"
-                          value={option}
-                          checked={formData.anledning === option}
-                          onChange={(e) => updateField('anledning', e.target.value)}
-                        />
-                        <span className="pill-label">{option}</span>
-                      </label>
+              {/* ── Step 1: Anledning ── */}
+              {step === 1 && (
+                <>
+                  <h1 className="konfig-title">Hva er anledningen?</h1>
+                  <p className="konfig-subtitle">Velg det som passer best</p>
+                  <div className="konfig-pills">
+                    {['Ledergruppe', 'Teambuilding', 'Strategisamling', 'Kick-off', 'Julebord/firmafest', 'Konferanse', 'Privat arrangement'].map(opt => (
+                      <button
+                        key={opt}
+                        className={`konfig-pill ${form.anledning === opt ? 'selected' : ''}`}
+                        onClick={() => selectAnledning(opt)}
+                      >
+                        {opt}
+                      </button>
                     ))}
                   </div>
-                  <div className="step-nav">
-                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                    {formData.anledning && (
-                      <button onClick={nextStep} className="btn btn-primary">Neste</button>
-                    )}
-                  </div>
-                </div>
-                <div className="step-image">
-                  <img src="/assets/images/finse.jpg" alt="Finse" />
-                </div>
-              </div>
-            )}
+                </>
+              )}
 
-            {/* Step 3: Antall */}
-            {currentStep === 3 && (
-              <div className="step step-with-image active" data-step="3">
-                <div className="step-content">
-                  <span className="step-indicator">Steg 3 av 9</span>
-                  <h2 className="step-title">Hvor mange er dere?</h2>
-                  <div className="options-grid">
-                    {['5-15 personer', '15-30 personer', '30-60 personer', '60-110 personer', 'Over 110 personer'].map(option => (
-                      <label key={option} className="pill-option">
-                        <input
-                          type="radio"
-                          name="antall"
-                          value={option}
-                          checked={formData.antall === option}
-                          onChange={(e) => updateField('antall', e.target.value)}
-                        />
-                        <span className="pill-label">{option}</span>
-                      </label>
+              {/* ── Step 2: Når og hvor lenge ── */}
+              {step === 2 && (
+                <>
+                  <h1 className="konfig-title">Når og hvor lenge?</h1>
+                  <div className="konfig-field">
+                    <label className="konfig-label">DATO</label>
+                    <input
+                      type="month"
+                      className="konfig-input"
+                      value={form.dato}
+                      onChange={e => set('dato', e.target.value)}
+                    />
+                  </div>
+                  <div className="konfig-blocks">
+                    {['1 natt', '2 netter', '3+ netter'].map(opt => (
+                      <button
+                        key={opt}
+                        className={`konfig-block ${form.varighet === opt ? 'selected' : ''}`}
+                        onClick={() => set('varighet', opt)}
+                      >
+                        {opt}
+                      </button>
                     ))}
                   </div>
-                  <div className="step-nav">
-                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                    {formData.antall && (
-                      <button onClick={nextStep} className="btn btn-primary">Neste</button>
-                    )}
-                  </div>
-                </div>
-                <div className="step-image">
-                  <img src="/assets/images/oss.JPG" alt="Finse team" />
-                </div>
-              </div>
-            )}
-
-            {/* Step 4: Varighet */}
-            {currentStep === 4 && (
-              <div className="step step-with-image active" data-step="4">
-                <div className="step-content">
-                  <span className="step-indicator">Steg 4 av 9</span>
-                  <h2 className="step-title">Hvor lenge vil dere være?</h2>
-                  <div className="options-grid options-grid-3">
-                    {['1 natt', '2 netter', '3+ netter'].map(option => (
-                      <label key={option} className="pill-option">
-                        <input
-                          type="radio"
-                          name="varighet"
-                          value={option}
-                          checked={formData.varighet === option}
-                          onChange={(e) => updateField('varighet', e.target.value)}
-                        />
-                        <span className="pill-label">{option}</span>
-                      </label>
-                    ))}
-                  </div>
-                  <div className="step-nav">
-                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                    {formData.varighet && (
-                      <button onClick={nextStep} className="btn btn-primary">Neste</button>
-                    )}
-                  </div>
-                </div>
-                <div className="step-image">
-                  <img src="/assets/images/finse1222__182.JPG" alt="Finse rom" />
-                </div>
-              </div>
-            )}
-
-            {/* Step 5: Aktiviteter */}
-            {currentStep === 5 && (
-              <div className="step step-with-image active" data-step="5">
-                <div className="step-content">
-                  <span className="step-indicator">Steg 5 av 9</span>
-                  <h2 className="step-title">Hvilke aktiviteter?</h2>
-                  <p className="step-description">Velg én eller flere (eller ingen)</p>
-                  <div className="options-grid">
-                    {['Guidet tur på vidda', 'Skiturer', 'Breføring', 'Sykling på Rallarvegen', 'Kun opphold'].map(option => (
-                      <label key={option} className="pill-option">
-                        <input
-                          type="checkbox"
-                          name="aktiviteter"
-                          value={option}
-                          checked={formData.aktiviteter.includes(option)}
-                          onChange={() => toggleActivity(option)}
-                        />
-                        <span className="pill-label">{option}</span>
-                      </label>
-                    ))}
-                  </div>
-                  <div className="step-nav">
-                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                    <button onClick={nextStep} className="btn btn-primary">Neste</button>
-                  </div>
-                </div>
-                <div className="step-image">
-                  <img src="/assets/images/tur.png" alt="På tur" />
-                </div>
-              </div>
-            )}
-
-            {/* Step 6: Bedriftsnavn */}
-            {currentStep === 6 && (
-              <div className="step active" data-step="7">
-                <div className="step-content step-content-centered">
-                  <span className="step-indicator">Steg 6 av 9</span>
-                  <h2 className="step-title">Hvilken bedrift?</h2>
-                  <div className="company-input">
-                    <input
-                      type="text"
-                      className="input-large"
-                      placeholder="Bedriftsnavn"
-                      value={formData.bedriftsnavn}
-                      onChange={(e) => updateField('bedriftsnavn', e.target.value)}
-                    />
-                  </div>
-                  <div className="step-nav">
-                    <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                    {formData.bedriftsnavn && (
-                      <button onClick={nextStep} className="btn btn-primary">Neste</button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Step 7: Kontaktinfo */}
-            {currentStep === 7 && (
-              <div className="step active" data-step="7">
-                <span className="step-indicator">Steg 7 av 9</span>
-                <h2 className="step-title">Dine kontaktopplysninger</h2>
-                <div className="contact-form">
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      placeholder="Fullt navn"
-                      value={formData.navn}
-                      onChange={(e) => updateField('navn', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="email"
-                      placeholder="E-post"
-                      value={formData.epost}
-                      onChange={(e) => updateField('epost', e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="tel"
-                      placeholder="Telefon"
-                      value={formData.telefon}
-                      onChange={(e) => updateField('telefon', e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className="step-nav">
-                  <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                  {formData.navn && formData.epost && (
-                    <button onClick={nextStep} className="btn btn-primary">Neste</button>
+                  {dateTip && (
+                    <div className="konfig-tip">
+                      <span className={`konfig-tip-dot ${dateTip.type}`} />
+                      {dateTip.text}
+                    </div>
                   )}
-                </div>
-              </div>
-            )}
+                  <div className="konfig-nav">
+                    <button className="konfig-back" onClick={prev}>Tilbake</button>
+                    {form.varighet && <button className="konfig-next" onClick={next}>Neste</button>}
+                  </div>
+                </>
+              )}
 
-            {/* Step 8: Merknad */}
-            {currentStep === 8 && (
-              <div className="step active" data-step="8">
-                <span className="step-indicator">Steg 8 av 9</span>
-                <h2 className="step-title">Noe mer vi bør vite?</h2>
-                <p className="step-description">Valgfritt</p>
-                <div className="form-group">
-                  <textarea
-                    placeholder="F.eks. allergier, spesielle ønsker, eller annet vi bør vite"
-                    value={formData.merknad}
-                    onChange={(e) => updateField('merknad', e.target.value)}
-                    rows={5}
-                  />
-                </div>
-                <div className="step-nav">
-                  <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                  <button className="btn btn-primary" onClick={nextStep}>
-                    Se oppsummering
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {/* Step 9: Summary */}
-            {currentStep === 9 && (
-              <div className="step step-onepager active" data-step="9">
-                <div className="onepager">
-                  <div className="onepager-header">
-                    <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" className="onepager-logo" />
+              {/* ── Step 3: Hvem kommer ── */}
+              {step === 3 && (
+                <>
+                  <h1 className="konfig-title">Hvem kommer?</h1>
+                  <div className="konfig-pills konfig-pills--grid">
+                    {['5–15', '15–30', '30–60', '60–110', 'Over 110'].map(opt => (
+                      <button
+                        key={opt}
+                        className={`konfig-pill ${form.antall === opt ? 'selected' : ''}`}
+                        onClick={() => set('antall', opt)}
+                      >
+                        {opt}
+                      </button>
+                    ))}
                   </div>
 
-                  <div className="onepager-hero">
-                    <span className="onepager-label">Deres bedriftsopphold på Finse 1222</span>
-                    <h1 className="onepager-company">{formData.bedriftsnavn || 'Deres bedrift'}</h1>
-                    <p className="onepager-subtitle">{formData.anledning || 'Opphold'} • {formData.antall || 'Antall personer'}</p>
+                  <div className="konfig-divider" />
+
+                  <label className="konfig-label">ROMTYPE</label>
+                  <div className="konfig-rooms">
+                    <button
+                      className={`konfig-room ${form.romtype === 'Enkeltrom' ? 'selected' : ''}`}
+                      onClick={() => set('romtype', 'Enkeltrom')}
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="7" y="9" width="4" height="6" rx="1" />
+                      </svg>
+                      <span className="konfig-room-name">Enkeltrom</span>
+                      <span className="konfig-room-price">Fra kr 1 990 / natt</span>
+                    </button>
+                    <button
+                      className={`konfig-room ${form.romtype === 'Dobbeltrom' ? 'selected' : ''}`}
+                      onClick={() => set('romtype', 'Dobbeltrom')}
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="5" y="9" width="4" height="6" rx="1" /><rect x="11" y="9" width="4" height="6" rx="1" />
+                      </svg>
+                      <span className="konfig-room-name">Dobbeltrom</span>
+                      <span className="konfig-room-price">Fra kr 1 490 / pers / natt</span>
+                    </button>
                   </div>
 
-                  <div className="onepager-itinerary">
-                    <div className="summary-meta">
-                      <div className="meta-item">
-                        <span className="meta-icon">📅</span>
-                        <span className="meta-value">{formData.varighet || '2-3 netter'}</span>
-                      </div>
-                      <div className="meta-item">
-                        <span className="meta-icon">🌄</span>
-                        <span className="meta-value">{formData.tidspunkt || 'Fleksibelt'}</span>
-                      </div>
+                  <div className="konfig-nav">
+                    <button className="konfig-back" onClick={prev}>Tilbake</button>
+                    {form.antall && <button className="konfig-next" onClick={next}>Neste</button>}
+                  </div>
+                </>
+              )}
+
+              {/* ── Step 4: Aktiviteter ── */}
+              {step === 4 && (
+                <>
+                  <h1 className="konfig-title">Hva vil dere oppleve?</h1>
+
+                  <label className="konfig-label">PÅ DAGTID</label>
+                  <div className="konfig-pills">
+                    {['Guidet tur på vidda', 'Skitur', 'Sykling på Rallarvegen', 'Breføring', 'Bare opphold'].map(opt => (
+                      <button
+                        key={opt}
+                        className={`konfig-pill ${form.dagAktiviteter.includes(opt) ? 'selected' : ''}`}
+                        onClick={() => toggleDag(opt)}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+
+                  <label className="konfig-label" style={{ marginTop: 20 }}>PÅ KVELDEN</label>
+                  <div className="konfig-pills">
+                    {['Astrokveld', 'Vinsmaking', 'Historiestund ved peisen', 'Stjernetitting', 'Quiz om Finse'].map(opt => (
+                      <button
+                        key={opt}
+                        className={`konfig-pill ${form.kveldAktiviteter.includes(opt) ? 'selected' : ''}`}
+                        onClick={() => toggleKveld(opt)}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="konfig-toggle-row">
+                    <span className="konfig-toggle-label">Trenger dere møterom?</span>
+                    <label className="konfig-toggle">
+                      <input
+                        type="checkbox"
+                        checked={form.moterom}
+                        onChange={e => set('moterom', e.target.checked)}
+                      />
+                      <span className="konfig-toggle-track" />
+                    </label>
+                  </div>
+
+                  {form.moterom && (
+                    <div className="konfig-blocks konfig-blocks--half">
+                      {['Halv dag', 'Hel dag'].map(opt => (
+                        <button
+                          key={opt}
+                          className={`konfig-block ${form.moteromTid === opt ? 'selected' : ''}`}
+                          onClick={() => set('moteromTid', opt)}
+                        >
+                          {opt}
+                        </button>
+                      ))}
                     </div>
+                  )}
 
-                    {formData.aktiviteter.length > 0 && (
-                      <div className="itinerary">
-                        <div className="itinerary-day">
-                          <div className="day-header">
-                            <span className="day-title">Aktiviteter</span>
-                          </div>
-                          <div className="day-timeline">
-                            {formData.aktiviteter.map((aktivitet, index) => (
-                              <div key={index} className="timeline-item">
-                                <span className="timeline-time">✓</span>
-                                <div className="timeline-content">
-                                  <strong>{aktivitet}</strong>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {formData.merknad && (
-                      <div className="itinerary">
-                        <div className="itinerary-day">
-                          <div className="day-header">
-                            <span className="day-title">Tilleggsinformasjon</span>
-                          </div>
-                          <div className="timeline-content">
-                            <p>{formData.merknad}</p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                  <div className="konfig-nav">
+                    <button className="konfig-back" onClick={prev}>Tilbake</button>
+                    <button className="konfig-next" onClick={next}>Neste</button>
                   </div>
+                </>
+              )}
 
-                  <div className="onepager-footer">
-                    <div className="onepager-meta">
-                      <span>{formData.navn}</span>
-                      <span className="meta-divider">•</span>
-                      <span>{formData.epost}</span>
-                      {formData.telefon && (
-                        <>
-                          <span className="meta-divider">•</span>
-                          <span>{formData.telefon}</span>
-                        </>
-                      )}
+              {/* ── Step 5: Kontakt ── */}
+              {step === 5 && (
+                <>
+                  <h1 className="konfig-title">La oss ta kontakt</h1>
+                  <div className="konfig-form-grid">
+                    <div className="konfig-field">
+                      <label className="konfig-label">NAVN</label>
+                      <input
+                        type="text"
+                        className="konfig-input"
+                        placeholder="Ditt fulle navn"
+                        value={form.navn}
+                        onChange={e => set('navn', e.target.value)}
+                      />
                     </div>
-                    <p className="onepager-brand">HOTEL FINSE 1222</p>
+                    <div className="konfig-field">
+                      <label className="konfig-label">BEDRIFT</label>
+                      <input
+                        type="text"
+                        className="konfig-input"
+                        placeholder="Bedriftsnavn"
+                        value={form.bedrift}
+                        onChange={e => set('bedrift', e.target.value)}
+                      />
+                    </div>
+                    <div className="konfig-field">
+                      <label className="konfig-label">E-POST</label>
+                      <input
+                        type="email"
+                        className="konfig-input"
+                        placeholder="din@epost.no"
+                        value={form.epost}
+                        onChange={e => set('epost', e.target.value)}
+                      />
+                    </div>
+                    <div className="konfig-field">
+                      <label className="konfig-label">TELEFON</label>
+                      <input
+                        type="tel"
+                        className="konfig-input"
+                        placeholder="+47"
+                        value={form.telefon}
+                        onChange={e => set('telefon', e.target.value)}
+                      />
+                    </div>
                   </div>
-                </div>
-
-                <div className="onepager-actions">
-                  <button onClick={prevStep} className="btn btn-outline">Tilbake</button>
-                  <button 
-                    className="btn btn-primary" 
-                    onClick={() => alert('Takk for henvendelsen! Vi tar kontakt snart.')}
+                  <div className="konfig-field">
+                    <textarea
+                      className="konfig-input konfig-textarea"
+                      placeholder="Noe annet vi bør vite? (valgfritt)"
+                      rows={3}
+                      value={form.merknad}
+                      onChange={e => set('merknad', e.target.value)}
+                    />
+                  </div>
+                  <button
+                    className="konfig-submit"
+                    disabled={!form.navn || !form.epost}
+                    onClick={handleSubmit}
                   >
                     Send forespørsel
                   </button>
+                  <p className="konfig-hint">Vi svarer innen én arbeidsdag · Ingen binding</p>
+                  <div className="konfig-nav">
+                    <button className="konfig-back" onClick={prev}>Tilbake</button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* ── Right column ── */}
+          <div className="konfig-right">
+            {STEP_IMAGES.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt=""
+                className={`konfig-img ${step === i + 1 && step < 5 ? 'visible' : ''}`}
+              />
+            ))}
+            {step === 5 && (
+              <div className="konfig-summary">
+                <h3 className="konfig-summary-title">Oppsummering</h3>
+                <div className="konfig-summary-list">
+                  {summaryItems.map(item => (
+                    <div key={item.label} className="konfig-summary-row">
+                      <span className="konfig-summary-key">{item.label}</span>
+                      <span className="konfig-summary-val">{item.value}</span>
+                    </div>
+                  ))}
                 </div>
+                <p className="konfig-summary-note">
+                  Navneliste og matintoleranser samler vi inn 3 uker før ankomst.
+                </p>
               </div>
             )}
           </div>
         </div>
-      </main>
+      </div>
     </div>
   )
 }
