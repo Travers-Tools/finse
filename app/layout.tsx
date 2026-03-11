@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Hotel Finse 1222 – Steng verden ute',
+  title: 'Hotel Finse 1222 – Bedriftsbooking',
   description: 'Gjør som Prinsen av Wales, Fridtjof Nansen og mange andre. Reis til Finse for ro og rå natur.',
 }
 
