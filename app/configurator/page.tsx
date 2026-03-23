@@ -12,22 +12,16 @@ const STEP_IMAGES = [
   '/assets/images/Finseskilt.jpg',
 ]
 
-const DAG_AKTIVITETER = [
-  { navn: 'Guidet tur på vidda',    bilde: '/assets/images/Finse_pakker00007.jpg', beskrivelse: 'Utforsk Hardangervidda med lokal guide. Hotellet inkluderer guide, kart og termos-lunsj underveis. En opplevelse som gir perspektiv – på naturen og på hverandre.' },
-  { navn: 'Skitur',                 bilde: '/assets/images/Finse_pakker00002.jpg', beskrivelse: 'Løypene starter rett utenfor døren. Hotellet låner ut ski og staver, og pakker sekken for dere om dere ønsker det. Ingen logistikk – bare frisk luft fra første steg.' },
-  { navn: 'Sykling på Rallarvegen', bilde: '/assets/images/Finse_pakker00004.jpg', beskrivelse: 'En ikonisk rute med dramatisk fjelllandskap. Hotellet ordner sykkel, hjelm og ruteplanlegging tilpasset gruppen. Mestring og snakkestoff garantert.' },
-  { navn: 'Breføring',              bilde: '/assets/images/Finse_pakker00005.jpg', beskrivelse: 'Gå på Hardangerjøkulen med erfarne guidere. Hotellet inkluderer guide, brodder og sikringsutstyr. En aktivitet som løfter turen fra hyggelig til uforglemmelig.' },
+const SOMMER_AKTIVITETER = [
+  { navn: 'Bålpanne & bading ved Framheim',       bilde: '/assets/images/Finse_pakker00010.jpg', beskrivelse: 'Morgenbad eller «after hike» ved Framheim – med bålpanne og varmt drikke. Hotellet ordner alt av utstyr. En enkel opplevelse med stor effekt.' },
+  { navn: 'Sykkeltur til Fagernut og tilbake',    bilde: '/assets/images/Finse_pakker00004.jpg', beskrivelse: 'Juli–september. Ikonisk rute med utsikt over Hardangervidda. Hotellet pakker nistepakke og låner ut sykler og hjelmer. Mestring og snakkestoff garantert.' },
+  { navn: 'Fotturer i området',                   bilde: '/assets/images/Finse_pakker00007.jpg', beskrivelse: 'Juli–september. Lille Finsenut, Jomfrunut-runden eller egentilpasset løype. Kan arrangeres med lokal guide. Hotellet låner ut utstyr og pakker sekken.' },
 ]
 
-const KVELD_AKTIVITETER = [
-  { navn: 'Astrokveld',    bilde: '/assets/images/Finse_configurator_background.jpg', beskrivelse: 'Stjernehimmel langt fra bylys. Hotellet serverer varm drikke og stiller med kikkert og stjernekart. Et naturlig rom for gode samtaler.' },
-  { navn: 'Historiestund', bilde: '/assets/images/Finse_pakker00010.jpg',             beskrivelse: 'Finses historie – fra polfarere til filminnspillinger – fortalt rundt bålet. Hotellet arrangerer guidet fortelling med noe varmt å drikke. Gir reisen et felles ankerpunkt.' },
-  { navn: 'Vinsmaking',    bilde: '/assets/images/mat_finse.jpg',                     beskrivelse: 'Kurerte viner med historiene bak glasset, ledet av hotellets personale. Inkluderer smaksprøver og småretter. En avslappet avslutning på dagen.' },
-]
-
-const AKTIVITETER = [
-  ...DAG_AKTIVITETER.map(a => ({ ...a, type: 'dag' as const })),
-  ...KVELD_AKTIVITETER.map(a => ({ ...a, type: 'kveld' as const })),
+const HELARS_AKTIVITETER = [
+  { navn: 'Finsequiz',                            bilde: '/assets/images/oss.JPG',                              beskrivelse: 'Kveldsunderholdning med hotellet som sceneteppe. Spørsmål om natur, historie og Finse-trivia. Passer like godt etter middag som etter en lang dag ute.' },
+  { navn: 'Vin- og sidersmaking',                 bilde: '/assets/images/mat_finse.jpg',                        beskrivelse: 'Kurerte viner og lokale sidere med historiene bak glasset, ledet av hotellets personale. Inkluderer smaksprøver og småretter. En avslappet avslutning på dagen.' },
+  { navn: 'Bålpanne og after hike/ski',           bilde: '/assets/images/Finse_configurator_background.jpg',    beskrivelse: 'Avslutt dagen ute ved Framheim med bålpanne og varmt drikke. Hotellet ordner utstyr og plasser. Enkelt, stemningsfullt og minneverdig.' },
 ]
 
 const MONTHS = [
@@ -69,9 +63,8 @@ export default function Configurator() {
     fleksibeltUkeDel: [] as string[],
     moteromVarighet: 'Hel dag',
     antall: '',
-    romtype: '',
-    dagAktiviteter: [] as string[],
-    kveldAktiviteter: [] as string[],
+    romtyper: [] as string[],
+    aktiviteter: [] as string[],
     navn: '',
     bedrift: '',
     epost: '',
@@ -91,31 +84,25 @@ export default function Configurator() {
   const set = (field: string, value: string | boolean) =>
     setForm(p => ({ ...p, [field]: value }))
 
-  const toggleDag = (navn: string) => {
+  const toggleAktivitet = (navn: string) => {
     setForm(p => ({
       ...p,
-      dagAktiviteter: p.dagAktiviteter.includes(navn)
-        ? p.dagAktiviteter.filter(v => v !== navn)
-        : [...p.dagAktiviteter, navn],
+      aktiviteter: p.aktiviteter.includes(navn)
+        ? p.aktiviteter.filter(v => v !== navn)
+        : [...p.aktiviteter, navn],
     }))
   }
 
-  const toggleKveld = (navn: string) => {
+  const isAktivitetSelected = (navn: string) => form.aktiviteter.includes(navn)
+
+  const toggleRomtype = (romtype: string) => {
     setForm(p => ({
       ...p,
-      kveldAktiviteter: p.kveldAktiviteter.includes(navn)
-        ? p.kveldAktiviteter.filter(v => v !== navn)
-        : [...p.kveldAktiviteter, navn],
+      romtyper: p.romtyper.includes(romtype)
+        ? p.romtyper.filter(v => v !== romtype)
+        : [...p.romtyper, romtype],
     }))
   }
-
-  const toggleAktivitet = (navn: string, type: 'dag' | 'kveld') => {
-    if (type === 'dag') toggleDag(navn)
-    else toggleKveld(navn)
-  }
-
-  const isAktivitetSelected = (navn: string, type: 'dag' | 'kveld') =>
-    type === 'dag' ? form.dagAktiviteter.includes(navn) : form.kveldAktiviteter.includes(navn)
 
   // ── Calendar helpers ──
   const today = now.toISOString().split('T')[0]
@@ -426,37 +413,39 @@ export default function Configurator() {
               {/* ── Step 4: Romtype + Møterom ── */}
               {step === 4 && (
                 <>
-                  <h1 className="konfig-title">Hvilke romtype ønsker dere?</h1>
+                  <h1 className="konfig-title">Hvilke romtyper ønsker dere?</h1>
+                  <p className="konfig-subtitle">Velg gjerne flere – vi setter opp pris på ulike kombinasjoner</p>
 
                   <label className="konfig-label">Soverom</label>
-                  <div className="konfig-rooms konfig-rooms--horizontal">
-                    <button
-                      className={`konfig-room ${form.romtype === 'Enkeltrom' ? 'selected' : ''}`}
-                      onClick={() => set('romtype', 'Enkeltrom')}
-                    >
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="7" y="9" width="4" height="6" rx="1" />
-                      </svg>
-                      <span className="konfig-room-name">Enkeltrom</span>
-                    </button>
-                    <button
-                      className={`konfig-room ${form.romtype === 'Dobbeltrom' ? 'selected' : ''}`}
-                      onClick={() => set('romtype', 'Dobbeltrom')}
-                    >
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="5" y="9" width="4" height="6" rx="1" /><rect x="11" y="9" width="4" height="6" rx="1" />
-                      </svg>
-                      <span className="konfig-room-name">Dobbeltrom</span>
-                    </button>
-                    <button
-                      className={`konfig-room ${form.romtype === 'Enkeltrom og dobbeltrom' ? 'selected' : ''}`}
-                      onClick={() => set('romtype', 'Enkeltrom og dobbeltrom')}
-                    >
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="4" y="9" width="3" height="6" rx="1" /><rect x="10" y="9" width="3" height="6" rx="1" /><rect x="16" y="9" width="3" height="6" rx="1" />
-                      </svg>
-                      <span className="konfig-room-name">Enkeltrom og dobbeltrom</span>
-                    </button>
+                  <div className="konfig-rooms konfig-rooms--grid2">
+                    {[
+                      {
+                        id: 'Enkeltrom',
+                        svg: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="7" y="9" width="4" height="6" rx="1" /></svg>,
+                      },
+                      {
+                        id: 'Dobbeltrom med separate senger',
+                        svg: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="5" y="9" width="4" height="6" rx="1" /><rect x="11" y="9" width="4" height="6" rx="1" /></svg>,
+                      },
+                      {
+                        id: 'Flersengsrom med separate senger',
+                        svg: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="4" y="9" width="3" height="6" rx="1" /><rect x="10" y="9" width="3" height="6" rx="1" /><rect x="16" y="9" width="3" height="6" rx="1" /></svg>,
+                      },
+                      {
+                        id: 'Dobbeltrom med dobbeltseng',
+                        svg: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" /><path d="M3 15h18" /><rect x="5" y="9" width="14" height="6" rx="1" /></svg>,
+                      },
+                    ].map(({ id, svg }) => (
+                      <button
+                        key={id}
+                        className={`konfig-room konfig-room--grid ${form.romtyper.includes(id) ? 'selected' : ''}`}
+                        onClick={() => toggleRomtype(id)}
+                      >
+                        {svg}
+                        <span className="konfig-room-name">{id}</span>
+                        {form.romtyper.includes(id) && <span className="konfig-room-check">✓</span>}
+                      </button>
+                    ))}
                   </div>
 
                   <label className="konfig-label">Møterom</label>
@@ -492,15 +481,44 @@ export default function Configurator() {
               {step === 5 && (
                 <>
                   <h1 className="konfig-title">Hva ønsker dere å oppleve?</h1>
+                  <p className="konfig-subtitle">Hotellet leier ut utstyr</p>
 
                   <div className="konfig-activity-grid">
-                    {AKTIVITETER.map(({ navn, bilde, beskrivelse, type }) => {
-                      const selected = isAktivitetSelected(navn, type)
+                    <p className="konfig-act-season-label">Sommer <span>juni – september</span></p>
+                    {SOMMER_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
+                      const selected = isAktivitetSelected(navn)
                       return (
                         <button
                           key={navn}
                           className={`konfig-act-card ${selected ? 'selected' : ''}`}
-                          onClick={() => toggleAktivitet(navn, type)}
+                          onClick={() => toggleAktivitet(navn)}
+                        >
+                          <div className="konfig-act-card-img-wrap">
+                            <img src={bilde} alt={navn} className="konfig-act-card-img" />
+                          </div>
+                          <div className="konfig-act-card-body">
+                            <p className="konfig-act-card-title">{navn}</p>
+                            <p className="konfig-act-card-desc">{beskrivelse}</p>
+                          </div>
+                          {selected && (
+                            <div className="konfig-act-card-check">
+                              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              </svg>
+                            </div>
+                          )}
+                        </button>
+                      )
+                    })}
+
+                    <p className="konfig-act-season-label">Helårs</p>
+                    {HELARS_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
+                      const selected = isAktivitetSelected(navn)
+                      return (
+                        <button
+                          key={navn}
+                          className={`konfig-act-card ${selected ? 'selected' : ''}`}
+                          onClick={() => toggleAktivitet(navn)}
                         >
                           <div className="konfig-act-card-img-wrap">
                             <img src={bilde} alt={navn} className="konfig-act-card-img" />
@@ -566,7 +584,7 @@ export default function Configurator() {
               {step === 1 && step1Valid && <button className="konfig-next" onClick={next}>Neste</button>}
               {step === 2 && step2Valid && <button className="konfig-next" onClick={next}>Neste</button>}
               {step === 3 && form.antall && <button className="konfig-next" onClick={next}>Neste</button>}
-              {step === 4 && form.romtype && <button className="konfig-next" onClick={next}>Neste</button>}
+              {step === 4 && form.romtyper.length > 0 && <button className="konfig-next" onClick={next}>Neste</button>}
               {step === 5 && <button className="konfig-next" onClick={next}>Neste</button>}
             </div>
           </div>
@@ -593,7 +611,7 @@ export default function Configurator() {
                       { label: 'Ønsket måned', value: form.datoModus === 'fleksibel' ? form.fleksibeltManed : '' },
                       { label: 'Varighet', value: form.datoModus === 'fleksibel' ? form.fleksibeltNetter : '' },
                       { label: 'Antall gjester', value: form.antall },
-                      { label: 'Romtype', value: form.romtype },
+                      { label: 'Romtype', value: form.romtyper.join(', ') },
                       { label: 'Møterom', value: form.moterom ? 'Ja' : '' },
                     ].filter(item => item.value).map(item => (
                       <div key={item.label} className="konfig-summary-row">
@@ -603,14 +621,13 @@ export default function Configurator() {
                     ))}
                   </div>
 
-                  {(form.dagAktiviteter.length > 0 || form.kveldAktiviteter.length > 0) && (() => {
-                    const alleAktiviteter = [...DAG_AKTIVITETER, ...KVELD_AKTIVITETER]
-                    const valgte = [...form.dagAktiviteter, ...form.kveldAktiviteter]
+                  {form.aktiviteter.length > 0 && (() => {
+                    const alleAktiviteter = [...SOMMER_AKTIVITETER, ...HELARS_AKTIVITETER]
                     return (
                       <div className="konfig-summary-activities">
                         <span className="konfig-summary-key">Aktiviteter</span>
                         <div className="konfig-summary-activity-grid">
-                          {valgte.map(navn => {
+                          {form.aktiviteter.map(navn => {
                             const match = alleAktiviteter.find(a => a.navn === navn)
                             return (
                               <div key={navn} className="konfig-summary-activity-item">
@@ -625,7 +642,7 @@ export default function Configurator() {
                   })()}
 
                   <p className="konfig-summary-note">
-                    Navneliste og matintoleranser samler vi inn 3 uker før ankomst.
+                    Navneliste med matintoleranser og kjøreplan trengs 4 uker før ankomst.
                   </p>
                 </div>
               )}

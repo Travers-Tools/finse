@@ -446,6 +446,29 @@
   padding: 20px 16px;
 }
 
+.konfig-rooms--grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.konfig-room--grid {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px;
+  position: relative;
+}
+
+.konfig-room-check {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 12px;
+  color: #775D40;
+  font-weight: 600;
+}
+
 .konfig-room {
   display: flex;
   flex-direction: row;
@@ -1109,6 +1132,27 @@ div + .konfig-flex-label {
 .konfig-activity-grid::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,0.12);
   border-radius: 2px;
+}
+
+.konfig-act-season-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.35);
+  margin: 6px 0 2px;
+  flex-shrink: 0;
+}
+
+.konfig-act-season-label:first-child {
+  margin-top: 0;
+}
+
+.konfig-act-season-label span {
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .konfig-act-card {
