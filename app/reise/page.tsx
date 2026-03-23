@@ -163,7 +163,7 @@ export default function ReisePage() {
         <blockquote className="reise-quote-text">
           «Seier venter den, som har alt i orden – hell kaller man det. Nederlag er en absolutt følge for den, som har forsømt å ta de nødvendige forholdsregler i tide – uhell kalles det.»
         </blockquote>
-        <cite className="reise-quote-attr">— Fridtjof Nansen</cite>
+        <cite className="reise-quote-attr">— Roald Amundsen</cite>
       </section>
 
       {/* ── Room type ── */}
