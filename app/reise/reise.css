@@ -381,6 +381,27 @@
   gap: 14px;
 }
 
+.reise-romtype-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reise-romtype-list li {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.reise-romtype-list li::before {
+  content: '— ';
+  opacity: 0.4;
+}
+
 .reise-romtype-copy {
   font-family: 'DM Sans', sans-serif;
   font-size: 15px;

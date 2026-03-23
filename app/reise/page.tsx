@@ -4,13 +4,12 @@ import { useEffect, useState } from 'react'
 import './reise.css'
 
 const ACTIVITY_DATA: Record<string, { bilde: string; desc: string }> = {
-  'Guidet tur på vidda':    { bilde: '/assets/images/Finse_pakker00007.jpg', desc: 'Utforsk Hardangervidda med lokal guide. Hotellet inkluderer guide, kart og termos-lunsj underveis. En opplevelse som gir perspektiv – på naturen og på hverandre.' },
-  'Skitur':                 { bilde: '/assets/images/Finse_pakker00002.jpg', desc: 'Løypene starter rett utenfor døren. Hotellet låner ut ski og staver, og pakker sekken for dere om dere ønsker det. Ingen logistikk – bare frisk luft fra første steg.' },
-  'Sykling på Rallarvegen': { bilde: '/assets/images/Finse_pakker00004.jpg', desc: 'En ikonisk rute med dramatisk fjelllandskap. Hotellet ordner sykkel, hjelm og ruteplanlegging tilpasset gruppen. Mestring og snakkestoff garantert.' },
-  'Breføring':              { bilde: '/assets/images/Finse_pakker00005.jpg', desc: 'Gå på Hardangerjøkulen med erfarne guidere. Hotellet inkluderer guide, brodder og sikringsutstyr. En aktivitet som løfter turen fra hyggelig til uforglemmelig.' },
-  'Astrokveld':             { bilde: '/assets/images/Finse_configurator_background.jpg', desc: 'Stjernehimmel langt fra bylys. Hotellet serverer varm drikke og stiller med kikkert og stjernekart. Et naturlig rom for gode samtaler.' },
-  'Historiestund':          { bilde: '/assets/images/Finse_pakker00010.jpg', desc: 'Finses historie – fra polfarere til filminnspillinger – fortalt rundt bålet. Hotellet arrangerer guidet fortelling med noe varmt å drikke. Gir reisen et felles ankerpunkt.' },
-  'Vinsmaking':             { bilde: '/assets/images/mat_finse.jpg', desc: 'Kurerte viner med historiene bak glasset, ledet av hotellets personale. Inkluderer smaksprøver og småretter. En avslappet avslutning på dagen.' },
+  'Bålpanne & bading ved Framheim':     { bilde: '/assets/images/Finse_pakker00010.jpg', desc: 'Morgenbad eller «after hike» ved Framheim – med bålpanne og varmt drikke. Hotellet ordner alt av utstyr. En enkel opplevelse med stor effekt.' },
+  'Sykkeltur til Fagernut og tilbake':  { bilde: '/assets/images/Finse_pakker00004.jpg', desc: 'Juli–september. Ikonisk rute med utsikt over Hardangervidda. Hotellet pakker nistepakke og låner ut sykler og hjelmer. Mestring og snakkestoff garantert.' },
+  'Fotturer i området':                 { bilde: '/assets/images/Finse_pakker00007.jpg', desc: 'Juli–september. Lille Finsenut, Jomfrunut-runden eller egentilpasset løype. Kan arrangeres med lokal guide. Hotellet låner ut utstyr og pakker sekken.' },
+  'Finsequiz':                          { bilde: '/assets/images/oss.JPG', desc: 'Kveldsunderholdning med hotellet som sceneteppe. Spørsmål om natur, historie og Finse-trivia. Passer like godt etter middag som etter en lang dag ute.' },
+  'Vin- og sidersmaking':               { bilde: '/assets/images/mat_finse.jpg', desc: 'Kurerte viner og lokale sidere med historiene bak glasset, ledet av hotellets personale. Inkluderer smaksprøver og småretter. En avslappet avslutning på dagen.' },
+  'Bålpanne og after hike/ski':         { bilde: '/assets/images/Finse_configurator_background.jpg', desc: 'Avslutt dagen ute ved Framheim med bålpanne og varmt drikke. Hotellet ordner utstyr og plasser. Enkelt, stemningsfullt og minneverdig.' },
 }
 
 interface TripData {
@@ -21,9 +20,8 @@ interface TripData {
   dato: string
   varighet: string
   antall: string
-  romtype: string
-  dagAktiviteter: string[]
-  kveldAktiviteter: string[]
+  romtyper: string[]
+  aktiviteter: string[]
   navn: string
   bedrift: string
   epost: string
@@ -64,7 +62,7 @@ export default function ReisePage() {
     )
   }
 
-  const aktiviteter = [...(data.dagAktiviteter || []), ...(data.kveldAktiviteter || [])].filter(Boolean)
+  const aktiviteter = (data.aktiviteter || []).filter(Boolean)
 
   const details: { label: string; value: string }[] = [
     { label: 'Anledning',  value: data.anledning },
@@ -167,17 +165,13 @@ export default function ReisePage() {
       </section>
 
       {/* ── Room type ── */}
-      {data.romtype && (
+      {data.romtyper?.length > 0 && (
         <section className="reise-romtype">
           <div className="reise-romtype-body">
             <span className="reise-eyebrow">Romtyper</span>
-            <p className="reise-romtype-copy">
-              {data.romtype === 'Enkeltrom'
-                ? 'Alle får sitt eget rom. Hvert rom har eget bad, friskt sengetøy og utsikt mot Finse.'
-                : data.romtype === 'Dobbeltrom'
-                ? 'Det er lagt opp til dobbeltrom — to og to deler. Hvert rom har eget bad og utsikt mot Finse.'
-                : 'Det er lagt opp til en blanding av enkelt- og dobbeltrom. Hvert rom har eget bad og utsikt mot Finse.'}
-            </p>
+            <ul className="reise-romtype-list">
+              {data.romtyper.map(r => <li key={r}>{r}</li>)}
+            </ul>
           </div>
           <div className="reise-romtype-img-wrap">
             <img src="/assets/images/finse1222__242.JPG" alt="Romtype" className="reise-romtype-img" />
