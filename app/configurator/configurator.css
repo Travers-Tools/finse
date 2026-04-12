@@ -91,6 +91,14 @@
   min-height: 0;
 }
 
+.konfig-body--full .konfig-left {
+  flex: 1;
+}
+
+.konfig-body--full .konfig-right {
+  display: none;
+}
+
 .konfig-left {
   flex: 0 0 58%;
   min-width: 0;
@@ -1123,20 +1131,26 @@ div + .konfig-flex-label {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   min-height: 0;
-  padding-right: 4px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,0.12) transparent;
+  scrollbar-width: none;
 }
 
 .konfig-activity-grid::-webkit-scrollbar {
-  width: 4px;
+  display: none;
 }
 
-.konfig-activity-grid::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.12);
-  border-radius: 2px;
+.konfig-act-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.konfig-act-row::-webkit-scrollbar {
+  display: none;
 }
 
 .konfig-act-season-label {
@@ -1146,7 +1160,7 @@ div + .konfig-flex-label {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.35);
-  margin: 6px 0 2px;
+  margin: 8px 0 2px;
   flex-shrink: 0;
 }
 
@@ -1162,18 +1176,16 @@ div + .konfig-flex-label {
 
 .konfig-act-card {
   display: flex;
-  flex-direction: row;
-  flex-shrink: 0;
+  flex-direction: column;
+  flex: 0 0 172px;
+  width: 172px;
   position: relative;
   background: #F3EEE3;
   border: 1.5px solid transparent;
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
   text-align: left;
-  padding: 10px;
-  gap: 16px;
-  height: 148px;
   transition: border-color 150ms ease, background 150ms ease;
 }
 
@@ -1187,11 +1199,10 @@ div + .konfig-flex-label {
 }
 
 .konfig-act-card-img-wrap {
-  flex: 0 0 160px;
-  width: 160px;
-  border-radius: 10px;
+  width: 100%;
+  height: 120px;
+  flex-shrink: 0;
   overflow: hidden;
-  align-self: stretch;
 }
 
 .konfig-act-card-img {
@@ -1202,30 +1213,27 @@ div + .konfig-flex-label {
 }
 
 .konfig-act-card-body {
-  flex: 1;
-  padding: 6px 0;
+  padding: 10px 12px 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  min-width: 0;
-  justify-content: center;
+  gap: 5px;
 }
 
 .konfig-act-card-title {
   font-family: 'Crimson Pro', Georgia, serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   color: #322A20;
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .konfig-act-card-desc {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(0,0,0,0.45);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.55;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -1234,10 +1242,10 @@ div + .konfig-flex-label {
 
 .konfig-act-card-check {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 28px;
-  height: 28px;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: #322A20;
   display: flex;

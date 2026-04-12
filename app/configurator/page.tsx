@@ -145,6 +145,19 @@ export default function Configurator() {
 
   const monthMax = upcomingMonths.length - MONTH_VISIBLE
 
+  // June (5) – September (8) er sommersesong
+  const isSommerManed = (monthIndex: number) => monthIndex >= 5 && monthIndex <= 8
+  const viseSommerAktiviteter = (() => {
+    if (form.datoModus === 'datoer' && form.datoFra) {
+      return isSommerManed(new Date(form.datoFra).getMonth())
+    }
+    if (form.datoModus === 'fleksibel' && form.fleksibeltManed) {
+      const idx = MONTHS.indexOf(form.fleksibeltManed.split(' ')[0])
+      return isSommerManed(idx)
+    }
+    return true // ingen dato valgt → vis alt
+  })()
+
   const step1Valid = form.anledning && (form.anledning !== 'Annet' || form.annetAnledning.trim() !== '')
   const step2Valid = form.datoModus === 'datoer'
     ? !!(form.datoFra && form.datoTil)
@@ -177,7 +190,7 @@ export default function Configurator() {
         <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" />
       </a>
       <div className="konfig-card">
-        <div className="konfig-body">
+        <div className={`konfig-body${step === 5 ? ' konfig-body--full' : ''}`}>
           <div className="konfig-left">
             <div className="konfig-segments">
               {[1, 2, 3, 4, 5, 6].map(i => (
@@ -469,59 +482,67 @@ export default function Configurator() {
                   <p className="konfig-subtitle">Hotellet leier ut utstyr</p>
 
                   <div className="konfig-activity-grid">
-                    <p className="konfig-act-season-label">Sommer <span>juni – september</span></p>
-                    {SOMMER_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
-                      const selected = isAktivitetSelected(navn)
-                      return (
-                        <button
-                          key={navn}
-                          className={`konfig-act-card ${selected ? 'selected' : ''}`}
-                          onClick={() => toggleAktivitet(navn)}
-                        >
-                          <div className="konfig-act-card-img-wrap">
-                            <img src={bilde} alt={navn} className="konfig-act-card-img" />
-                          </div>
-                          <div className="konfig-act-card-body">
-                            <p className="konfig-act-card-title">{navn}</p>
-                            <p className="konfig-act-card-desc">{beskrivelse}</p>
-                          </div>
-                          {selected && (
-                            <div className="konfig-act-card-check">
-                              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                              </svg>
-                            </div>
-                          )}
-                        </button>
-                      )
-                    })}
+                    {viseSommerAktiviteter && (
+                      <>
+                        <p className="konfig-act-season-label">Sommer <span>juni – september</span></p>
+                        <div className="konfig-act-row">
+                          {SOMMER_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
+                            const selected = isAktivitetSelected(navn)
+                            return (
+                              <button
+                                key={navn}
+                                className={`konfig-act-card ${selected ? 'selected' : ''}`}
+                                onClick={() => toggleAktivitet(navn)}
+                              >
+                                <div className="konfig-act-card-img-wrap">
+                                  <img src={bilde} alt={navn} className="konfig-act-card-img" />
+                                </div>
+                                <div className="konfig-act-card-body">
+                                  <p className="konfig-act-card-title">{navn}</p>
+                                  <p className="konfig-act-card-desc">{beskrivelse}</p>
+                                </div>
+                                {selected && (
+                                  <div className="konfig-act-card-check">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                      <path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                  </div>
+                                )}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </>
+                    )}
 
                     <p className="konfig-act-season-label">Helårs</p>
-                    {HELARS_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
-                      const selected = isAktivitetSelected(navn)
-                      return (
-                        <button
-                          key={navn}
-                          className={`konfig-act-card ${selected ? 'selected' : ''}`}
-                          onClick={() => toggleAktivitet(navn)}
-                        >
-                          <div className="konfig-act-card-img-wrap">
-                            <img src={bilde} alt={navn} className="konfig-act-card-img" />
-                          </div>
-                          <div className="konfig-act-card-body">
-                            <p className="konfig-act-card-title">{navn}</p>
-                            <p className="konfig-act-card-desc">{beskrivelse}</p>
-                          </div>
-                          {selected && (
-                            <div className="konfig-act-card-check">
-                              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                              </svg>
+                    <div className="konfig-act-row">
+                      {HELARS_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
+                        const selected = isAktivitetSelected(navn)
+                        return (
+                          <button
+                            key={navn}
+                            className={`konfig-act-card ${selected ? 'selected' : ''}`}
+                            onClick={() => toggleAktivitet(navn)}
+                          >
+                            <div className="konfig-act-card-img-wrap">
+                              <img src={bilde} alt={navn} className="konfig-act-card-img" />
                             </div>
-                          )}
-                        </button>
-                      )
-                    })}
+                            <div className="konfig-act-card-body">
+                              <p className="konfig-act-card-title">{navn}</p>
+                              <p className="konfig-act-card-desc">{beskrivelse}</p>
+                            </div>
+                            {selected && (
+                              <div className="konfig-act-card-check">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                  <path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              </div>
+                            )}
+                          </button>
+                        )
+                      })}
+                    </div>
                   </div>
 
                 </>
@@ -578,7 +599,7 @@ export default function Configurator() {
           <div className="konfig-right">
             <div className="konfig-img-wrap">
               {STEP_IMAGES.map((src, i) => (
-                <img key={i} src={src} alt="" className={`konfig-img ${step === i + 1 && step < 6 ? 'visible' : ''}`} />
+                <img key={i} src={src} alt="" className={`konfig-img ${step === i + 1 && step < 6 && step !== 5 ? 'visible' : ''}`} />
               ))}
               {step === 6 && (
                 <div className="konfig-summary">
