@@ -197,6 +197,11 @@
   margin: 0 0 6px;
 }
 
+.konfig-label-optional {
+  font-weight: 400;
+  opacity: 0.6;
+}
+
 .konfig-step > .konfig-label {
   margin-top: 6px;
   margin-bottom: -8px;

@@ -54,14 +54,13 @@ export default function Configurator() {
   const [form, setForm] = useState({
     anledning: '',
     annetAnledning: '',
-    moterom: false,
     datoModus: 'datoer' as 'datoer' | 'fleksibel',
     datoFra: '',
     datoTil: '',
     fleksibeltManed: '',
     fleksibeltNetter: '',
     fleksibeltUkeDel: [] as string[],
-    moteromVarighet: 'Hel dag',
+    moteromVarighet: '',
     antall: '',
     romtyper: [] as string[],
     aktiviteter: [] as string[],
@@ -443,36 +442,22 @@ export default function Configurator() {
                       >
                         {svg}
                         <span className="konfig-room-name">{id}</span>
-                        {form.romtyper.includes(id) && <span className="konfig-room-check">✓</span>}
                       </button>
                     ))}
                   </div>
 
-                  <label className="konfig-label">Møterom</label>
-                  <button
-                    className={`konfig-moterom-card ${form.moterom ? 'selected' : ''}`}
-                    onClick={() => set('moterom', !form.moterom)}
-                  >
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="3" y="4" width="18" height="14" rx="2" /><path d="M8 20h8" /><path d="M12 18v2" />
-                    </svg>
-                    <span className="konfig-room-name">Trenger dere møterom?</span>
-                    <span className="konfig-moterom-card-check">{form.moterom ? '✓' : ''}</span>
-                  </button>
-
-                  {form.moterom && (
-                    <div className="konfig-moterom-varighet">
-                      {['Hel dag', 'Halv dag'].map(opt => (
-                        <button
-                          key={opt}
-                          className={`konfig-duration-btn ${form.moteromVarighet === opt ? 'selected' : ''}`}
-                          onClick={() => set('moteromVarighet', opt)}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  )}
+                  <label className="konfig-label">Møterom <span className="konfig-label-optional">(valgfritt)</span></label>
+                  <div className="konfig-moterom-varighet">
+                    {['Hel dag', 'Halv dag'].map(opt => (
+                      <button
+                        key={opt}
+                        className={`konfig-duration-btn ${form.moteromVarighet === opt ? 'selected' : ''}`}
+                        onClick={() => set('moteromVarighet', form.moteromVarighet === opt ? '' : opt)}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
 
                 </>
               )}
@@ -612,7 +597,7 @@ export default function Configurator() {
                       { label: 'Varighet', value: form.datoModus === 'fleksibel' ? form.fleksibeltNetter : '' },
                       { label: 'Antall gjester', value: form.antall },
                       { label: 'Romtype', value: form.romtyper.join(', ') },
-                      { label: 'Møterom', value: form.moterom ? 'Ja' : '' },
+                      { label: 'Møterom', value: form.moteromVarighet || '' },
                     ].filter(item => item.value).map(item => (
                       <div key={item.label} className="konfig-summary-row">
                         <span className="konfig-summary-key">{item.label}</span>
