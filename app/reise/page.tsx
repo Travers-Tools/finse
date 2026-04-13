@@ -88,7 +88,7 @@ export default function ReisePage() {
         </nav>
         <div className="reise-hero-body">
           <div className="reise-inner">
-          <p className="reise-hero-eyebrow">Forespørsel mottatt</p>
+          <p className="reise-hero-label">{data.anledning}</p>
           <h1 className="reise-hero-title">
             {data.bedrift ? `${data.bedrift} på Finse 1222` : 'Deres opphold på Finse 1222'}
           </h1>
@@ -184,12 +184,8 @@ export default function ReisePage() {
           <div className="reise-inner">
             <span className="reise-eyebrow">Overnatting</span>
             <h2 className="reise-section-title">Romtyper dere har valgt</h2>
-            <div className="reise-romtype-top">
-              <div className="reise-romtype-img-wrap">
-                <img src="/assets/images/finse1222__242.JPG" alt="Romtype" className="reise-romtype-img" />
-              </div>
-            </div>
-            <div className="reise-romtype-cards">
+            <div className="reise-romtype-body">
+              <div className="reise-romtype-cards">
               {data.romtyper.map(r => {
                 const svgMap: Record<string, React.ReactNode> = {
                   'Enkeltrom': <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="7" y="9" width="4" height="6" rx="1"/></svg>,
@@ -204,6 +200,10 @@ export default function ReisePage() {
                   </div>
                 )
               })}
+              </div>
+              <div className="reise-romtype-img-wrap">
+                <img src="/assets/images/finse1222__242.JPG" alt="Romtype" className="reise-romtype-img" />
+              </div>
             </div>
           </div>
         </section>

@@ -7,7 +7,7 @@
   --brown-dark: #322A20;
   --brown-mid:  #775D40;
   --text:       #1C1C1C;
-  --text-muted: rgba(0,0,0,0.58);
+  --text-muted: rgba(0,0,0,0.68);
   --border:     rgba(0,0,0,0.09);
   --px:         clamp(48px, 16vw, 280px);
   --px-wide:    clamp(72px, 22vw, 380px);
@@ -106,29 +106,13 @@
   align-items: flex-start;
 }
 
-.reise-hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.22);
-  border-radius: 100px;
-  padding: 5px 14px 5px 10px;
+.reise-hero-label {
   font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
-  color: rgba(255,255,255,0.85);
-  letter-spacing: 0.03em;
-  margin: 0 0 18px;
-}
-
-.reise-hero-eyebrow::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #5BBFA0;
-  flex-shrink: 0;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.02em;
+  margin: 0 0 14px;
 }
 
 .reise-hero-title {
@@ -406,17 +390,23 @@
   gap: 24px;
 }
 
-.reise-romtype-top {
+.reise-romtype-body {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 32px;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.reise-romtype-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  flex: 1;
 }
 
 .reise-romtype-img-wrap {
-  flex: 0 0 280px;
-  height: 180px;
-  border-radius: 12px;
+  flex: 0 0 320px;
+  height: 260px;
+  border-radius: 14px;
   overflow: hidden;
 }
 
@@ -425,12 +415,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.reise-romtype-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
 }
 
 .reise-romtype-card {
