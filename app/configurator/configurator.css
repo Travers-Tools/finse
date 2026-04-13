@@ -1122,31 +1122,51 @@ div + .konfig-flex-label {
 }
 
 /* ── Activity card list (step 5) ── */
-.konfig-activity-grid {
-  flex: 1;
-  overflow-y: auto;
+.konfig-act-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  min-height: 0;
-  scrollbar-width: none;
+  flex-shrink: 0;
 }
 
-.konfig-activity-grid::-webkit-scrollbar {
-  display: none;
+.konfig-act-group-cards {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
 }
 
 .konfig-act-row {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  flex-wrap: nowrap;
+  gap: 20px;
   overflow-x: auto;
+  flex: 1;
+  min-height: 0;
+  align-items: flex-start;
   padding-bottom: 4px;
   scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
 }
 
 .konfig-act-row::-webkit-scrollbar {
   display: none;
+}
+
+.konfig-act-divider {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-lr;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.25);
+  padding: 0 4px;
 }
 
 .konfig-act-season-label {
@@ -1173,8 +1193,9 @@ div + .konfig-flex-label {
 .konfig-act-card {
   display: flex;
   flex-direction: column;
-  flex: 0 0 172px;
-  width: 172px;
+  flex: 0 0 200px;
+  width: 200px;
+  height: 290px;
   position: relative;
   background: #F3EEE3;
   border: 1.5px solid transparent;
@@ -1196,7 +1217,7 @@ div + .konfig-flex-label {
 
 .konfig-act-card-img-wrap {
   width: 100%;
-  height: 120px;
+  height: 155px;
   flex-shrink: 0;
   overflow: hidden;
 }
@@ -1209,29 +1230,35 @@ div + .konfig-flex-label {
 }
 
 .konfig-act-card-body {
-  padding: 10px 12px 12px;
+  padding: 12px 14px 14px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
+  flex: 1;
+  overflow: hidden;
 }
 
 .konfig-act-card-title {
   font-family: 'Crimson Pro', Georgia, serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   color: #322A20;
   margin: 0;
   line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .konfig-act-card-desc {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 10.5px;
   color: rgba(0,0,0,0.45);
   margin: 0;
   line-height: 1.55;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

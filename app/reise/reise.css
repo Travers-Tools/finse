@@ -7,10 +7,11 @@
   --brown-dark: #322A20;
   --brown-mid:  #775D40;
   --text:       #1C1C1C;
-  --text-muted: rgba(0,0,0,0.45);
+  --text-muted: rgba(0,0,0,0.58);
   --border:     rgba(0,0,0,0.09);
-  --px:         clamp(32px, 10vw, 160px);
-  --px-wide:    clamp(48px, 16vw, 260px);
+  --px:         clamp(48px, 16vw, 280px);
+  --px-wide:    clamp(72px, 22vw, 380px);
+  --content-max: 1100px;
 }
 
 * { box-sizing: border-box; }
@@ -19,6 +20,12 @@
   background: var(--cream);
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
+}
+
+.reise-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  width: 100%;
 }
 
 /* ══════════════════════════════════════
@@ -71,6 +78,13 @@
   position: relative;
   z-index: 1;
   padding: 28px var(--px-wide);
+}
+
+.reise-hero-nav .reise-inner,
+.reise-hero-body .reise-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  width: 100%;
 }
 
 .reise-logo-link { display: inline-block; }
@@ -131,7 +145,7 @@
 .reise-hero-intro {
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.78);
   line-height: 1.65;
   margin: 0 0 28px;
   max-width: 400px;
@@ -151,6 +165,12 @@
   padding: 100px var(--px-wide) 80px;
 }
 
+.reise-romtype .reise-inner {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
 .reise-welcome-text {
   max-width: 560px;
 }
@@ -166,9 +186,9 @@
 
 .reise-welcome-body {
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-muted);
-  line-height: 1.75;
+  line-height: 1.65;
   margin: 0 0 14px;
   max-width: 560px;
 }
@@ -201,11 +221,11 @@
 
 .reise-fact-label {
   font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
-  color: rgba(0,0,0,0.32);
+  color: rgba(0,0,0,0.45);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
 }
 
 .reise-fact-value {
@@ -222,15 +242,24 @@
 .reise-eyebrow {
   display: block;
   font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
-  color: rgba(0,0,0,0.32);
+  color: rgba(0,0,0,0.45);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
 }
 
 .reise-program {
   padding: 100px var(--px-wide) 112px;
+}
+
+.reise-section-title {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 500;
+  color: var(--text);
+  margin: 12px 0 0;
+  line-height: 1.15;
 }
 
 /* Editorial grid — 4-state cycle: horizontal / portrait / medium / small */
@@ -368,54 +397,26 @@
    ROOM TYPE
 ══════════════════════════════════════ */
 .reise-romtype {
-  display: flex;
-  align-items: center;
-  gap: 48px;
   padding: 96px var(--px-wide);
 }
 
-.reise-romtype-body {
-  flex: 1;
+.reise-romtype .reise-inner {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 24px;
 }
 
-.reise-romtype-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.reise-romtype-top {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.reise-romtype-list li {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-.reise-romtype-list li::before {
-  content: '— ';
-  opacity: 0.4;
-}
-
-.reise-romtype-copy {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  color: var(--text-muted);
-  line-height: 1.75;
-  margin: 0;
-  max-width: 320px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
 }
 
 .reise-romtype-img-wrap {
-  flex: 0 0 340px;
-  width: 340px;
-  height: 420px;
-  border-radius: 16px;
+  flex: 0 0 280px;
+  height: 180px;
+  border-radius: 12px;
   overflow: hidden;
 }
 
@@ -425,6 +426,37 @@
   object-fit: cover;
   display: block;
 }
+
+.reise-romtype-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.reise-romtype-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  background: #F3EEE3;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 14px;
+  padding: 20px;
+  flex: 0 0 200px;
+}
+
+.reise-romtype-card-icon {
+  color: #322A20;
+  opacity: 0.7;
+}
+
+.reise-romtype-card-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #322A20;
+  line-height: 1.4;
+}
+
 
 /* ══════════════════════════════════════
    SHARE CARD  — contained, rounded
@@ -437,8 +469,7 @@
   background: var(--brown-dark);
   border-radius: 20px;
   padding: 48px 52px;
-  max-width: 780px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .reise-share-title {
@@ -453,7 +484,7 @@
 .reise-share-desc {
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.7);
   margin: 0 0 32px;
   line-height: 1.6;
 }
@@ -467,8 +498,8 @@
 
 .reise-share-note {
   font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
-  color: rgba(255,255,255,0.28);
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
   margin: 0;
 }
 
@@ -530,12 +561,12 @@
 .reise-footer-link {
   font-family: 'DM Sans', sans-serif;
   font-size: 12px;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.55);
   text-decoration: none;
   transition: color 150ms ease;
 }
 
-.reise-footer-link:hover { color: rgba(255,255,255,0.7); }
+.reise-footer-link:hover { color: rgba(255,255,255,0.85); }
 
 /* ══════════════════════════════════════
    EMPTY STATE
