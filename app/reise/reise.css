@@ -109,6 +109,16 @@
   padding-bottom: 72px;
 }
 
+.reise-hero-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(14px, 1.4vw, 17px);
+  font-weight: 500;
+  color: rgba(255,255,255,0.78);
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  margin: 0 0 14px;
+}
+
 .reise-hero-title {
   font-family: 'Crimson Pro', Georgia, serif;
   font-size: clamp(40px, 6.5vw, 84px);
@@ -116,18 +126,8 @@
   color: #fff;
   letter-spacing: -0.02em;
   line-height: 1.02;
-  margin: 0 0 18px;
-  max-width: 880px;
-}
-
-.reise-hero-subtitle {
-  font-family: 'DM Sans', sans-serif;
-  font-size: clamp(16px, 1.7vw, 20px);
-  font-weight: 400;
-  color: rgba(255,255,255,0.88);
-  letter-spacing: 0.01em;
-  line-height: 1.4;
   margin: 0;
+  max-width: 880px;
 }
 
 /* ══════════════════════════════════════

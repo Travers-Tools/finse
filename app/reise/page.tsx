@@ -161,12 +161,12 @@ export default function ReisePage() {
         </nav>
         <div className="reise-hero-body">
           <div className="reise-inner">
-            <h1 className="reise-hero-title">
-              {data.bedrift ? `${data.bedrift} på Finse 1222` : 'Deres opphold på Finse 1222'}
-            </h1>
             <p className="reise-hero-subtitle">
               {data.anledning} — 1222 moh.
             </p>
+            <h1 className="reise-hero-title">
+              {data.bedrift ? `${data.bedrift} på Finse 1222` : 'Deres opphold på Finse 1222'}
+            </h1>
           </div>
         </div>
       </section>
