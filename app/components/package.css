@@ -328,42 +328,20 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.pkg-suitable-item {
-  background: var(--pkg-card-bg);
-  border: 1px solid var(--pkg-border);
-  border-radius: 10px;
-  padding: 20px 22px;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.pkg-suitable-name {
-  font-family: 'Crimson Pro', Georgia, serif;
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--pkg-text);
-  margin: 0;
-  letter-spacing: -0.005em;
-}
-
-.pkg-suitable-note {
+.pkg-suitable-chip {
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
-  color: var(--pkg-text-muted);
-  line-height: 1.55;
-  margin: 0;
-}
-
-@media (max-width: 640px) {
-  .pkg-suitable-list {
-    grid-template-columns: 1fr;
-  }
+  font-weight: 500;
+  color: var(--pkg-brown-mid);
+  background: var(--pkg-cream-deep);
+  border-radius: 100px;
+  padding: 9px 18px;
+  letter-spacing: 0.005em;
 }
 
 /* ══════════════════════════════════════

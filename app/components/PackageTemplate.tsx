@@ -22,11 +22,6 @@ export interface PackageDay {
   items: PackageDayItem[]
 }
 
-export interface SuitableFor {
-  anledning: string
-  note: string
-}
-
 export interface PackageData {
   title: string
   subtitle: string
@@ -34,7 +29,7 @@ export interface PackageData {
   heroImage: { src: string; alt: string }
   gallery: { src: string; alt: string }[]
   includes: PackageItem[]
-  suitableFor: SuitableFor[]
+  suitableFor: string[]
   itinerary: PackageDay[]
   ctaNote: string
 }
@@ -159,11 +154,8 @@ export default function PackageTemplate(data: PackageData) {
                 <div className="pkg-block">
                   <h2 className="pkg-block-title">Passer for ulike anledninger</h2>
                   <ul className="pkg-suitable-list">
-                    {data.suitableFor.map((s, i) => (
-                      <li key={i} className="pkg-suitable-item">
-                        <h3 className="pkg-suitable-name">{s.anledning}</h3>
-                        <p className="pkg-suitable-note">{s.note}</p>
-                      </li>
+                    {data.suitableFor.map(s => (
+                      <li key={s} className="pkg-suitable-chip">{s}</li>
                     ))}
                   </ul>
                 </div>
