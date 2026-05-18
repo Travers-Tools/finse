@@ -123,25 +123,15 @@
   padding: 112px var(--px-wide) 40px;
 }
 
-.reise-intro-lead {
+.reise-intro-body {
   font-family: 'Crimson Pro', Georgia, serif;
   font-size: clamp(24px, 2.6vw, 32px);
   font-weight: 500;
   color: var(--text);
-  line-height: 1.32;
-  margin: 0 0 28px;
-  max-width: 680px;
-  letter-spacing: -0.01em;
-}
-
-.reise-intro-body {
-  font-family: 'Crimson Pro', Georgia, serif;
-  font-size: clamp(19px, 1.9vw, 23px);
-  font-weight: 400;
-  color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.35;
   margin: 0 0 40px;
-  max-width: 640px;
+  max-width: 740px;
+  letter-spacing: -0.01em;
 }
 
 .reise-intro-cta {

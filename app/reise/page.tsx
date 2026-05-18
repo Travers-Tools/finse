@@ -116,9 +116,6 @@ export default function ReisePage() {
       {/* ── Intro ── */}
       <section className="reise-intro">
         <div className="reise-inner">
-          <p className="reise-intro-lead">
-            Dette er et forslag til hvordan turen til Finse 1222 kan se ut. Send det gjerne til de andre og hør hva de tenker.
-          </p>
           <p className="reise-intro-body">
             Finse 1222 ligger der jernbanen slutter og vidda begynner — Norges høyestliggende fjellstasjon, omgitt av Hardangerjøkulen og stille kilometer med is og lys. Her finnes ingen biler, ingen støy. Bare det som virkelig betyr noe.
           </p>
