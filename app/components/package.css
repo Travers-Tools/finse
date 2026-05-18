@@ -15,11 +15,26 @@
   --pkg-content-max:  1200px;
   --pkg-gutter:       clamp(24px, 5vw, 64px);
   --pkg-section-pad:  clamp(48px, 6vw, 80px);
+  --pkg-header-h:     76px;
 
   background: var(--pkg-cream);
   color: var(--pkg-text);
   font-family: 'DM Sans', sans-serif;
   min-height: 100vh;
+}
+
+/* Slank, frostet header for pakkesidene */
+.pkg-page .header {
+  padding: 14px clamp(20px, 4vw, 40px);
+}
+
+.pkg-page .logo-img {
+  height: 36px;
+}
+
+.pkg-page .nav-link,
+.pkg-page .btn-planlegg {
+  font-size: 13px;
 }
 
 .pkg-inner {
@@ -64,7 +79,7 @@
    PHOTO GRID HERO
 ══════════════════════════════════════ */
 .pkg-gallery-hero {
-  padding: 24px 0 0;
+  padding: calc(var(--pkg-header-h) + 24px) 0 0;
 }
 
 .pkg-photo-grid {
@@ -622,7 +637,7 @@
 ══════════════════════════════════════ */
 @media (max-width: 640px) {
   .pkg-gallery-hero {
-    padding-top: 16px;
+    padding-top: calc(var(--pkg-header-h) + 12px);
   }
 
   .pkg-photo-grid {
