@@ -28,7 +28,7 @@ export default function PakkeHotelletForDere() {
       suitableFor={['Julebord/firmafest', 'Kick-off', 'Privat arrangement', 'Konferanse']}
       itinerary={[
         {
-          label: 'Ankomst og feiring',
+          label: 'Ankomst',
           items: [
             { time: '14:00', title: 'Ankomst Finse', desc: 'Velkomstdrink på perrongen' },
             { time: '15:00', title: 'Innsjekk', desc: 'Hotellet er deres' },
