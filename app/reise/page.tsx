@@ -122,7 +122,7 @@ export default function ReisePage() {
         <div className="reise-empty">
           <h1 className="reise-empty-title">Reisen ble ikke funnet</h1>
           <p className="reise-empty-text">Lenken kan ha utløpt eller data er slettet fra nettleseren.</p>
-          <a href="/configurator" className="reise-btn reise-btn--dark">Start ny konfigurasjon</a>
+          <a href="/configurator" className="reise-btn reise-btn--cream">Start ny konfigurasjon</a>
         </div>
       </div>
     )
@@ -269,7 +269,7 @@ export default function ReisePage() {
       <section className="reise-share-bottom">
         <div className="reise-inner">
           <p className="reise-share-lead">Send det videre til de andre.</p>
-          <button className="reise-btn reise-btn--dark" onClick={handleCopy}>
+          <button className="reise-btn reise-btn--cream" onClick={handleCopy}>
             {copied ? '✓ Lenke kopiert!' : 'Del med kollegaer'}
           </button>
         </div>

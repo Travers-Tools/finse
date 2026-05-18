@@ -3,16 +3,17 @@
    ======================================== */
 
 :root {
-  --cream:        #F8F4E8;
-  --cream-deep:   #F2EBD9;
-  --brown-dark:   #322A20;
-  --brown-mid:    #775D40;
-  --text:         #1C1C1C;
-  --text-muted:   rgba(0,0,0,0.65);
-  --border:       rgba(0,0,0,0.09);
-  --content-max:  880px;
-  --gutter:       clamp(24px, 6vw, 88px);
-  --section-pad:  clamp(64px, 8vw, 112px);
+  --cream:         #F2EBD9;
+  --cream-deep:    #E8DFC8;
+  --brown-dark:    #1C1611;            /* page background */
+  --brown-elev:    #251E16;            /* elevated dark surface */
+  --brown-mid:     #D4B284;            /* light warm accent (gold) */
+  --text:          #F2EBD9;            /* warm off-white */
+  --text-muted:    rgba(242, 235, 217, 0.58);
+  --border:        rgba(242, 235, 217, 0.12);
+  --content-max:   880px;
+  --gutter:        clamp(24px, 6vw, 88px);
+  --section-pad:   clamp(64px, 8vw, 112px);
   --section-tight: clamp(32px, 4vw, 56px);
 }
 
@@ -21,7 +22,7 @@
 html { scroll-behavior: smooth; }
 
 .reise-page {
-  background: var(--cream);
+  background: var(--brown-dark);
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
   animation: epicReveal 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -63,7 +64,7 @@ html { scroll-behavior: smooth; }
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
   font-weight: 500;
-  color: rgba(0,0,0,0.5);
+  color: rgba(242, 235, 217, 0.5);
   letter-spacing: 0.01em;
   margin-bottom: 14px;
 }
@@ -358,7 +359,7 @@ html { scroll-behavior: smooth; }
 .reise-quote-caption {
   font-family: 'DM Sans', sans-serif;
   font-size: 12px;
-  color: rgba(0,0,0,0.4);
+  color: rgba(242, 235, 217, 0.4);
   margin-top: 12px;
   line-height: 1.5;
 }
@@ -481,8 +482,9 @@ html { scroll-behavior: smooth; }
    FOOTER
 ══════════════════════════════════════ */
 .reise-footer {
-  background: #18120C;
+  background: #120D08;
   padding: var(--section-pad) 0;
+  border-top: 1px solid var(--border);
 }
 
 .reise-footer-inner {
