@@ -213,16 +213,6 @@ export default function ReisePage() {
         </section>
       )}
 
-      {/* ── Merknad ── */}
-      {data.merknad && (
-        <section className="reise-merknad">
-          <div className="reise-inner">
-            <span className="reise-eyebrow">Merknad fra dere</span>
-            <p className="reise-merknad-text">«{data.merknad}»</p>
-          </div>
-        </section>
-      )}
-
       {/* ── Pull quote — full-bleed dark ── */}
       <section className="reise-quote">
         <div className="reise-inner">
