@@ -20,7 +20,7 @@ export default function PakkeHotelletForDere() {
       ]}
       includes={[
         { icon: 'hotel', text: 'Hele hotellet for deres gruppe' },
-        { icon: 'food', text: 'Fullpensjon tilpasset deres ønsker' },
+        { icon: 'food', text: 'Frokost, lunsj og middag etter avtale' },
         { icon: 'party', text: 'Arrangementshåndtering' },
         { icon: 'group', text: 'Dedikert personale' },
         { icon: 'fire', text: 'Privat bruk av alle fasiliteter' },

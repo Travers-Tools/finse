@@ -20,7 +20,7 @@ export default function PakkeFokusPaaVidda() {
       ]}
       includes={[
         { icon: 'bed', text: 'Overnatting i komfortable rom' },
-        { icon: 'food', text: 'Fullpensjon med god mat' },
+        { icon: 'food', text: 'Frokost, lunsj og treretters middag' },
         { icon: 'briefcase', text: 'Møterom og fasiliteter' },
         { icon: 'fire', text: 'Kvelder ved peisen' },
       ]}

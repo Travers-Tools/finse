@@ -20,7 +20,7 @@ export default function PakkeEkspedisjonstur() {
       ]}
       includes={[
         { icon: 'bed', text: 'Overnatting i komfortable rom' },
-        { icon: 'food', text: 'Fullpensjon' },
+        { icon: 'food', text: 'Frokost, matpakke og treretters middag' },
         { icon: 'ski', text: 'Guidede turer (ski, bre eller sykkel)' },
         { icon: 'gear', text: 'Utstyr kan leies på stedet' },
         { icon: 'fire', text: 'Kvelder ved peisen' },
