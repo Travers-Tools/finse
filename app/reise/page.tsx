@@ -185,9 +185,6 @@ export default function ReisePage() {
       {/* ── Reisen i kort ── */}
       {details.length > 0 && (
         <section className="reise-facts-section">
-          <figure className="reise-facts-hero">
-            <img src="/assets/images/Finseskilt.jpg" alt="Finse" className="reise-facts-hero-img" />
-          </figure>
           <div className="reise-inner">
             <span className="reise-eyebrow">Reisen</span>
             <h2 className="reise-section-title">Det dere har valgt</h2>
@@ -251,58 +248,17 @@ export default function ReisePage() {
         </div>
       </section>
 
-      {/* ── Hva skjer nå — timeline ── */}
-      <section className="reise-next">
-        <div className="reise-inner">
-          <span className="reise-eyebrow">Hva skjer nå</span>
-          <h2 className="reise-section-title">Tre enkle steg videre</h2>
-          <ol className="reise-next-timeline">
-            <li className="reise-next-step">
-              <span className="reise-next-num">01</span>
-              <div className="reise-next-content">
-                <h3 className="reise-next-title">Forespørselen er sendt</h3>
-                <p className="reise-next-desc">Vi har mottatt valgene dere har gjort og setter sammen et forslag tilpasset gruppen.</p>
-              </div>
-            </li>
-            <li className="reise-next-step">
-              <span className="reise-next-num">02</span>
-              <div className="reise-next-content">
-                <h3 className="reise-next-title">Svar innen én arbeidsdag</h3>
-                <p className="reise-next-desc">Dere får et personlig svar fra hotellet med pris, romoppsett og forslag til program.</p>
-              </div>
-            </li>
-            <li className="reise-next-step">
-              <span className="reise-next-num">03</span>
-              <div className="reise-next-content">
-                <h3 className="reise-next-title">Vi finpusser sammen</h3>
-                <p className="reise-next-desc">Sammen lander vi detaljene — fra ankomsttid og bagasjehåndtering til måltider og aktiviteter.</p>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      {/* ── Share card ── */}
-      <section className="reise-share">
-        <div className="reise-inner">
-          <h2 className="reise-share-title">Del med teamet</h2>
-          <p className="reise-share-desc">
-            Send lenken til kollegaene dine — la dem se hva som venter på Finse.
-          </p>
-          <div className="reise-share-btns">
-            <button className="reise-btn reise-btn--light" onClick={handleCopy}>
-              {copied ? '✓ Lenke kopiert!' : 'Kopier lenke'}
-            </button>
-          </div>
-          <p className="reise-share-note">Vi svarer innen én arbeidsdag · Ingen binding</p>
-        </div>
-      </section>
 
       {/* ── Footer ── */}
       <footer className="reise-footer">
         <div className="reise-inner reise-footer-inner">
           <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" className="reise-footer-logo" />
-          <a href="/configurator" className="reise-footer-link">Start en ny forespørsel →</a>
+          <p className="reise-footer-tagline">Norges høyestliggende hotell — 1222 moh.</p>
+          <div className="reise-footer-meta">
+            <a href="/configurator" className="reise-footer-link">Start en ny forespørsel →</a>
+            <span className="reise-footer-divider">·</span>
+            <span className="reise-footer-note">Vi svarer innen én arbeidsdag</span>
+          </div>
         </div>
       </footer>
 
