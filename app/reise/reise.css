@@ -25,13 +25,28 @@ html { scroll-behavior: smooth; }
   background: var(--brown-dark);
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
-  animation: pageReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@keyframes pageReveal {
+/* Tekstreveals — bildene står stille, teksten glir inn */
+.reise-hero-body,
+.reise-intro,
+.reise-facts-section .reise-inner,
+.reise-program .reise-inner,
+.reise-act-row-body,
+.reise-quote-body,
+.reise-share-bottom .reise-inner,
+.reise-footer-inner {
+  animation: textReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reise-hero-body {
+  animation-delay: 0.3s;
+}
+
+@keyframes textReveal {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -40,7 +55,14 @@ html { scroll-behavior: smooth; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reise-page {
+  .reise-hero-body,
+  .reise-intro,
+  .reise-facts-section .reise-inner,
+  .reise-program .reise-inner,
+  .reise-act-row-body,
+  .reise-quote-body,
+  .reise-share-bottom .reise-inner,
+  .reise-footer-inner {
     animation: none;
   }
 }
