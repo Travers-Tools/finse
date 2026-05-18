@@ -319,11 +319,11 @@
 }
 
 /* ══════════════════════════════════════
-   SUITABLE FOR
+   SUITABLE FOR chips (under tittel)
 ══════════════════════════════════════ */
 .pkg-suitable-list {
   list-style: none;
-  margin: 0;
+  margin: 20px 0 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
@@ -332,12 +332,12 @@
 
 .pkg-suitable-chip {
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--pkg-brown-mid);
   background: var(--pkg-cream-deep);
   border-radius: 100px;
-  padding: 9px 18px;
+  padding: 7px 14px;
   letter-spacing: 0.005em;
 }
 
@@ -604,15 +604,6 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.05);
 }
 
-.pkg-card-eyebrow {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--pkg-text-soft);
-  letter-spacing: 0.02em;
-  margin: 0 0 8px;
-}
-
 .pkg-card-title {
   font-family: 'Crimson Pro', Georgia, serif;
   font-size: 26px;
@@ -648,20 +639,10 @@
   text-decoration: none;
   transition: background 150ms ease;
   min-height: 48px;
-  margin-bottom: 14px;
 }
 
 .pkg-btn:hover {
   background: #4a3d2e;
-}
-
-.pkg-card-note {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  color: var(--pkg-text-soft);
-  text-align: center;
-  margin: 0;
-  line-height: 1.5;
 }
 
 /* ══════════════════════════════════════

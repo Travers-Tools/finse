@@ -141,6 +141,13 @@ export default function PackageTemplate(data: PackageData) {
               <div className="pkg-title-block">
                 <p className="pkg-eyebrow">{data.subtitle}</p>
                 <h1 className="pkg-title">{data.title}</h1>
+                {data.suitableFor.length > 0 && (
+                  <ul className="pkg-suitable-list">
+                    {data.suitableFor.map(s => (
+                      <li key={s} className="pkg-suitable-chip">{s}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
 
               {/* Intro */}
@@ -161,17 +168,6 @@ export default function PackageTemplate(data: PackageData) {
                 </ul>
               </div>
 
-              {/* Suitable for */}
-              {data.suitableFor.length > 0 && (
-                <div className="pkg-block">
-                  <h2 className="pkg-block-title">Passer for ulike anledninger</h2>
-                  <ul className="pkg-suitable-list">
-                    {data.suitableFor.map(s => (
-                      <li key={s} className="pkg-suitable-chip">{s}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
 
               {/* Itinerary */}
               <div className="pkg-block">
@@ -255,13 +251,11 @@ export default function PackageTemplate(data: PackageData) {
             {/* Sticky info card */}
             <aside className="pkg-aside">
               <div className="pkg-card">
-                <p className="pkg-card-eyebrow">Skreddersydd opphold</p>
-                <h3 className="pkg-card-title">Start planleggingen</h3>
+                <h3 className="pkg-card-title">Skreddersy pakke</h3>
                 <p className="pkg-card-body">Fortell oss hva som passer for gruppen. Vi setter sammen et forslag og svarer innen én arbeidsdag.</p>
                 <Link href="/configurator" className="pkg-btn">
-                  Planlegg oppholdet
+                  Start planleggingen
                 </Link>
-                <p className="pkg-card-note">{data.ctaNote}</p>
               </div>
             </aside>
           </div>
