@@ -165,8 +165,11 @@ export default function ReisePage() {
               {data.bedrift ? `${data.bedrift} på Finse 1222` : 'Deres opphold på Finse 1222'}
             </h1>
             <div className="reise-hero-cta">
-              <button className="reise-btn reise-btn--cream" onClick={handleCopy}>
-                {copied ? '✓ Lenke kopiert!' : 'Del med kollegaer'}
+              <button
+                className="reise-btn reise-btn--cream"
+                onClick={() => document.getElementById('intro')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Les mer
               </button>
             </div>
           </div>
@@ -174,7 +177,7 @@ export default function ReisePage() {
       </section>
 
       {/* ── Intro ── */}
-      <section className="reise-intro">
+      <section className="reise-intro" id="intro">
         <div className="reise-inner">
           <p className="reise-intro-body">
             Finse 1222 ligger der jernbanen slutter og vidda begynner. Norges høyestliggende fjellstasjon, omgitt av Hardangerjøkulen og stille kilometer med is og lys. Her finnes ingen biler, ingen støy. Bare det som virkelig betyr noe.
@@ -248,6 +251,15 @@ export default function ReisePage() {
         </div>
       </section>
 
+      {/* ── Del med kollegaer ── */}
+      <section className="reise-share-bottom">
+        <div className="reise-inner">
+          <p className="reise-share-lead">Send det videre til de andre.</p>
+          <button className="reise-btn reise-btn--dark" onClick={handleCopy}>
+            {copied ? '✓ Lenke kopiert!' : 'Del med kollegaer'}
+          </button>
+        </div>
+      </section>
 
       {/* ── Footer ── */}
       <footer className="reise-footer">
