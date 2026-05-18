@@ -355,9 +355,9 @@
 
 .pkg-day-head {
   display: grid;
-  grid-template-columns: 44px 1fr auto;
+  grid-template-columns: 60px 1fr auto;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   width: 100%;
   background: none;
   border: none;
@@ -376,17 +376,16 @@
 
 .pkg-day-num {
   font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
   color: var(--pkg-brown-mid);
-  letter-spacing: 0.04em;
-  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.005em;
 }
 
 .pkg-day-label {
   font-family: 'DM Sans', sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--pkg-text);
   margin: 0;
   line-height: 1.35;
@@ -411,7 +410,7 @@
 
 .pkg-day-content {
   display: none;
-  padding: 4px 4px 24px 60px;
+  padding: 4px 4px 24px 80px;
   animation: pkgDayOpen 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -458,7 +457,7 @@
 .pkg-day-item-title {
   font-family: 'DM Sans', sans-serif;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--pkg-text);
 }
 
@@ -593,7 +592,7 @@
 ══════════════════════════════════════ */
 .pkg-aside {
   position: sticky;
-  top: 24px;
+  top: calc(var(--pkg-header-h) + 24px);
 }
 
 .pkg-card {
@@ -765,9 +764,9 @@
   }
 
   .pkg-day-head {
-    grid-template-columns: 36px 1fr auto;
+    grid-template-columns: 50px 1fr auto;
     padding: 14px 4px;
-    gap: 10px;
+    gap: 12px;
   }
 
   .pkg-day-chevron {
@@ -776,7 +775,7 @@
   }
 
   .pkg-day-content {
-    padding: 4px 4px 20px 46px;
+    padding: 4px 4px 20px 62px;
   }
 
   .pkg-day-item {

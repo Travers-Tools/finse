@@ -184,7 +184,7 @@ export default function PackageTemplate(data: PackageData) {
                           aria-expanded={isOpen}
                           aria-controls={`pkg-day-content-${i}`}
                         >
-                          <span className="pkg-day-num">{String(i + 1).padStart(2, '0')}</span>
+                          <span className="pkg-day-num">Dag {i + 1}</span>
                           <h3 className="pkg-day-label">{day.label}</h3>
                           <span className="pkg-day-chevron" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
