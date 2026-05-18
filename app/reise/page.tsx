@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './reise.css'
 
 const iconBase = {
@@ -91,24 +91,6 @@ interface TripData {
 export default function ReisePage() {
   const [data, setData] = useState<TripData | null>(null)
   const [copied, setCopied] = useState(false)
-  const [amundsenVisible, setAmundsenVisible] = useState(false)
-  const amundsenRef = useRef<HTMLImageElement>(null)
-
-  useEffect(() => {
-    const node = amundsenRef.current
-    if (!node) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setAmundsenVisible(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.25 }
-    )
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [])
 
   useEffect(() => {
     const hash = window.location.hash
@@ -264,10 +246,9 @@ export default function ReisePage() {
         <div className="reise-inner reise-quote-grid">
           <figure className="reise-quote-figure">
             <img
-              ref={amundsenRef}
               src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Amundsen_in_fur_skins.jpg"
               alt="Roald Amundsen"
-              className={`reise-quote-img ${amundsenVisible ? 'is-visible' : ''}`}
+              className="reise-quote-img"
             />
             <figcaption className="reise-quote-caption">Roald Amundsen, ca. 1923. Foto: National Library of Norway.</figcaption>
           </figure>
