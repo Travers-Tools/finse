@@ -169,10 +169,9 @@
 /* ── Typography ── */
 .konfig-indicator {
   font-family: var(--font-sans);
-  font-size: 11px;
-  color: rgba(0, 0, 0, 0.35);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.01em;
 }
 
 .konfig-title {
@@ -685,10 +684,9 @@
 
 .konfig-summary-key {
   font-family: var(--font-sans);
-  font-size: 10px;
-  color: rgba(0, 0, 0, 0.35);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.45);
+  letter-spacing: 0.01em;
 }
 
 .konfig-summary-val {
@@ -830,8 +828,7 @@
   color: rgba(0, 0, 0, 0.28);
   text-align: center;
   padding: 6px 0 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.01em;
 }
 
 .konfig-cal-grid {
@@ -1163,21 +1160,19 @@ div + .konfig-flex-label {
   justify-content: center;
   writing-mode: vertical-lr;
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(0,0,0,0.25);
+  letter-spacing: 0.01em;
+  color: rgba(0,0,0,0.3);
   padding: 0 4px;
 }
 
 .konfig-act-season-label {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.01em;
+  color: rgba(0, 0, 0, 0.45);
   margin: 8px 0 2px;
   flex-shrink: 0;
 }
@@ -1188,8 +1183,6 @@ div + .konfig-flex-label {
 
 .konfig-act-season-label span {
   font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
 }
 
 .konfig-act-card {

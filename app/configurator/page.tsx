@@ -215,7 +215,7 @@ export default function Configurator() {
             </div>
 
             <div className={`konfig-step ${dir > 0 ? 'slide-right' : 'slide-left'}`} key={step}>
-              <span className="konfig-indicator">STEG {step} AV {TOTAL}</span>
+              <span className="konfig-indicator">Steg {step} av {TOTAL}</span>
 
               {/* ── Step 1: Anledning ── */}
               {step === 1 && (

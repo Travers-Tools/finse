@@ -36,12 +36,11 @@
 .reise-eyebrow {
   display: block;
   font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
-  color: rgba(0,0,0,0.45);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin-bottom: 12px;
+  color: rgba(0,0,0,0.5);
+  letter-spacing: 0.01em;
+  margin-bottom: 14px;
 }
 
 .reise-section-title {
@@ -421,11 +420,10 @@
 
 .reise-quote-attr {
   font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
   color: rgba(255,255,255,0.6);
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.01em;
 }
 
 /* ══════════════════════════════════════
