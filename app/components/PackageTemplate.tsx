@@ -44,9 +44,7 @@ const DEFAULT_HOST = {
 export default function PackageTemplate(data: PackageData) {
   const visibleImages = data.gallery.slice(0, 3)
   const [galleryOpen, setGalleryOpen] = useState(false)
-  const [openDays, setOpenDays] = useState<number[]>(() =>
-    data.itinerary.map((_, i) => i)
-  )
+  const [openDays, setOpenDays] = useState<number[]>([])
 
   const toggleDay = (i: number) => {
     setOpenDays(curr =>

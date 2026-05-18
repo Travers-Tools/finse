@@ -354,12 +354,10 @@
 }
 
 .pkg-day {
-  padding: 28px 0;
-  border-top: 1px solid var(--pkg-border);
+  padding: 6px 0;
 }
 
 .pkg-day:first-child {
-  border-top: none;
   padding-top: 0;
 }
 
@@ -441,7 +439,7 @@
 
 .pkg-day-timeline {
   list-style: none;
-  margin: 18px 0 0;
+  margin: 14px 0 14px;
   padding: 0 0 0 12px;
   border-left: 1px solid var(--pkg-border);
   display: flex;
@@ -760,7 +758,7 @@
   }
 
   .pkg-day {
-    padding: 24px 0;
+    padding: 4px 0;
   }
 
   .pkg-day-head {
