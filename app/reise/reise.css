@@ -25,20 +25,17 @@ html { scroll-behavior: smooth; }
   background: var(--brown-dark);
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
-  animation: epicReveal 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: pageReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@keyframes epicReveal {
-  0% {
+@keyframes pageReveal {
+  from {
     opacity: 0;
-    filter: invert(1) brightness(1.05) contrast(1.05);
+    transform: translateY(18px);
   }
-  60% {
+  to {
     opacity: 1;
-  }
-  100% {
-    opacity: 1;
-    filter: invert(0) brightness(1) contrast(1);
+    transform: translateY(0);
   }
 }
 
