@@ -147,7 +147,7 @@ export default function ReisePage() {
 
       {/* ── Hero ── */}
       <section className="reise-hero">
-        <img src="/assets/images/finse.jpg" alt="Finse 1222" className="reise-hero-img" />
+        <img src="/assets/images/finse1222__242.JPG" alt="Finse 1222" className="reise-hero-img" />
         <div className="reise-hero-overlay" />
         <nav className="reise-hero-nav">
           <div className="reise-inner">
@@ -164,6 +164,11 @@ export default function ReisePage() {
             <h1 className="reise-hero-title">
               {data.bedrift ? `${data.bedrift} på Finse 1222` : 'Deres opphold på Finse 1222'}
             </h1>
+            <div className="reise-hero-cta">
+              <button className="reise-btn reise-btn--cream" onClick={handleCopy}>
+                {copied ? '✓ Lenke kopiert!' : 'Del med kollegaer'}
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -174,11 +179,6 @@ export default function ReisePage() {
           <p className="reise-intro-body">
             Finse 1222 ligger der jernbanen slutter og vidda begynner — Norges høyestliggende fjellstasjon, omgitt av Hardangerjøkulen og stille kilometer med is og lys. Her finnes ingen biler, ingen støy. Bare det som virkelig betyr noe.
           </p>
-          <div className="reise-intro-cta">
-            <button className="reise-btn reise-btn--dark" onClick={handleCopy}>
-              {copied ? '✓ Lenke kopiert!' : 'Del med kollegaer'}
-            </button>
-          </div>
         </div>
       </section>
 

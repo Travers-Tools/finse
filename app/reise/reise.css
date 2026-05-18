@@ -126,8 +126,14 @@
   color: #fff;
   letter-spacing: -0.02em;
   line-height: 1.02;
-  margin: 0;
+  margin: 0 0 28px;
   max-width: 880px;
+}
+
+.reise-hero-cta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 /* ══════════════════════════════════════
@@ -143,15 +149,9 @@
   font-weight: 500;
   color: var(--text);
   line-height: 1.32;
-  margin: 0 0 40px;
+  margin: 0;
   max-width: 720px;
   letter-spacing: -0.01em;
-}
-
-.reise-intro-cta {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
 }
 
 /* ══════════════════════════════════════
@@ -491,6 +491,12 @@
   color: var(--brown-dark);
 }
 .reise-btn--light:hover { opacity: 0.9; }
+
+.reise-btn--cream {
+  background: var(--cream);
+  color: var(--brown-dark);
+}
+.reise-btn--cream:hover { background: #fff; }
 
 .reise-btn--ghost {
   background: rgba(255,255,255,0.08);
