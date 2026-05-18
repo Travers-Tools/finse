@@ -62,9 +62,9 @@ function factIcon(label: string): React.ReactNode {
 }
 
 const ACTIVITY_DATA: Record<string, { bilde: string; desc: string }> = {
-  'Bålpanne & bading ved Framheim':     { bilde: '/assets/images/Finse_pakker00010.jpg', desc: 'Morgenbad eller «after hike» ved Framheim – med bålpanne og varmt drikke. Hotellet ordner alt av utstyr. En enkel opplevelse med stor effekt.' },
-  'Sykkeltur til Fagernut og tilbake':  { bilde: '/assets/images/Finse_pakker00004.jpg', desc: 'Juli–september. Ikonisk rute med utsikt over Hardangervidda. Hotellet pakker nistepakke og låner ut sykler og hjelmer. Mestring og snakkestoff garantert.' },
-  'Fotturer i området':                 { bilde: '/assets/images/Finse_pakker00007.jpg', desc: 'Juli–september. Lille Finsenut, Jomfrunut-runden eller egentilpasset løype. Kan arrangeres med lokal guide. Hotellet låner ut utstyr og pakker sekken.' },
+  'Bålpanne & bading ved Framheim':     { bilde: '/assets/images/Finse_pakker00010.jpg', desc: 'Morgenbad eller «after hike» ved Framheim, med bålpanne og varmt drikke. Hotellet ordner alt av utstyr. En enkel opplevelse med stor effekt.' },
+  'Sykkeltur til Fagernut og tilbake':  { bilde: '/assets/images/Finse_pakker00004.jpg', desc: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Hotellet pakker nistepakke og låner ut sykler og hjelmer. Mestring og snakkestoff garantert.' },
+  'Fotturer i området':                 { bilde: '/assets/images/Finse_pakker00007.jpg', desc: 'Juli til september. Lille Finsenut, Jomfrunut-runden eller egentilpasset løype. Kan arrangeres med lokal guide. Hotellet låner ut utstyr og pakker sekken.' },
   'Finsequiz':                          { bilde: '/assets/images/oss.JPG', desc: 'Kveldsunderholdning med hotellet som sceneteppe. Spørsmål om natur, historie og Finse-trivia. Passer like godt etter middag som etter en lang dag ute.' },
   'Vin- og sidersmaking':               { bilde: '/assets/images/mat_finse.jpg', desc: 'Kurerte viner og lokale sidere med historiene bak glasset, ledet av hotellets personale. Inkluderer smaksprøver og småretter. En avslappet avslutning på dagen.' },
   'Bålpanne og after hike/ski':         { bilde: '/assets/images/Finse_configurator_background.jpg', desc: 'Avslutt dagen ute ved Framheim med bålpanne og varmt drikke. Hotellet ordner utstyr og plasser. Enkelt, stemningsfullt og minneverdig.' },
@@ -159,7 +159,7 @@ export default function ReisePage() {
         <div className="reise-hero-body">
           <div className="reise-inner">
             <p className="reise-hero-subtitle">
-              {data.anledning} — 1222 moh.
+              {data.anledning} · 1222 moh.
             </p>
             <h1 className="reise-hero-title">
               {data.bedrift ? `${data.bedrift} på Finse 1222` : 'Deres opphold på Finse 1222'}
@@ -177,7 +177,7 @@ export default function ReisePage() {
       <section className="reise-intro">
         <div className="reise-inner">
           <p className="reise-intro-body">
-            Finse 1222 ligger der jernbanen slutter og vidda begynner — Norges høyestliggende fjellstasjon, omgitt av Hardangerjøkulen og stille kilometer med is og lys. Her finnes ingen biler, ingen støy. Bare det som virkelig betyr noe.
+            Finse 1222 ligger der jernbanen slutter og vidda begynner. Norges høyestliggende fjellstasjon, omgitt av Hardangerjøkulen og stille kilometer med is og lys. Her finnes ingen biler, ingen støy. Bare det som virkelig betyr noe.
           </p>
         </div>
       </section>
@@ -209,10 +209,10 @@ export default function ReisePage() {
         <div className="reise-inner">
           <span className="reise-eyebrow">Aktiviteter</span>
           <p className="reise-program-desc">
-            Finse byr på noe for alle — sykkel og fottur på vidda om sommeren, ski og truger om vinteren, eller en stille kveld med bålpanne, quiz eller vinsmaking. Hotellet låner ut utstyr og kjenner området ut og inn.
+            Finse byr på noe for alle. Sykkel og fottur på vidda om sommeren, ski og truger om vinteren, eller en stille kveld med bålpanne, quiz eller vinsmaking. Hotellet låner ut utstyr og kjenner området ut og inn.
             {aktiviteter.length > 0
               ? ' Her er det dere har valgt for deres opphold:'
-              : ' Si gjerne fra om dere ønsker å legge til noe — vi tilpasser etter ønsker og vær.'}
+              : ' Si gjerne fra om dere ønsker å legge til noe. Vi tilpasser etter ønsker og vær.'}
           </p>
         </div>
         {aktiviteter.length > 0 && (
@@ -242,7 +242,7 @@ export default function ReisePage() {
       <section className="reise-quote">
         <div className="reise-inner">
           <blockquote className="reise-quote-text">
-            Seier venter den, som har alt i orden — hell kaller man det.
+            Seier venter den, som har alt i orden. Hell kaller man det.
           </blockquote>
           <cite className="reise-quote-attr">Roald Amundsen</cite>
         </div>
@@ -253,7 +253,7 @@ export default function ReisePage() {
       <footer className="reise-footer">
         <div className="reise-inner reise-footer-inner">
           <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" className="reise-footer-logo" />
-          <p className="reise-footer-tagline">Norges høyestliggende hotell — 1222 moh.</p>
+          <p className="reise-footer-tagline">Norges høyestliggende hotell · 1222 moh.</p>
           <div className="reise-footer-meta">
             <a href="/configurator" className="reise-footer-link">Start en ny forespørsel →</a>
             <span className="reise-footer-divider">·</span>
