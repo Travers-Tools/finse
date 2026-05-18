@@ -7,7 +7,7 @@ export default function PakkeHotelletForDere() {
     <PackageTemplate
       title="Hotellet for dere selv"
       subtitle="Når dere fortjener hele Finse"
-      intro="For jubileer, kickoffs og feiringer der dere vil ha Finse 1222 helt for dere selv. Opp til 110 gjester, et dedikert personale, og rom til å forme oppholdet nøyaktig slik dere ønsker det. Magien av å være eneste gjester på Norges høyestliggende hotell."
+      intro="For jubileer, kickoffs og feiringer der dere vil ha Finse 1222 helt for dere selv. Opp til 110 gjester. Dere har hele hotellet, alt personalet, og full frihet til å forme oppholdet slik dere vil."
       heroImage={{
         src: '/assets/images/finse1222__242.JPG',
         alt: 'Hotellet for dere selv'
@@ -21,7 +21,7 @@ export default function PakkeHotelletForDere() {
       includes={[
         { icon: 'hotel', text: 'Hele hotellet for deres gruppe' },
         { icon: 'food', text: 'Fullpensjon tilpasset deres ønsker' },
-        { icon: 'party', text: 'Fleksibel arrangementshåndtering' },
+        { icon: 'party', text: 'Arrangementshåndtering' },
         { icon: 'group', text: 'Dedikert personale' },
         { icon: 'fire', text: 'Privat bruk av alle fasiliteter' },
       ]}
@@ -31,26 +31,26 @@ export default function PakkeHotelletForDere() {
           label: 'Ankomst og feiring',
           items: [
             { time: '14:00', title: 'Ankomst Finse', desc: 'Velkomstdrink på perrongen' },
-            { time: '15:00', title: 'Innsjekk', desc: 'Hotellet er deres, utforsk fritt' },
+            { time: '15:00', title: 'Innsjekk', desc: 'Hotellet er deres' },
             { time: '17:00', title: 'Aktivitet', desc: 'Felles tur eller teambuilding' },
-            { time: '19:30', title: 'Gallamiddag', desc: 'Festmåltid med lokale råvarer' },
+            { time: '19:30', title: 'Gallamiddag', desc: 'Lokale råvarer' },
           ]
         },
         {
           label: 'Opplevelser',
           items: [
-            { time: '08:00', title: 'Frokostbuffet', desc: 'Alt dere trenger for en aktiv dag' },
+            { time: '08:00', title: 'Frokostbuffet', desc: '' },
             { time: '10:00', title: 'Valgfri aktivitet', desc: 'Tur, ski, brevandring eller møte' },
-            { time: '15:00', title: 'Badstu og avslapning', desc: 'Tid for ro og restitusjon' },
-            { time: '19:00', title: 'Middag og underholdning', desc: 'Kveld tilpasset deres ønsker' },
+            { time: '15:00', title: 'Badstu og avslapning', desc: '' },
+            { time: '19:00', title: 'Middag og underholdning', desc: 'Kveld tilpasset dere' },
           ]
         },
         {
           label: 'Avreise',
           items: [
-            { time: '09:00', title: 'Brunch', desc: 'Langsom start med god mat' },
-            { time: '11:00', title: 'Siste tur', desc: 'Kort vandring for de som ønsker' },
-            { time: '12:30', title: 'Tog hjem', desc: 'Et uforglemmelig opphold er over' },
+            { time: '09:00', title: 'Brunch', desc: 'Langsom start' },
+            { time: '11:00', title: 'Siste tur', desc: 'For de som ønsker' },
+            { time: '12:30', title: 'Tog hjem', desc: '' },
           ]
         },
       ]}

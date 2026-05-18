@@ -38,7 +38,7 @@ const DEFAULT_HOST = {
   name: 'Henriette & Daniel',
   role: 'Dine verter på Finse 1222',
   image: '/assets/images/oss.JPG',
-  intro: 'Vi tar imot dere på perrongen og sørger for at alt er klart når dere kommer. Si fra hva dere ønsker — vi tilpasser så langt det går.',
+  intro: 'Vi tar imot dere på perrongen og sørger for at alt er klart når dere kommer. Si fra hva dere ønsker, så tilpasser vi.',
 }
 
 export default function PackageTemplate(data: PackageData) {
@@ -199,7 +199,7 @@ export default function PackageTemplate(data: PackageData) {
                                 <span className="pkg-day-time">{item.time}</span>
                                 <div className="pkg-day-item-body">
                                   <strong className="pkg-day-item-title">{item.title}</strong>
-                                  <p className="pkg-day-item-desc">{item.desc}</p>
+                                  {item.desc && <p className="pkg-day-item-desc">{item.desc}</p>}
                                 </div>
                               </li>
                             ))}

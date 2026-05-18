@@ -7,7 +7,7 @@ export default function PakkeFokusPaaVidda() {
     <PackageTemplate
       title="Fokus på vidda"
       subtitle="Tid til de viktige samtalene"
-      intro="På Finse er det toget som tar dere frem. Gå på i byen, gå av på vidda — vi møter dere på perrongen. For ledergrupper som trenger fokusert tid sammen og rom til de store beslutningene, langt unna alt som maser."
+      intro="På Finse er det toget som tar dere frem. Gå på i byen, gå av på vidda. Vi møter dere på perrongen. For ledergrupper som trenger fokusert tid sammen, langt unna alt som maser."
       heroImage={{
         src: '/assets/images/R1-04554-0028.jpg',
         alt: 'Fokus på vidda'
@@ -30,26 +30,26 @@ export default function PakkeFokusPaaVidda() {
           label: 'Ankomst og innsjekk',
           items: [
             { time: '14:00', title: 'Ankomst Finse', desc: 'Innsjekk og kaffe i lobbyen' },
-            { time: '15:30', title: 'Kort vandring', desc: 'Bli kjent med omgivelsene' },
-            { time: '19:00', title: 'Middag', desc: 'Lokal meny med sesongvarer' },
+            { time: '15:30', title: 'Kort vandring', desc: 'Strekk på beina' },
+            { time: '19:00', title: 'Middag', desc: 'Lokal meny, sesongvarer' },
           ]
         },
         {
           label: 'Fokus og refleksjon',
           items: [
-            { time: '08:00', title: 'Frokost', desc: 'Rolig start på dagen' },
+            { time: '08:00', title: 'Frokost', desc: '' },
             { time: '09:30', title: 'Arbeidsøkt', desc: 'Strategimøte i møterommet' },
-            { time: '12:30', title: 'Lunsj og frisk luft', desc: 'Pause med tur på vidda' },
+            { time: '12:30', title: 'Lunsj og frisk luft', desc: 'Tur på vidda' },
             { time: '14:30', title: 'Arbeidsøkt', desc: 'Oppsummering og veien videre' },
-            { time: '19:00', title: 'Middag ved peisen', desc: 'God mat og gode samtaler' },
+            { time: '19:00', title: 'Middag ved peisen', desc: '' },
           ]
         },
         {
           label: 'Avreise',
           items: [
-            { time: '08:30', title: 'Frokost', desc: 'Siste måltid på Finse' },
-            { time: '10:00', title: 'Oppsummering', desc: 'Ta med innsiktene hjem' },
-            { time: '12:00', title: 'Tog hjem', desc: 'Fornyet energi og klare mål' },
+            { time: '08:30', title: 'Frokost', desc: '' },
+            { time: '10:00', title: 'Oppsummering', desc: '' },
+            { time: '12:00', title: 'Tog hjem', desc: '' },
           ]
         },
       ]}
