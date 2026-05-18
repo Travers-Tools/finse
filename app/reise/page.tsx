@@ -187,7 +187,7 @@ export default function ReisePage() {
       <section className="reise-intro" id="intro">
         <div className="reise-inner">
           <p className="reise-intro-body">
-            Finse 1222 ligger der jernbanen slutter og vidda begynner. Norges høyestliggende fjellstasjon, omgitt av Hardangerjøkulen og stille kilometer med is og lys. Her finnes ingen biler, ingen støy. Bare det som virkelig betyr noe.
+            Velkommen til Finse 1222, der jernbanen slutter og vidda begynner. Norges høyestliggende fjellstasjon, omgitt av Hardangerjøkulen og stille kilometer med is og lys. Her finnes ingen biler, ingen støy. Bare det som virkelig betyr noe.
           </p>
         </div>
       </section>
