@@ -35,6 +35,14 @@ export default function ReisePage() {
   const [copied, setCopied] = useState(false)
 
   useEffect(() => {
+    const hash = window.location.hash
+    if (hash.startsWith('#d=')) {
+      try {
+        const decoded = decodeURIComponent(escape(atob(hash.slice(3))))
+        setData(JSON.parse(decoded))
+        return
+      } catch { /* fall through to localStorage */ }
+    }
     const params = new URLSearchParams(window.location.search)
     const id = params.get('id')
     if (!id) return
@@ -95,12 +103,9 @@ export default function ReisePage() {
           <p className="reise-hero-intro">
             Dette er et forslag til hvordan turen til Finse 1222 kan se ut. Send det gjerne til de andre og hør hva de tenker.
           </p>
-          <div className="reise-hero-btns no-print">
+          <div className="reise-hero-btns">
             <button className="reise-btn reise-btn--dark" onClick={handleCopy}>
               {copied ? '✓ Lenke kopiert!' : 'Del med kollegaer'}
-            </button>
-            <button className="reise-btn reise-btn--ghost" onClick={() => window.print()}>
-              Last ned som PDF
             </button>
           </div>
           </div>
@@ -210,7 +215,7 @@ export default function ReisePage() {
       )}
 
       {/* ── Share card ── */}
-      <div className="reise-share-wrap no-print">
+      <div className="reise-share-wrap">
         <div className="reise-inner">
         <section className="reise-share">
           <h2 className="reise-share-title">Del med teamet</h2>
@@ -221,9 +226,6 @@ export default function ReisePage() {
             <button className="reise-btn reise-btn--light" onClick={handleCopy}>
               {copied ? '✓ Lenke kopiert!' : 'Kopier lenke'}
             </button>
-            <button className="reise-btn reise-btn--ghost" onClick={() => window.print()}>
-              Last ned PDF
-            </button>
           </div>
           <p className="reise-share-note">Vi svarer innen én arbeidsdag · Ingen binding</p>
         </section>
@@ -233,7 +235,7 @@ export default function ReisePage() {
       {/* ── Footer ── */}
       <footer className="reise-footer">
         <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" className="reise-footer-logo" />
-        <a href="/configurator" className="reise-footer-link no-print">Start en ny forespørsel →</a>
+        <a href="/configurator" className="reise-footer-link">Start en ny forespørsel →</a>
       </footer>
 
     </div>

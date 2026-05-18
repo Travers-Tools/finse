@@ -9,6 +9,7 @@ const STEP_IMAGES = [
   '/assets/images/finse1222__182.JPG',
   '/assets/images/finse1222__242.JPG',
   '/assets/images/oss.JPG',
+  '/assets/images/mat_finse.jpg',
   '/assets/images/Finseskilt.jpg',
 ]
 
@@ -71,7 +72,7 @@ export default function Configurator() {
     merknad: '',
   })
 
-  const TOTAL = 6
+  const TOTAL = 7
 
   const goTo = (target: number) => {
     setDir(target > step ? 1 : -1)
@@ -177,11 +178,6 @@ export default function Configurator() {
     if (actRowRef.current) actRowRef.current.style.cursor = 'grab'
   }
 
-  const step1Valid = form.anledning && (form.anledning !== 'Annet' || form.annetAnledning.trim() !== '')
-  const step2Valid = form.datoModus === 'datoer'
-    ? !!(form.datoFra && form.datoTil)
-    : !!(form.fleksibeltNetter || form.fleksibeltManed)
-
   const handleSubmit = () => {
     const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
     const dato = form.datoModus === 'datoer'
@@ -199,7 +195,8 @@ export default function Configurator() {
       createdAt: new Date().toISOString(),
     }
     localStorage.setItem(id, JSON.stringify(payload))
-    window.location.href = `/reise?id=${id}`
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))))
+    window.location.href = `/reise?id=${id}#d=${encoded}`
   }
 
   return (
@@ -209,10 +206,10 @@ export default function Configurator() {
         <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" />
       </a>
       <div className="konfig-card">
-        <div className={`konfig-body${step === 5 ? ' konfig-body--full' : ''}`}>
+        <div className={`konfig-body${step === 6 ? ' konfig-body--full' : ''}`}>
           <div className="konfig-left">
             <div className="konfig-segments">
-              {[1, 2, 3, 4, 5, 6].map(i => (
+              {[1, 2, 3, 4, 5, 6, 7].map(i => (
                 <div key={i} className={`konfig-seg ${i <= step ? 'filled' : ''}`} />
               ))}
             </div>
@@ -441,13 +438,12 @@ export default function Configurator() {
                 </>
               )}
 
-              {/* ── Step 4: Romtype + Møterom ── */}
+              {/* ── Step 4: Romtype ── */}
               {step === 4 && (
                 <>
                   <h1 className="konfig-title">Hvilke romtyper ønsker dere?</h1>
                   <p className="konfig-subtitle">Velg gjerne flere – vi setter opp pris på ulike kombinasjoner</p>
 
-                  <label className="konfig-label">Soverom</label>
                   <div className="konfig-rooms konfig-rooms--grid2">
                     {[
                       {
@@ -477,8 +473,15 @@ export default function Configurator() {
                       </button>
                     ))}
                   </div>
+                </>
+              )}
 
-                  <label className="konfig-label">Møterom <span className="konfig-label-optional">(valgfritt)</span></label>
+              {/* ── Step 5: Møterom ── */}
+              {step === 5 && (
+                <>
+                  <h1 className="konfig-title">Trenger dere møterom?</h1>
+                  <p className="konfig-subtitle">Valgfritt – kan legges til senere</p>
+
                   <div className="konfig-moterom-varighet">
                     {['Hel dag', 'Halv dag'].map(opt => (
                       <button
@@ -490,12 +493,11 @@ export default function Configurator() {
                       </button>
                     ))}
                   </div>
-
                 </>
               )}
 
-              {/* ── Step 5: Aktiviteter ── */}
-              {step === 5 && (
+              {/* ── Step 6: Aktiviteter ── */}
+              {step === 6 && (
                 <>
                   <h1 className="konfig-title">Hva ønsker dere å oppleve?</h1>
                   <p className="konfig-subtitle">Hotellet leier ut utstyr</p>
@@ -551,8 +553,8 @@ export default function Configurator() {
                 </>
               )}
 
-              {/* ── Step 6: Kontakt ── */}
-              {step === 6 && (
+              {/* ── Step 7: Kontakt ── */}
+              {step === 7 && (
                 <>
                   <h1 className="konfig-title">La oss ta kontakt</h1>
                   <div className="konfig-form-grid">
@@ -590,11 +592,7 @@ export default function Configurator() {
                 ? <button className="konfig-back" onClick={prev}>Tilbake</button>
                 : <span />
               }
-              {step === 1 && step1Valid && <button className="konfig-next" onClick={next}>Neste</button>}
-              {step === 2 && step2Valid && <button className="konfig-next" onClick={next}>Neste</button>}
-              {step === 3 && form.antall && <button className="konfig-next" onClick={next}>Neste</button>}
-              {step === 4 && form.romtyper.length > 0 && <button className="konfig-next" onClick={next}>Neste</button>}
-              {step === 5 && <button className="konfig-next" onClick={next}>Neste</button>}
+              {step < TOTAL && <button className="konfig-next" onClick={next}>Neste</button>}
             </div>
           </div>
 
@@ -602,9 +600,9 @@ export default function Configurator() {
           <div className="konfig-right">
             <div className="konfig-img-wrap">
               {STEP_IMAGES.map((src, i) => (
-                <img key={i} src={src} alt="" className={`konfig-img ${step === i + 1 && step < 6 && step !== 5 ? 'visible' : ''}`} />
+                <img key={i} src={src} alt="" className={`konfig-img ${step === i + 1 && step < 7 && step !== 6 ? 'visible' : ''}`} />
               ))}
-              {step === 6 && (
+              {step === 7 && (
                 <div className="konfig-summary">
                   <div className="konfig-summary-hero">
                     <img src="/assets/images/Finse_configurator_background.jpg" alt="" className="konfig-summary-hero-img" />
