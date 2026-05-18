@@ -132,10 +132,7 @@ export default function ReisePage() {
 
   const antallText = data.antall ? `${data.antall} gjester` : ''
   const moteromText = data.moteromVarighet ? data.moteromVarighet.toLowerCase() : ''
-  const romTypeCount = data.romtyper?.length || 0
-  const romTypeText = romTypeCount > 0
-    ? `${romTypeCount} ${romTypeCount === 1 ? 'romtype' : 'romtyper'}`
-    : ''
+  const romTypeText = data.romtyper?.length > 0 ? data.romtyper.join(', ') : ''
 
   const details: { label: string; value: string }[] = [
     { label: 'Anledning',   value: data.anledning },
@@ -243,35 +240,6 @@ export default function ReisePage() {
           </div>
         )}
       </section>
-
-      {/* ── Romtype ── */}
-      {data.romtyper?.length > 0 && (
-        <section className="reise-rooms">
-          <figure className="reise-rooms-hero">
-            <img src="/assets/images/finse1222__242.JPG" alt="Romtype" className="reise-rooms-hero-img" />
-          </figure>
-          <div className="reise-inner">
-            <span className="reise-eyebrow">Overnatting</span>
-            <h2 className="reise-section-title">Romtyper dere har valgt</h2>
-            <ul className="reise-rooms-list">
-              {data.romtyper.map(r => {
-                const svgMap: Record<string, React.ReactNode> = {
-                  'Enkeltrom': <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="7" y="9" width="4" height="6" rx="1"/></svg>,
-                  'Dobbeltrom med separate senger': <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="5" y="9" width="4" height="6" rx="1"/><rect x="11" y="9" width="4" height="6" rx="1"/></svg>,
-                  'Flersengsrom med separate senger': <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="4" y="9" width="3" height="6" rx="1"/><rect x="10" y="9" width="3" height="6" rx="1"/><rect x="16" y="9" width="3" height="6" rx="1"/></svg>,
-                  'Dobbeltrom med dobbeltseng': <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="5" y="9" width="14" height="6" rx="1"/></svg>,
-                }
-                return (
-                  <li key={r} className="reise-rooms-row">
-                    <span className="reise-rooms-icon">{svgMap[r]}</span>
-                    <span className="reise-rooms-name">{r}</span>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </section>
-      )}
 
       {/* ── Pull quote — full-bleed dark ── */}
       <section className="reise-quote">

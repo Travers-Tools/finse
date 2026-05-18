@@ -320,60 +320,6 @@
 }
 
 /* ══════════════════════════════════════
-   ROMTYPER  — full-bleed image + list
-══════════════════════════════════════ */
-.reise-rooms {
-  padding: 0 0 96px;
-}
-
-.reise-rooms-hero {
-  margin: 0 0 72px;
-  width: 100%;
-  height: 60vh;
-  min-height: 420px;
-  max-height: 620px;
-  overflow: hidden;
-}
-
-.reise-rooms-hero-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.reise-rooms-list {
-  list-style: none;
-  margin: 32px 0 0;
-  padding: 0;
-  border-top: 1px solid var(--border);
-}
-
-.reise-rooms-row {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.reise-rooms-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--brown-mid);
-  flex-shrink: 0;
-}
-
-.reise-rooms-name {
-  font-family: 'Crimson Pro', Georgia, serif;
-  font-size: clamp(18px, 1.8vw, 22px);
-  font-weight: 500;
-  color: var(--text);
-  line-height: 1.3;
-}
-
-/* ══════════════════════════════════════
    QUOTE  — full-bleed dark
 ══════════════════════════════════════ */
 .reise-quote {
@@ -650,8 +596,7 @@
     padding: 72px 0 32px;
   }
 
-  .reise-facts-section,
-  .reise-rooms {
+  .reise-facts-section {
     padding-bottom: 64px;
   }
 
@@ -671,12 +616,6 @@
     margin-bottom: 48px;
     height: 40vh;
     min-height: 280px;
-  }
-
-  .reise-rooms-hero {
-    margin-bottom: 48px;
-    height: 44vh;
-    min-height: 300px;
   }
 
   .reise-quote {
