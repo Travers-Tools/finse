@@ -53,6 +53,28 @@ export default function PakkeEkspedisjonstur() {
           ]
         },
       ]}
+      activities={[
+        {
+          name: 'Sykkeltur til Fagernut',
+          desc: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Sykler og hjelmer fra hotellet.',
+          image: '/assets/images/Finse_pakker00004.jpg',
+        },
+        {
+          name: 'Fottur i området',
+          desc: 'Juli til september. Lille Finsenut, Jomfrunut-runden eller egen løype. Med eller uten guide.',
+          image: '/assets/images/Finse_pakker00007.jpg',
+        },
+        {
+          name: 'Bålpanne og after hike/ski',
+          desc: 'Avslutt dagen ved Framheim med bålpanne og varmt drikke. Hotellet ordner utstyret.',
+          image: '/assets/images/Finse_configurator_background.jpg',
+        },
+        {
+          name: 'Bålpanne & bading ved Framheim',
+          desc: 'Morgenbad eller after hike med bålpanne og varmt drikke. En enkel opplevelse med stor effekt.',
+          image: '/assets/images/Finse_pakker00010.jpg',
+        },
+      ]}
       ctaNote="Vi tilpasser aktivitetene etter sesong og ønsker."
     />
   )

@@ -54,6 +54,28 @@ export default function PakkeHotelletForDere() {
           ]
         },
       ]}
+      activities={[
+        {
+          name: 'Vin- og sidersmaking',
+          desc: 'Kurerte viner og lokale sidere med historiene bak. Ledet av hotellets personale.',
+          image: '/assets/images/mat_finse.jpg',
+        },
+        {
+          name: 'Finsequiz',
+          desc: 'Kveldsunderholdning på hotellet. Spørsmål om natur, historie og Finse-trivia.',
+          image: '/assets/images/oss.JPG',
+        },
+        {
+          name: 'Bålpanne & bading ved Framheim',
+          desc: 'Morgenbad eller after hike med bålpanne og varmt drikke. Sosial og enkel.',
+          image: '/assets/images/Finse_pakker00010.jpg',
+        },
+        {
+          name: 'Fottur i området',
+          desc: 'Juli til september. Felles tur på vidda, kort eller lang.',
+          image: '/assets/images/Finse_pakker00007.jpg',
+        },
+      ]}
       ctaNote="Kontakt oss for tilgjengelighet og priser."
     />
   )

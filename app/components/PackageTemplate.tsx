@@ -22,6 +22,12 @@ export interface PackageDay {
   items: PackageDayItem[]
 }
 
+export interface PackageActivity {
+  name: string
+  desc: string
+  image: string
+}
+
 export interface PackageData {
   title: string
   subtitle: string
@@ -31,6 +37,7 @@ export interface PackageData {
   includes: PackageItem[]
   suitableFor: string[]
   itinerary: PackageDay[]
+  activities: PackageActivity[]
   ctaNote: string
 }
 
@@ -210,6 +217,26 @@ export default function PackageTemplate(data: PackageData) {
                   })}
                 </ol>
               </div>
+
+              {/* Activities */}
+              {data.activities.length > 0 && (
+                <div className="pkg-block">
+                  <h2 className="pkg-block-title">Opplevelser</h2>
+                  <ul className="pkg-activities-grid">
+                    {data.activities.map(a => (
+                      <li key={a.name} className="pkg-activity">
+                        <div className="pkg-activity-img">
+                          <img src={a.image} alt={a.name} />
+                        </div>
+                        <div className="pkg-activity-body">
+                          <h3 className="pkg-activity-name">{a.name}</h3>
+                          <p className="pkg-activity-desc">{a.desc}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {/* Host */}
               <div className="pkg-block pkg-host">

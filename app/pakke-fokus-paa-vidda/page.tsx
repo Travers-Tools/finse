@@ -53,6 +53,28 @@ export default function PakkeFokusPaaVidda() {
           ]
         },
       ]}
+      activities={[
+        {
+          name: 'Fottur i området',
+          desc: 'Juli til september. Lille Finsenut eller Jomfrunut-runden. Fin pause fra møterommet.',
+          image: '/assets/images/Finse_pakker00007.jpg',
+        },
+        {
+          name: 'Vin- og sidersmaking',
+          desc: 'Kurerte viner og lokale sidere med historiene bak. Ledet av hotellets personale.',
+          image: '/assets/images/mat_finse.jpg',
+        },
+        {
+          name: 'Bålpanne og after hike/ski',
+          desc: 'Avslutt dagen ved Framheim med bålpanne og varmt drikke.',
+          image: '/assets/images/Finse_configurator_background.jpg',
+        },
+        {
+          name: 'Finsequiz',
+          desc: 'Kveldsunderholdning på hotellet. Spørsmål om natur, historie og Finse-trivia.',
+          image: '/assets/images/oss.JPG',
+        },
+      ]}
       ctaNote="Vi tilpasser oppholdet etter deres behov."
     />
   )
