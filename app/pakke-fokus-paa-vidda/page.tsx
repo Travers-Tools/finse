@@ -18,7 +18,6 @@ export default function PakkeFokusPaaVidda() {
         { src: '/assets/images/tak.png', alt: 'Utsikt' },
         { src: '/assets/images/finse.jpg', alt: 'Finse landskap' },
       ]}
-      tags={['2–4 netter', 'Ledergrupper', 'Strategi']}
       includes={[
         { icon: 'bed', text: 'Overnatting i komfortable rom' },
         { icon: 'food', text: 'Fullpensjon med god mat' },
@@ -34,15 +33,29 @@ export default function PakkeFokusPaaVidda() {
       itinerary={[
         {
           label: 'Ankomst og innsjekk',
-          body: 'Toget setter dere av på stasjonen. Innsjekk og kaffe i lobbyen, en kort vandring for å bli kjent med omgivelsene, og en middag med lokal meny og sesongvarer.'
+          items: [
+            { time: '14:00', title: 'Ankomst Finse', desc: 'Innsjekk og kaffe i lobbyen' },
+            { time: '15:30', title: 'Kort vandring', desc: 'Bli kjent med omgivelsene' },
+            { time: '19:00', title: 'Middag', desc: 'Lokal meny med sesongvarer' },
+          ]
         },
         {
           label: 'Fokus og refleksjon',
-          body: 'Rolig frokost, så strategimøte i møterommet. Pause med tur på vidda i lunsjen, før dere oppsummerer og legger veien videre. Middag ved peisen — god mat og gode samtaler.'
+          items: [
+            { time: '08:00', title: 'Frokost', desc: 'Rolig start på dagen' },
+            { time: '09:30', title: 'Arbeidsøkt', desc: 'Strategimøte i møterommet' },
+            { time: '12:30', title: 'Lunsj og frisk luft', desc: 'Pause med tur på vidda' },
+            { time: '14:30', title: 'Arbeidsøkt', desc: 'Oppsummering og veien videre' },
+            { time: '19:00', title: 'Middag ved peisen', desc: 'God mat og gode samtaler' },
+          ]
         },
         {
-          label: 'Avreise med klare mål',
-          body: 'Siste frokost på Finse og en kort oppsummering av innsiktene. Tog hjem — med fornyet energi og en klar retning.'
+          label: 'Avreise',
+          items: [
+            { time: '08:30', title: 'Frokost', desc: 'Siste måltid på Finse' },
+            { time: '10:00', title: 'Oppsummering', desc: 'Ta med innsiktene hjem' },
+            { time: '12:00', title: 'Tog hjem', desc: 'Fornyet energi og klare mål' },
+          ]
         },
       ]}
       ctaNote="Vi tilpasser oppholdet etter deres behov."

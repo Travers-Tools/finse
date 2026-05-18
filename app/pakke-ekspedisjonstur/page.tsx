@@ -18,7 +18,6 @@ export default function PakkeEkspedisjonstur() {
         { src: '/assets/images/kart.png', alt: 'Historisk kart' },
         { src: '/assets/images/finse.jpg', alt: 'Finse landskap' },
       ]}
-      tags={['2–4 netter', 'Eventyr', 'Friluftsliv']}
       includes={[
         { icon: 'bed', text: 'Overnatting i komfortable rom' },
         { icon: 'food', text: 'Fullpensjon med energirik mat' },
@@ -34,16 +33,29 @@ export default function PakkeEkspedisjonstur() {
       ]}
       itinerary={[
         {
-          label: 'Ankomst og forventning',
-          body: 'Toget setter dere av på stasjonen, og hotellet tar imot. Innsjekk, briefing om morgendagens tur, og en kraftig middag som setter tonen for det som venter.'
+          label: 'Ankomst',
+          items: [
+            { time: '14:00', title: 'Tog til Finse', desc: 'Nyt turen gjennom fjellet' },
+            { time: '16:00', title: 'Innsjekk og briefing', desc: 'Gjennomgang av morgendagens tur' },
+            { time: '19:00', title: 'Middag', desc: 'Kraftig og god mat før eventyret' },
+          ]
         },
         {
           label: 'Eventyr på vidda',
-          body: 'Tidlig frokost og guidet tur — ski, bre eller Rallarvegen avhengig av sesong. Pause for lunsj underveis, og hjem til avslapning. Festmiddag som markerer dagens bragder.'
+          items: [
+            { time: '07:30', title: 'Tidlig frokost', desc: 'Energi til dagens tur' },
+            { time: '09:00', title: 'Guidet tur', desc: 'Ski, brevandring eller Rallarvegen' },
+            { time: '16:00', title: 'Avslapning', desc: 'Velfortjent hvile etter turen' },
+            { time: '19:30', title: 'Festmiddag', desc: 'Feiring av dagens bragder' },
+          ]
         },
         {
-          label: 'Avreise i ro',
-          body: 'Sen frokost og utsjekk. Tid for en siste fotostopp ved stasjonen før toget tar dere hjem — med gode minner og litt vind i ansiktet.'
+          label: 'Avreise',
+          items: [
+            { time: '09:00', title: 'Sen frokost', desc: 'Ta det med ro før hjemreisen' },
+            { time: '11:00', title: 'Utsjekk', desc: 'Siste fotostopp ved stasjonen' },
+            { time: '12:00', title: 'Tog hjem', desc: 'Med gode minner i bagasjen' },
+          ]
         },
       ]}
       ctaNote="Vi tilpasser aktivitetene etter sesong og ønsker."

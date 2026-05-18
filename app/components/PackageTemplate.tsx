@@ -11,9 +11,15 @@ export interface PackageItem {
   text: string
 }
 
+export interface PackageDayItem {
+  time: string
+  title: string
+  desc: string
+}
+
 export interface PackageDay {
   label: string
-  body: string
+  items: PackageDayItem[]
 }
 
 export interface SuitableFor {
@@ -27,7 +33,6 @@ export interface PackageData {
   intro: string
   heroImage: { src: string; alt: string }
   gallery: { src: string; alt: string }[]
-  tags: string[]
   includes: PackageItem[]
   suitableFor: SuitableFor[]
   itinerary: PackageDay[]
@@ -122,13 +127,6 @@ export default function PackageTemplate(data: PackageData) {
         <div className="pkg-inner">
           <p className="pkg-eyebrow">{data.subtitle}</p>
           <h1 className="pkg-title">{data.title}</h1>
-          {data.tags.length > 0 && (
-            <ul className="pkg-tags">
-              {data.tags.map(t => (
-                <li key={t} className="pkg-tag">{t}</li>
-              ))}
-            </ul>
-          )}
         </div>
       </section>
 
@@ -177,11 +175,21 @@ export default function PackageTemplate(data: PackageData) {
                 <ol className="pkg-itinerary-list">
                   {data.itinerary.map((day, i) => (
                     <li key={i} className="pkg-day">
-                      <span className="pkg-day-num">{String(i + 1).padStart(2, '0')}</span>
-                      <div className="pkg-day-content">
+                      <div className="pkg-day-head">
+                        <span className="pkg-day-num">{String(i + 1).padStart(2, '0')}</span>
                         <h3 className="pkg-day-label">{day.label}</h3>
-                        <p className="pkg-day-body">{day.body}</p>
                       </div>
+                      <ul className="pkg-day-timeline">
+                        {day.items.map((item, j) => (
+                          <li key={j} className="pkg-day-item">
+                            <span className="pkg-day-time">{item.time}</span>
+                            <div className="pkg-day-item-body">
+                              <strong className="pkg-day-item-title">{item.title}</strong>
+                              <p className="pkg-day-item-desc">{item.desc}</p>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
                     </li>
                   ))}
                 </ol>

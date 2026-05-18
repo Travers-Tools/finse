@@ -18,7 +18,6 @@ export default function PakkeHotelletForDere() {
         { src: '/assets/images/tog.png', alt: 'Tog' },
         { src: '/assets/images/finse.jpg', alt: 'Finse landskap' },
       ]}
-      tags={['2–4 netter', 'Opp til 110 gjester', 'Eksklusivt']}
       includes={[
         { icon: 'hotel', text: 'Hele hotellet for deres gruppe' },
         { icon: 'food', text: 'Fullpensjon tilpasset deres ønsker' },
@@ -35,15 +34,29 @@ export default function PakkeHotelletForDere() {
       itinerary={[
         {
           label: 'Ankomst og feiring',
-          body: 'Velkomstdrink på perrongen, innsjekk og fritt leide gjennom hotellet. En felles aktivitet eller teambuilding på ettermiddagen, før gallamiddagen — festmåltid med lokale råvarer.'
+          items: [
+            { time: '14:00', title: 'Ankomst Finse', desc: 'Velkomstdrink på perrongen' },
+            { time: '15:00', title: 'Innsjekk', desc: 'Hotellet er deres, utforsk fritt' },
+            { time: '17:00', title: 'Aktivitet', desc: 'Felles tur eller teambuilding' },
+            { time: '19:30', title: 'Gallamiddag', desc: 'Festmåltid med lokale råvarer' },
+          ]
         },
         {
           label: 'Opplevelser',
-          body: 'Frokostbuffet og en valgfri aktivitet — tur, ski, brevandring eller møte i grupper. Badstu og avslapning på ettermiddagen. Middag og underholdning på kvelden, formet etter dere.'
+          items: [
+            { time: '08:00', title: 'Frokostbuffet', desc: 'Alt dere trenger for en aktiv dag' },
+            { time: '10:00', title: 'Valgfri aktivitet', desc: 'Tur, ski, brevandring eller møte' },
+            { time: '15:00', title: 'Badstu og avslapning', desc: 'Tid for ro og restitusjon' },
+            { time: '19:00', title: 'Middag og underholdning', desc: 'Kveld tilpasset deres ønsker' },
+          ]
         },
         {
-          label: 'Avreise med ro',
-          body: 'Brunch og en langsom start. Tid for en siste tur ut for de som ønsker, før toget tar dere hjem. Et opphold dere kommer til å snakke om lenge etterpå.'
+          label: 'Avreise',
+          items: [
+            { time: '09:00', title: 'Brunch', desc: 'Langsom start med god mat' },
+            { time: '11:00', title: 'Siste tur', desc: 'Kort vandring for de som ønsker' },
+            { time: '12:30', title: 'Tog hjem', desc: 'Et uforglemmelig opphold er over' },
+          ]
         },
       ]}
       ctaNote="Kontakt oss for tilgjengelighet og priser."
