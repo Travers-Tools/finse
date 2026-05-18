@@ -652,6 +652,15 @@
   background: #4a3d2e;
 }
 
+.pkg-card-note {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--pkg-text-soft);
+  text-align: center;
+  margin: 14px 0 0;
+  line-height: 1.5;
+}
+
 /* ══════════════════════════════════════
    FOOTER
 ══════════════════════════════════════ */
