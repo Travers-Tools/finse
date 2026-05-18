@@ -19,7 +19,8 @@ function factIcon(label: string): React.ReactNode {
     case 'Anledning':
       return (
         <svg {...iconBase}>
-          <path d="M12 2l2.4 5 5.6.5-4.3 3.7 1.3 5.5L12 13.8l-5 2.9 1.3-5.5L4 7.5l5.6-.5z" />
+          <path d="M12 22s7-7.5 7-13a7 7 0 0 0-14 0c0 5.5 7 13 7 13z" />
+          <circle cx="12" cy="9" r="2.5" />
         </svg>
       )
     case 'Dato':
