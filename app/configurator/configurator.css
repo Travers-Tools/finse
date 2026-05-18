@@ -1148,6 +1148,8 @@ div + .konfig-flex-label {
   scrollbar-width: none;
   cursor: grab;
   user-select: none;
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 80px), transparent);
+  mask-image: linear-gradient(to right, black calc(100% - 80px), transparent);
 }
 
 .konfig-act-row::-webkit-scrollbar {
@@ -1310,10 +1312,26 @@ div + .konfig-flex-label {
     height: auto;
     margin: 16px;
     border-radius: 16px;
-    overflow: visible;
+  }
+
+  /* Stable kolonner: bilde-banner over form på mobil */
+  .konfig-body {
+    flex-direction: column;
   }
 
   .konfig-right {
+    display: flex;
+    flex: 0 0 auto;
+    padding: 0;
+  }
+
+  .konfig-img-wrap {
+    height: 140px;
+    border-radius: 0;
+  }
+
+  /* Skjul banner på siste steg — oppsummering tar over */
+  .konfig-body--full .konfig-right {
     display: none;
   }
 
@@ -1422,6 +1440,8 @@ div + .konfig-flex-label {
     overflow-y: visible;
     gap: 18px;
     cursor: default;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .konfig-act-group-cards {

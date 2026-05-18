@@ -351,7 +351,7 @@ export default function Configurator() {
                         ))}
                       </div>
 
-                      <p className="konfig-flex-label">Dra når som helst</p>
+                      <p className="konfig-flex-label">Når på året?</p>
                       <div className="konfig-month-row">
                         <button
                           className={`konfig-month-arrow ${monthOffset === 0 ? 'disabled' : ''}`}

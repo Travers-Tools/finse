@@ -72,12 +72,19 @@ export default function ReisePage() {
 
   const aktiviteter = (data.aktiviteter || []).filter(Boolean)
 
+  const antallText = data.antall ? `${data.antall} gjester` : ''
+  const moteromText = data.moteromVarighet ? `${data.moteromVarighet.toLowerCase()}` : ''
+  const romTypeCount = data.romtyper?.length || 0
+  const romTypeText = romTypeCount > 0
+    ? `${romTypeCount} ${romTypeCount === 1 ? 'romtype' : 'romtyper'}`
+    : ''
+
   const details: { label: string; value: string }[] = [
     { label: 'Anledning',  value: data.anledning },
     { label: 'Dato',       value: data.dato },
-    { label: 'Deltakere',  value: data.antall },
-    { label: 'Romtyper',   value: data.romtyper?.join(', ') || '' },
-    { label: 'Møterom',    value: data.moteromVarighet || '' },
+    { label: 'Deltakere',  value: antallText },
+    { label: 'Overnatting', value: romTypeText },
+    { label: 'Møterom',    value: moteromText },
   ].filter(d => d.value)
 
   return (
@@ -213,6 +220,31 @@ export default function ReisePage() {
           </div>
         </section>
       )}
+
+      {/* ── Hva skjer nå ── */}
+      <section className="reise-next">
+        <div className="reise-inner">
+          <span className="reise-eyebrow">Hva skjer nå</span>
+          <h2 className="reise-section-title">Tre enkle steg videre</h2>
+          <div className="reise-next-grid">
+            <div className="reise-next-step">
+              <span className="reise-next-num">01</span>
+              <h3 className="reise-next-title">Forespørselen er sendt</h3>
+              <p className="reise-next-desc">Vi har mottatt valgene dere har gjort og setter sammen et forslag tilpasset gruppen.</p>
+            </div>
+            <div className="reise-next-step">
+              <span className="reise-next-num">02</span>
+              <h3 className="reise-next-title">Svar innen én arbeidsdag</h3>
+              <p className="reise-next-desc">Dere får et personlig svar fra hotellet med pris, romoppsett og forslag til program.</p>
+            </div>
+            <div className="reise-next-step">
+              <span className="reise-next-num">03</span>
+              <h3 className="reise-next-title">Vi finpusser sammen</h3>
+              <p className="reise-next-desc">Sammen lander vi detaljene — fra ankomsttid og bagasjehåndtering til måltider og aktiviteter.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ── Share card ── */}
       <div className="reise-share-wrap">

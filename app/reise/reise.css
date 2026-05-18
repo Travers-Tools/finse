@@ -443,6 +443,52 @@
 
 
 /* ══════════════════════════════════════
+   HVA SKJER NÅ
+══════════════════════════════════════ */
+.reise-next {
+  padding: 96px var(--px-wide) 32px;
+}
+
+.reise-next-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin-top: 56px;
+}
+
+.reise-next-step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reise-next-num {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--brown-mid);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.reise-next-title {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.reise-next-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════
    SHARE CARD  — contained, rounded
 ══════════════════════════════════════ */
 .reise-share-wrap {
@@ -636,9 +682,16 @@
   .reise-program,
   .reise-quote,
   .reise-merknad,
-  .reise-romtype {
+  .reise-romtype,
+  .reise-next {
     padding-left: 24px;
     padding-right: 24px;
+  }
+
+  .reise-next-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 40px;
   }
 
   .reise-act-editorial {
