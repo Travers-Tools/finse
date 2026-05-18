@@ -26,6 +26,12 @@ export default function PakkeHotelletForDere() {
         { icon: 'group', text: 'Dedikert personale' },
         { icon: 'fire', text: 'Privat bruk av alle fasiliteter' },
       ]}
+      suitableFor={[
+        { anledning: 'Julebord/firmafest', note: 'Hele hotellet til disposisjon — uten naboer i baren eller på dansegulvet.' },
+        { anledning: 'Kick-off', note: 'Plass til større grupper, plenum og parallelle samlinger samtidig.' },
+        { anledning: 'Privat arrangement', note: 'Jubileer og milepæler som fortjener en eksklusiv ramme.' },
+        { anledning: 'Konferanse', note: 'Hold konferansen samlet — alle deltakere bor og spiser samme sted.' },
+      ]}
       itinerary={[
         {
           label: 'Ankomst og feiring',

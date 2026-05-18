@@ -25,6 +25,12 @@ export default function PakkeFokusPaaVidda() {
         { icon: 'briefcase', text: 'Møterom og fasiliteter' },
         { icon: 'fire', text: 'Kvelder ved peisen' },
       ]}
+      suitableFor={[
+        { anledning: 'Ledergruppe', note: 'Fokusert tid sammen, langt unna inboksen og distraksjonene.' },
+        { anledning: 'Strategisamling', note: 'Plass og ro til de store beslutningene som krever full oppmerksomhet.' },
+        { anledning: 'Konferanse', note: 'Intimt format med møterom og overnatting på samme sted.' },
+        { anledning: 'Teambuilding', note: 'Kombinerer arbeidsøkter med felles turer og måltider.' },
+      ]}
       itinerary={[
         {
           label: 'Ankomst og innsjekk',

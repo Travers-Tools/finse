@@ -26,6 +26,12 @@ export default function PakkeEkspedisjonstur() {
         { icon: 'gear', text: 'Utstyr kan leies på stedet' },
         { icon: 'fire', text: 'Kvelder ved peisen' },
       ]}
+      suitableFor={[
+        { anledning: 'Teambuilding', note: 'Felles mestring på vidda binder gruppen sterkere enn et seminar.' },
+        { anledning: 'Kick-off', note: 'Start året med vind i ansiktet og en historie å fortelle på Slack.' },
+        { anledning: 'Privat arrangement', note: 'Bursdag eller jubileum med et eventyrlig preg.' },
+        { anledning: 'Ledergruppe', note: 'Aktivitet skaper rom for samtalene som ikke kommer i konferanserommet.' },
+      ]}
       itinerary={[
         {
           label: 'Ankomst og forventning',
