@@ -103,53 +103,62 @@ export default function ReisePage() {
         </nav>
         <div className="reise-hero-body">
           <div className="reise-inner">
-          <p className="reise-hero-label">{data.anledning}</p>
-          <h1 className="reise-hero-title">
-            {data.bedrift ? `${data.bedrift} på Finse 1222` : 'Deres opphold på Finse 1222'}
-          </h1>
-          <p className="reise-hero-intro">
+            <h1 className="reise-hero-title">
+              {data.bedrift ? `${data.bedrift} på Finse 1222` : 'Deres opphold på Finse 1222'}
+            </h1>
+            <p className="reise-hero-subtitle">
+              {data.anledning} — 1222 moh.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Intro ── */}
+      <section className="reise-intro">
+        <div className="reise-inner">
+          <p className="reise-intro-lead">
             Dette er et forslag til hvordan turen til Finse 1222 kan se ut. Send det gjerne til de andre og hør hva de tenker.
           </p>
-          <div className="reise-hero-btns">
+          <p className="reise-intro-body">
+            Finse 1222 ligger der jernbanen slutter og vidda begynner — Norges høyestliggende fjellstasjon, omgitt av Hardangerjøkulen og stille kilometer med is og lys. Her finnes ingen biler, ingen støy. Bare det som virkelig betyr noe.
+          </p>
+          <div className="reise-intro-cta">
             <button className="reise-btn reise-btn--dark" onClick={handleCopy}>
               {copied ? '✓ Lenke kopiert!' : 'Del med kollegaer'}
             </button>
           </div>
-          </div>
         </div>
       </section>
 
-      {/* ── Welcome + Facts ── */}
-      <section className="reise-welcome">
-        <div className="reise-inner">
-        <div className="reise-welcome-text">
-          <p className="reise-welcome-body">
-            Finse 1222 ligger der jernbanen slutter og vidda begynner, Norges høyestliggende fjellstasjon, omgitt av Hardangerjøkulen og stille kilometer med is og lys. Her finnes ingen biler, ingen støy – bare det som virkelig betyr noe.
-          </p>
-          <p className="reise-welcome-body">
-            Dette er oppsummeringen av {data.bedrift ? `${data.bedrift}s` : 'deres'} tur til Finse 1222 – en reise dere vil tenke på lenge etter at dere er tilbake.
-          </p>
-        </div>
-
-        {details.length > 0 && (
-          <div className="reise-facts">
-            {details.map(d => (
-              <div key={d.label} className="reise-fact">
-                <span className="reise-fact-label">{d.label}</span>
-                <span className="reise-fact-value">{d.value}</span>
-              </div>
-            ))}
+      {/* ── Nøkkelinfo som liste ── */}
+      {details.length > 0 && (
+        <section className="reise-facts-section">
+          <div className="reise-inner">
+            <span className="reise-eyebrow">Reisen i kort</span>
+            <ul className="reise-facts-list">
+              {details.map(d => (
+                <li key={d.label} className="reise-facts-row">
+                  <span className="reise-facts-key">{d.label}</span>
+                  <span className="reise-facts-value">{d.value}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-        )}
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── Activities ── */}
-      {aktiviteter.length > 0 && (
-        <section className="reise-program">
-          <div className="reise-inner">
-            <span className="reise-eyebrow">Planlagte opplevelser</span>
-            <h2 className="reise-section-title">Hva dere ønsker å oppleve</h2>
+      <section className="reise-program">
+        <div className="reise-inner">
+          <span className="reise-eyebrow">Aktiviteter</span>
+          <h2 className="reise-section-title">Opplevelser hele året</h2>
+          <p className="reise-program-desc">
+            Finse byr på noe for alle — sykkel og fottur på vidda om sommeren, ski og truger om vinteren, eller en stille kveld med bålpanne, quiz eller vinsmaking. Hotellet låner ut utstyr og kjenner området ut og inn.
+            {aktiviteter.length > 0
+              ? ' Her er det dere har valgt for deres opphold:'
+              : ' Si gjerne fra om dere ønsker å legge til noe — vi tilpasser etter ønsker og vær.'}
+          </p>
+          {aktiviteter.length > 0 && (
             <div className="reise-act-editorial">
               {aktiviteter.map(navn => {
                 const act = ACTIVITY_DATA[navn]
@@ -166,9 +175,9 @@ export default function ReisePage() {
                 )
               })}
             </div>
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
 
       {/* ── Merknad ── */}
       {data.merknad && (
