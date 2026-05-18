@@ -73,18 +73,18 @@ export default function ReisePage() {
   const aktiviteter = (data.aktiviteter || []).filter(Boolean)
 
   const antallText = data.antall ? `${data.antall} gjester` : ''
-  const moteromText = data.moteromVarighet ? `${data.moteromVarighet.toLowerCase()}` : ''
+  const moteromText = data.moteromVarighet ? data.moteromVarighet.toLowerCase() : ''
   const romTypeCount = data.romtyper?.length || 0
   const romTypeText = romTypeCount > 0
     ? `${romTypeCount} ${romTypeCount === 1 ? 'romtype' : 'romtyper'}`
     : ''
 
   const details: { label: string; value: string }[] = [
-    { label: 'Anledning',  value: data.anledning },
-    { label: 'Dato',       value: data.dato },
-    { label: 'Deltakere',  value: antallText },
+    { label: 'Anledning',   value: data.anledning },
+    { label: 'Dato',        value: data.dato },
+    { label: 'Deltakere',   value: antallText },
     { label: 'Overnatting', value: romTypeText },
-    { label: 'Møterom',    value: moteromText },
+    { label: 'Møterom',     value: moteromText },
   ].filter(d => d.value)
 
   return (
@@ -127,7 +127,7 @@ export default function ReisePage() {
         </div>
       </section>
 
-      {/* ── Nøkkelinfo som liste ── */}
+      {/* ── Reisen i kort ── */}
       {details.length > 0 && (
         <section className="reise-facts-section">
           <div className="reise-inner">
@@ -144,7 +144,12 @@ export default function ReisePage() {
         </section>
       )}
 
-      {/* ── Activities ── */}
+      {/* ── Full-bleed bildebrudd ── */}
+      <figure className="reise-break">
+        <img src="/assets/images/Finseskilt.jpg" alt="Finse" className="reise-break-img" />
+      </figure>
+
+      {/* ── Aktiviteter ── */}
       <section className="reise-program">
         <div className="reise-inner">
           <span className="reise-eyebrow">Aktiviteter</span>
@@ -155,107 +160,113 @@ export default function ReisePage() {
               ? ' Her er det dere har valgt for deres opphold:'
               : ' Si gjerne fra om dere ønsker å legge til noe — vi tilpasser etter ønsker og vær.'}
           </p>
-          {aktiviteter.length > 0 && (
-            <div className="reise-act-editorial">
-              {aktiviteter.map(navn => {
-                const act = ACTIVITY_DATA[navn]
-                return (
-                  <div key={navn} className="reise-act-card">
-                    <div className="reise-act-card-img">
+        </div>
+        {aktiviteter.length > 0 && (
+          <div className="reise-act-list">
+            {aktiviteter.map((navn, i) => {
+              const act = ACTIVITY_DATA[navn]
+              return (
+                <article key={navn} className="reise-act-row">
+                  <div className="reise-act-row-inner">
+                    <div className="reise-act-row-img">
                       <img src={act?.bilde || '/assets/images/Finse_pakker00002.jpg'} alt={navn} />
                     </div>
-                    <div className="reise-act-card-body">
-                      <h3 className="reise-act-title">{navn}</h3>
-                      {act?.desc && <p className="reise-act-desc">{act.desc}</p>}
+                    <div className="reise-act-row-body">
+                      <span className="reise-act-row-num">{String(i + 1).padStart(2, '0')}</span>
+                      <h3 className="reise-act-row-title">{navn}</h3>
+                      {act?.desc && <p className="reise-act-row-desc">{act.desc}</p>}
                     </div>
                   </div>
+                </article>
+              )
+            })}
+          </div>
+        )}
+      </section>
+
+      {/* ── Romtype ── */}
+      {data.romtyper?.length > 0 && (
+        <section className="reise-rooms">
+          <figure className="reise-rooms-hero">
+            <img src="/assets/images/finse1222__242.JPG" alt="Romtype" className="reise-rooms-hero-img" />
+          </figure>
+          <div className="reise-inner">
+            <span className="reise-eyebrow">Overnatting</span>
+            <h2 className="reise-section-title">Romtyper dere har valgt</h2>
+            <ul className="reise-rooms-list">
+              {data.romtyper.map(r => {
+                const svgMap: Record<string, React.ReactNode> = {
+                  'Enkeltrom': <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="7" y="9" width="4" height="6" rx="1"/></svg>,
+                  'Dobbeltrom med separate senger': <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="5" y="9" width="4" height="6" rx="1"/><rect x="11" y="9" width="4" height="6" rx="1"/></svg>,
+                  'Flersengsrom med separate senger': <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="4" y="9" width="3" height="6" rx="1"/><rect x="10" y="9" width="3" height="6" rx="1"/><rect x="16" y="9" width="3" height="6" rx="1"/></svg>,
+                  'Dobbeltrom med dobbeltseng': <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="5" y="9" width="14" height="6" rx="1"/></svg>,
+                }
+                return (
+                  <li key={r} className="reise-rooms-row">
+                    <span className="reise-rooms-icon">{svgMap[r]}</span>
+                    <span className="reise-rooms-name">{r}</span>
+                  </li>
                 )
               })}
-            </div>
-          )}
-        </div>
-      </section>
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/* ── Merknad ── */}
       {data.merknad && (
         <section className="reise-merknad">
           <div className="reise-inner">
             <span className="reise-eyebrow">Merknad fra dere</span>
-            <p className="reise-merknad-text">{data.merknad}</p>
+            <p className="reise-merknad-text">«{data.merknad}»</p>
           </div>
         </section>
       )}
 
-      {/* ── Pull quote ── */}
+      {/* ── Pull quote — full-bleed dark ── */}
       <section className="reise-quote">
         <div className="reise-inner">
           <blockquote className="reise-quote-text">
-            «Seier venter den, som har alt i orden – hell kaller man det. Nederlag er en absolutt følge for den, som har forsømt å ta de nødvendige forholdsregler i tide – uhell kalles det.»
+            Seier venter den, som har alt i orden — hell kaller man det.
           </blockquote>
-          <cite className="reise-quote-attr">— Roald Amundsen</cite>
+          <cite className="reise-quote-attr">Roald Amundsen</cite>
         </div>
       </section>
 
-      {/* ── Room type ── */}
-      {data.romtyper?.length > 0 && (
-        <section className="reise-romtype">
-          <div className="reise-inner">
-            <span className="reise-eyebrow">Overnatting</span>
-            <h2 className="reise-section-title">Romtyper dere har valgt</h2>
-            <div className="reise-romtype-body">
-              <div className="reise-romtype-cards">
-              {data.romtyper.map(r => {
-                const svgMap: Record<string, React.ReactNode> = {
-                  'Enkeltrom': <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="7" y="9" width="4" height="6" rx="1"/></svg>,
-                  'Dobbeltrom med separate senger': <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="5" y="9" width="4" height="6" rx="1"/><rect x="11" y="9" width="4" height="6" rx="1"/></svg>,
-                  'Flersengsrom med separate senger': <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="4" y="9" width="3" height="6" rx="1"/><rect x="10" y="9" width="3" height="6" rx="1"/><rect x="16" y="9" width="3" height="6" rx="1"/></svg>,
-                  'Dobbeltrom med dobbeltseng': <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14"/><path d="M3 15h18"/><rect x="5" y="9" width="14" height="6" rx="1"/></svg>,
-                }
-                return (
-                  <div key={r} className="reise-romtype-card">
-                    <div className="reise-romtype-card-icon">{svgMap[r]}</div>
-                    <span className="reise-romtype-card-name">{r}</span>
-                  </div>
-                )
-              })}
-              </div>
-              <div className="reise-romtype-img-wrap">
-                <img src="/assets/images/finse1222__242.JPG" alt="Romtype" className="reise-romtype-img" />
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ── Hva skjer nå ── */}
+      {/* ── Hva skjer nå — timeline ── */}
       <section className="reise-next">
         <div className="reise-inner">
           <span className="reise-eyebrow">Hva skjer nå</span>
           <h2 className="reise-section-title">Tre enkle steg videre</h2>
-          <div className="reise-next-grid">
-            <div className="reise-next-step">
+          <ol className="reise-next-timeline">
+            <li className="reise-next-step">
               <span className="reise-next-num">01</span>
-              <h3 className="reise-next-title">Forespørselen er sendt</h3>
-              <p className="reise-next-desc">Vi har mottatt valgene dere har gjort og setter sammen et forslag tilpasset gruppen.</p>
-            </div>
-            <div className="reise-next-step">
+              <div className="reise-next-content">
+                <h3 className="reise-next-title">Forespørselen er sendt</h3>
+                <p className="reise-next-desc">Vi har mottatt valgene dere har gjort og setter sammen et forslag tilpasset gruppen.</p>
+              </div>
+            </li>
+            <li className="reise-next-step">
               <span className="reise-next-num">02</span>
-              <h3 className="reise-next-title">Svar innen én arbeidsdag</h3>
-              <p className="reise-next-desc">Dere får et personlig svar fra hotellet med pris, romoppsett og forslag til program.</p>
-            </div>
-            <div className="reise-next-step">
+              <div className="reise-next-content">
+                <h3 className="reise-next-title">Svar innen én arbeidsdag</h3>
+                <p className="reise-next-desc">Dere får et personlig svar fra hotellet med pris, romoppsett og forslag til program.</p>
+              </div>
+            </li>
+            <li className="reise-next-step">
               <span className="reise-next-num">03</span>
-              <h3 className="reise-next-title">Vi finpusser sammen</h3>
-              <p className="reise-next-desc">Sammen lander vi detaljene — fra ankomsttid og bagasjehåndtering til måltider og aktiviteter.</p>
-            </div>
-          </div>
+              <div className="reise-next-content">
+                <h3 className="reise-next-title">Vi finpusser sammen</h3>
+                <p className="reise-next-desc">Sammen lander vi detaljene — fra ankomsttid og bagasjehåndtering til måltider og aktiviteter.</p>
+              </div>
+            </li>
+          </ol>
         </div>
       </section>
 
       {/* ── Share card ── */}
-      <div className="reise-share-wrap">
+      <section className="reise-share">
         <div className="reise-inner">
-        <section className="reise-share">
           <h2 className="reise-share-title">Del med teamet</h2>
           <p className="reise-share-desc">
             Send lenken til kollegaene dine — la dem se hva som venter på Finse.
@@ -266,14 +277,15 @@ export default function ReisePage() {
             </button>
           </div>
           <p className="reise-share-note">Vi svarer innen én arbeidsdag · Ingen binding</p>
-        </section>
         </div>
-      </div>
+      </section>
 
       {/* ── Footer ── */}
       <footer className="reise-footer">
-        <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" className="reise-footer-logo" />
-        <a href="/configurator" className="reise-footer-link">Start en ny forespørsel →</a>
+        <div className="reise-inner reise-footer-inner">
+          <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" className="reise-footer-logo" />
+          <a href="/configurator" className="reise-footer-link">Start en ny forespørsel →</a>
+        </div>
       </footer>
 
     </div>
