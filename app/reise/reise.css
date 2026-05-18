@@ -155,51 +155,14 @@
 }
 
 /* ══════════════════════════════════════
-   FACTS LIST  — dashed separators
+   FACTS  — image header + icon list
 ══════════════════════════════════════ */
 .reise-facts-section {
-  padding: 32px 0 96px;
+  padding: 0 0 96px;
 }
 
-.reise-facts-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1px dashed rgba(0,0,0,0.18);
-}
-
-.reise-facts-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 20px 0;
-  border-bottom: 1px dashed rgba(0,0,0,0.18);
-}
-
-.reise-facts-key {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text);
-  flex-shrink: 0;
-  letter-spacing: 0.005em;
-}
-
-.reise-facts-value {
-  font-family: 'Crimson Pro', Georgia, serif;
-  font-size: clamp(17px, 1.7vw, 21px);
-  font-weight: 500;
-  color: var(--brown-dark);
-  text-align: right;
-  line-height: 1.35;
-}
-
-/* ══════════════════════════════════════
-   FULL-BLEED IMAGE BREAK
-══════════════════════════════════════ */
-.reise-break {
-  margin: 0;
+.reise-facts-hero {
+  margin: 0 0 72px;
   width: 100%;
   height: 56vh;
   min-height: 380px;
@@ -207,11 +170,51 @@
   overflow: hidden;
 }
 
-.reise-break-img {
+.reise-facts-hero-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.reise-facts-list {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+
+.reise-facts-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.reise-facts-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brown-mid);
+  flex-shrink: 0;
+}
+
+.reise-facts-key {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.reise-facts-value {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(14px, 1.4vw, 16px);
+  color: var(--text-muted);
+  text-align: right;
+  line-height: 1.45;
 }
 
 /* ══════════════════════════════════════
@@ -664,7 +667,8 @@
     gap: 64px;
   }
 
-  .reise-break {
+  .reise-facts-hero {
+    margin-bottom: 48px;
     height: 40vh;
     min-height: 280px;
   }
@@ -705,13 +709,17 @@
   }
 
   .reise-facts-row {
-    flex-wrap: wrap;
-    gap: 4px;
+    grid-template-columns: auto 1fr;
+    gap: 4px 16px;
+  }
+
+  .reise-facts-icon {
+    grid-row: span 2;
   }
 
   .reise-facts-value {
     text-align: left;
-    flex-basis: 100%;
+    grid-column: 2;
   }
 
   .reise-footer-inner {

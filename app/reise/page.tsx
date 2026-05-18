@@ -3,6 +3,64 @@
 import { useEffect, useState } from 'react'
 import './reise.css'
 
+const iconBase = {
+  width: 22,
+  height: 22,
+  viewBox: '0 0 24 24',
+  fill: 'none' as const,
+  stroke: 'currentColor',
+  strokeWidth: 1.5,
+  strokeLinecap: 'round' as const,
+  strokeLinejoin: 'round' as const,
+}
+
+function factIcon(label: string): React.ReactNode {
+  switch (label) {
+    case 'Anledning':
+      return (
+        <svg {...iconBase}>
+          <path d="M12 2l2.4 5 5.6.5-4.3 3.7 1.3 5.5L12 13.8l-5 2.9 1.3-5.5L4 7.5l5.6-.5z" />
+        </svg>
+      )
+    case 'Dato':
+      return (
+        <svg {...iconBase}>
+          <rect x="3" y="4" width="18" height="18" rx="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+      )
+    case 'Deltakere':
+      return (
+        <svg {...iconBase}>
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      )
+    case 'Overnatting':
+      return (
+        <svg {...iconBase}>
+          <path d="M3 21V7a2 2 0 012-2h14a2 2 0 012 2v14" />
+          <path d="M3 15h18" />
+          <rect x="5" y="9" width="14" height="6" rx="1" />
+        </svg>
+      )
+    case 'Møterom':
+      return (
+        <svg {...iconBase}>
+          <rect x="3" y="3" width="18" height="14" rx="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
+        </svg>
+      )
+    default:
+      return null
+  }
+}
+
 const ACTIVITY_DATA: Record<string, { bilde: string; desc: string }> = {
   'Bålpanne & bading ved Framheim':     { bilde: '/assets/images/Finse_pakker00010.jpg', desc: 'Morgenbad eller «after hike» ved Framheim – med bålpanne og varmt drikke. Hotellet ordner alt av utstyr. En enkel opplevelse med stor effekt.' },
   'Sykkeltur til Fagernut og tilbake':  { bilde: '/assets/images/Finse_pakker00004.jpg', desc: 'Juli–september. Ikonisk rute med utsikt over Hardangervidda. Hotellet pakker nistepakke og låner ut sykler og hjelmer. Mestring og snakkestoff garantert.' },
@@ -130,24 +188,27 @@ export default function ReisePage() {
       {/* ── Reisen i kort ── */}
       {details.length > 0 && (
         <section className="reise-facts-section">
+          <figure className="reise-facts-hero">
+            <img src="/assets/images/Finseskilt.jpg" alt="Finse" className="reise-facts-hero-img" />
+          </figure>
           <div className="reise-inner">
-            <span className="reise-eyebrow">Reisen i kort</span>
+            <span className="reise-eyebrow">Reisen</span>
+            <h2 className="reise-section-title">Det dere har valgt</h2>
             <ul className="reise-facts-list">
-              {details.map(d => (
-                <li key={d.label} className="reise-facts-row">
-                  <span className="reise-facts-key">{d.label}</span>
-                  <span className="reise-facts-value">{d.value}</span>
-                </li>
-              ))}
+              {details.map(d => {
+                const icon = factIcon(d.label)
+                return (
+                  <li key={d.label} className="reise-facts-row">
+                    <span className="reise-facts-icon">{icon}</span>
+                    <span className="reise-facts-key">{d.label}</span>
+                    <span className="reise-facts-value">{d.value}</span>
+                  </li>
+                )
+              })}
             </ul>
           </div>
         </section>
       )}
-
-      {/* ── Full-bleed bildebrudd ── */}
-      <figure className="reise-break">
-        <img src="/assets/images/Finseskilt.jpg" alt="Finse" className="reise-break-img" />
-      </figure>
 
       {/* ── Aktiviteter ── */}
       <section className="reise-program">
