@@ -241,13 +241,27 @@ export default function ReisePage() {
         )}
       </section>
 
-      {/* ── Pull quote — full-bleed dark ── */}
+      {/* ── Amundsen ── */}
       <section className="reise-quote">
-        <div className="reise-inner">
-          <blockquote className="reise-quote-text">
-            Seier venter den, som har alt i orden. Hell kaller man det.
-          </blockquote>
-          <cite className="reise-quote-attr">Roald Amundsen</cite>
+        <div className="reise-inner reise-quote-grid">
+          <figure className="reise-quote-figure">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Amundsen_in_fur_skins.jpg"
+              alt="Roald Amundsen"
+              className="reise-quote-img"
+            />
+            <figcaption className="reise-quote-caption">Roald Amundsen, ca. 1923. Foto: National Library of Norway.</figcaption>
+          </figure>
+          <div className="reise-quote-body">
+            <span className="reise-eyebrow">Et stykke historie</span>
+            <blockquote className="reise-quote-text">
+              Seier venter den, som har alt i orden. Hell kaller man det. Nederlag er en absolutt følge for den, som har forsømt å ta de nødvendige forholdsregler i tide. Uhell kalles det.
+            </blockquote>
+            <cite className="reise-quote-attr">Roald Amundsen</cite>
+            <p className="reise-quote-context">
+              Amundsen brukte Finse som treningsbase før sine polarekspedisjoner. Her, omgitt av is og snø, ble utstyr testet og strategi formet i et klima som lignet det polare. Den samme vidda ligger fortsatt utenfor hotellets vinduer.
+            </p>
+          </div>
         </div>
       </section>
 

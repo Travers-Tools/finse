@@ -96,6 +96,7 @@ html { scroll-behavior: smooth; }
   position: relative;
   z-index: 1;
   padding-top: 28px;
+  text-align: center;
 }
 
 .reise-logo-link { display: inline-block; }
@@ -308,40 +309,82 @@ html { scroll-behavior: smooth; }
 }
 
 /* ══════════════════════════════════════
-   QUOTE  — full-bleed dark
+   QUOTE  — Amundsen, on cream with portrait
 ══════════════════════════════════════ */
 .reise-quote {
-  background: var(--brown-dark);
-  color: #fff;
   padding: var(--section-pad) 0;
-  text-align: center;
 }
 
-.reise-quote .reise-inner {
+.reise-quote-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.reise-quote-figure {
+  margin: 0;
+}
+
+.reise-quote-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  filter: sepia(0.08);
+}
+
+.reise-quote-caption {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(0,0,0,0.4);
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+.reise-quote-body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 24px;
 }
 
 .reise-quote-text {
   font-family: 'Crimson Pro', Georgia, serif;
-  font-size: clamp(28px, 3.6vw, 48px);
+  font-size: clamp(22px, 2.4vw, 30px);
   font-weight: 500;
   font-style: italic;
-  color: #fff;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  margin: 0;
-  max-width: 820px;
+  color: var(--text);
+  line-height: 1.32;
+  letter-spacing: -0.005em;
+  margin: 0 0 18px;
 }
 
 .reise-quote-attr {
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   font-style: normal;
-  color: rgba(255,255,255,0.6);
+  color: var(--brown-mid);
   letter-spacing: 0.01em;
+  margin-bottom: 36px;
+}
+
+.reise-quote-context {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 540px;
+}
+
+@media (max-width: 900px) {
+  .reise-quote-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .reise-quote-img {
+    max-width: 360px;
+  }
 }
 
 /* ══════════════════════════════════════
