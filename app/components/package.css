@@ -371,7 +371,19 @@
   display: flex;
   align-items: baseline;
   gap: 16px;
-  margin-bottom: 18px;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  transition: opacity 150ms ease;
+}
+
+.pkg-day-head:hover {
+  opacity: 0.75;
 }
 
 .pkg-day-num {
@@ -381,6 +393,7 @@
   color: var(--pkg-brown-mid);
   line-height: 1;
   letter-spacing: -0.01em;
+  flex-shrink: 0;
 }
 
 .pkg-day-label {
@@ -391,11 +404,44 @@
   margin: 0;
   line-height: 1.2;
   letter-spacing: -0.005em;
+  flex: 1;
+}
+
+.pkg-day-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--pkg-text-soft);
+  flex-shrink: 0;
+  align-self: center;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), color 150ms ease;
+}
+
+.pkg-day.is-open .pkg-day-chevron {
+  transform: rotate(180deg);
+  color: var(--pkg-text);
+}
+
+.pkg-day-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pkg-day.is-open .pkg-day-content {
+  grid-template-rows: 1fr;
+}
+
+.pkg-day-content > * {
+  min-height: 0;
 }
 
 .pkg-day-timeline {
   list-style: none;
-  margin: 0;
+  margin: 18px 0 0;
   padding: 0 0 0 12px;
   border-left: 1px solid var(--pkg-border);
   display: flex;
@@ -719,7 +765,11 @@
 
   .pkg-day-head {
     gap: 12px;
-    margin-bottom: 14px;
+  }
+
+  .pkg-day-chevron {
+    width: 28px;
+    height: 28px;
   }
 
   .pkg-day-item {

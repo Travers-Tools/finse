@@ -44,6 +44,15 @@ const DEFAULT_HOST = {
 export default function PackageTemplate(data: PackageData) {
   const visibleImages = data.gallery.slice(0, 3)
   const [galleryOpen, setGalleryOpen] = useState(false)
+  const [openDays, setOpenDays] = useState<number[]>(() =>
+    data.itinerary.map((_, i) => i)
+  )
+
+  const toggleDay = (i: number) => {
+    setOpenDays(curr =>
+      curr.includes(i) ? curr.filter(d => d !== i) : [...curr, i]
+    )
+  }
 
   useEffect(() => {
     if (!galleryOpen) return
@@ -165,25 +174,44 @@ export default function PackageTemplate(data: PackageData) {
               <div className="pkg-block">
                 <h2 className="pkg-block-title">Slik kan oppholdet se ut</h2>
                 <ol className="pkg-itinerary-list">
-                  {data.itinerary.map((day, i) => (
-                    <li key={i} className="pkg-day">
-                      <div className="pkg-day-head">
-                        <span className="pkg-day-num">{String(i + 1).padStart(2, '0')}</span>
-                        <h3 className="pkg-day-label">{day.label}</h3>
-                      </div>
-                      <ul className="pkg-day-timeline">
-                        {day.items.map((item, j) => (
-                          <li key={j} className="pkg-day-item">
-                            <span className="pkg-day-time">{item.time}</span>
-                            <div className="pkg-day-item-body">
-                              <strong className="pkg-day-item-title">{item.title}</strong>
-                              <p className="pkg-day-item-desc">{item.desc}</p>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  ))}
+                  {data.itinerary.map((day, i) => {
+                    const isOpen = openDays.includes(i)
+                    return (
+                      <li key={i} className={`pkg-day ${isOpen ? 'is-open' : ''}`}>
+                        <button
+                          type="button"
+                          className="pkg-day-head"
+                          onClick={() => toggleDay(i)}
+                          aria-expanded={isOpen}
+                          aria-controls={`pkg-day-content-${i}`}
+                        >
+                          <span className="pkg-day-num">{String(i + 1).padStart(2, '0')}</span>
+                          <h3 className="pkg-day-label">{day.label}</h3>
+                          <span className="pkg-day-chevron" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="6 9 12 15 18 9" />
+                            </svg>
+                          </span>
+                        </button>
+                        <div
+                          id={`pkg-day-content-${i}`}
+                          className="pkg-day-content"
+                        >
+                          <ul className="pkg-day-timeline">
+                            {day.items.map((item, j) => (
+                              <li key={j} className="pkg-day-item">
+                                <span className="pkg-day-time">{item.time}</span>
+                                <div className="pkg-day-item-body">
+                                  <strong className="pkg-day-item-title">{item.title}</strong>
+                                  <p className="pkg-day-item-desc">{item.desc}</p>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </li>
+                    )
+                  })}
                 </ol>
               </div>
 
