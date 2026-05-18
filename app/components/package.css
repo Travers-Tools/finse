@@ -46,7 +46,6 @@
 }
 
 /* Page-load reveal */
-.pkg-title-block,
 .pkg-content,
 .pkg-footer-inner {
   animation: pkgReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -67,7 +66,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pkg-title-block,
   .pkg-content,
   .pkg-footer-inner,
   .pkg-gallery-hero {
@@ -210,10 +208,10 @@
 }
 
 /* ══════════════════════════════════════
-   TITLE BLOCK
+   TITLE BLOCK  — i toppen av main-kolonnen
 ══════════════════════════════════════ */
 .pkg-title-block {
-  padding: 40px 0 24px;
+  padding: 0 0 16px;
 }
 
 .pkg-eyebrow {
@@ -239,7 +237,7 @@
    TWO-COLUMN CONTENT
 ══════════════════════════════════════ */
 .pkg-content {
-  padding: 24px 0 var(--pkg-section-pad);
+  padding: 40px 0 var(--pkg-section-pad);
 }
 
 .pkg-content-grid {
@@ -597,34 +595,6 @@
   line-height: 1.5;
 }
 
-.pkg-card-divider {
-  height: 1px;
-  background: var(--pkg-border);
-  margin: 24px 0;
-}
-
-.pkg-card-contact {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  color: var(--pkg-text-muted);
-  text-align: center;
-  margin: 0;
-  line-height: 1.6;
-}
-
-.pkg-card-contact a {
-  font-family: 'Crimson Pro', Georgia, serif;
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--pkg-text);
-  text-decoration: none;
-  letter-spacing: -0.005em;
-}
-
-.pkg-card-contact a:hover {
-  color: var(--pkg-brown-mid);
-}
-
 /* ══════════════════════════════════════
    FOOTER
 ══════════════════════════════════════ */
@@ -732,7 +702,7 @@
   }
 
   .pkg-title-block {
-    padding: 32px 0 16px;
+    padding: 0 0 12px;
   }
 
   .pkg-block {

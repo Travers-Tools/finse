@@ -124,20 +124,18 @@ export default function PackageTemplate(data: PackageData) {
         </div>
       )}
 
-      {/* ── Title block ── */}
-      <section className="pkg-title-block">
-        <div className="pkg-inner">
-          <p className="pkg-eyebrow">{data.subtitle}</p>
-          <h1 className="pkg-title">{data.title}</h1>
-        </div>
-      </section>
-
       {/* ── Two-column content ── */}
       <section className="pkg-content">
         <div className="pkg-inner">
           <div className="pkg-content-grid">
             {/* Main column */}
             <div className="pkg-main">
+              {/* Title */}
+              <div className="pkg-title-block">
+                <p className="pkg-eyebrow">{data.subtitle}</p>
+                <h1 className="pkg-title">{data.title}</h1>
+              </div>
+
               {/* Intro */}
               <div className="pkg-block">
                 <p className="pkg-intro-body">{data.intro}</p>
@@ -237,11 +235,6 @@ export default function PackageTemplate(data: PackageData) {
                   Planlegg oppholdet
                 </Link>
                 <p className="pkg-card-note">{data.ctaNote}</p>
-                <div className="pkg-card-divider" />
-                <p className="pkg-card-contact">
-                  Eller ring oss på<br />
-                  <a href="tel:+4756527100">+47 56 52 71 00</a>
-                </p>
               </div>
             </aside>
           </div>
