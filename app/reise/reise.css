@@ -623,10 +623,20 @@
     padding-bottom: 40px;
   }
 
+  .reise-hero-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .reise-hero-btns .reise-btn {
+    width: 100%;
+  }
+
   .reise-welcome,
   .reise-program,
   .reise-quote,
-  .reise-merknad {
+  .reise-merknad,
+  .reise-romtype {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -640,6 +650,40 @@
     height: 240px;
   }
 
+  /* Romtype: stable bilde under kort på smal mobil */
+  .reise-romtype-body {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .reise-romtype-img-wrap {
+    width: 100%;
+    flex: none;
+    height: 220px;
+  }
+
+  .reise-romtype-card {
+    flex: 1 1 calc(50% - 6px);
+    min-width: 0;
+  }
+
+  /* Fakta-radene: tillat wrap så de ikke overflower */
+  .reise-facts {
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  .reise-fact {
+    padding: 16px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    flex: 1 1 100%;
+  }
+
+  .reise-fact:last-child {
+    border-bottom: none;
+  }
+
   .reise-share-wrap {
     padding: 40px 16px;
   }
@@ -651,6 +695,10 @@
 
   .reise-share-btns {
     flex-direction: column;
+  }
+
+  .reise-share-btns .reise-btn {
+    width: 100%;
   }
 
   .reise-footer {
