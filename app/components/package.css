@@ -23,9 +23,12 @@
   min-height: 100vh;
 }
 
-/* Slank, frostet header for pakkesidene */
+/* Slank header for pakkesidene — matcher cream-bg, ingen blur */
 .pkg-page .header {
   padding: 14px clamp(20px, 4vw, 40px);
+  background: var(--pkg-cream);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .pkg-page .logo-img {
@@ -35,6 +38,11 @@
 .pkg-page .nav-link,
 .pkg-page .btn-planlegg {
   font-size: 13px;
+}
+
+/* Skjul venstre nav (tilbake-knapp/Kontakt oss) — beholder space for sentrert logo */
+.pkg-page .nav-left {
+  visibility: hidden;
 }
 
 .pkg-inner {

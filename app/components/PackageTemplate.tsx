@@ -75,7 +75,7 @@ export default function PackageTemplate(data: PackageData) {
 
   return (
     <div className="pkg-page">
-      <Header variant="light" showBackButton={true} />
+      <Header variant="light" showBackButton={false} />
 
       {/* ── Photo grid hero ── */}
       <section className="pkg-gallery-hero">
