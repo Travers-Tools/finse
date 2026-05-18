@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from './Header'
 import { Icon, IconName } from './PackageIcons'
@@ -35,7 +36,22 @@ const DEFAULT_HOST = {
 }
 
 export default function PackageTemplate(data: PackageData) {
-  const galleryImages = data.gallery.slice(0, 4)
+  const visibleImages = data.gallery.slice(0, 3)
+  const [galleryOpen, setGalleryOpen] = useState(false)
+
+  useEffect(() => {
+    if (!galleryOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setGalleryOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = prev
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [galleryOpen])
 
   return (
     <div className="pkg-page">
@@ -45,14 +61,55 @@ export default function PackageTemplate(data: PackageData) {
       <section className="pkg-gallery-hero">
         <div className="pkg-inner">
           <div className="pkg-photo-grid">
-            {galleryImages.map((img, i) => (
+            {visibleImages.map((img, i) => (
               <figure key={i} className={`pkg-photo pkg-photo-${i + 1}`}>
                 <img src={img.src} alt={img.alt} />
               </figure>
             ))}
+            {data.gallery.length > visibleImages.length && (
+              <button
+                type="button"
+                className="pkg-show-all"
+                onClick={() => setGalleryOpen(true)}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="7" height="7" />
+                  <rect x="14" y="3" width="7" height="7" />
+                  <rect x="3" y="14" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" />
+                </svg>
+                Vis alle bilder
+              </button>
+            )}
           </div>
         </div>
       </section>
+
+      {/* ── Lightbox modal ── */}
+      {galleryOpen && (
+        <div className="pkg-lightbox" role="dialog" aria-modal="true" aria-label="Alle bilder">
+          <button
+            type="button"
+            className="pkg-lightbox-close"
+            onClick={() => setGalleryOpen(false)}
+            aria-label="Lukk bildegalleri"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+          <div className="pkg-lightbox-inner" onClick={(e) => e.currentTarget === e.target && setGalleryOpen(false)}>
+            <div className="pkg-lightbox-grid">
+              {data.gallery.map((img, i) => (
+                <figure key={i} className="pkg-lightbox-photo">
+                  <img src={img.src} alt={img.alt} />
+                </figure>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── Title block ── */}
       <section className="pkg-title-block">

@@ -68,9 +68,10 @@
 }
 
 .pkg-photo-grid {
+  position: relative;
   display: grid;
   grid-template-columns: 1.6fr 1fr;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
   gap: 8px;
   height: 60vh;
   min-height: 420px;
@@ -98,7 +99,99 @@
 }
 
 .pkg-photo-1 {
-  grid-row: span 3;
+  grid-row: span 2;
+}
+
+.pkg-show-all {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--pkg-text);
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(0,0,0,0.08);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.pkg-show-all:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* ══════════════════════════════════════
+   LIGHTBOX
+══════════════════════════════════════ */
+.pkg-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(20, 14, 8, 0.94);
+  display: flex;
+  flex-direction: column;
+  animation: pkgLightboxFade 200ms ease-out;
+}
+
+@keyframes pkgLightboxFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.pkg-lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.pkg-lightbox-close:hover {
+  background: rgba(255,255,255,0.22);
+}
+
+.pkg-lightbox-inner {
+  flex: 1;
+  overflow-y: auto;
+  padding: 72px 24px 48px;
+}
+
+.pkg-lightbox-grid {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pkg-lightbox-photo {
+  margin: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
+}
+
+.pkg-lightbox-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ══════════════════════════════════════
