@@ -214,7 +214,6 @@ export default function ReisePage() {
       <section className="reise-program">
         <div className="reise-inner">
           <span className="reise-eyebrow">Aktiviteter</span>
-          <h2 className="reise-section-title">Opplevelser hele året</h2>
           <p className="reise-program-desc">
             Finse byr på noe for alle — sykkel og fottur på vidda om sommeren, ski og truger om vinteren, eller en stille kveld med bålpanne, quiz eller vinsmaking. Hotellet låner ut utstyr og kjenner området ut og inn.
             {aktiviteter.length > 0
