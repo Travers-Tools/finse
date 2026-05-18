@@ -91,6 +91,7 @@ interface TripData {
 export default function ReisePage() {
   const [data, setData] = useState<TripData | null>(null)
   const [copied, setCopied] = useState(false)
+  const [heroLoaded, setHeroLoaded] = useState(false)
 
   useEffect(() => {
     const hash = window.location.hash
@@ -147,7 +148,12 @@ export default function ReisePage() {
 
       {/* ── Hero ── */}
       <section className="reise-hero">
-        <img src="/assets/images/finse1222__242.JPG" alt="Finse 1222" className="reise-hero-img" />
+        <img
+          src="/assets/images/finse1222__242.JPG"
+          alt="Finse 1222"
+          className="reise-hero-img"
+          onLoad={() => setHeroLoaded(true)}
+        />
         <div className="reise-hero-overlay" />
         <nav className="reise-hero-nav">
           <div className="reise-inner">
@@ -156,7 +162,7 @@ export default function ReisePage() {
             </a>
           </div>
         </nav>
-        <div className="reise-hero-body">
+        <div className={`reise-hero-body ${heroLoaded ? 'is-ready' : ''}`}>
           <div className="reise-inner">
             <p className="reise-hero-subtitle">
               {data.anledning} · 1222 moh.
