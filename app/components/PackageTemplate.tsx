@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
 import Header from './Header'
 import { Icon, IconName } from './PackageIcons'
@@ -28,118 +27,120 @@ export interface PackageData {
   ctaNote: string
 }
 
+const DEFAULT_HOST = {
+  name: 'Henriette & Daniel',
+  role: 'Dine verter på Finse 1222',
+  image: '/assets/images/oss.JPG',
+  intro: 'Vi tar imot dere på perrongen og sørger for at alt er klart når dere kommer. Si fra hva dere ønsker — vi tilpasser så langt det går.',
+}
+
 export default function PackageTemplate(data: PackageData) {
-  const [activeImage, setActiveImage] = useState(0)
-  const [heroLoaded, setHeroLoaded] = useState(false)
+  const galleryImages = data.gallery.slice(0, 4)
 
   return (
     <div className="pkg-page">
       <Header variant="light" showBackButton={true} />
 
-      {/* ── Hero ── */}
-      <section className="pkg-hero">
-        <img
-          src={data.heroImage.src}
-          alt={data.heroImage.alt}
-          className="pkg-hero-img"
-          onLoad={() => setHeroLoaded(true)}
-        />
-        <div className="pkg-hero-overlay" />
-        <div className={`pkg-hero-body ${heroLoaded ? 'is-ready' : ''}`}>
-          <div className="pkg-inner">
-            <p className="pkg-hero-subtitle">{data.subtitle}</p>
-            <h1 className="pkg-hero-title">{data.title}</h1>
+      {/* ── Photo grid hero ── */}
+      <section className="pkg-gallery-hero">
+        <div className="pkg-inner">
+          <div className="pkg-photo-grid">
+            {galleryImages.map((img, i) => (
+              <figure key={i} className={`pkg-photo pkg-photo-${i + 1}`}>
+                <img src={img.src} alt={img.alt} />
+              </figure>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Intro ── */}
-      <section className="pkg-intro">
+      {/* ── Title block ── */}
+      <section className="pkg-title-block">
         <div className="pkg-inner">
-          <p className="pkg-intro-body">{data.intro}</p>
-        </div>
-      </section>
-
-      {/* ── Tags ── */}
-      {data.tags.length > 0 && (
-        <section className="pkg-tags-section">
-          <div className="pkg-inner">
+          <p className="pkg-eyebrow">{data.subtitle}</p>
+          <h1 className="pkg-title">{data.title}</h1>
+          {data.tags.length > 0 && (
             <ul className="pkg-tags">
               {data.tags.map(t => (
                 <li key={t} className="pkg-tag">{t}</li>
               ))}
             </ul>
-          </div>
-        </section>
-      )}
-
-      {/* ── Gallery ── */}
-      <section className="pkg-gallery">
-        <div className="pkg-inner">
-          <div className="pkg-gallery-main">
-            <img
-              src={data.gallery[activeImage].src}
-              alt={data.gallery[activeImage].alt}
-            />
-          </div>
-          <div className="pkg-gallery-thumbs">
-            {data.gallery.map((img, i) => (
-              <button
-                key={i}
-                className={`pkg-gallery-thumb ${i === activeImage ? 'is-active' : ''}`}
-                onClick={() => setActiveImage(i)}
-                aria-label={`Vis bilde ${i + 1}`}
-              >
-                <img src={img.src} alt={img.alt} />
-              </button>
-            ))}
-          </div>
+          )}
         </div>
       </section>
 
-      {/* ── Includes ── */}
-      <section className="pkg-includes">
+      {/* ── Two-column content ── */}
+      <section className="pkg-content">
         <div className="pkg-inner">
-          <span className="pkg-eyebrow">Inkludert</span>
-          <h2 className="pkg-section-title">Dette får dere</h2>
-          <ul className="pkg-includes-list">
-            {data.includes.map((item, i) => (
-              <li key={i} className="pkg-includes-row">
-                <span className="pkg-includes-icon"><Icon name={item.icon} /></span>
-                <span className="pkg-includes-text">{item.text}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+          <div className="pkg-content-grid">
+            {/* Main column */}
+            <div className="pkg-main">
+              {/* Intro */}
+              <div className="pkg-block">
+                <p className="pkg-intro-body">{data.intro}</p>
+              </div>
 
-      {/* ── Itinerary ── */}
-      <section className="pkg-itinerary">
-        <div className="pkg-inner">
-          <span className="pkg-eyebrow">Programmet</span>
-          <h2 className="pkg-section-title">Slik kan oppholdet se ut</h2>
-          <ol className="pkg-itinerary-list">
-            {data.itinerary.map((day, i) => (
-              <li key={i} className="pkg-day">
-                <span className="pkg-day-num">{String(i + 1).padStart(2, '0')}</span>
-                <div className="pkg-day-content">
-                  <h3 className="pkg-day-label">{day.label}</h3>
-                  <p className="pkg-day-body">{day.body}</p>
+              {/* Includes */}
+              <div className="pkg-block">
+                <h2 className="pkg-block-title">Dette er inkludert</h2>
+                <ul className="pkg-includes-grid">
+                  {data.includes.map((item, i) => (
+                    <li key={i} className="pkg-includes-item">
+                      <span className="pkg-includes-icon"><Icon name={item.icon} /></span>
+                      <span className="pkg-includes-text">{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Itinerary */}
+              <div className="pkg-block">
+                <h2 className="pkg-block-title">Slik kan oppholdet se ut</h2>
+                <ol className="pkg-itinerary-list">
+                  {data.itinerary.map((day, i) => (
+                    <li key={i} className="pkg-day">
+                      <span className="pkg-day-num">{String(i + 1).padStart(2, '0')}</span>
+                      <div className="pkg-day-content">
+                        <h3 className="pkg-day-label">{day.label}</h3>
+                        <p className="pkg-day-body">{day.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              {/* Host */}
+              <div className="pkg-block pkg-host">
+                <h2 className="pkg-block-title">Vertskap</h2>
+                <div className="pkg-host-card">
+                  <img src={DEFAULT_HOST.image} alt={DEFAULT_HOST.name} className="pkg-host-img" />
+                  <div className="pkg-host-body">
+                    <p className="pkg-host-name">{DEFAULT_HOST.name}</p>
+                    <p className="pkg-host-role">{DEFAULT_HOST.role}</p>
+                    <p className="pkg-host-intro">{DEFAULT_HOST.intro}</p>
+                  </div>
                 </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+              </div>
+            </div>
 
-      {/* ── CTA ── */}
-      <section className="pkg-cta">
-        <div className="pkg-inner">
-          <h2 className="pkg-cta-title">Klar for å planlegge?</h2>
-          <p className="pkg-cta-lead">{data.ctaNote}</p>
-          <Link href="/configurator" className="pkg-btn">
-            Start planleggingen
-          </Link>
+            {/* Sticky info card */}
+            <aside className="pkg-aside">
+              <div className="pkg-card">
+                <p className="pkg-card-eyebrow">Skreddersydd opphold</p>
+                <h3 className="pkg-card-title">Start planleggingen</h3>
+                <p className="pkg-card-body">Fortell oss hva som passer for gruppen. Vi setter sammen et forslag og svarer innen én arbeidsdag.</p>
+                <Link href="/configurator" className="pkg-btn">
+                  Planlegg oppholdet
+                </Link>
+                <p className="pkg-card-note">{data.ctaNote}</p>
+                <div className="pkg-card-divider" />
+                <p className="pkg-card-contact">
+                  Eller ring oss på<br />
+                  <a href="tel:+4756527100">+47 56 52 71 00</a>
+                </p>
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
 
