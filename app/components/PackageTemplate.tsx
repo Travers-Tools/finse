@@ -48,6 +48,27 @@ const DEFAULT_HOST = {
   intro: 'Vi tar imot dere på perrongen og sørger for at alt er klart når dere kommer. Si fra hva dere ønsker, så tilpasser vi.',
 }
 
+const ALL_PACKAGES = [
+  {
+    slug: '/pakke-ekspedisjonstur',
+    title: 'Ekspedisjonstur',
+    subtitle: 'I fotsporene til Nansen og Amundsen',
+    image: '/assets/images/R1 04555 0014.jpg',
+  },
+  {
+    slug: '/pakke-fokus-paa-vidda',
+    title: 'Fokus på vidda',
+    subtitle: 'Tid til de viktige samtalene',
+    image: '/assets/images/R1-04554-0028.jpg',
+  },
+  {
+    slug: '/pakke-hotellet-for-dere',
+    title: 'Hotellet for dere selv',
+    subtitle: 'Når dere fortjener hele Finse',
+    image: '/assets/images/finse1222__242.JPG',
+  },
+]
+
 export default function PackageTemplate(data: PackageData) {
   const visibleImages = data.gallery.slice(0, 3)
   const [galleryOpen, setGalleryOpen] = useState(false)
@@ -259,6 +280,29 @@ export default function PackageTemplate(data: PackageData) {
                 <p className="pkg-card-note">Få gratis pristilbud</p>
               </div>
             </aside>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Andre pakker ── */}
+      <section className="pkg-others">
+        <div className="pkg-inner">
+          <h2 className="pkg-others-title">Andre pakker</h2>
+          <div className="pkg-others-grid">
+            {ALL_PACKAGES.filter(p => p.title !== data.title).map(p => (
+              <Link key={p.slug} href={p.slug} className="pkg-other">
+                <div className="pkg-other-img">
+                  <img src={p.image} alt={p.title} />
+                </div>
+                <div className="pkg-other-body">
+                  <p className="pkg-other-subtitle">{p.subtitle}</p>
+                  <h3 className="pkg-other-title">
+                    {p.title}
+                    <span className="pkg-other-arrow" aria-hidden="true">→</span>
+                  </h3>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
