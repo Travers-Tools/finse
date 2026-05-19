@@ -83,7 +83,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-xl) var(--space-xl) var(--space-lg);
+    padding: 2rem var(--space-xl) var(--space-lg);
     background: rgba(245, 242, 232, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
