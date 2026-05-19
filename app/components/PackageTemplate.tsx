@@ -277,7 +277,7 @@ export default function PackageTemplate(data: PackageData) {
                 <Link href="/configurator" className="pkg-btn">
                   Start planleggingen
                 </Link>
-                <p className="pkg-card-note">Få gratis pristilbud</p>
+                <p className="pkg-card-note">Gratis og uforpliktende</p>
               </div>
             </aside>
           </div>
