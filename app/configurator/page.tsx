@@ -5,9 +5,9 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import './configurator.css'
 
 const STEP_IMAGES = [
-  '/assets/images/finse.jpg',
-  '/assets/images/finse1222__182.JPG',
   '/assets/images/finse1222__242.JPG',
+  '/assets/images/finse1222__182.JPG',
+  '/assets/images/finse.jpg',
   '/assets/images/oss.JPG',
   '/assets/images/mat_finse.jpg',
   '/assets/images/Finseskilt.jpg',
@@ -482,14 +482,24 @@ export default function Configurator() {
                   <h1 className="konfig-title">Trenger dere møterom?</h1>
                   <p className="konfig-subtitle">Valgfritt – kan legges til senere</p>
 
-                  <div className="konfig-moterom-varighet">
-                    {['Hel dag', 'Halv dag'].map(opt => (
+                  <div className="konfig-rooms konfig-rooms--grid2">
+                    {[
+                      {
+                        id: 'Hel dag',
+                        svg: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="10" width="14" height="4" rx="0.5" /><circle cx="3" cy="12" r="1.2" /><circle cx="21" cy="12" r="1.2" /><circle cx="8" cy="7" r="1.2" /><circle cx="12" cy="7" r="1.2" /><circle cx="16" cy="7" r="1.2" /><circle cx="8" cy="17" r="1.2" /><circle cx="12" cy="17" r="1.2" /><circle cx="16" cy="17" r="1.2" /></svg>,
+                      },
+                      {
+                        id: 'Halv dag',
+                        svg: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 21h16" /><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" /><circle cx="15" cy="12" r="0.6" fill="currentColor" /></svg>,
+                      },
+                    ].map(({ id, svg }) => (
                       <button
-                        key={opt}
-                        className={`konfig-duration-btn ${form.moteromVarighet === opt ? 'selected' : ''}`}
-                        onClick={() => set('moteromVarighet', form.moteromVarighet === opt ? '' : opt)}
+                        key={id}
+                        className={`konfig-room konfig-room--grid ${form.moteromVarighet === id ? 'selected' : ''}`}
+                        onClick={() => set('moteromVarighet', form.moteromVarighet === id ? '' : id)}
                       >
-                        {opt}
+                        {svg}
+                        <span className="konfig-room-name">{id}</span>
                       </button>
                     ))}
                   </div>
