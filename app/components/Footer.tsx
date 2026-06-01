@@ -1,29 +1,50 @@
-import Link from 'next/link'
-
 export default function Footer() {
   return (
-    <footer className="footer-epic">
+    <footer id="kontakt" className="footer">
       <div className="footer-bg" style={{ backgroundImage: "url('/assets/images/image.png')" }}></div>
       <div className="footer-overlay"></div>
-      <div className="container footer-container">
-        <div className="footer-tagline">
-          <h2>"[...] da siver noget av det ægte, uforfalskede høyfjellstemning inn i sindene"</h2>
-          <p className="footer-quote-source">– Edvard Welle-Strand, 1914, om peisen på Finse 1222</p>
+
+      <div className="container footer-inner">
+        <div className="footer-contact-grid">
+          <div className="footer-col">
+            <h3 className="footer-col-title">Snakk med oss</h3>
+            <p className="footer-col-line">+47 56 52 71 00</p>
+            <p className="footer-col-line">post@hotelfinse1222.no</p>
+            <p className="footer-col-muted">Vi svarer innen én arbeidsdag.</p>
+          </div>
+
+          <div className="footer-col">
+            <h3 className="footer-col-title">Finn hit</h3>
+            <p className="footer-col-line">Finse stasjon, 5765 Finse</p>
+            <a
+              className="footer-col-link"
+              href="https://www.google.com/maps/search/?api=1&query=Hotel+Finse+1222"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Åpne i Google Maps
+            </a>
+            <p className="footer-col-muted">Bergensbanen stopper rett ved hotellet, flere daglige avganger.</p>
+          </div>
+
+          <div className="footer-col">
+            <h3 className="footer-col-title">Sesong</h3>
+            <p className="footer-col-line">Helårsåpent</p>
+            <p className="footer-col-muted">Vinter: ski, truger og stjernekikking.</p>
+            <p className="footer-col-muted">Sommer: rallarvegen, brevandring og morgenbad.</p>
+          </div>
         </div>
+
+        <div className="footer-quote">
+          <p className="footer-quote-text">
+            «...da siver noget av det ægte, uforfalskede høyfjellstemning inn i sindene.»
+          </p>
+          <p className="footer-quote-source">Edvard Welle-Strand, 1914, om peisen på Hotel Finse1222</p>
+        </div>
+
         <div className="footer-bottom">
-          <div className="footer-contact">
-            <p>Finse stasjon, 5765 Finse</p>
-            <p>post@finse1222.no · +47 56 52 71 00</p>
-          </div>
-          <div className="footer-cta">
-            <Link href="/configurator" className="footer-nav-btn">
-              Planlegg opphold
-            </Link>
-          </div>
-          <div className="footer-social">
-            <a href="#" className="footer-social-link">Instagram</a>
-            <a href="#" className="footer-social-link">Facebook</a>
-          </div>
+          <img src="/assets/logo/logo.png" alt="Hotel Finse1222" className="footer-logo" />
+          <span className="footer-copyright">© 2026 Hotel Finse1222 · Norges høyestliggende hotell · 1222 moh.</span>
         </div>
       </div>
     </footer>

@@ -14,13 +14,13 @@ export default function Home() {
   return (
     <div className="landing-page">
       <Header />
-      {/* <Hero /> */}
+      <Hero />
       {/* <ContentSections /> */}
       <PackagesSection />
       <TestimonialsSection />
       <TeamSection />
       <FAQSection />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }

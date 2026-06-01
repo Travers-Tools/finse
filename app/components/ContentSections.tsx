@@ -62,7 +62,7 @@ export default function ContentSections() {
             <div className="content-text">
               <h2 className="content-title">Over 100 år med<br />eventyrlyst og ambisjoner</h2>
               <p className="content-description">
-                Siden 1909 har Finse 1222 vært samlingspunkt for oppdagere, visionære og 
+                Siden 1909 har Hotel Finse1222 vært samlingspunkt for oppdagere, visionære og
                 ledere. Fridtjof Nansen trente her før Sydpolen. Roald Amundsen planla 
                 ekspedisjoner. I dag samles Norges fremste bedrifter for å tenke stort.
               </p>

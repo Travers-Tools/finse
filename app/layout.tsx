@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Hotel Finse 1222 – Bedriftsbooking',
-  description: 'Gjør som Prinsen av Wales, Fridtjof Nansen og mange andre. Reis til Finse for ro og rå natur.',
+  title: 'Hotel Finse1222 – Bedriftsbooking',
+  description: 'Hold møter og arrangementer i unike omgivelser. Hotel Finse1222 er et sted hvor det er lett å samles, tenke og knytte kontakter.',
 }
 
 export default function RootLayout({

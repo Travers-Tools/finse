@@ -42,9 +42,9 @@ export interface PackageData {
 }
 
 const DEFAULT_HOST = {
-  name: 'Henriette & Daniel',
-  role: 'Dine verter på Finse 1222',
-  image: '/assets/images/oss.JPG',
+  name: 'Siv',
+  role: 'Vert for grupper på Hotel Finse1222',
+  image: '/assets/images/Siv_portrett.png',
   intro: 'Vi tar imot dere på perrongen og sørger for at alt er klart når dere kommer. Si fra hva dere ønsker, så tilpasser vi.',
 }
 
@@ -193,6 +193,7 @@ export default function PackageTemplate(data: PackageData) {
               {/* Itinerary */}
               <div className="pkg-block">
                 <h2 className="pkg-block-title">Slik kan oppholdet se ut</h2>
+                <p className="pkg-block-note">Dette er kun et forslag. Vi tilpasser programmet etter gruppen og egne ønsker.</p>
                 <ol className="pkg-itinerary-list">
                   {data.itinerary.map((day, i) => {
                     const isOpen = openDays.includes(i)
@@ -308,14 +309,14 @@ export default function PackageTemplate(data: PackageData) {
       </section>
 
       {/* ── Footer ── */}
-      <footer className="pkg-footer">
+      <footer id="kontakt" className="pkg-footer">
         <div className="pkg-inner pkg-footer-inner">
-          <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" className="pkg-footer-logo" />
+          <img src="/assets/logo/logo.png" alt="Hotel Finse1222" className="pkg-footer-logo" />
           <p className="pkg-footer-tagline">Norges høyestliggende hotell · 1222 moh.</p>
           <div className="pkg-footer-meta">
             <Link href="/configurator" className="pkg-footer-link">Start planleggingen →</Link>
             <span className="pkg-footer-divider">·</span>
-            <span className="pkg-footer-note">post@finse1222.no · +47 56 52 71 00</span>
+            <span className="pkg-footer-note">post@hotelfinse1222.no · +47 56 52 71 00</span>
           </div>
         </div>
       </footer>

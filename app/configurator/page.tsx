@@ -8,21 +8,31 @@ const STEP_IMAGES = [
   '/assets/images/finse1222__242.JPG',
   '/assets/images/finse1222__182.JPG',
   '/assets/images/finse.jpg',
-  '/assets/images/oss.JPG',
+  '/assets/images/Romtype_bilde.jpg',
   '/assets/images/mat_finse.jpg',
   '/assets/images/Finseskilt.jpg',
 ]
 
 const SOMMER_AKTIVITETER = [
-  { navn: 'Bålpanne & bading ved Framheim',       bilde: '/assets/images/Finse_pakker00010.jpg', beskrivelse: 'Morgenbad eller «after hike» ved Framheim – med bålpanne og varmt drikke. Hotellet ordner alt av utstyr. En enkel opplevelse med stor effekt.' },
-  { navn: 'Sykkeltur til Fagernut og tilbake',    bilde: '/assets/images/Finse_pakker00004.jpg', beskrivelse: 'Juli–september. Ikonisk rute med utsikt over Hardangervidda. Hotellet pakker nistepakke og låner ut sykler og hjelmer. Mestring og snakkestoff garantert.' },
-  { navn: 'Fotturer i området',                   bilde: '/assets/images/Finse_pakker00007.jpg', beskrivelse: 'Juli–september. Lille Finsenut, Jomfrunut-runden eller egentilpasset løype. Kan arrangeres med lokal guide. Hotellet låner ut utstyr og pakker sekken.' },
+  { navn: 'Fottur i området',                     bilde: '/assets/images/Finse_pakker00007.jpg', beskrivelse: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.' },
+  { navn: 'Sykkeltur på Rallarvegen',             bilde: '/assets/images/Finse_pakker00004.jpg', beskrivelse: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Vi tilpasser turen etter tidsskjema og egne ønsker. Sykler og hjelmer leies fra hotellet.' },
+  { navn: 'Brevandring',                          bilde: '/assets/images/Finse_pakker00003.jpg', beskrivelse: 'Juli til september. Opplev isbreen på nært hold og utforsk blåisen på Hardangerjøkulen sammen med en erfaren guide.' },
+]
+
+const VINTER_AKTIVITETER = [
+  { navn: 'Skiturer i området',                   bilde: '/assets/images/Finse_pakker00006.jpg', beskrivelse: 'Januar til mai. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold. Utstyr kan leies av oss.' },
+  { navn: 'Trugeturer',                           bilde: '/assets/images/Finse_pakker00009.jpg', beskrivelse: 'Desember til mai. Truger er godt egnet for enkle turer i terrenget rundt Finse. Dette er en vinteraktivitet alle kan ta del i. Truger leies av oss.' },
+  { navn: 'Skiseiling',                           bilde: '/assets/images/Finse_pakker00008.jpg', beskrivelse: 'Januar til mai. Skiseiling er en spennende måte å ferdes på i terrenget rundt Finse. Vinden sørger for fremdriften, og aktiviteten er forholdsvis enkel å lære. Noen timer på Finsevann gir garantert mestringsfølelse. Vi har alt nødvendig utstyr til utleie.' },
+  { navn: 'Stjernekikking',                       bilde: '/assets/images/Finse_pakker00002.jpg', beskrivelse: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.' },
 ]
 
 const HELARS_AKTIVITETER = [
-  { navn: 'Finsequiz',                            bilde: '/assets/images/oss.JPG',                              beskrivelse: 'Kveldsunderholdning med hotellet som sceneteppe. Spørsmål om natur, historie og Finse-trivia. Passer like godt etter middag som etter en lang dag ute.' },
-  { navn: 'Vin- og sidersmaking',                 bilde: '/assets/images/mat_finse.jpg',                        beskrivelse: 'Kurerte viner og lokale sidere med historiene bak glasset, ledet av hotellets personale. Inkluderer smaksprøver og småretter. En avslappet avslutning på dagen.' },
-  { navn: 'Bålpanne og after hike/ski',           bilde: '/assets/images/Finse_configurator_background.jpg',    beskrivelse: 'Avslutt dagen ute ved Framheim med bålpanne og varmt drikke. Hotellet ordner utstyr og plasser. Enkelt, stemningsfullt og minneverdig.' },
+  { navn: 'Morgenbad i Finsevann',                bilde: '/assets/images/Finse_pakker00010.jpg', beskrivelse: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.' },
+  { navn: 'Sidersmaking',                         bilde: '/assets/images/mat_finse.jpg',         beskrivelse: 'Hele året. Bli bedre kjent med siderproduksjonen i Hardanger. Vi smaker og forteller historiene bak de lokale siderne.' },
+  { navn: 'Bålpanne og after hike/ski/bike',      bilde: '/assets/images/Finse_configurator_background.jpg', beskrivelse: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.' },
+  { navn: 'Finsequiz',                            bilde: '/assets/images/Finse_pakker00005.jpg', beskrivelse: 'Hele året. Kveldsunderholdning foran peisen inne på hotellet. Kategoriene tilpasses, men vi sniker alltid med noen spørsmål om natur og Finse-historie.' },
+  { navn: 'Rallarmuseet',                         bilde: '/assets/images/Finseskilt.jpg',        beskrivelse: 'Hele året. Lær om Bergensbanen og hvordan jernbanen over fjellet ble bygget av tøffe rallare og dyktige ingeniører på starten av 1900-tallet.' },
+  { navn: 'Polarhistorie i Framheim',             bilde: '/assets/images/nansen.png',            beskrivelse: 'Hele året. På Finse har vi en tro kopi av Roald Amundsens base i Antarktis. Vi tør påstå at ingen steder i Norge er bedre egnet til å få fortellingen om de store norske og internasjonale polarheltene enn inne i Framheim ved Finsevann.' },
 ]
 
 const MONTHS = [
@@ -146,18 +156,19 @@ export default function Configurator() {
 
   const monthMax = upcomingMonths.length - MONTH_VISIBLE
 
-  // June (5) – September (8) er sommersesong
+  // June (5) – September (8) er sommersesong, resten er vinter/skuldersesong
   const isSommerManed = (monthIndex: number) => monthIndex >= 5 && monthIndex <= 8
-  const viseSommerAktiviteter = (() => {
+  const valgtManedIndex = (() => {
     if (form.datoModus === 'datoer' && form.datoFra) {
-      return isSommerManed(new Date(form.datoFra).getMonth())
+      return new Date(form.datoFra).getMonth()
     }
     if (form.datoModus === 'fleksibel' && form.fleksibeltManed) {
-      const idx = MONTHS.indexOf(form.fleksibeltManed.split(' ')[0])
-      return isSommerManed(idx)
+      return MONTHS.indexOf(form.fleksibeltManed.split(' ')[0])
     }
-    return true // ingen dato valgt → vis alt
+    return -1
   })()
+  const viseSommerAktiviteter = valgtManedIndex === -1 || isSommerManed(valgtManedIndex)
+  const viseVinterAktiviteter = valgtManedIndex === -1 || !isSommerManed(valgtManedIndex)
 
   // ── Drag-to-scroll for aktivitetsraden ──
   const actRowRef = useRef<HTMLDivElement>(null)
@@ -203,7 +214,7 @@ export default function Configurator() {
     <div className="konfig-bg">
       <div className="konfig-overlay" />
       <a href="/" className="konfig-logo">
-        <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" />
+        <img src="/assets/logo/logo.png" alt="Hotel Finse1222" />
       </a>
       <div className="konfig-card">
         <div className={`konfig-body${step === 6 ? ' konfig-body--full' : ''}`}>
@@ -322,7 +333,7 @@ export default function Configurator() {
                         )}
                         {form.datoFra && !form.datoTil && (
                           <span className="konfig-cal-hint">
-                            Ankomst <strong>{formatDate(form.datoFra)}</strong> — velg avreisedato
+                            Ankomst <strong>{formatDate(form.datoFra)}</strong>, velg avreisedato
                           </span>
                         )}
                         {form.datoFra && form.datoTil && (
@@ -442,7 +453,7 @@ export default function Configurator() {
               {step === 4 && (
                 <>
                   <h1 className="konfig-title">Hvilke romtyper ønsker dere?</h1>
-                  <p className="konfig-subtitle">Velg gjerne flere – vi setter opp pris på ulike kombinasjoner</p>
+                  <p className="konfig-subtitle">Velg gjerne flere, så setter vi opp pris på ulike kombinasjoner</p>
 
                   <div className="konfig-rooms konfig-rooms--grid2">
                     {[
@@ -480,7 +491,7 @@ export default function Configurator() {
               {step === 5 && (
                 <>
                   <h1 className="konfig-title">Trenger dere møterom?</h1>
-                  <p className="konfig-subtitle">Valgfritt – kan legges til senere</p>
+                  <p className="konfig-subtitle">Valgfritt, kan legges til senere</p>
 
                   <div className="konfig-rooms konfig-rooms--grid2">
                     {[
@@ -522,9 +533,29 @@ export default function Configurator() {
                   >
                     {viseSommerAktiviteter && (
                       <div className="konfig-act-group">
-                        <p className="konfig-act-season-label">Sommer <span>juni – sept</span></p>
+                        <p className="konfig-act-season-label">Sommer <span>juni til sept</span></p>
                         <div className="konfig-act-group-cards">
                           {SOMMER_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
+                            const selected = isAktivitetSelected(navn)
+                            return (
+                              <button key={navn} className={`konfig-act-card ${selected ? 'selected' : ''}`} onClick={() => toggleAktivitet(navn)}>
+                                <div className="konfig-act-card-img-wrap"><img src={bilde} alt={navn} className="konfig-act-card-img" /></div>
+                                <div className="konfig-act-card-body">
+                                  <p className="konfig-act-card-title">{navn}</p>
+                                  <p className="konfig-act-card-desc">{beskrivelse}</p>
+                                </div>
+                                {selected && <div className="konfig-act-card-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    )}
+                    {viseVinterAktiviteter && (
+                      <div className="konfig-act-group">
+                        <p className="konfig-act-season-label">Vinter <span>okt til mai</span></p>
+                        <div className="konfig-act-group-cards">
+                          {VINTER_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
                             const selected = isAktivitetSelected(navn)
                             return (
                               <button key={navn} className={`konfig-act-card ${selected ? 'selected' : ''}`} onClick={() => toggleAktivitet(navn)}>
@@ -617,7 +648,7 @@ export default function Configurator() {
                   <div className="konfig-summary-hero">
                     <img src="/assets/images/Finse_configurator_background.jpg" alt="" className="konfig-summary-hero-img" />
                     <div className="konfig-summary-hero-overlay" />
-                    <img src="/assets/logo/logo.png" alt="Hotel Finse 1222" className="konfig-summary-hero-logo" />
+                    <img src="/assets/logo/logo.png" alt="Hotel Finse1222" className="konfig-summary-hero-logo" />
                   </div>
                   <h3 className="konfig-summary-title">Oppsummering</h3>
                   <div className="konfig-summary-list">
@@ -639,7 +670,7 @@ export default function Configurator() {
                   </div>
 
                   {form.aktiviteter.length > 0 && (() => {
-                    const alleAktiviteter = [...SOMMER_AKTIVITETER, ...HELARS_AKTIVITETER]
+                    const alleAktiviteter = [...SOMMER_AKTIVITETER, ...VINTER_AKTIVITETER, ...HELARS_AKTIVITETER]
                     return (
                       <div className="konfig-summary-activities">
                         <span className="konfig-summary-key">Aktiviteter</span>

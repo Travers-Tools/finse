@@ -12,11 +12,11 @@ export default function Header({ variant = 'light', showBackButton = false }: He
         {showBackButton ? (
           <Link href="/" className="nav-link">← Tilbake</Link>
         ) : (
-          <a href="#" className="nav-link">Kontakt oss</a>
+          <a href="#kontakt" className="nav-link">Kontakt oss</a>
         )}
       </nav>
       <Link href="/" className="logo">
-        <img src="/assets/logo/image.png" alt="Hotel Finse 1222" className="logo-img" />
+        <img src="/assets/logo/image.png" alt="Hotel Finse1222" className="logo-img" />
       </Link>
       <nav className="nav nav-right">
         <a href="#faq" className="btn-planlegg">Ofte stilte spørsmål</a>

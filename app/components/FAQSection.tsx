@@ -5,11 +5,11 @@ import { useState } from 'react'
 const faqs = [
   {
     question: 'Hvordan kommer vi oss til Finse?',
-    answer: 'Finse nås kun med tog. Bergensbanen stopper på Finse stasjon, og hotellet ligger rett ved. Togturen fra Bergen tar ca. 2,5 timer og fra Oslo ca. 4,5 timer.'
+    answer: 'Hotellet ligger rett ved siden av Finse stasjon, som betjenes av Bergensbanen, en av verdens vakreste togstrekninger. Bergensbanen har flere daglige avganger i begge retninger, og det er mulig å leie egen togvogn eller togkupé dersom dere vil starte reisen med sosiale aktiviteter eller møter.'
   },
   {
     question: 'Hvor mange gjester kan dere ta imot?',
-    answer: 'Vi har plass til opptil 110 gjester. Hotellet kan også bookes eksklusivt for deres gruppe, slik at dere får hele Finse 1222 for dere selv.'
+    answer: 'Vi har plass til opptil 110 gjester. Hotellet kan også bookes eksklusivt for deres gruppe, slik at dere får hele Hotel Finse1222 for dere selv.'
   },
   {
     question: 'Hvilken tid på året er best for bedriftsopphold?',
@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     question: 'Har dere møterom og fasiliteter for seminarer?',
-    answer: 'Ja, vi har flere rom som kan tilpasses møter, workshops og presentasjoner. Vi har prosjektor, whiteboard og god wifi. Rommene har utsikt over vidda.'
+    answer: 'Ja, vi har flere rom som kan tilpasses møter, workshops og presentasjoner. Vi har prosjektor, whiteboard og god wifi. Flere av rommene har fantastisk utsikt over Hardangerjøkulen og Hardangervidda.'
   },
   {
     question: 'Hva er inkludert i oppholdet?',
@@ -64,10 +64,10 @@ export default function FAQSection() {
                   <div className="faq-answer">
                     <p>{faq.answer}</p>
                     <div className="faq-avatar">
-                      <img src="/assets/images/oss.JPG" alt="Henriette" className="faq-avatar-img" />
+                      <img src="/assets/images/henriette_portrett.png" alt="Henriette" className="faq-avatar-img" />
                       <div className="faq-avatar-info">
                         <span className="faq-avatar-name">Henriette</span>
-                        <span className="faq-avatar-email">henriette@finse1222.no</span>
+                        <span className="faq-avatar-email">henriette@hotelfinse1222.no</span>
                       </div>
                     </div>
                   </div>

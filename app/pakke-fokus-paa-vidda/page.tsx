@@ -7,7 +7,7 @@ export default function PakkeFokusPaaVidda() {
     <PackageTemplate
       title="Fokus på vidda"
       subtitle="Tid til de viktige samtalene"
-      intro="På Finse er det toget som tar dere frem. Gå på i byen, gå av på vidda. Vi møter dere på perrongen. For ledergrupper som trenger fokusert tid sammen, langt unna alt som maser."
+      intro="På Finse er det toget som tar dere frem. Gå på toget i byen, gå av på vidda. Vi møter dere på perrongen. For ledergrupper som trenger fokusert tid sammen, langt unna alt som maser."
       heroImage={{
         src: '/assets/images/R1-04554-0028.jpg',
         alt: 'Fokus på vidda'
@@ -27,20 +27,22 @@ export default function PakkeFokusPaaVidda() {
       suitableFor={['Ledergruppe', 'Strategisamling', 'Konferanse', 'Teambuilding']}
       itinerary={[
         {
-          label: 'Ankomst og innsjekk',
+          label: 'Ankomst og første kveld',
           items: [
-            { time: '14:00', title: 'Ankomst Finse', desc: 'Innsjekk og kaffe i lobbyen' },
-            { time: '15:30', title: 'Kort vandring', desc: 'Strekk på beina' },
-            { time: '19:00', title: 'Middag', desc: 'Lokal meny, sesongvarer' },
+            { time: '12:00', title: 'Ankomst, innsjekk og lunsj', desc: 'Vi møter dere på perrongen. Lunsj serveres etter ønske.' },
+            { time: '13:00', title: 'Arbeidsøkt', desc: 'Uforstyrret tid i møterommet fram til 15:30.' },
+            { time: '15:30', title: 'Aktivitet', desc: 'Kort vandring, sykkeltur, skitur eller tilrettelagt aktivitet.' },
+            { time: '19:00', title: 'Tre retters middag', desc: 'Med utsikt mot Hardangerjøkulen.' },
           ]
         },
         {
           label: 'Fokus og refleksjon',
           items: [
+            { time: '07:00', title: 'Mulighet for morgenbading', desc: 'Om ønskelig kan vi fyre opp bålpannen og servere kaffe til morgenfugler som vil starte dagen med et bad i Finsevann, med utsikt mot blåisen på Hardangerjøkulen.' },
             { time: '08:00', title: 'Frokost', desc: '' },
-            { time: '09:30', title: 'Arbeidsøkt', desc: 'Strategimøte i møterommet' },
-            { time: '12:30', title: 'Lunsj og frisk luft', desc: 'Tur på vidda' },
-            { time: '14:30', title: 'Arbeidsøkt', desc: 'Oppsummering og veien videre' },
+            { time: '09:30', title: 'Arbeidsøkt', desc: 'Strategimøte i møterommet.' },
+            { time: '12:30', title: 'Lunsj og frisk luft', desc: 'Tur på vidda.' },
+            { time: '14:30', title: 'Arbeidsøkt', desc: 'Oppsummering og veien videre.' },
             { time: '19:00', title: 'Middag ved peisen', desc: '' },
           ]
         },
@@ -49,30 +51,30 @@ export default function PakkeFokusPaaVidda() {
           items: [
             { time: '08:30', title: 'Frokost', desc: '' },
             { time: '10:00', title: 'Oppsummering', desc: '' },
-            { time: '12:00', title: 'Tog hjem', desc: '' },
+            { time: '12:00', title: 'Tog hjem', desc: 'Mulighet for å leie egen togvogn eller togkupé for et avsluttende møte.' },
           ]
         },
       ]}
       activities={[
         {
           name: 'Fottur i området',
-          desc: 'Juli til september. Lille Finsenut eller Jomfrunut-runden. Fin pause fra møterommet.',
+          desc: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.',
           image: '/assets/images/Finse_pakker00007.jpg',
         },
         {
-          name: 'Vin- og sidersmaking',
-          desc: 'Kurerte viner og lokale sidere med historiene bak. Ledet av hotellets personale.',
+          name: 'Sidersmaking',
+          desc: 'Hele året. Bli bedre kjent med siderproduksjonen i Hardanger. Vi smaker og forteller historiene bak de lokale siderne.',
           image: '/assets/images/mat_finse.jpg',
         },
         {
-          name: 'Bålpanne og after hike/ski',
-          desc: 'Avslutt dagen ved Framheim med bålpanne og varmt drikke.',
+          name: 'Bålpanne og after hike/ski/bike',
+          desc: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.',
           image: '/assets/images/Finse_configurator_background.jpg',
         },
         {
           name: 'Finsequiz',
-          desc: 'Kveldsunderholdning på hotellet. Spørsmål om natur, historie og Finse-trivia.',
-          image: '/assets/images/oss.JPG',
+          desc: 'Hele året. Kveldsunderholdning foran peisen inne på hotellet. Kategoriene tilpasses, men vi sniker alltid med noen spørsmål om natur og Finse-historie.',
+          image: '/assets/images/Finse_pakker00005.jpg',
         },
       ]}
       ctaNote="Vi tilpasser oppholdet etter deres behov."

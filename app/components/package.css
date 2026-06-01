@@ -277,6 +277,15 @@
   letter-spacing: -0.01em;
 }
 
+.pkg-block-note {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 14px;
+  color: var(--pkg-text-muted, #6b6256);
+  margin: -12px 0 24px;
+  max-width: 640px;
+  line-height: 1.5;
+}
+
 .pkg-intro-body {
   font-family: 'Crimson Pro', Georgia, serif;
   font-size: clamp(20px, 2.1vw, 26px);

@@ -24,7 +24,7 @@ export default function PackagesSection() {
       image: '/assets/images/finse1222__242.JPG',
       tag: 'Opp til 110 gjester',
       title: 'Hotellet for dere selv',
-      description: 'For jubileer, kickoffs og feiringer der dere vil ha Finse 1222 for dere selv.',
+      description: 'For jubileer, kickoffs og feiringer der dere vil ha Hotel Finse1222 for dere selv.',
       linkText: 'Utforsk'
     },
     {
@@ -41,11 +41,6 @@ export default function PackagesSection() {
   return (
     <section className="content-section section-packages">
       <div className="container">
-        <h2 className="packages-title">Utforsk våre bedriftspakker</h2>
-        <div className="packages-cta">
-          <a href="#pakker" className="btn btn-tertiary">Utforsk pakker</a>
-          <Link href="/configurator" className="btn btn-outline-light">Skreddersy oppholdet</Link>
-        </div>
         <div id="pakker" className="packages-grid">
           {packages.map((pkg, index) => (
             <Link
