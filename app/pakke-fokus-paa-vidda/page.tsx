@@ -74,7 +74,7 @@ export default function PakkeFokusPaaVidda() {
         {
           name: 'Finsequiz',
           desc: 'Hele året. Kveldsunderholdning foran peisen inne på hotellet. Kategoriene tilpasses, men vi sniker alltid med noen spørsmål om natur og Finse-historie.',
-          image: '/assets/images/lobby-peis.jpg',
+          image: '/assets/images/tog.png',
         },
       ]}
       ctaNote="Vi tilpasser oppholdet etter deres behov."
