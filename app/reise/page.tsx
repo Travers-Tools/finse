@@ -63,17 +63,17 @@ function factIcon(label: string): React.ReactNode {
 }
 
 const ACTIVITY_DATA: Record<string, { bilde: string; desc: string }> = {
-  'Fottur i området':                       { bilde: '/assets/images/Finse_pakker00007.jpg', desc: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.' },
-  'Sykkeltur på Rallarvegen':               { bilde: '/assets/images/Finse_pakker00004.jpg', desc: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Vi tilpasser turen etter tidsskjema og egne ønsker. Sykler og hjelmer leies fra hotellet.' },
-  'Brevandring':                            { bilde: '/assets/images/Finse_pakker00003.jpg', desc: 'Juli til september. Opplev isbreen på nært hold og utforsk blåisen på Hardangerjøkulen sammen med en erfaren guide.' },
+  'Fottur i området':                       { bilde: '/assets/images/akt-fottur.jpg', desc: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.' },
+  'Sykkeltur på Rallarvegen':               { bilde: '/assets/images/akt-rallarvegen.jpg', desc: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Vi tilpasser turen etter tidsskjema og egne ønsker. Sykler og hjelmer leies fra hotellet.' },
+  'Brevandring':                            { bilde: '/assets/images/akt-brevandring.jpg', desc: 'Juli til september. Opplev isbreen på nært hold og utforsk blåisen på Hardangerjøkulen sammen med en erfaren guide.' },
   'Skiturer i området':                     { bilde: '/assets/images/Finse_pakker00006.jpg', desc: 'Januar til mai. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold. Utstyr kan leies av oss.' },
   'Trugeturer':                             { bilde: '/assets/images/Finse_pakker00009.jpg', desc: 'Desember til mai. Truger er godt egnet for enkle turer i terrenget rundt Finse. Dette er en vinteraktivitet alle kan ta del i. Truger leies av oss.' },
-  'Skiseiling':                             { bilde: '/assets/images/Finse_pakker00008.jpg', desc: 'Januar til mai. Skiseiling er en spennende måte å ferdes på i terrenget rundt Finse. Vinden sørger for fremdriften, og aktiviteten er forholdsvis enkel å lære. Noen timer på Finsevann gir garantert mestringsfølelse. Vi har alt nødvendig utstyr til utleie.' },
+  'Skiseiling':                             { bilde: '/assets/images/akt-skiseiling.jpg', desc: 'Januar til mai. Skiseiling er en spennende måte å ferdes på i terrenget rundt Finse. Vinden sørger for fremdriften, og aktiviteten er forholdsvis enkel å lære. Noen timer på Finsevann gir garantert mestringsfølelse. Vi har alt nødvendig utstyr til utleie.' },
   'Stjernekikking':                         { bilde: '/assets/images/Finse_pakker00002.jpg', desc: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.' },
-  'Morgenbad i Finsevann':                  { bilde: '/assets/images/Finse_pakker00010.jpg', desc: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.' },
-  'Sidersmaking':                           { bilde: '/assets/images/mat_finse.jpg',         desc: 'Hele året. Bli bedre kjent med siderproduksjonen i Hardanger. Vi smaker og forteller historiene bak de lokale siderne.' },
-  'Bålpanne og after hike/ski/bike':        { bilde: '/assets/images/Finse_configurator_background.jpg', desc: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.' },
-  'Finsequiz':                              { bilde: '/assets/images/Finse_pakker00005.jpg', desc: 'Hele året. Kveldsunderholdning foran peisen inne på hotellet. Kategoriene tilpasses, men vi sniker alltid med noen spørsmål om natur og Finse-historie.' },
+  'Morgenbad i Finsevann':                  { bilde: '/assets/images/akt-morgenbad.jpg', desc: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.' },
+  'Sidersmaking':                           { bilde: '/assets/images/akt-sider.jpg',         desc: 'Hele året. Bli bedre kjent med siderproduksjonen i Hardanger. Vi smaker og forteller historiene bak de lokale siderne.' },
+  'Bålpanne og after hike/ski/bike':        { bilde: '/assets/images/akt-baalpanne.jpg', desc: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.' },
+  'Finsequiz':                              { bilde: '/assets/images/lobby-peis.jpg', desc: 'Hele året. Kveldsunderholdning foran peisen inne på hotellet. Kategoriene tilpasses, men vi sniker alltid med noen spørsmål om natur og Finse-historie.' },
   'Rallarmuseet':                           { bilde: '/assets/images/Finseskilt.jpg',        desc: 'Hele året. Lær om Bergensbanen og hvordan jernbanen over fjellet ble bygget av tøffe rallare og dyktige ingeniører på starten av 1900-tallet.' },
   'Polarhistorie i Framheim':               { bilde: '/assets/images/nansen.png',            desc: 'Hele året. På Finse har vi en tro kopi av Roald Amundsens base i Antarktis. Vi tør påstå at ingen steder i Norge er bedre egnet til å få fortellingen om de store norske og internasjonale polarheltene enn inne i Framheim ved Finsevann.' },
 }
@@ -157,7 +157,7 @@ export default function ReisePage() {
       {/* ── Hero ── */}
       <section className="reise-hero">
         <img
-          src="/assets/images/finse1222__242.JPG"
+          src="/assets/images/pkg-hotellet.jpg"
           alt="Hotel Finse1222"
           className="reise-hero-img"
           onLoad={() => setHeroLoaded(true)}

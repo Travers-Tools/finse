@@ -557,8 +557,13 @@
   transition: background 150ms ease;
 }
 
-.konfig-next:hover {
+.konfig-next:hover:not(:disabled) {
   background: #4a3d2e;
+}
+
+.konfig-next:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 /* ── Submit button ── */

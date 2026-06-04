@@ -53,7 +53,7 @@ const ALL_PACKAGES = [
     slug: '/pakke-ekspedisjonstur',
     title: 'Ekspedisjonstur',
     subtitle: 'I fotsporene til Nansen og Amundsen',
-    image: '/assets/images/R1 04555 0014.jpg',
+    image: '/assets/images/ekspedisjon-guide.jpg',
   },
   {
     slug: '/pakke-fokus-paa-vidda',
@@ -65,14 +65,25 @@ const ALL_PACKAGES = [
     slug: '/pakke-hotellet-for-dere',
     title: 'Hotellet for dere selv',
     subtitle: 'Når dere fortjener hele Finse',
-    image: '/assets/images/finse1222__242.JPG',
+    image: '/assets/images/hotellet-hero.jpg',
   },
 ]
 
 export default function PackageTemplate(data: PackageData) {
   const visibleImages = data.gallery.slice(0, 3)
   const [galleryOpen, setGalleryOpen] = useState(false)
+  const [galleryIndex, setGalleryIndex] = useState(0)
   const [openDays, setOpenDays] = useState<number[]>([])
+
+  const galleryCount = data.gallery.length
+  const openGallery = (i: number) => {
+    setGalleryIndex(i)
+    setGalleryOpen(true)
+  }
+  const showPrev = () =>
+    setGalleryIndex(i => (i - 1 + galleryCount) % galleryCount)
+  const showNext = () =>
+    setGalleryIndex(i => (i + 1) % galleryCount)
 
   const toggleDay = (i: number) => {
     setOpenDays(curr =>
@@ -86,13 +97,15 @@ export default function PackageTemplate(data: PackageData) {
     document.body.style.overflow = 'hidden'
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setGalleryOpen(false)
+      else if (e.key === 'ArrowLeft') showPrev()
+      else if (e.key === 'ArrowRight') showNext()
     }
     window.addEventListener('keydown', onKey)
     return () => {
       document.body.style.overflow = prev
       window.removeEventListener('keydown', onKey)
     }
-  }, [galleryOpen])
+  }, [galleryOpen, galleryCount])
 
   return (
     <div className="pkg-page">
@@ -111,7 +124,7 @@ export default function PackageTemplate(data: PackageData) {
               <button
                 type="button"
                 className="pkg-show-all"
-                onClick={() => setGalleryOpen(true)}
+                onClick={() => openGallery(0)}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="3" y="3" width="7" height="7" />
@@ -129,26 +142,75 @@ export default function PackageTemplate(data: PackageData) {
       {/* ── Lightbox modal ── */}
       {galleryOpen && (
         <div className="pkg-lightbox" role="dialog" aria-modal="true" aria-label="Alle bilder">
-          <button
-            type="button"
-            className="pkg-lightbox-close"
-            onClick={() => setGalleryOpen(false)}
-            aria-label="Lukk bildegalleri"
+          <div className="pkg-lightbox-bar">
+            <span className="pkg-lightbox-counter">{galleryIndex + 1} / {galleryCount}</span>
+            <button
+              type="button"
+              className="pkg-lightbox-close"
+              onClick={() => setGalleryOpen(false)}
+              aria-label="Lukk bildegalleri"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+
+          <div
+            className="pkg-lightbox-stage"
+            onClick={(e) => e.currentTarget === e.target && setGalleryOpen(false)}
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-          <div className="pkg-lightbox-inner" onClick={(e) => e.currentTarget === e.target && setGalleryOpen(false)}>
-            <div className="pkg-lightbox-grid">
+            {galleryCount > 1 && (
+              <button
+                type="button"
+                className="pkg-lightbox-nav pkg-lightbox-prev"
+                onClick={showPrev}
+                aria-label="Forrige bilde"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+            )}
+
+            <figure className="pkg-lightbox-figure">
+              <img
+                key={galleryIndex}
+                src={data.gallery[galleryIndex].src}
+                alt={data.gallery[galleryIndex].alt}
+              />
+            </figure>
+
+            {galleryCount > 1 && (
+              <button
+                type="button"
+                className="pkg-lightbox-nav pkg-lightbox-next"
+                onClick={showNext}
+                aria-label="Neste bilde"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            )}
+          </div>
+
+          {galleryCount > 1 && (
+            <div className="pkg-lightbox-thumbs">
               {data.gallery.map((img, i) => (
-                <figure key={i} className="pkg-lightbox-photo">
+                <button
+                  key={i}
+                  type="button"
+                  className={`pkg-lightbox-thumb ${i === galleryIndex ? 'is-active' : ''}`}
+                  onClick={() => setGalleryIndex(i)}
+                  aria-label={`Vis bilde ${i + 1}`}
+                >
                   <img src={img.src} alt={img.alt} />
-                </figure>
+                </button>
               ))}
             </div>
-          </div>
+          )}
         </div>
       )}
 

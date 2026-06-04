@@ -5,32 +5,32 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import './configurator.css'
 
 const STEP_IMAGES = [
-  '/assets/images/finse1222__242.JPG',
-  '/assets/images/finse1222__182.JPG',
-  '/assets/images/finse.jpg',
-  '/assets/images/Romtype_bilde.jpg',
-  '/assets/images/mat_finse.jpg',
-  '/assets/images/Finseskilt.jpg',
+  '/assets/images/pkg-hotellet.jpg',
+  '/assets/images/dato-kart.jpg',
+  '/assets/images/blasalen-stoler.jpg',
+  '/assets/images/suite.jpg',
+  '/assets/images/peisestua.jpg',
+  '/assets/images/lobby-peis.jpg',
 ]
 
 const SOMMER_AKTIVITETER = [
-  { navn: 'Fottur i området',                     bilde: '/assets/images/Finse_pakker00007.jpg', beskrivelse: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.' },
-  { navn: 'Sykkeltur på Rallarvegen',             bilde: '/assets/images/Finse_pakker00004.jpg', beskrivelse: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Vi tilpasser turen etter tidsskjema og egne ønsker. Sykler og hjelmer leies fra hotellet.' },
-  { navn: 'Brevandring',                          bilde: '/assets/images/Finse_pakker00003.jpg', beskrivelse: 'Juli til september. Opplev isbreen på nært hold og utforsk blåisen på Hardangerjøkulen sammen med en erfaren guide.' },
+  { navn: 'Fottur i området',                     bilde: '/assets/images/akt-fottur.jpg', beskrivelse: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.' },
+  { navn: 'Sykkeltur på Rallarvegen',             bilde: '/assets/images/akt-rallarvegen.jpg', beskrivelse: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Vi tilpasser turen etter tidsskjema og egne ønsker. Sykler og hjelmer leies fra hotellet.' },
+  { navn: 'Brevandring',                          bilde: '/assets/images/akt-brevandring.jpg', beskrivelse: 'Juli til september. Opplev isbreen på nært hold og utforsk blåisen på Hardangerjøkulen sammen med en erfaren guide.' },
 ]
 
 const VINTER_AKTIVITETER = [
   { navn: 'Skiturer i området',                   bilde: '/assets/images/Finse_pakker00006.jpg', beskrivelse: 'Januar til mai. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold. Utstyr kan leies av oss.' },
   { navn: 'Trugeturer',                           bilde: '/assets/images/Finse_pakker00009.jpg', beskrivelse: 'Desember til mai. Truger er godt egnet for enkle turer i terrenget rundt Finse. Dette er en vinteraktivitet alle kan ta del i. Truger leies av oss.' },
-  { navn: 'Skiseiling',                           bilde: '/assets/images/Finse_pakker00008.jpg', beskrivelse: 'Januar til mai. Skiseiling er en spennende måte å ferdes på i terrenget rundt Finse. Vinden sørger for fremdriften, og aktiviteten er forholdsvis enkel å lære. Noen timer på Finsevann gir garantert mestringsfølelse. Vi har alt nødvendig utstyr til utleie.' },
+  { navn: 'Skiseiling',                           bilde: '/assets/images/akt-skiseiling.jpg', beskrivelse: 'Januar til mai. Skiseiling er en spennende måte å ferdes på i terrenget rundt Finse. Vinden sørger for fremdriften, og aktiviteten er forholdsvis enkel å lære. Noen timer på Finsevann gir garantert mestringsfølelse. Vi har alt nødvendig utstyr til utleie.' },
   { navn: 'Stjernekikking',                       bilde: '/assets/images/Finse_pakker00002.jpg', beskrivelse: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.' },
 ]
 
 const HELARS_AKTIVITETER = [
-  { navn: 'Morgenbad i Finsevann',                bilde: '/assets/images/Finse_pakker00010.jpg', beskrivelse: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.' },
-  { navn: 'Sidersmaking',                         bilde: '/assets/images/mat_finse.jpg',         beskrivelse: 'Hele året. Bli bedre kjent med siderproduksjonen i Hardanger. Vi smaker og forteller historiene bak de lokale siderne.' },
-  { navn: 'Bålpanne og after hike/ski/bike',      bilde: '/assets/images/Finse_configurator_background.jpg', beskrivelse: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.' },
-  { navn: 'Finsequiz',                            bilde: '/assets/images/Finse_pakker00005.jpg', beskrivelse: 'Hele året. Kveldsunderholdning foran peisen inne på hotellet. Kategoriene tilpasses, men vi sniker alltid med noen spørsmål om natur og Finse-historie.' },
+  { navn: 'Morgenbad i Finsevann',                bilde: '/assets/images/akt-morgenbad.jpg', beskrivelse: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.' },
+  { navn: 'Sidersmaking',                         bilde: '/assets/images/akt-sider.jpg',         beskrivelse: 'Hele året. Bli bedre kjent med siderproduksjonen i Hardanger. Vi smaker og forteller historiene bak de lokale siderne.' },
+  { navn: 'Bålpanne og after hike/ski/bike',      bilde: '/assets/images/akt-baalpanne.jpg', beskrivelse: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.' },
+  { navn: 'Finsequiz',                            bilde: '/assets/images/lobby-peis.jpg', beskrivelse: 'Hele året. Kveldsunderholdning foran peisen inne på hotellet. Kategoriene tilpasses, men vi sniker alltid med noen spørsmål om natur og Finse-historie.' },
   { navn: 'Rallarmuseet',                         bilde: '/assets/images/Finseskilt.jpg',        beskrivelse: 'Hele året. Lær om Bergensbanen og hvordan jernbanen over fjellet ble bygget av tøffe rallare og dyktige ingeniører på starten av 1900-tallet.' },
   { navn: 'Polarhistorie i Framheim',             bilde: '/assets/images/nansen.png',            beskrivelse: 'Hele året. På Finse har vi en tro kopi av Roald Amundsens base i Antarktis. Vi tør påstå at ingen steder i Norge er bedre egnet til å få fortellingen om de store norske og internasjonale polarheltene enn inne i Framheim ved Finsevann.' },
 ]
@@ -169,6 +169,12 @@ export default function Configurator() {
   })()
   const viseSommerAktiviteter = valgtManedIndex === -1 || isSommerManed(valgtManedIndex)
   const viseVinterAktiviteter = valgtManedIndex === -1 || !isSommerManed(valgtManedIndex)
+
+  // Datovalg er påkrevd før man går videre fra steg 2
+  const datoValgt = form.datoModus === 'datoer'
+    ? !!(form.datoFra && form.datoTil)
+    : !!form.fleksibeltManed
+  const kanGaVidere = step !== 2 || datoValgt
 
   // ── Drag-to-scroll for aktivitetsraden ──
   const actRowRef = useRef<HTMLDivElement>(null)
@@ -633,7 +639,7 @@ export default function Configurator() {
                 ? <button className="konfig-back" onClick={prev}>Tilbake</button>
                 : <span />
               }
-              {step < TOTAL && <button className="konfig-next" onClick={next}>Neste</button>}
+              {step < TOTAL && <button className="konfig-next" onClick={next} disabled={!kanGaVidere}>Neste</button>}
             </div>
           </div>
 
@@ -646,7 +652,7 @@ export default function Configurator() {
               {step === 7 && (
                 <div className="konfig-summary">
                   <div className="konfig-summary-hero">
-                    <img src="/assets/images/Finse_configurator_background.jpg" alt="" className="konfig-summary-hero-img" />
+                    <img src="/assets/images/akt-baalpanne.jpg" alt="" className="konfig-summary-hero-img" />
                     <div className="konfig-summary-hero-overlay" />
                     <img src="/assets/logo/logo.png" alt="Hotel Finse1222" className="konfig-summary-hero-logo" />
                   </div>

@@ -9,14 +9,14 @@ export default function PakkeHotelletForDere() {
       subtitle="Når dere fortjener hele Finse"
       intro="For jubileer, konferanser, kickoffs og feiringer der dere vil ha Hotel Finse1222 helt for dere selv. På Finse er alle samlet, og dere har full frihet til å forme oppholdet slik dere vil."
       heroImage={{
-        src: '/assets/images/finse1222__242.JPG',
+        src: '/assets/images/hotellet-hero.jpg',
         alt: 'Hotellet for dere selv'
       }}
       gallery={[
-        { src: '/assets/images/finse1222__242.JPG', alt: 'Hotellet for dere selv' },
-        { src: '/assets/images/finse1222__182.JPG', alt: 'Interiør' },
-        { src: '/assets/images/tog.png', alt: 'Tog' },
-        { src: '/assets/images/finse.jpg', alt: 'Finse landskap' },
+        { src: '/assets/images/hotellet-hero.jpg', alt: 'Restauranten med utsikt i kveldslys' },
+        { src: '/assets/images/pkg-hotellet.jpg', alt: 'Hotel Finse1222 sett ovenfra' },
+        { src: '/assets/images/lobby-peis.jpg', alt: 'Lobby med peis' },
+        { src: '/assets/images/lounge.jpg', alt: 'Loungeområde med utsikt' },
       ]}
       includes={[
         { icon: 'hotel', text: 'Hele hotellet for deres gruppe' },
@@ -59,17 +59,17 @@ export default function PakkeHotelletForDere() {
         {
           name: 'Sidersmaking',
           desc: 'Hele året. Bli bedre kjent med siderproduksjonen i Hardanger. Vi smaker og forteller historiene bak de lokale siderne.',
-          image: '/assets/images/mat_finse.jpg',
+          image: '/assets/images/akt-sider.jpg',
         },
         {
           name: 'Finsequiz',
           desc: 'Hele året. Kveldsunderholdning foran peisen inne på hotellet. Kategoriene tilpasses, men vi sniker alltid med noen spørsmål om natur og Finse-historie.',
-          image: '/assets/images/Finse_pakker00005.jpg',
+          image: '/assets/images/lobby-peis.jpg',
         },
         {
           name: 'Bålpanne og after hike/ski/bike',
           desc: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.',
-          image: '/assets/images/Finse_configurator_background.jpg',
+          image: '/assets/images/akt-baalpanne.jpg',
         },
         {
           name: 'Polarhistorie i Framheim',

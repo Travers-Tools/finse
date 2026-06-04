@@ -13,10 +13,10 @@ export default function PakkeFokusPaaVidda() {
         alt: 'Fokus på vidda'
       }}
       gallery={[
-        { src: '/assets/images/R1-04554-0028.jpg', alt: 'Fokus på vidda' },
-        { src: '/assets/images/finse1222__182.JPG', alt: 'Interiør' },
-        { src: '/assets/images/tak.png', alt: 'Utsikt' },
-        { src: '/assets/images/finse.jpg', alt: 'Finse landskap' },
+        { src: '/assets/images/R1-04554-0028.jpg', alt: 'Ro ved vinduet mot vidda' },
+        { src: '/assets/images/salong.jpg', alt: 'Salong med utsikt' },
+        { src: '/assets/images/pkg-fokus.jpg', alt: 'Møterom med utsikt mot vidda' },
+        { src: '/assets/images/finse1222__182.JPG', alt: 'Avslapning i solveggen' },
       ]}
       includes={[
         { icon: 'bed', text: 'Overnatting i komfortable rom' },
@@ -59,22 +59,22 @@ export default function PakkeFokusPaaVidda() {
         {
           name: 'Fottur i området',
           desc: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.',
-          image: '/assets/images/Finse_pakker00007.jpg',
+          image: '/assets/images/akt-fottur.jpg',
         },
         {
           name: 'Sidersmaking',
           desc: 'Hele året. Bli bedre kjent med siderproduksjonen i Hardanger. Vi smaker og forteller historiene bak de lokale siderne.',
-          image: '/assets/images/mat_finse.jpg',
+          image: '/assets/images/akt-sider.jpg',
         },
         {
           name: 'Bålpanne og after hike/ski/bike',
           desc: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.',
-          image: '/assets/images/Finse_configurator_background.jpg',
+          image: '/assets/images/akt-baalpanne.jpg',
         },
         {
           name: 'Finsequiz',
           desc: 'Hele året. Kveldsunderholdning foran peisen inne på hotellet. Kategoriene tilpasses, men vi sniker alltid med noen spørsmål om natur og Finse-historie.',
-          image: '/assets/images/Finse_pakker00005.jpg',
+          image: '/assets/images/lobby-peis.jpg',
         },
       ]}
       ctaNote="Vi tilpasser oppholdet etter deres behov."

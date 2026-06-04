@@ -5,7 +5,8 @@ export default function PackagesSection() {
     {
       href: '/pakke-fokus-paa-vidda',
       image: '/assets/images/R1-04554-0028.jpg',
-      imagePosition: 'center 60%',
+      imagePosition: 'center 100%',
+      imageScale: 1.8,
       tag: 'Ledergrupper',
       title: 'Fokus på vidda',
       description: 'For team som trenger tid til de viktige samtalene – langt unna alt som maser.',
@@ -13,7 +14,7 @@ export default function PackagesSection() {
     },
     {
       href: '/pakke-ekspedisjonstur',
-      image: '/assets/images/R1 04555 0014.jpg',
+      image: '/assets/images/ekspedisjon-guide.jpg',
       tag: 'Eventyr',
       title: 'Ekspedisjonstur',
       description: 'Dager fulle av turer, ski eller Rallarvegen – og kveldene foran peisen.',
@@ -21,7 +22,7 @@ export default function PackagesSection() {
     },
     {
       href: '/pakke-hotellet-for-dere',
-      image: '/assets/images/finse1222__242.JPG',
+      image: '/assets/images/hotellet-hero.jpg',
       tag: 'Opp til 110 gjester',
       title: 'Hotellet for dere selv',
       description: 'For jubileer, kickoffs og feiringer der dere vil ha Hotel Finse1222 for dere selv.',
@@ -29,7 +30,7 @@ export default function PackagesSection() {
     },
     {
       href: '/configurator',
-      image: '/assets/images/finse.jpg',
+      image: '/assets/images/skreddersom.jpg',
       tag: 'Lag ditt eget',
       title: 'Skreddersøm',
       description: 'Har du andre ønsker? Vi hjelper deg å skape det perfekte oppholdet.',
@@ -49,7 +50,14 @@ export default function PackagesSection() {
               className={`package-card ${pkg.isCustom ? 'package-card-custom' : ''}`}
             >
               <div className="package-image">
-                <img src={pkg.image} alt={pkg.title} style={pkg.imagePosition ? { objectPosition: pkg.imagePosition } : undefined} />
+                <img
+                  src={pkg.image}
+                  alt={pkg.title}
+                  style={{
+                    ...(pkg.imagePosition ? { objectPosition: pkg.imagePosition } : {}),
+                    ...(pkg.imageScale ? { transform: `scale(${pkg.imageScale})` } : {}),
+                  }}
+                />
                 <div className="package-gradient"></div>
               </div>
               <span className="package-tag">{pkg.tag}</span>

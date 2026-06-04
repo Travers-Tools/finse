@@ -64,10 +64,10 @@ export default function FAQSection() {
                   <div className="faq-answer">
                     <p>{faq.answer}</p>
                     <div className="faq-avatar">
-                      <img src="/assets/images/henriette_portrett.png" alt="Henriette" className="faq-avatar-img" />
+                      <img src="/assets/images/Siv_portrett.png" alt="Siv" className="faq-avatar-img" />
                       <div className="faq-avatar-info">
-                        <span className="faq-avatar-name">Henriette</span>
-                        <span className="faq-avatar-email">henriette@hotelfinse1222.no</span>
+                        <span className="faq-avatar-name">Siv</span>
+                        <span className="faq-avatar-email">siv@hotelfinse1222.no</span>
                       </div>
                     </div>
                   </div>

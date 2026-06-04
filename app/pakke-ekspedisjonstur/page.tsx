@@ -9,14 +9,14 @@ export default function PakkeEkspedisjonstur() {
       subtitle="I fotsporene til Nansen og Amundsen"
       intro="Finse og omgivelsene rundt hotellet har vært base for norske polfarere i over hundre år. Her får dere kjenne på det selv, i et tempo som passer gruppen. Turene og utfordringene tilpasses deres eget ambisjonsnivå og program."
       heroImage={{
-        src: '/assets/images/R1 04555 0014.jpg',
-        alt: 'Ekspedisjonstur på Finse'
+        src: '/assets/images/ekspedisjon-guide.jpg',
+        alt: 'Guide briefer gruppen før turen'
       }}
       gallery={[
-        { src: '/assets/images/R1 04555 0014.jpg', alt: 'Ekspedisjonstur på Finse' },
-        { src: '/assets/images/tur.png', alt: 'På tur' },
-        { src: '/assets/images/kart.png', alt: 'Historisk kart' },
-        { src: '/assets/images/finse.jpg', alt: 'Finse landskap' },
+        { src: '/assets/images/ekspedisjon-guide.jpg', alt: 'Guide briefer gruppen før turen' },
+        { src: '/assets/images/ekspedisjon-sommer.jpg', alt: 'Sykkeltur mot Hardangerjøkulen' },
+        { src: '/assets/images/pkg-hotellet.jpg', alt: 'Finse om sommeren' },
+        { src: '/assets/images/pkg-ekspedisjon.jpg', alt: 'Skiseiling på vidda' },
       ]}
       includes={[
         { icon: 'bed', text: 'Overnatting i komfortable rom' },
@@ -59,22 +59,22 @@ export default function PakkeEkspedisjonstur() {
         {
           name: 'Sykkeltur på Rallarvegen',
           desc: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Vi tilpasser turen etter tidsskjema og egne ønsker. Sykler og hjelmer leies fra hotellet.',
-          image: '/assets/images/Finse_pakker00004.jpg',
+          image: '/assets/images/akt-rallarvegen.jpg',
         },
         {
           name: 'Brevandring',
           desc: 'Juli til september. Opplev isbreen på nært hold og utforsk blåisen på Hardangerjøkulen sammen med en erfaren guide.',
-          image: '/assets/images/Finse_pakker00003.jpg',
+          image: '/assets/images/akt-brevandring.jpg',
         },
         {
           name: 'Fottur i området',
           desc: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.',
-          image: '/assets/images/Finse_pakker00007.jpg',
+          image: '/assets/images/akt-fottur.jpg',
         },
         {
           name: 'Morgenbad i Finsevann',
           desc: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.',
-          image: '/assets/images/Finse_pakker00010.jpg',
+          image: '/assets/images/akt-morgenbad.jpg',
         },
       ]}
       ctaNote="Vi tilpasser aktivitetene etter sesong og ønsker."
