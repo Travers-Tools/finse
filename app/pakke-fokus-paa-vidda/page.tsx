@@ -59,7 +59,22 @@ export default function PakkeFokusPaaVidda() {
         {
           name: 'Fottur i området',
           desc: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.',
-          image: '/assets/images/akt-fottur.jpg',
+          image: '/assets/images/akt-fottur-kart.jpg',
+        },
+        {
+          name: 'Skiturer i området',
+          desc: 'Januar til mai. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold. Utstyr kan leies av oss.',
+          image: '/assets/images/akt-skitur.jpg',
+        },
+        {
+          name: 'Morgenbad i Finsevann',
+          desc: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.',
+          image: '/assets/images/akt-morgenbad.jpg',
+        },
+        {
+          name: 'Stjernekikking',
+          desc: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.',
+          image: '/assets/images/akt-stjerner.jpg',
         },
         {
           name: 'Sidersmaking',
@@ -70,6 +85,11 @@ export default function PakkeFokusPaaVidda() {
           name: 'Bålpanne og after hike/ski/bike',
           desc: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.',
           image: '/assets/images/akt-baalpanne.jpg',
+        },
+        {
+          name: 'Polarhistorie i Framheim',
+          desc: 'Hele året. På Finse har vi en tro kopi av Roald Amundsens base i Antarktis. Vi tør påstå at ingen steder i Norge er bedre egnet til å få fortellingen om de store norske og internasjonale polarheltene enn inne i Framheim ved Finsevann.',
+          image: '/assets/images/nansen.png',
         },
         {
           name: 'Finsequiz',

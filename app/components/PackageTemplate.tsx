@@ -303,17 +303,23 @@ export default function PackageTemplate(data: PackageData) {
                 <div className="pkg-block">
                   <h2 className="pkg-block-title">Opplevelser</h2>
                   <ul className="pkg-activities-grid">
-                    {data.activities.map(a => (
-                      <li key={a.name} className="pkg-activity">
-                        <div className="pkg-activity-img">
-                          <img src={a.image} alt={a.name} />
-                        </div>
-                        <div className="pkg-activity-body">
-                          <h3 className="pkg-activity-name">{a.name}</h3>
-                          <p className="pkg-activity-desc">{a.desc}</p>
-                        </div>
-                      </li>
-                    ))}
+                    {data.activities.map(a => {
+                      const periodMatch = a.desc.match(/^(Hele året|[A-ZÆØÅ][a-zæøå]+ til [a-zæøå]+)[.:]\s*/)
+                      const periode = periodMatch ? periodMatch[1] : null
+                      const desc = periodMatch ? a.desc.slice(periodMatch[0].length) : a.desc
+                      return (
+                        <li key={a.name} className="pkg-activity">
+                          <div className="pkg-activity-img">
+                            <img src={a.image} alt={a.name} />
+                            {periode && <span className="pkg-activity-pill">{periode}</span>}
+                          </div>
+                          <div className="pkg-activity-body">
+                            <h3 className="pkg-activity-name">{a.name}</h3>
+                            <p className="pkg-activity-desc">{desc}</p>
+                          </div>
+                        </li>
+                      )
+                    })}
                   </ul>
                 </div>
               )}

@@ -63,13 +63,13 @@ function factIcon(label: string): React.ReactNode {
 }
 
 const ACTIVITY_DATA: Record<string, { bilde: string; desc: string }> = {
-  'Fottur i området':                       { bilde: '/assets/images/akt-fottur.jpg', desc: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.' },
+  'Fottur i området':                       { bilde: '/assets/images/akt-fottur-kart.jpg', desc: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.' },
   'Sykkeltur på Rallarvegen':               { bilde: '/assets/images/akt-rallarvegen.jpg', desc: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Vi tilpasser turen etter tidsskjema og egne ønsker. Sykler og hjelmer leies fra hotellet.' },
   'Brevandring':                            { bilde: '/assets/images/akt-brevandring.jpg', desc: 'Juli til september. Opplev isbreen på nært hold og utforsk blåisen på Hardangerjøkulen sammen med en erfaren guide.' },
-  'Skiturer i området':                     { bilde: '/assets/images/Finse_pakker00006.jpg', desc: 'Januar til mai. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold. Utstyr kan leies av oss.' },
-  'Trugeturer':                             { bilde: '/assets/images/Finse_pakker00009.jpg', desc: 'Desember til mai. Truger er godt egnet for enkle turer i terrenget rundt Finse. Dette er en vinteraktivitet alle kan ta del i. Truger leies av oss.' },
+  'Skiturer i området':                     { bilde: '/assets/images/akt-skitur.jpg', desc: 'Januar til mai. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold. Utstyr kan leies av oss.' },
+  'Trugeturer':                             { bilde: '/assets/images/akt-truger.jpg', desc: 'Desember til mai. Truger er godt egnet for enkle turer i terrenget rundt Finse. Dette er en vinteraktivitet alle kan ta del i. Truger leies av oss.' },
   'Skiseiling':                             { bilde: '/assets/images/akt-skiseiling.jpg', desc: 'Januar til mai. Skiseiling er en spennende måte å ferdes på i terrenget rundt Finse. Vinden sørger for fremdriften, og aktiviteten er forholdsvis enkel å lære. Noen timer på Finsevann gir garantert mestringsfølelse. Vi har alt nødvendig utstyr til utleie.' },
-  'Stjernekikking':                         { bilde: '/assets/images/Finse_pakker00002.jpg', desc: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.' },
+  'Stjernekikking':                         { bilde: '/assets/images/akt-stjerner.jpg', desc: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.' },
   'Morgenbad i Finsevann':                  { bilde: '/assets/images/akt-morgenbad.jpg', desc: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.' },
   'Sidersmaking':                           { bilde: '/assets/images/akt-sider.jpg',         desc: 'Hele året. Bli bedre kjent med siderproduksjonen i Hardanger. Vi smaker og forteller historiene bak de lokale siderne.' },
   'Bålpanne og after hike/ski/bike':        { bilde: '/assets/images/akt-baalpanne.jpg', desc: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.' },
@@ -240,7 +240,7 @@ export default function ReisePage() {
                 <article key={navn} className="reise-act-row">
                   <div className="reise-act-row-inner">
                     <div className="reise-act-row-img">
-                      <img src={act?.bilde || '/assets/images/Finse_pakker00002.jpg'} alt={navn} />
+                      <img src={act?.bilde || '/assets/images/akt-stjerner.jpg'} alt={navn} />
                     </div>
                     <div className="reise-act-row-body">
                       <span className="reise-act-row-num">{String(i + 1).padStart(2, '0')}</span>

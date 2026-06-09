@@ -23,9 +23,9 @@ export default function PackagesSection() {
     {
       href: '/pakke-hotellet-for-dere',
       image: '/assets/images/hotellet-hero.jpg',
-      tag: 'Opp til 110 gjester',
+      tag: 'Fra 30 til 110 gjester',
       title: 'Hotellet for dere selv',
-      description: 'For jubileer, kickoffs og feiringer der dere vil ha Hotel Finse1222 for dere selv.',
+      description: 'For jubileer, kickoffs, møter, konferanser og feiringer der dere vil ha Hotel Finse1222 for dere selv.',
       linkText: 'Utforsk'
     },
     {

@@ -7,7 +7,7 @@ export default function PakkeHotelletForDere() {
     <PackageTemplate
       title="Hotellet for dere selv"
       subtitle="Når dere fortjener hele Finse"
-      intro="For jubileer, konferanser, kickoffs og feiringer der dere vil ha Hotel Finse1222 helt for dere selv. På Finse er alle samlet, og dere har full frihet til å forme oppholdet slik dere vil."
+      intro="For jubileer, kickoffs, møter, konferanser og feiringer der dere vil ha Hotel Finse1222 helt for dere selv. Fra 30 til 110 gjester. På Finse er alle samlet, og dere har full frihet til å forme oppholdet slik dere vil."
       heroImage={{
         src: '/assets/images/hotellet-hero.jpg',
         alt: 'Hotellet for dere selv'
@@ -62,6 +62,21 @@ export default function PakkeHotelletForDere() {
           image: '/assets/images/akt-sider.jpg',
         },
         {
+          name: 'Skiseiling',
+          desc: 'Januar til mai. Skiseiling er en spennende måte å ferdes på i terrenget rundt Finse. Vinden sørger for fremdriften, og aktiviteten er forholdsvis enkel å lære. Noen timer på Finsevann gir garantert mestringsfølelse. Vi har alt nødvendig utstyr til utleie.',
+          image: '/assets/images/akt-skiseiling.jpg',
+        },
+        {
+          name: 'Morgenbad i Finsevann',
+          desc: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.',
+          image: '/assets/images/akt-morgenbad.jpg',
+        },
+        {
+          name: 'Stjernekikking',
+          desc: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.',
+          image: '/assets/images/akt-stjerner.jpg',
+        },
+        {
           name: 'Finsequiz',
           desc: 'Hele året. Kveldsunderholdning foran peisen inne på hotellet. Kategoriene tilpasses, men vi sniker alltid med noen spørsmål om natur og Finse-historie.',
           image: '/assets/images/tog.png',
@@ -70,6 +85,11 @@ export default function PakkeHotelletForDere() {
           name: 'Bålpanne og after hike/ski/bike',
           desc: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.',
           image: '/assets/images/akt-baalpanne.jpg',
+        },
+        {
+          name: 'Rallarmuseet',
+          desc: 'Hele året. Lær om Bergensbanen og hvordan jernbanen over fjellet ble bygget av tøffe rallare og dyktige ingeniører på starten av 1900-tallet.',
+          image: '/assets/images/Finseskilt.jpg',
         },
         {
           name: 'Polarhistorie i Framheim',

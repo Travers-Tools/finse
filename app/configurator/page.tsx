@@ -14,16 +14,16 @@ const STEP_IMAGES = [
 ]
 
 const SOMMER_AKTIVITETER = [
-  { navn: 'Fottur i området',                     bilde: '/assets/images/akt-fottur.jpg', beskrivelse: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.' },
+  { navn: 'Fottur i området',                     bilde: '/assets/images/akt-fottur-kart.jpg', beskrivelse: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.' },
   { navn: 'Sykkeltur på Rallarvegen',             bilde: '/assets/images/akt-rallarvegen.jpg', beskrivelse: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Vi tilpasser turen etter tidsskjema og egne ønsker. Sykler og hjelmer leies fra hotellet.' },
   { navn: 'Brevandring',                          bilde: '/assets/images/akt-brevandring.jpg', beskrivelse: 'Juli til september. Opplev isbreen på nært hold og utforsk blåisen på Hardangerjøkulen sammen med en erfaren guide.' },
 ]
 
 const VINTER_AKTIVITETER = [
-  { navn: 'Skiturer i området',                   bilde: '/assets/images/Finse_pakker00006.jpg', beskrivelse: 'Januar til mai. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold. Utstyr kan leies av oss.' },
-  { navn: 'Trugeturer',                           bilde: '/assets/images/Finse_pakker00009.jpg', beskrivelse: 'Desember til mai. Truger er godt egnet for enkle turer i terrenget rundt Finse. Dette er en vinteraktivitet alle kan ta del i. Truger leies av oss.' },
+  { navn: 'Skiturer i området',                   bilde: '/assets/images/akt-skitur.jpg', beskrivelse: 'Januar til mai. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold. Utstyr kan leies av oss.' },
+  { navn: 'Trugeturer',                           bilde: '/assets/images/akt-truger.jpg', beskrivelse: 'Desember til mai. Truger er godt egnet for enkle turer i terrenget rundt Finse. Dette er en vinteraktivitet alle kan ta del i. Truger leies av oss.' },
   { navn: 'Skiseiling',                           bilde: '/assets/images/akt-skiseiling.jpg', beskrivelse: 'Januar til mai. Skiseiling er en spennende måte å ferdes på i terrenget rundt Finse. Vinden sørger for fremdriften, og aktiviteten er forholdsvis enkel å lære. Noen timer på Finsevann gir garantert mestringsfølelse. Vi har alt nødvendig utstyr til utleie.' },
-  { navn: 'Stjernekikking',                       bilde: '/assets/images/Finse_pakker00002.jpg', beskrivelse: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.' },
+  { navn: 'Stjernekikking',                       bilde: '/assets/images/akt-stjerner.jpg', beskrivelse: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.' },
 ]
 
 const HELARS_AKTIVITETER = [
@@ -539,7 +539,6 @@ export default function Configurator() {
                   >
                     {viseSommerAktiviteter && (
                       <div className="konfig-act-group">
-                        <p className="konfig-act-season-label">Sommer <span>juni til sept</span></p>
                         <div className="konfig-act-group-cards">
                           {SOMMER_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
                             const selected = isAktivitetSelected(navn)
@@ -559,7 +558,6 @@ export default function Configurator() {
                     )}
                     {viseVinterAktiviteter && (
                       <div className="konfig-act-group">
-                        <p className="konfig-act-season-label">Vinter <span>okt til mai</span></p>
                         <div className="konfig-act-group-cards">
                           {VINTER_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
                             const selected = isAktivitetSelected(navn)
@@ -578,7 +576,6 @@ export default function Configurator() {
                       </div>
                     )}
                     <div className="konfig-act-group">
-                      <p className="konfig-act-season-label">Helårs</p>
                       <div className="konfig-act-group-cards">
                         {HELARS_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
                           const selected = isAktivitetSelected(navn)
