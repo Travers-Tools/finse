@@ -5,8 +5,7 @@ export default function PackagesSection() {
     {
       href: '/pakke-fokus-paa-vidda',
       image: '/assets/images/R1-04554-0028.jpg',
-      imagePosition: 'center 100%',
-      imageScale: 1.8,
+      imagePosition: 'center 78%',
       tag: 'Ledergrupper',
       title: 'Fokus på vidda',
       description: 'For team som trenger tid til de viktige samtalene – langt unna alt som maser.',
@@ -15,6 +14,7 @@ export default function PackagesSection() {
     {
       href: '/pakke-ekspedisjonstur',
       image: '/assets/images/ekspedisjon-guide.jpg',
+      imagePosition: 'center 20%',
       tag: 'Eventyr',
       title: 'Ekspedisjonstur',
       description: 'Dager fulle av turer, ski eller Rallarvegen – og kveldene foran peisen.',

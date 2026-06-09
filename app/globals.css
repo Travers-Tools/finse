@@ -374,11 +374,6 @@ a {
     display: flex;
     flex-direction: column;
     min-height: 580px;
-    transition: transform var(--transition-base);
-}
-
-.package-card:hover {
-    transform: translateY(-4px);
 }
 
 .package-card:hover .package-image img {
@@ -404,9 +399,9 @@ a {
     background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0.1) 0%,
-        rgba(0, 0, 0, 0.15) 40%,
-        rgba(0, 0, 0, 0.5) 70%,
-        rgba(0, 0, 0, 0.75) 100%
+        rgba(0, 0, 0, 0.25) 30%,
+        rgba(0, 0, 0, 0.55) 55%,
+        rgba(0, 0, 0, 0.8) 100%
     );
 }
 
@@ -451,6 +446,7 @@ a {
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: var(--space-lg);
     max-width: 280px;
+    min-height: calc(0.9rem * 1.5 * 3);
 }
 
 .package-link {
