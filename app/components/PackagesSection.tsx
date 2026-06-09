@@ -53,10 +53,7 @@ export default function PackagesSection() {
                 <img
                   src={pkg.image}
                   alt={pkg.title}
-                  style={{
-                    ...(pkg.imagePosition ? { objectPosition: pkg.imagePosition } : {}),
-                    ...(pkg.imageScale ? { transform: `scale(${pkg.imageScale})` } : {}),
-                  }}
+                  style={pkg.imagePosition ? { objectPosition: pkg.imagePosition } : undefined}
                 />
                 <div className="package-gradient"></div>
               </div>

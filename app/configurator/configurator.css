@@ -1240,7 +1240,7 @@ div + .konfig-flex-label {
 
 .konfig-act-card-title {
   font-family: 'Crimson Pro', Georgia, serif;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 500;
   color: #322A20;
   margin: 0;
@@ -1253,7 +1253,7 @@ div + .konfig-flex-label {
 
 .konfig-act-card-desc {
   font-family: var(--font-sans);
-  font-size: 10.5px;
+  font-size: 12px;
   color: rgba(0,0,0,0.45);
   margin: 0;
   line-height: 1.55;
