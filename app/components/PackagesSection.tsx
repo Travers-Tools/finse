@@ -1,11 +1,22 @@
 import Link from 'next/link'
 
+interface Package {
+  href: string
+  image: string
+  imagePosition?: string
+  imageFit?: 'cover' | 'contain'
+  tag: string
+  title: string
+  description: string
+  linkText: string
+  isCustom?: boolean
+}
+
 export default function PackagesSection() {
-  const packages = [
+  const packages: Package[] = [
     {
       href: '/pakke-fokus-paa-vidda',
-      image: '/assets/images/R1-04554-0028.jpg',
-      imagePosition: 'center 78%',
+      image: '/assets/images/akt-fokus-vidda.jpg',
       tag: 'Ledergrupper',
       title: 'Fokus på vidda',
       description: 'For team som trenger tid til de viktige samtalene – langt unna alt som maser.',
@@ -49,11 +60,17 @@ export default function PackagesSection() {
               href={pkg.href}
               className={`package-card ${pkg.isCustom ? 'package-card-custom' : ''}`}
             >
-              <div className="package-image">
+              <div
+                className="package-image"
+                style={pkg.imageFit === 'contain' ? { background: '#0d1014' } : undefined}
+              >
                 <img
                   src={pkg.image}
                   alt={pkg.title}
-                  style={pkg.imagePosition ? { objectPosition: pkg.imagePosition } : undefined}
+                  style={{
+                    ...(pkg.imagePosition ? { objectPosition: pkg.imagePosition } : {}),
+                    ...(pkg.imageFit ? { objectFit: pkg.imageFit } : {}),
+                  }}
                 />
                 <div className="package-gradient"></div>
               </div>

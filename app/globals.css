@@ -94,7 +94,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px clamp(20px, 4vw, 40px);
+    padding: 8px clamp(20px, 4vw, 40px);
     background: rgba(245, 242, 232, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
