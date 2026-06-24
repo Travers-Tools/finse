@@ -384,7 +384,7 @@ export default function PackageTemplate(data: PackageData) {
           <div className="pkg-footer-meta">
             <Link href="/configurator" className="pkg-footer-link">Start planleggingen →</Link>
             <span className="pkg-footer-divider">·</span>
-            <span className="pkg-footer-note">post@hotelfinse1222.no · +47 56 52 71 00</span>
+            <span className="pkg-footer-note">resepsjon@hotelfinse1222.no · +47 56 52 71 00</span>
           </div>
         </div>
       </footer>

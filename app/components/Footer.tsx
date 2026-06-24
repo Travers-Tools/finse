@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="footer-col">
             <h3 className="footer-col-title">Snakk med oss</h3>
             <p className="footer-col-line">+47 56 52 71 00</p>
-            <p className="footer-col-line">post@hotelfinse1222.no</p>
+            <p className="footer-col-line">resepsjon@hotelfinse1222.no</p>
             <p className="footer-col-muted">Vi svarer innen én arbeidsdag.</p>
           </div>
 

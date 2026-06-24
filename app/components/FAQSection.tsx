@@ -67,7 +67,7 @@ export default function FAQSection() {
                       <img src="/assets/images/Siv_portrett.png" alt="Siv" className="faq-avatar-img" />
                       <div className="faq-avatar-info">
                         <span className="faq-avatar-name">Siv</span>
-                        <span className="faq-avatar-email">siv@hotelfinse1222.no</span>
+                        <span className="faq-avatar-email">events@hotelfinse1222.no</span>
                       </div>
                     </div>
                   </div>
