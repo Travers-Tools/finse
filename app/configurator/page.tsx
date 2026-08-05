@@ -195,7 +195,12 @@ export default function Configurator() {
     if (actRowRef.current) actRowRef.current.style.cursor = 'grab'
   }
 
-  const handleSubmit = () => {
+  const [sender, setSender] = useState(false)
+
+  const handleSubmit = async () => {
+    if (sender) return
+    setSender(true)
+
     const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
     const dato = form.datoModus === 'datoer'
       ? `${formatDate(form.datoFra)} → ${formatDate(form.datoTil)}`
@@ -212,6 +217,21 @@ export default function Configurator() {
       createdAt: new Date().toISOString(),
     }
     localStorage.setItem(id, JSON.stringify(payload))
+
+    try {
+      const res = await fetch('/api/foresporsel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) throw new Error('Send feilet')
+    } catch (err) {
+      console.error(err)
+      setSender(false)
+      alert('Beklager, noe gikk galt da vi sendte forespørselen. Prøv igjen, eller kontakt oss på events@hotelfinse1222.no.')
+      return
+    }
+
     const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))))
     window.location.href = `/reise?id=${id}#d=${encoded}`
   }
@@ -622,8 +642,8 @@ export default function Configurator() {
                   <div className="konfig-field">
                     <textarea className="konfig-input konfig-textarea" placeholder="Noe annet vi bør vite? (valgfritt)" rows={3} value={form.merknad} onChange={e => set('merknad', e.target.value)} />
                   </div>
-                  <button className="konfig-submit" disabled={!form.navn || !form.epost} onClick={handleSubmit}>
-                    Send forespørsel
+                  <button className="konfig-submit" disabled={!form.navn || !form.epost || sender} onClick={handleSubmit}>
+                    {sender ? 'Sender …' : 'Send forespørsel'}
                   </button>
                   <p className="konfig-hint">Vi svarer innen én arbeidsdag · Ingen binding</p>
                 </>
