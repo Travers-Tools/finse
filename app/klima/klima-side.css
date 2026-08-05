@@ -1,0 +1,116 @@
+/* ========================================
+   /klima — egen side med hele regnestykket
+   ======================================== */
+
+.klima-page {
+  background: var(--klima-cream);
+  color: var(--klima-text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
+
+.klima-page .header {
+  background: var(--klima-cream);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.klima-page .nav-link,
+.klima-page .btn-planlegg {
+  font-size: 13px;
+}
+
+/* Samme som pakkesidene: skjul venstre nav, behold plassen
+   så logoen fortsatt står midtstilt. */
+.klima-page .nav-left {
+  visibility: hidden;
+}
+
+.klima-page-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(48px, 8vw, 96px) clamp(24px, 5vw, 40px) clamp(56px, 8vw, 96px);
+}
+
+.klima-page-head {
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+
+.klima-page-title {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: clamp(2.1rem, 5.5vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.12;
+  margin: 16px 0 0;
+  color: var(--klima-text);
+  text-wrap: balance;
+}
+
+.klima-prose p {
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--klima-text-muted);
+  margin: 0 0 18px;
+}
+
+.klima-lede {
+  font-size: 18px !important;
+  line-height: 1.65 !important;
+  color: var(--klima-text) !important;
+}
+
+.klima-page-h2 {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: clamp(1.5rem, 3.4vw, 1.9rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--klima-text);
+}
+
+.klima-page-h2-sub {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--klima-text-muted);
+  margin: 10px 0 0;
+}
+
+.klima-page-figures {
+  margin: clamp(36px, 5vw, 52px) 0;
+  padding: clamp(24px, 4vw, 36px);
+  background: #FCFAF3;
+  border: 1px solid var(--klima-border);
+  border-radius: 14px;
+}
+
+.klima-page-figures .klima-figures {
+  margin-top: 22px;
+}
+
+.klima-page-aside {
+  margin: clamp(36px, 5vw, 52px) 0 0;
+  padding-left: clamp(18px, 3vw, 26px);
+  border-left: 2px solid var(--klima-tint);
+}
+
+.klima-page-aside p {
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--klima-text-muted);
+  margin: 12px 0 0;
+}
+
+.klima-page-cta {
+  margin: clamp(44px, 6vw, 64px) 0 0;
+  padding-top: clamp(28px, 4vw, 40px);
+  border-top: 1px solid var(--klima-border);
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.klima-page-cta-btn {
+  display: inline-block;
+  text-decoration: none;
+}

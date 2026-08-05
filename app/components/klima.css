@@ -1,0 +1,287 @@
+/* ========================================
+   Klima — chip, modal og forsideseksjon
+   Dempet lavgrønn som ligger i samme temperatur
+   som krem/brun-paletten ellers på siden.
+   ======================================== */
+
+.klima {
+  --klima-green:       #5F6B4A;
+  --klima-green-deep:  #414A31;
+  --klima-tint:        #E7EBDC;
+  --klima-tint-hover:  #DDE3CD;
+  --klima-cream:       #F8F4E8;
+  --klima-text:        #1C1C1C;
+  --klima-text-muted:  rgba(0, 0, 0, 0.62);
+  --klima-border:      rgba(0, 0, 0, 0.09);
+}
+
+/* ── Chip ─────────────────────────────── */
+.klima-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  color: var(--klima-green-deep);
+  background: var(--klima-tint);
+  border: none;
+  border-radius: 100px;
+  padding: 7px 14px 7px 12px;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.klima-chip:hover {
+  background: var(--klima-tint-hover);
+}
+
+.klima-chip:focus-visible {
+  outline: 2px solid var(--klima-green);
+  outline-offset: 2px;
+}
+
+.klima-chip svg {
+  flex-shrink: 0;
+  color: var(--klima-green);
+}
+
+/* Chipen sitter i suitableFor-lista på pakkesidene */
+.pkg-suitable-list .klima-chip {
+  font-size: 13px;
+}
+
+/* ── Modal ────────────────────────────── */
+.klima-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(28, 24, 18, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: klima-fade 200ms ease;
+}
+
+@keyframes klima-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.klima-modal {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: min(88vh, 760px);
+  overflow-y: auto;
+  background: var(--klima-cream);
+  border-radius: 14px;
+  padding: clamp(28px, 4vw, 44px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28);
+  animation: klima-rise 240ms cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+@keyframes klima-rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.klima-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 100px;
+  background: transparent;
+  color: var(--klima-text-muted);
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.klima-modal-close:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.klima-modal-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--klima-green);
+}
+
+.klima-modal-title {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: clamp(1.75rem, 3.4vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 14px 0 0;
+  color: var(--klima-text);
+}
+
+.klima-modal-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--klima-text-muted);
+  margin: 16px 0 0;
+}
+
+/* Tall-liste */
+.klima-figures {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--klima-border);
+}
+
+.klima-figure {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--klima-border);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+}
+
+.klima-figure-route {
+  color: var(--klima-text-muted);
+}
+
+.klima-figure-value {
+  font-weight: 500;
+  color: var(--klima-text);
+  white-space: nowrap;
+}
+
+.klima-figure.is-finse .klima-figure-route,
+.klima-figure.is-finse .klima-figure-value {
+  color: var(--klima-green-deep);
+  font-weight: 500;
+}
+
+.klima-figures-caption {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.45);
+  margin: 12px 0 0;
+}
+
+.klima-modal-foot {
+  margin: 26px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.klima-link {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--klima-green-deep);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(95, 107, 74, 0.35);
+  padding-bottom: 2px;
+  transition: border-color 150ms ease;
+}
+
+.klima-link:hover {
+  border-color: var(--klima-green-deep);
+}
+
+/* ── Forsideseksjon ───────────────────── */
+.klima-band {
+  background: #f5f2e8;
+  padding: clamp(40px, 6vw, 72px) 0;
+}
+
+.klima-band-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-xl, 4rem);
+}
+
+.klima-band-card {
+  max-width: 880px;
+  margin: 0 auto;
+  background: #FCFAF3;
+  border: 1px solid var(--klima-border);
+  border-radius: 14px;
+  padding: clamp(28px, 4vw, 48px);
+  text-align: center;
+}
+
+.klima-band-statement {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: clamp(1.5rem, 3.2vw, 2.15rem);
+  font-weight: 400;
+  line-height: 1.28;
+  color: #2c2a25;
+  margin: 18px 0 0;
+  text-wrap: balance;
+}
+
+.klima-band-statement em {
+  font-style: normal;
+  color: var(--klima-green-deep);
+}
+
+.klima-band-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(44, 42, 37, 0.62);
+  max-width: 560px;
+  margin: 16px auto 0;
+}
+
+.klima-band-actions {
+  margin: 24px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.klima-band-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--klima-cream);
+  background: var(--klima-green);
+  border: none;
+  border-radius: 100px;
+  padding: 12px 22px;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.klima-band-btn:hover {
+  background: var(--klima-green-deep);
+}
+
+@media (max-width: 640px) {
+  .klima-band-inner {
+    padding: 0 var(--space-md, 1.5rem);
+  }
+
+  .klima-figure {
+    flex-direction: column;
+    gap: 2px;
+  }
+}

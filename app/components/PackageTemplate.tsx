@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Header from './Header'
+import Footer from './Footer'
 import { Icon, IconName } from './PackageIcons'
+import { KlimaChip } from './Klima'
 import './package.css'
 
 export interface PackageItem {
@@ -109,7 +111,7 @@ export default function PackageTemplate(data: PackageData) {
 
   return (
     <div className="pkg-page">
-      <Header variant="light" showBackButton={false} />
+      <Header variant="light" showBackButton={false} faqHref="/#faq" />
 
       {/* ── Photo grid hero ── */}
       <section className="pkg-gallery-hero">
@@ -224,13 +226,14 @@ export default function PackageTemplate(data: PackageData) {
               <div className="pkg-title-block">
                 <p className="pkg-eyebrow">{data.subtitle}</p>
                 <h1 className="pkg-title">{data.title}</h1>
-                {data.suitableFor.length > 0 && (
-                  <ul className="pkg-suitable-list">
-                    {data.suitableFor.map(s => (
-                      <li key={s} className="pkg-suitable-chip">{s}</li>
-                    ))}
-                  </ul>
-                )}
+                <ul className="pkg-suitable-list">
+                  <li>
+                    <KlimaChip />
+                  </li>
+                  {data.suitableFor.map(s => (
+                    <li key={s} className="pkg-suitable-chip">{s}</li>
+                  ))}
+                </ul>
               </div>
 
               {/* Intro */}
@@ -377,17 +380,7 @@ export default function PackageTemplate(data: PackageData) {
       </section>
 
       {/* ── Footer ── */}
-      <footer id="kontakt" className="pkg-footer">
-        <div className="pkg-inner pkg-footer-inner">
-          <img src="/assets/logo/logo.png" alt="Hotel Finse1222" className="pkg-footer-logo" />
-          <p className="pkg-footer-tagline">Norges høyestliggende hotell · 1222 moh.</p>
-          <div className="pkg-footer-meta">
-            <Link href="/configurator" className="pkg-footer-link">Start planleggingen →</Link>
-            <span className="pkg-footer-divider">·</span>
-            <span className="pkg-footer-note">resepsjon@hotelfinse1222.no · +47 56 52 71 00</span>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

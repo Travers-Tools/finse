@@ -5,6 +5,7 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import ContentSections from './components/ContentSections'
 import PackagesSection from './components/PackagesSection'
+import KlimaSection from './components/Klima'
 import TestimonialsSection from './components/TestimonialsSection'
 import TeamSection from './components/TeamSection'
 import Footer from './components/Footer'
@@ -17,6 +18,7 @@ export default function Home() {
       <Hero />
       {/* <ContentSections /> */}
       <PackagesSection />
+      <KlimaSection />
       <TestimonialsSection />
       <TeamSection />
       <FAQSection />

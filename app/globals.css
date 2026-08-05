@@ -413,10 +413,13 @@ a {
     font-size: 0.7rem;
     font-weight: 500;
     letter-spacing: 0.1em;
+    line-height: 1;
     color: rgba(255, 255, 255, 0.85);
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(4px);
-    padding: 0.4rem 0.75rem;
+    /* Sporingen legges også til etter siste bokstav. Trekker den fra
+       høyre padding, ellers blir pilla optisk skjev. */
+    padding: 0.5rem calc(0.75rem - 0.1em) 0.5rem 0.75rem;
     border-radius: 6px;
 }
 
@@ -926,7 +929,7 @@ a {
     inset: 0;
     background-size: cover;
     background-position: center 40%;
-    opacity: 0.18;
+    opacity: 0.11;
     filter: grayscale(100%);
 }
 
@@ -946,12 +949,16 @@ a {
     z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--space-2xl);
+    gap: clamp(2.5rem, 5vw, 4rem);
+    /* Samme mål som pakkegridet, så footeren står kant i kant med kortene
+       over. Sitat, kolonner og bunnrad deler denne bredden. */
+    max-width: 1600px;
+    padding: 0 var(--space-lg);
 }
 
 .footer-contact-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-xl);
 }
 
@@ -963,10 +970,10 @@ a {
 
 .footer-col-title {
     font-family: var(--font-serif);
-    font-size: 1.25rem;
+    font-size: 1.05rem;
     font-weight: 500;
     color: var(--color-cream);
-    margin: 0 0 0.6rem;
+    margin: 0 0 0.5rem;
     line-height: 1.2;
 }
 
@@ -1002,19 +1009,21 @@ a {
 }
 
 .footer-quote {
-    max-width: 720px;
-    margin: 0 auto;
+    max-width: 1000px;
+    /* Ekstra luft ned mot kolonnene, utover den felles gapen i footer-inner */
+    margin: 0 auto clamp(1.5rem, 4vw, 3rem);
     text-align: center;
 }
 
 .footer-quote-text {
     font-family: var(--font-serif);
-    font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
     font-weight: 400;
     font-style: italic;
     color: var(--color-cream);
-    line-height: 1.5;
-    margin: 0 0 0.75rem;
+    line-height: 1.4;
+    margin: 0 0 0.9rem;
+    text-wrap: balance;
 }
 
 .footer-quote-source {
@@ -1030,20 +1039,72 @@ a {
     justify-content: space-between;
     align-items: center;
     gap: var(--space-md);
-    padding-top: var(--space-lg);
 }
 
-.footer-logo {
-    height: 32px;
-    width: auto;
+.footer-actions {
+    /* Felles høyde så ikonene og knappen står som én rad */
+    --footer-action-h: 38px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--footer-action-h);
+    height: var(--footer-action-h);
+    border-radius: 100px;
+    color: var(--color-cream);
+    opacity: 0.55;
+    transition: opacity var(--transition-fast), background var(--transition-fast);
+}
+
+.footer-social:hover {
+    opacity: 1;
+    background: rgba(44, 42, 37, 0.06);
+}
+
+.footer-totop {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    height: var(--footer-action-h);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-cream);
+    background: transparent;
+    border: 1px solid rgba(44, 42, 37, 0.16);
+    border-radius: 100px;
+    padding: 0 0.9rem;
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.footer-totop:hover {
+    background: rgba(44, 42, 37, 0.05);
+    border-color: rgba(44, 42, 37, 0.3);
+}
+
+.footer-totop svg {
     opacity: 0.7;
 }
 
 .footer-copyright {
     font-family: var(--font-sans);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--color-text-muted);
     letter-spacing: 0.02em;
+    margin: 0;
 }
 
 @media (max-width: 768px) {
