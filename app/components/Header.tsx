@@ -21,7 +21,10 @@ export default function Header({ variant = 'light', showBackButton = false, faqH
         <img src="/assets/logo/image.png" alt="Hotel Finse1222" className="logo-img" />
       </Link>
       <nav className="nav nav-right">
-        <a href={faqHref} className="btn-planlegg">Ofte stilte spørsmål</a>
+        <a href={faqHref} className="btn-planlegg">
+          <span className="label-full">Ofte stilte spørsmål</span>
+          <span className="label-short">Spørsmål</span>
+        </a>
       </nav>
     </header>
   )

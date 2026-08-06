@@ -152,6 +152,10 @@ a {
     text-decoration: none;
 }
 
+.btn-planlegg .label-short {
+    display: none;
+}
+
 .btn-planlegg:hover {
     background: rgba(0, 0, 0, 0.06);
     border-color: rgba(0, 0, 0, 0.25);
@@ -900,8 +904,10 @@ a {
 }
 
 @media (max-width: 900px) {
+    /* Ikke prosent: .testimonial-track har width: max-content, så en
+       prosentbasert basis kan ikke løses og kortet blir innholdsbredt. */
     .testimonial-card {
-        flex: 0 0 calc(100% - var(--space-md));
+        flex: 0 0 min(320px, 82vw);
     }
 }
 
@@ -1988,21 +1994,31 @@ a {
 
 @media (max-width: 768px) {
     .header {
-        padding: var(--space-md);
-        gap: var(--space-sm);
+        padding: 8px var(--space-sm);
+        gap: var(--space-xs);
     }
-    
+
+    /* Full merkelapp får ikke plass på 390px og brøt over tre linjer,
+       som dro headeren opp i 132px. */
+    .btn-planlegg .label-full { display: none; }
+    .btn-planlegg .label-short { display: inline; }
+
     .btn-planlegg {
-        padding: 0.6rem 1.25rem;
-        font-size: 0.8rem;
-    }
-    
-    .nav-link {
-        font-size: 0.8rem;
-    }
-    
-    .logo-img {
         height: 40px;
+        padding: 0 0.85rem;
+        font-size: 0.78rem;
+        white-space: nowrap;
+    }
+
+    .nav-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 40px;
+        font-size: 0.8rem;
+    }
+
+    .logo-img {
+        height: 30px;
     }
     
     .hero-content {
