@@ -19,7 +19,7 @@ export default function PackagesSection() {
       image: '/assets/images/akt-fokus-vidda.jpg',
       tag: 'Ledergrupper',
       title: 'Fokus på vidda',
-      description: 'For team som trenger tid til de viktige samtalene – langt unna alt som maser.',
+      description: 'For team som trenger tid til de viktige samtalene, langt unna alt som maser.',
       linkText: 'Utforsk'
     },
     {
@@ -28,7 +28,7 @@ export default function PackagesSection() {
       imagePosition: 'center 20%',
       tag: 'Eventyr',
       title: 'Ekspedisjonstur',
-      description: 'Dager fulle av turer, ski eller Rallarvegen – og kveldene foran peisen.',
+      description: 'Dager fulle av turer, ski eller sykling. Kvelder foran peisen.',
       linkText: 'Utforsk'
     },
     {
