@@ -925,9 +925,19 @@ a {
 
 /* Footer */
 .footer {
+    /* Footeren er samme komponent overalt. --footer-bg lar den ta farge av
+       siden den står på, så toppkanten aldri får en synlig skjøt. */
+    --footer-bg: var(--color-bg-dark);
     position: relative;
     padding: var(--space-2xl) 0 var(--space-lg);
     overflow: hidden;
+    background: var(--footer-bg);
+}
+
+/* Pakke- og klimasidene bruker en litt lysere krem enn forsiden. */
+.pkg-page .footer,
+.klima-page .footer {
+    --footer-bg: #f8f4e8;
 }
 
 .footer-bg {
@@ -943,10 +953,10 @@ a {
     position: absolute;
     inset: 0;
     background: linear-gradient(to bottom,
-        var(--color-bg-dark) 0%,
+        var(--footer-bg) 0%,
         transparent 25%,
         transparent 75%,
-        var(--color-bg-dark) 100%
+        var(--footer-bg) 100%
     );
 }
 
