@@ -139,11 +139,16 @@ html { scroll-behavior: smooth; }
 .reise-hero-overlay {
   position: absolute;
   inset: 0;
+  /* Eyebrow-teksten ligger rundt 40 % ned, tittelen til ca. 74 %. Derfor
+     ligger knekkpunktene på 18 og 42 og ikke lenger nede — målt kontrast
+     mot hvit gikk fra 4.05:1 til 7.23:1 for eyebrow. Toppen holdes
+     lettere, ellers kveles bildet. */
   background: linear-gradient(
     to bottom,
-    rgba(0,0,0,0.30) 0%,
-    rgba(0,0,0,0.10) 35%,
-    rgba(0,0,0,0.55) 100%
+    rgba(0,0,0,0.42) 0%,
+    rgba(0,0,0,0.22) 18%,
+    rgba(0,0,0,0.52) 42%,
+    rgba(0,0,0,0.85) 100%
   );
 }
 
@@ -173,7 +178,7 @@ html { scroll-behavior: smooth; }
   font-family: 'DM Sans', sans-serif;
   font-size: clamp(14px, 1.4vw, 17px);
   font-weight: 500;
-  color: rgba(255,255,255,0.78);
+  color: rgba(255,255,255,0.88);
   letter-spacing: 0.01em;
   line-height: 1.4;
   margin: 0 0 14px;
