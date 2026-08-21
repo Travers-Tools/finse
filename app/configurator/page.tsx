@@ -219,7 +219,7 @@ export default function Configurator() {
     localStorage.setItem(id, JSON.stringify(payload))
 
     try {
-      const res = await fetch('/api/foresporsel', {
+      const res = await fetch('/api/foresporsel/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

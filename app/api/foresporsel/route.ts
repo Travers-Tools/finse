@@ -1,83 +1,39 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { readFile } from 'fs/promises'
+import path from 'path'
 import { Lettermint } from 'lettermint'
+import {
+  LOGO_CID,
+  hotellMail,
+  hotellTekst,
+  kundeMail,
+  kundeTekst,
+  type Payload,
+} from './epost'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-const HOTEL_EPOST = 'events@hotelfinse1222.no'
+// Overstyres med FORESPORSEL_MOTTAKER, f.eks. ved testing.
+const HOTEL_EPOST = process.env.FORESPORSEL_MOTTAKER || 'events@hotelfinse1222.no'
 // Avsender må ligge på et domene som er verifisert i Lettermint.
 const FRA = 'Hotel Finse1222 <booking@hotelfinse1222.no>'
 
-type Payload = {
-  anledning?: string
-  dato?: string
-  varighet?: string
-  moteromVarighet?: string
-  antall?: string
-  romtyper?: string[]
-  aktiviteter?: string[]
-  navn?: string
-  bedrift?: string
-  epost?: string
-  telefon?: string
-  merknad?: string
-  id?: string
-}
-
-const esc = (s: string) =>
-  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-
-const rad = (label: string, verdi?: string) =>
-  verdi && verdi.trim()
-    ? `<tr><td style="padding:6px 16px 6px 0;color:#6b6b6b;vertical-align:top;white-space:nowrap">${esc(label)}</td><td style="padding:6px 0;color:#1a1a1a">${esc(verdi)}</td></tr>`
-    : ''
-
-function hotellMail(p: Payload) {
-  const rader = [
-    rad('Navn', p.navn),
-    rad('Bedrift', p.bedrift),
-    rad('E-post', p.epost),
-    rad('Telefon', p.telefon),
-    rad('Anledning', p.anledning),
-    rad('Dato', p.dato),
-    rad('Varighet', p.varighet),
-    rad('Møterom', p.moteromVarighet),
-    rad('Antall gjester', p.antall),
-    rad('Romtyper', p.romtyper?.join(', ')),
-    rad('Aktiviteter', p.aktiviteter?.join(', ')),
-    rad('Merknad', p.merknad),
-  ].join('')
-
-  return `
-  <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a">
-    <h2 style="font-size:18px;margin:0 0 4px">Ny forespørsel fra konfiguratoren</h2>
-    <p style="color:#6b6b6b;font-size:13px;margin:0 0 20px">Innsendt via hotelfinse1222.no</p>
-    <table style="border-collapse:collapse;font-size:14px;width:100%">${rader}</table>
-  </div>`
-}
-
-function kundeMail(p: Payload) {
-  const oppsummering = [
-    rad('Anledning', p.anledning),
-    rad('Dato', p.dato),
-    rad('Varighet', p.varighet),
-    rad('Antall gjester', p.antall),
-    rad('Romtyper', p.romtyper?.join(', ')),
-    rad('Aktiviteter', p.aktiviteter?.join(', ')),
-  ].join('')
-
-  return `
-  <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:560px;margin:0 auto;color:#1a1a1a">
-    <h2 style="font-size:18px;margin:0 0 12px">Takk for forespørselen, ${esc(p.navn || '')}</h2>
-    <p style="font-size:14px;line-height:1.6;color:#333;margin:0 0 16px">
-      Vi har mottatt ønskene dine og tar kontakt innen én arbeidsdag. Her er det du sendte oss:
-    </p>
-    <table style="border-collapse:collapse;font-size:14px;width:100%">${oppsummering}</table>
-    <p style="font-size:14px;line-height:1.6;color:#333;margin:20px 0 0">
-      Har du spørsmål i mellomtiden, svar gjerne på denne e-posten eller ring oss på +47 56 52 71 00.
-    </p>
-    <p style="font-size:14px;color:#333;margin:16px 0 0">Vi gleder oss til å ta imot dere.<br/>Hilsen oss på Hotel Finse1222</p>
-  </div>`
+/**
+ * Logoen legges ved i selve e-posten framfor å lenkes til. Da er den ikke
+ * avhengig av at appens domene lever videre, og den vises også hos mottakere
+ * som blokkerer eksterne bilder. Leses én gang og gjenbrukes.
+ */
+let logoBase64: string | null = null
+async function hentLogo() {
+  if (logoBase64 === null) {
+    // Mørk variant: logo.png er laget for mørk bakgrunn og forsvinner mot
+    // kremfargen i e-posten. Webben løser det med et CSS-filter, som ikke
+    // finnes i e-postklienter.
+    const fil = path.join(process.cwd(), 'public', 'assets', 'logo', 'logo-mork.png')
+    logoBase64 = (await readFile(fil)).toString('base64')
+  }
+  return logoBase64
 }
 
 export async function POST(req: NextRequest) {
@@ -99,28 +55,37 @@ export async function POST(req: NextRequest) {
 
   const lettermint = new Lettermint({ apiToken })
 
+  // Til hotellet — med reply-to satt til kunden. Denne må gå gjennom;
+  // feiler den, har ingen fått forespørselen.
   try {
-    // Til hotellet — med reply-to satt til kunden
     await lettermint.email
       .from(FRA)
       .to(HOTEL_EPOST)
       .replyTo(p.epost)
       .subject(`Ny forespørsel${p.navn ? ` – ${p.navn}` : ''}${p.bedrift ? ` (${p.bedrift})` : ''}`)
       .html(hotellMail(p))
+      .text(hotellTekst(p))
       .send()
+  } catch (err) {
+    console.error('Lettermint-feil (hotellvarsel):', err)
+    return NextResponse.json({ error: 'Kunne ikke sende e-post' }, { status: 502 })
+  }
 
-    // Bekreftelse til kunden
+  // Bekreftelse til kunden. Hotellet har allerede fått forespørselen på dette
+  // punktet, så en feil her skal ikke be kunden sende inn på nytt.
+  try {
     await lettermint.email
       .from(FRA)
       .to(p.epost)
       .replyTo(HOTEL_EPOST)
       .subject('Vi har mottatt forespørselen din – Hotel Finse1222')
       .html(kundeMail(p))
+      .text(kundeTekst(p))
+      .attach('logo.png', await hentLogo(), LOGO_CID)
       .send()
-
-    return NextResponse.json({ ok: true })
   } catch (err) {
-    console.error('Lettermint-feil:', err)
-    return NextResponse.json({ error: 'Kunne ikke sende e-post' }, { status: 502 })
+    console.error('Lettermint-feil (kundebekreftelse):', err)
   }
+
+  return NextResponse.json({ ok: true })
 }
