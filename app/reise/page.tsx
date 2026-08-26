@@ -173,7 +173,7 @@ export default function ReisePage() {
         <div className={`reise-hero-body ${heroLoaded ? 'is-ready' : ''}`}>
           <div className="reise-inner">
             <p className="reise-hero-subtitle">
-              {['Forespørsel', data.anledning, '1222 moh.'].filter(Boolean).join(' · ')}
+              {data.anledning ? `Forespørsel på ${data.anledning}` : 'Forespørsel'} · 1222 moh.
             </p>
             <h1 className="reise-hero-title">
               {data.bedrift ? `${data.bedrift} på Hotel Finse1222` : 'Deres opphold på Hotel Finse1222'}
