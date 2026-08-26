@@ -184,7 +184,7 @@ export function hotellTekst(p: Payload) {
    Her er det merkevaren møter dem. Logo, rolig serif, sitatet fra
    1914 nederst — samme som i footeren på nettsiden. */
 
-export function kundeMail(p: Payload) {
+export function kundeMail(p: Payload, lenke?: string) {
   const oppsummering: Rad[] = [
     ['Anledning', p.anledning],
     ['Dato', p.dato],
@@ -224,7 +224,23 @@ export function kundeMail(p: Payload) {
 
       ${tabell(oppsummering)}
 
-      <div style="height:10px;line-height:10px;font-size:0">&nbsp;</div>
+      ${lenke ? `
+      <div style="height:22px;line-height:22px;font-size:0">&nbsp;</div>
+
+      <p style="margin:0 0 14px;font-family:${SANS};font-size:15px;line-height:1.7;color:${F.tekst2}">
+        Her er foresp&oslash;rselen oppsummert p&aring; &eacute;n side, klar til &aring; dele med kollegaer.
+      </p>
+
+      <!-- Knapp bygget som tabell: Outlook rendrer ikke padding p&aring; <a>. -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+        <tr>
+          <td style="background:${F.tekst};border-radius:6px">
+            <a href="${esc(lenke)}" style="display:inline-block;padding:13px 26px;font-family:${SANS};font-size:15px;line-height:1;color:${F.kort};text-decoration:none">Se oppsummeringen</a>
+          </td>
+        </tr>
+      </table>` : ''}
+
+      <div style="height:${lenke ? 26 : 10}px;line-height:${lenke ? 26 : 10}px;font-size:0">&nbsp;</div>
       ${strek}
       <div style="height:20px;line-height:20px;font-size:0">&nbsp;</div>
 
@@ -249,7 +265,7 @@ export function kundeMail(p: Payload) {
   )
 }
 
-export function kundeTekst(p: Payload) {
+export function kundeTekst(p: Payload, lenke?: string) {
   const linjer = rader([
     ['Anledning', p.anledning],
     ['Dato', p.dato],
@@ -267,6 +283,11 @@ export function kundeTekst(p: Payload) {
     'Vi kommer tilbake med et forslag til en skreddersydd pakke innen én arbeidsdag.',
     '',
     ...linjer,
+    ...(lenke ? [
+      '',
+      'Her er forespørselen oppsummert på én side, klar til å dele med kollegaer:',
+      lenke,
+    ] : []),
     '',
     'Har dere spørsmål i mellomtiden, svar gjerne på denne e-posten eller ring',
     'oss på +47 56 52 71 00.',
