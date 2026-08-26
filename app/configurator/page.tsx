@@ -507,6 +507,7 @@ export default function Configurator() {
                       >
                         {svg}
                         <span className="konfig-room-name">{id}</span>
+                        {form.romtyper.includes(id) && <span className="konfig-room-check"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>}
                       </button>
                     ))}
                   </div>
@@ -537,6 +538,7 @@ export default function Configurator() {
                       >
                         {svg}
                         <span className="konfig-room-name">{id}</span>
+                        {form.moteromVarighet === id && <span className="konfig-room-check"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>}
                       </button>
                     ))}
                   </div>

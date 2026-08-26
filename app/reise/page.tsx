@@ -173,7 +173,7 @@ export default function ReisePage() {
         <div className={`reise-hero-body ${heroLoaded ? 'is-ready' : ''}`}>
           <div className="reise-inner">
             <p className="reise-hero-subtitle">
-              {data.anledning} · 1222 moh.
+              {['Forespørsel', data.anledning, '1222 moh.'].filter(Boolean).join(' · ')}
             </p>
             <h1 className="reise-hero-title">
               {data.bedrift ? `${data.bedrift} på Hotel Finse1222` : 'Deres opphold på Hotel Finse1222'}
@@ -193,6 +193,9 @@ export default function ReisePage() {
       {/* ── Intro ── */}
       <section className="reise-intro" id="intro">
         <div className="reise-inner">
+          <p className="reise-intro-status">
+            Dette er forespørselen deres slik den ble sendt inn. Vi kommer tilbake med et forslag til pakke innen én arbeidsdag.
+          </p>
           <p className="reise-intro-body">
             Velkommen til Hotel Finse1222, der jernbanen slutter og vidda begynner. Norges høyestliggende fjellstasjon, omgitt av Hardangerjøkulen og stille kilometer med is og lys. Her finnes ingen biler, ingen støy. Bare det som virkelig betyr noe.
           </p>
@@ -203,8 +206,8 @@ export default function ReisePage() {
       {details.length > 0 && (
         <section className="reise-facts-section">
           <div className="reise-inner">
-            <span className="reise-eyebrow">Reisen</span>
-            <h2 className="reise-section-title">Det dere har valgt</h2>
+            <span className="reise-eyebrow">Forespørselen</span>
+            <h2 className="reise-section-title">Det dere har bedt om</h2>
             <ul className="reise-facts-list">
               {details.map(d => {
                 const icon = factIcon(d.label)

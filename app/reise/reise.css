@@ -208,6 +208,17 @@ html { scroll-behavior: smooth; }
   padding: var(--section-pad) 0 var(--section-tight);
 }
 
+.reise-intro-status {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(14px, 1.3vw, 16px);
+  font-weight: 500;
+  color: var(--text);
+  opacity: 0.62;
+  line-height: 1.5;
+  margin: 0 0 22px;
+  max-width: 560px;
+}
+
 .reise-intro-body {
   font-family: 'Crimson Pro', Georgia, serif;
   font-size: clamp(24px, 2.6vw, 34px);
