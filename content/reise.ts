@@ -140,14 +140,21 @@ export const reise: Record<Lang, {
  */
 export const aktivitetData: Record<string, { bilde: string; desc: Record<Lang, string> }> = {
   'Fottur i området': {
-    bilde: '/assets/images/akt-fottur-kart.jpg',
+    bilde: '/assets/images/akt-fottur-sti.jpg',
     desc: {
       no: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.',
       en: 'June to October. A welcome break from the meeting room. We choose the destination to suit your schedule and the conditions.',
     },
   },
+  'Sykkeltur i området': {
+    bilde: '/assets/images/akt-sykkel-omraadet.jpg',
+    desc: {
+      no: 'Juli til oktober. Vi tilpasser turmål etter tid og ønske. Vi har sykler til utlån.',
+      en: 'July to October. We adapt the route to your time and wishes. Bikes are available to borrow.',
+    },
+  },
   'Sykkeltur på Rallarvegen': {
-    bilde: '/assets/images/akt-rallarvegen.jpg',
+    bilde: '/assets/images/akt-rallarvegen-sol.jpg',
     desc: {
       no: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Vi tilpasser turen etter tidsskjema og egne ønsker. Sykler og hjelmer leies fra hotellet.',
       en: 'July to September. An iconic route with views across the Hardangervidda plateau. We adapt the ride to your schedule and wishes. Bikes and helmets can be hired from the hotel.',
@@ -181,18 +188,11 @@ export const aktivitetData: Record<string, { bilde: string; desc: Record<Lang, s
       en: 'January to May. Ski sailing is an exhilarating way to travel across the terrain around Finse. The wind does the work, and the technique is fairly easy to pick up. A few hours on Lake Finsevann leave everyone with a real sense of achievement. We hire out all the equipment you need.',
     },
   },
-  'Stjernekikking': {
-    bilde: '/assets/images/akt-stjerner.jpg',
-    desc: {
-      no: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.',
-      en: 'October to March. With almost no artificial light and a wide, open sky, Finse offers exceptional conditions for experiencing the stars, the darkness and the shifting night sky. We work with an astronomy guide who can show you the sky in a whole new way.',
-    },
-  },
-  'Morgenbad i Finsevann': {
+  'Badstue og bading': {
     bilde: '/assets/images/akt-morgenbad.jpg',
     desc: {
-      no: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.',
-      en: 'A morning swim, a fire pit and a hot drink, with a view of the blue ice of Hardangerjøkulen. A simple experience with a lasting effect.',
+      no: 'Hele året. Badstue og bading i Finsevann, eller snøbading om vinteren. Bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen.',
+      en: 'All year. Sauna and a swim in Lake Finsevann, or a roll in the snow in winter. A fire pit and something hot to drink, with a view of the blue ice on Hardangerjøkulen.',
     },
   },
   'Sidersmaking': {

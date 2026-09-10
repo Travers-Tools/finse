@@ -24,7 +24,7 @@ html { scroll-behavior: smooth; }
 .reise-page {
   background: var(--brown-dark);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
 }
 
 /* Tekstreveals — bildene står stille, teksten glir inn */
@@ -94,7 +94,7 @@ html { scroll-behavior: smooth; }
 ══════════════════════════════════════ */
 .reise-eyebrow {
   display: block;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
   color: rgba(242, 235, 217, 0.5);
@@ -175,7 +175,7 @@ html { scroll-behavior: smooth; }
 }
 
 .reise-hero-subtitle {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: clamp(14px, 1.4vw, 17px);
   font-weight: 500;
   color: rgba(255,255,255,0.88);
@@ -209,7 +209,7 @@ html { scroll-behavior: smooth; }
 }
 
 .reise-intro-status {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: clamp(14px, 1.3vw, 16px);
   font-weight: 500;
   color: var(--text);
@@ -270,7 +270,7 @@ html { scroll-behavior: smooth; }
 }
 
 .reise-facts-value {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: clamp(14px, 1.4vw, 16px);
   color: var(--text-muted);
   text-align: right;
@@ -289,7 +289,7 @@ html { scroll-behavior: smooth; }
 }
 
 .reise-program-desc {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: clamp(16px, 1.5vw, 18px);
   color: var(--text-muted);
   line-height: 1.7;
@@ -372,7 +372,7 @@ html { scroll-behavior: smooth; }
 }
 
 .reise-act-row-desc {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 15px;
   color: var(--text-muted);
   line-height: 1.7;
@@ -406,7 +406,7 @@ html { scroll-behavior: smooth; }
 }
 
 .reise-quote-caption {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 12px;
   color: rgba(242, 235, 217, 0.4);
   margin-top: 12px;
@@ -430,7 +430,7 @@ html { scroll-behavior: smooth; }
 }
 
 .reise-quote-attr {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   font-style: normal;
   color: var(--brown-mid);
@@ -439,7 +439,7 @@ html { scroll-behavior: smooth; }
 }
 
 .reise-quote-context {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 16px;
   color: var(--text-muted);
   line-height: 1.7;
@@ -490,7 +490,7 @@ html { scroll-behavior: smooth; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 500;
   border: none;
@@ -572,7 +572,7 @@ html { scroll-behavior: smooth; }
 }
 
 .reise-footer-link {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   color: rgba(255,255,255,0.7);
   text-decoration: none;
@@ -586,7 +586,7 @@ html { scroll-behavior: smooth; }
 }
 
 .reise-footer-note {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   color: rgba(255,255,255,0.5);
 }
@@ -614,7 +614,7 @@ html { scroll-behavior: smooth; }
 }
 
 .reise-empty-text {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 15px;
   color: var(--text-muted);
   margin: 0;

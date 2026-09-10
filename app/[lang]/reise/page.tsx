@@ -89,6 +89,9 @@ interface TripData {
 
 export default function ReisePage() {
   const [data, setData] = useState<TripData | null>(null)
+  // Data leses først på klienten. Uten dette blinker tom-tilstanden i et
+  // øyeblikk før forespørselen vises.
+  const [klar, setKlar] = useState(false)
   const [copied, setCopied] = useState(false)
   const [heroLoaded, setHeroLoaded] = useState(false)
   // Språket følger ruten, ikke forespørselen. Lenken avgjør.
@@ -101,22 +104,29 @@ export default function ReisePage() {
       try {
         const decoded = decodeURIComponent(escape(atob(hash.slice(3))))
         setData(JSON.parse(decoded))
+        setKlar(true)
         return
       } catch { /* fall through to localStorage */ }
     }
     const params = new URLSearchParams(window.location.search)
     const id = params.get('id')
-    if (!id) return
-    const raw = localStorage.getItem(id)
-    if (raw) {
-      try { setData(JSON.parse(raw)) } catch { /* noop */ }
+    if (id) {
+      const raw = localStorage.getItem(id)
+      if (raw) {
+        try { setData(JSON.parse(raw)) } catch { /* noop */ }
+      }
     }
+    setKlar(true)
   }, [])
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(window.location.href)
     setCopied(true)
     setTimeout(() => setCopied(false), 2500)
+  }
+
+  if (!klar) {
+    return <div className="reise-page" aria-busy="true" />
   }
 
   if (!data) {
@@ -234,7 +244,7 @@ export default function ReisePage() {
                 <article key={navn} className="reise-act-row">
                   <div className="reise-act-row-inner">
                     <div className="reise-act-row-img">
-                      <img src={act?.bilde || '/assets/images/akt-stjerner.jpg'} alt={visAktivitet(navn, lang)} />
+                      <img src={act?.bilde || '/assets/images/landskap.jpg'} alt={visAktivitet(navn, lang)} />
                     </div>
                     <div className="reise-act-row-body">
                       <span className="reise-act-row-num">{String(i + 1).padStart(2, '0')}</span>

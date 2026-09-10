@@ -9,8 +9,8 @@ export const faq: Record<Lang, {
 }> = {
   no: {
     title: ['Disse spørsmålene', 'dukker gjerne opp.'],
-    avatarAlt: 'Siv',
-    avatarName: 'Siv',
+    avatarAlt: 'Hotel Finse1222',
+    avatarName: 'Vertskapet på Hotel Finse1222',
     avatarEmail: 'events@hotelfinse1222.no',
     items: [
       {
@@ -41,8 +41,8 @@ export const faq: Record<Lang, {
   },
   en: {
     title: ['Questions we are', 'often asked.'],
-    avatarAlt: 'Siv',
-    avatarName: 'Siv',
+    avatarAlt: 'Hotel Finse1222',
+    avatarName: 'Your hosts at Hotel Finse1222',
     avatarEmail: 'events@hotelfinse1222.no',
     items: [
       {

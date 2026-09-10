@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('/assets/images/Finse_configurator_background.jpg') center/cover no-repeat;
+  background: url('/assets/images/vidda-myrull.jpg') center/cover no-repeat;
   background-attachment: fixed;
   z-index: 200;
 }
@@ -49,7 +49,7 @@
   width: 100%;
   max-width: 1060px;
   height: 640px;
-  background: #F8F4E8;
+  background: #fdfbf7;
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.14), 0 4px 16px rgba(0, 0, 0, 0.06);
   overflow: hidden;
@@ -175,7 +175,7 @@
 }
 
 .konfig-title {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 44px;
   font-weight: 500;
   color: #1C1C1C;
@@ -671,7 +671,7 @@
 }
 
 .konfig-summary-title {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 20px;
   font-weight: 500;
   color: #1C1C1C;
@@ -1244,7 +1244,7 @@ div + .konfig-flex-label {
 }
 
 .konfig-act-card-title {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 17px;
   font-weight: 500;
   color: #322A20;
@@ -1391,7 +1391,7 @@ div + .konfig-flex-label {
     right: 0;
     margin: 0 -24px -24px;
     padding: 14px 24px 18px;
-    background: linear-gradient(to bottom, rgba(248, 244, 232, 0) 0%, #F8F4E8 30%);
+    background: linear-gradient(to bottom, rgba(253, 251, 247, 0) 0%, #fdfbf7 30%);
     z-index: 5;
   }
 

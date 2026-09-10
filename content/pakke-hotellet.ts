@@ -4,16 +4,16 @@ import { aktiviteter, morgenbadItem } from './pakker'
 
 const gallery = {
   no: [
-    { src: '/assets/images/hotellet-hero.jpg', alt: 'Restauranten med utsikt i kveldslys' },
+    { src: '/assets/images/hotell-tog.jpg', alt: 'Toget stopper rett ved hotellet' },
     { src: '/assets/images/pkg-hotellet.jpg', alt: 'Hotel Finse1222 sett ovenfra' },
     { src: '/assets/images/lobby-peis.jpg', alt: 'Lobby med peis' },
-    { src: '/assets/images/lounge.jpg', alt: 'Loungeområde med utsikt' },
+    { src: '/assets/images/salong.jpg', alt: 'Salong med utsikt' },
   ],
   en: [
-    { src: '/assets/images/hotellet-hero.jpg', alt: 'The restaurant with a view in evening light' },
+    { src: '/assets/images/hotell-tog.jpg', alt: 'The train stops right by the hotel' },
     { src: '/assets/images/pkg-hotellet.jpg', alt: 'Hotel Finse1222 seen from above' },
     { src: '/assets/images/lobby-peis.jpg', alt: 'Lobby with fireplace' },
-    { src: '/assets/images/lounge.jpg', alt: 'Lounge area with a view' },
+    { src: '/assets/images/salong.jpg', alt: 'Lounge with a view' },
   ],
 }
 
@@ -25,7 +25,7 @@ export const pakkeHotellet: Record<Lang, PackageData> = {
     title: 'Hotellet for dere selv',
     subtitle: 'Når dere fortjener hele Finse',
     intro: 'For jubileer, kickoffs, møter, konferanser og feiringer der dere vil ha Hotel Finse1222 helt for dere selv. Fra 30 til 110 gjester. På Finse er alle samlet, og dere har full frihet til å forme oppholdet slik dere vil.',
-    heroImage: { src: '/assets/images/hotellet-hero.jpg', alt: 'Hotellet for dere selv' },
+    heroImage: { src: '/assets/images/hotell-tog.jpg', alt: 'Hotellet for dere selv' },
     gallery: gallery.no,
     includes: [
       { icon: 'hotel', text: 'Hele hotellet for deres gruppe' },
@@ -39,7 +39,7 @@ export const pakkeHotellet: Record<Lang, PackageData> = {
       {
         label: 'Ankomst',
         items: [
-          { time: '14:00', title: 'Ankomst Finse', desc: 'Velkomstdrink på perrongen eller hotellet.' },
+          { time: '14:00', title: 'Ankomst Finse', desc: 'Velkomstdrink på hotellet.' },
           { time: '15:00', title: 'Innsjekk', desc: 'Hotellet er deres.' },
           { time: '17:00', title: 'Aktivitet', desc: 'Felles tur eller teambuilding.' },
           { time: '19:30', title: 'Festmiddag i restauranten', desc: '' },
@@ -64,7 +64,7 @@ export const pakkeHotellet: Record<Lang, PackageData> = {
         ],
       },
     ],
-    activities: [a.no.sider, a.no.skiseiling, a.no.morgenbad, a.no.stjerner, a.no.quiz, a.no.baalpanne, a.no.rallarmuseet, a.no.framheim],
+    activities: [a.no.sider, a.no.skiseiling, a.no.morgenbad, a.no.quiz, a.no.baalpanne, a.no.rallarmuseet, a.no.framheim],
     ctaNote: 'Kontakt oss for tilgjengelighet og priser.',
   },
   en: {
@@ -72,7 +72,7 @@ export const pakkeHotellet: Record<Lang, PackageData> = {
     title: 'The hotel to yourselves',
     subtitle: 'When you deserve all of Finse',
     intro: 'For anniversaries, kick-offs, meetings, conferences and celebrations where you want Hotel Finse1222 entirely to yourselves. From 30 to 110 guests. At Finse everyone is in one place, and you have complete freedom to shape the stay as you wish.',
-    heroImage: { src: '/assets/images/hotellet-hero.jpg', alt: 'The hotel to yourselves' },
+    heroImage: { src: '/assets/images/hotell-tog.jpg', alt: 'The hotel to yourselves' },
     gallery: gallery.en,
     includes: [
       { icon: 'hotel', text: 'The whole hotel for your group' },
@@ -86,7 +86,7 @@ export const pakkeHotellet: Record<Lang, PackageData> = {
       {
         label: 'Arrival',
         items: [
-          { time: '14:00', title: 'Arrival at Finse', desc: 'Welcome drink on the platform or at the hotel.' },
+          { time: '14:00', title: 'Arrival at Finse', desc: 'Welcome drink at the hotel.' },
           { time: '15:00', title: 'Check-in', desc: 'The hotel is yours.' },
           { time: '17:00', title: 'Activity', desc: 'A walk together or team building.' },
           { time: '19:30', title: 'Celebration dinner in the restaurant', desc: '' },
@@ -111,7 +111,7 @@ export const pakkeHotellet: Record<Lang, PackageData> = {
         ],
       },
     ],
-    activities: [a.en.sider, a.en.skiseiling, a.en.morgenbad, a.en.stjerner, a.en.quiz, a.en.baalpanne, a.en.rallarmuseet, a.en.framheim],
+    activities: [a.en.sider, a.en.skiseiling, a.en.morgenbad, a.en.quiz, a.en.baalpanne, a.en.rallarmuseet, a.en.framheim],
     ctaNote: 'Contact us for availability and prices.',
   },
 }

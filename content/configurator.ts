@@ -168,6 +168,7 @@ export const configurator: Record<Lang, ConfiguratorContent> = {
       subtitle: 'Hotellet leier ut utstyr',
       summer: [
         { id: 'Fottur i området', title: 'Fottur i området', description: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.' },
+        { id: 'Sykkeltur i området', title: 'Sykkeltur i området', description: 'Juli til oktober. Vi tilpasser turmål etter tid og ønske. Vi har sykler til utlån.' },
         { id: 'Sykkeltur på Rallarvegen', title: 'Sykkeltur på Rallarvegen', description: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Vi tilpasser turen etter tidsskjema og egne ønsker. Sykler og hjelmer leies fra hotellet.' },
         { id: 'Brevandring', title: 'Brevandring', description: 'Juli til september. Opplev isbreen på nært hold og utforsk blåisen på Hardangerjøkulen sammen med en erfaren guide.' },
       ],
@@ -175,10 +176,9 @@ export const configurator: Record<Lang, ConfiguratorContent> = {
         { id: 'Skiturer i området', title: 'Skiturer i området', description: 'Januar til mai. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold. Utstyr kan leies av oss.' },
         { id: 'Trugeturer', title: 'Trugeturer', description: 'Desember til mai. Truger er godt egnet for enkle turer i terrenget rundt Finse. Dette er en vinteraktivitet alle kan ta del i. Truger leies av oss.' },
         { id: 'Skiseiling', title: 'Skiseiling', description: 'Januar til mai. Skiseiling er en spennende måte å ferdes på i terrenget rundt Finse. Vinden sørger for fremdriften, og aktiviteten er forholdsvis enkel å lære. Noen timer på Finsevann gir garantert mestringsfølelse. Vi har alt nødvendig utstyr til utleie.' },
-        { id: 'Stjernekikking', title: 'Stjernekikking', description: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.' },
       ],
       allYear: [
-        { id: 'Morgenbad i Finsevann', title: 'Morgenbad i Finsevann', description: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.' },
+        { id: 'Badstue og bading', title: 'Badstue og bading', description: 'Hele året. Badstue og bading i Finsevann, eller snøbading om vinteren. Bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen.' },
         { id: 'Sidersmaking', title: 'Sidersmaking', description: 'Hele året. Bli bedre kjent med siderproduksjonen i Hardanger. Vi smaker og forteller historiene bak de lokale siderne.' },
         { id: 'Bålpanne og after hike/ski/bike', title: 'Bålpanne og after hike/ski/bike', description: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.' },
         { id: 'Finsequiz', title: 'Finsequiz', description: 'Hele året. Kveldsunderholdning foran peisen inne på hotellet. Kategoriene tilpasses, men vi sniker alltid med noen spørsmål om natur og Finse-historie.' },
@@ -305,6 +305,7 @@ export const configurator: Record<Lang, ConfiguratorContent> = {
       subtitle: 'Equipment can be hired from the hotel',
       summer: [
         { id: 'Fottur i området', title: 'Hiking around Finse', description: 'June to October. A welcome break from the meeting room. We choose the route to suit your schedule and the conditions on the day.' },
+        { id: 'Sykkeltur i området', title: 'Cycling in the area', description: 'July to October. We adapt the route to your time and wishes. Bikes are available to borrow.' },
         { id: 'Sykkeltur på Rallarvegen', title: 'Cycling the Rallarvegen', description: 'July to September. A classic route with views across the Hardangervidda plateau. We tailor the ride to your timetable and wishes. Bikes and helmets can be hired from the hotel.' },
         { id: 'Brevandring', title: 'Glacier walk', description: 'July to September. See the glacier up close and explore the blue ice of Hardangerjøkulen with an experienced guide.' },
       ],
@@ -312,10 +313,9 @@ export const configurator: Record<Lang, ConfiguratorContent> = {
         { id: 'Skiturer i området', title: 'Ski touring around Finse', description: 'January to May. A welcome break from the meeting room. We choose the route to suit your schedule and the conditions on the day. Equipment can be hired from us.' },
         { id: 'Trugeturer', title: 'Snowshoe walks', description: 'December to May. Snowshoes are well suited to easy walks in the terrain around Finse, and this is a winter activity everyone can join. Snowshoes can be hired from us.' },
         { id: 'Skiseiling', title: 'Ski sailing', description: 'January to May. Ski sailing is an exciting way to move across the terrain around Finse. The wind does the work, and the basics are fairly easy to pick up. A few hours on the frozen lake at Finse leave everyone with a real sense of achievement. We have all the equipment you need for hire.' },
-        { id: 'Stjernekikking', title: 'Stargazing', description: 'October to March. With almost no artificial light and a wide, open sky, Finse offers exceptional conditions for taking in the stars, the darkness and the shifting night sky. We work with an astronomy guide who can show you the sky in a whole new way.' },
       ],
       allYear: [
-        { id: 'Morgenbad i Finsevann', title: 'Morning swim in the lake', description: 'A morning dip in Finsevann, a fire pit and a hot drink, with a view of the blue ice on Hardangerjøkulen. A simple experience with a big effect.' },
+        { id: 'Badstue og bading', title: 'Sauna and swimming', description: 'All year. Sauna and a swim in Lake Finsevann, or a roll in the snow in winter. A fire pit and something hot to drink, with a view of the blue ice on Hardangerjøkulen.' },
         { id: 'Sidersmaking', title: 'Cider tasting', description: 'All year. Get to know cider making in Hardanger. We taste the local ciders and tell the stories behind them.' },
         { id: 'Bålpanne og after hike/ski/bike', title: 'Fire pit and après hike, ski or bike', description: 'All year. End the day at Framheim by the lake. We light the fire pit and serve snacks and good drinks.' },
         { id: 'Finsequiz', title: 'Finse quiz', description: 'All year. Evening entertainment by the fireplace in the hotel. We adapt the categories to your group, but always slip in a few questions about nature and the history of Finse.' },

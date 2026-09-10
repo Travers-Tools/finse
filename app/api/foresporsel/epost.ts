@@ -15,7 +15,7 @@ import { DEFAULT_LANG, htmlLang, type Lang } from '@/lib/i18n'
 import { kundeEpost, spraakNavn } from '@/content/epost'
 
 const F = {
-  bg:        '#f5f2e8', // --color-bg-dark
+  bg:        '#fdfbf7', // --color-bg-dark
   kort:      '#fcfaf3',
   kant:      '#e3ddcc',
   strek:     '#eae4d4',

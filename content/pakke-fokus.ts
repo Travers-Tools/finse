@@ -4,16 +4,16 @@ import { aktiviteter, morgenbadItem } from './pakker'
 
 const gallery = {
   no: [
-    { src: '/assets/images/R1-04554-0028.jpg', alt: 'Ro ved vinduet mot vidda' },
+    { src: '/assets/images/fokus-hero.jpg', alt: 'Finsevann og Hardangerjøkulen en sommerdag' },
     { src: '/assets/images/salong.jpg', alt: 'Salong med utsikt' },
     { src: '/assets/images/pkg-fokus.jpg', alt: 'Møterom med utsikt mot vidda' },
-    { src: '/assets/images/finse1222__182.JPG', alt: 'Avslapning i solveggen' },
+    { src: '/assets/images/vidda-myrull.jpg', alt: 'Myrull på vidda' },
   ],
   en: [
-    { src: '/assets/images/R1-04554-0028.jpg', alt: 'Quiet by the window facing the plateau' },
+    { src: '/assets/images/fokus-hero.jpg', alt: 'Lake Finsevann and Hardangerjøkulen on a summer day' },
     { src: '/assets/images/salong.jpg', alt: 'Lounge with a view' },
     { src: '/assets/images/pkg-fokus.jpg', alt: 'Meeting room looking out over the plateau' },
-    { src: '/assets/images/finse1222__182.JPG', alt: 'Relaxing in the sun against the wall' },
+    { src: '/assets/images/vidda-myrull.jpg', alt: 'Cotton grass on the plateau' },
   ],
 }
 
@@ -24,12 +24,12 @@ export const pakkeFokus: Record<Lang, PackageData> = {
     slug: '/pakke-fokus-paa-vidda',
     title: 'Fokus på vidda',
     subtitle: 'Tid til de viktige samtalene',
-    intro: 'På Finse er det toget som tar dere frem. Gå på toget i byen, gå av på vidda. Vi møter dere på perrongen. For ledergrupper som trenger fokusert tid sammen, langt unna alt som maser.',
-    heroImage: { src: '/assets/images/R1-04554-0028.jpg', alt: 'Fokus på vidda' },
+    intro: 'På Finse er det toget som tar dere frem. Gå på toget i byen, gå av på vidda. For ledergrupper som trenger fokusert tid sammen, langt unna alt som maser.',
+    heroImage: { src: '/assets/images/fokus-hero.jpg', alt: 'Fokus på vidda' },
     gallery: gallery.no,
     includes: [
       { icon: 'bed', text: 'Overnatting i komfortable rom' },
-      { icon: 'food', text: 'Frokost, lunsj og treretters middag' },
+      { icon: 'food', text: 'Frokost, lunsj og middag basert på sesongens råvarer' },
       { icon: 'briefcase', text: 'Møterom og fasiliteter' },
       { icon: 'fire', text: 'Kvelder ved peisen' },
     ],
@@ -38,10 +38,10 @@ export const pakkeFokus: Record<Lang, PackageData> = {
       {
         label: 'Ankomst og første kveld',
         items: [
-          { time: '12:00', title: 'Ankomst, innsjekk og lunsj', desc: 'Vi møter dere på perrongen. Lunsj serveres etter ønske.' },
+          { time: '12:00', title: 'Ankomst, innsjekk og lunsj', desc: 'Lunsj serveres etter ønske.' },
           { time: '13:00', title: 'Arbeidsøkt', desc: 'Uforstyrret tid i møterommet fram til 15:30.' },
           { time: '15:30', title: 'Aktivitet', desc: 'Kort vandring, sykkeltur, skitur eller tilrettelagt aktivitet.' },
-          { time: '19:00', title: 'Tre retters middag', desc: 'Med utsikt mot Hardangerjøkulen.' },
+          { time: '19:00', title: 'Middag', desc: 'Basert på sesongens råvarer, med utsikt mot Hardangerjøkulen.' },
         ],
       },
       {
@@ -64,19 +64,19 @@ export const pakkeFokus: Record<Lang, PackageData> = {
         ],
       },
     ],
-    activities: [a.no.fottur, a.no.skitur, a.no.morgenbad, a.no.stjerner, a.no.sider, a.no.baalpanne, a.no.framheim, a.no.quiz],
+    activities: [a.no.fottur, a.no.sykkeltur, a.no.skitur, a.no.morgenbad, a.no.sider, a.no.baalpanne, a.no.framheim, a.no.quiz],
     ctaNote: 'Vi tilpasser oppholdet etter deres behov.',
   },
   en: {
     slug: '/pakke-fokus-paa-vidda',
     title: 'Focus on the plateau',
     subtitle: 'Time for the conversations that matter',
-    intro: 'At Finse, the train is what brings you here. Board in the city, step off on the mountain plateau. We meet you on the platform. For leadership teams that need focused time together, far from everything that clamours for attention.',
-    heroImage: { src: '/assets/images/R1-04554-0028.jpg', alt: 'Focus on the plateau' },
+    intro: 'At Finse, the train is what brings you here. Board in the city, step off on the mountain plateau. For leadership teams that need focused time together, far from everything that clamours for attention.',
+    heroImage: { src: '/assets/images/fokus-hero.jpg', alt: 'Focus on the plateau' },
     gallery: gallery.en,
     includes: [
       { icon: 'bed', text: 'Accommodation in comfortable rooms' },
-      { icon: 'food', text: 'Breakfast, lunch and a three-course dinner' },
+      { icon: 'food', text: 'Breakfast, lunch and dinner based on seasonal produce' },
       { icon: 'briefcase', text: 'Meeting room and facilities' },
       { icon: 'fire', text: 'Evenings by the fire' },
     ],
@@ -85,10 +85,10 @@ export const pakkeFokus: Record<Lang, PackageData> = {
       {
         label: 'Arrival and first evening',
         items: [
-          { time: '12:00', title: 'Arrival, check-in and lunch', desc: 'We meet you on the platform. Lunch is served as you wish.' },
+          { time: '12:00', title: 'Arrival, check-in and lunch', desc: 'Lunch is served as you wish.' },
           { time: '13:00', title: 'Work session', desc: 'Undisturbed time in the meeting room until 15:30.' },
           { time: '15:30', title: 'Activity', desc: 'A short walk, a bike ride, a ski tour or an organised activity.' },
-          { time: '19:00', title: 'Three-course dinner', desc: 'With a view of Hardangerjøkulen.' },
+          { time: '19:00', title: 'Dinner', desc: 'Based on seasonal produce, with a view of Hardangerjøkulen.' },
         ],
       },
       {
@@ -111,7 +111,7 @@ export const pakkeFokus: Record<Lang, PackageData> = {
         ],
       },
     ],
-    activities: [a.en.fottur, a.en.skitur, a.en.morgenbad, a.en.stjerner, a.en.sider, a.en.baalpanne, a.en.framheim, a.en.quiz],
+    activities: [a.en.fottur, a.en.sykkeltur, a.en.skitur, a.en.morgenbad, a.en.sider, a.en.baalpanne, a.en.framheim, a.en.quiz],
     ctaNote: 'We adapt the stay to your needs.',
   },
 }

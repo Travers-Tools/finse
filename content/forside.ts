@@ -13,7 +13,7 @@ export const contentSections: Record<Lang, {
     sections: [
       {
         title: ['Gå på toget i byen,', 'gå av på vidda.'],
-        body: 'På Finse er det toget som tar deg frem. Gå på toget i byen, og gå av på vidda. Vi møter deg og din bedrift på perrongen.',
+        body: 'På Finse er det toget som tar deg frem. Gå på toget i byen, og gå av på vidda.',
         cta: 'Skreddersy din pakke',
         alts: ['Tog til Finse', 'Restaurant', 'På tur'],
       },
@@ -35,7 +35,7 @@ export const contentSections: Record<Lang, {
     sections: [
       {
         title: ['Board the train in the city,', 'step off on the plateau.'],
-        body: 'At Finse, the train is what gets you here. Board in the city and step off on the mountain plateau. We meet you and your team on the platform.',
+        body: 'At Finse, the train is what gets you here. Board in the city and step off on the mountain plateau.',
         cta: 'Tailor your package',
         alts: ['Train to Finse', 'Restaurant', 'Out walking'],
       },
@@ -197,19 +197,19 @@ export const team: Record<Lang, {
   cta: string
 }> = {
   no: {
-    imageAlt: 'Siv',
+    imageAlt: 'Peisestuen på Hotel Finse1222',
     title: ['Vi gleder oss til', 'å ta imot dere'],
     body: 'På Hotel Finse1222 handler det om de ekte møtene – både med naturen og med hverandre. Vi sørger for at alt ligger til rette, så dere kan fokusere på det som virkelig betyr noe.',
-    name: 'Siv',
-    role: 'Vert for grupper',
+    name: 'Vertskapet på Hotel Finse1222',
+    role: 'events@hotelfinse1222.no',
     cta: 'Start planleggingen',
   },
   en: {
-    imageAlt: 'Siv',
+    imageAlt: 'The fireside lounge at Hotel Finse1222',
     title: ['We look forward to', 'welcoming you'],
     body: 'Hotel Finse1222 is about real encounters, with nature and with each other. We make sure everything is in place, so you can focus on what really matters.',
-    name: 'Siv',
-    role: 'Host for groups',
+    name: 'Your hosts at Hotel Finse1222',
+    role: 'events@hotelfinse1222.no',
     cta: 'Start planning',
   },
 }

@@ -2,6 +2,20 @@
    Hotel Finse 1222 – Design System
    ======================================== */
 
+/* Systemets Helvetica Neue under eget navn, så halvfet (500) faller til
+   regular: Helvetica Neue Medium blir for tung i små størrelser. 600+ er fet. */
+@font-face {
+    font-family: 'Finse Sans';
+    font-weight: 100 500;
+    src: local('Helvetica Neue'), local('HelveticaNeue'), local('Helvetica'), local('Arial');
+}
+
+@font-face {
+    font-family: 'Finse Sans';
+    font-weight: 600 900;
+    src: local('Helvetica Neue Bold'), local('HelveticaNeue-Bold'), local('Helvetica-Bold'), local('Arial Bold');
+}
+
 @font-face {
     font-family: 'Orpheus Pro';
     src: url('/fonts/orpheus-pro.woff2') format('woff2'),
@@ -13,9 +27,9 @@
 
 :root {
     /* Colors – warm, light, inviting */
-    --color-bg-dark: #f5f2e8;
-    --color-bg-card: #ebe7da;
-    --color-bg-card-hover: #e0dccf;
+    --color-bg-dark: #fdfbf7;
+    --color-bg-card: #f1eee6;
+    --color-bg-card-hover: #e8e4da;
     --color-cream: #2c2a25;
     --color-cream-muted: #d6d1c4;
     --color-pill: #5c4f3a;
@@ -28,7 +42,9 @@
     
     /* Typography */
     --font-serif: 'Orpheus Pro', 'Crimson Pro', Georgia, serif;
-    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* Hovedsiden bruker Helvetica Neue LT Pro (Adobe Fonts). Uten lisens her
+       bruker vi systemets Helvetica Neue; Windows faller til Arial. */
+    --font-sans: 'Finse Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     
     /* Spacing */
     --space-xs: 0.5rem;
@@ -63,7 +79,7 @@ body {
     font-size: 16px;
     line-height: 1.6;
     color: var(--color-text-light);
-    background-color: #f5f2e8;
+    background-color: #fdfbf7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -103,7 +119,7 @@ a {
     --header-cta-fg: #2e2a1e;
     /* Hovedsiden bruker Helvetica Neue LT Pro via Adobe Fonts. Vi har ikke
        lisensen på dette domenet, så vi faller tilbake på system-Helvetica. */
-    --font-header: 'Helvetica Neue', Helvetica, Arial, var(--font-sans);
+    --font-header: var(--font-sans);
 }
 
 .ch-header {
@@ -117,29 +133,35 @@ a {
 }
 
 .ch-inner {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
     height: var(--header-height);
     padding: 0 32px;
     gap: 24px;
 }
 
+/* Venstre og høyre felt deler plassen likt, så logoen står midt på siden
+   uansett hvor brede språkvelger og knapp er. */
 .ch-left,
 .ch-right {
-    flex: 0 0 auto;
-    min-width: 80px;
+    min-width: 0;
     display: flex;
     align-items: center;
-}
-
-.ch-right {
-    justify-content: flex-end;
-    gap: 16px;
-}
-
-.ch-left {
+    justify-content: space-between;
     gap: 20px;
+}
+
+.ch-left-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.ch-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .ch-lang {
@@ -198,27 +220,16 @@ a {
 }
 
 .ch-centre {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 16px;
 }
 
 .ch-nav {
-    flex: 1;
     display: flex;
     align-items: center;
     gap: 28px;
-}
-
-.ch-nav-left {
-    justify-content: flex-end;
-    padding-right: 40px;
-}
-
-.ch-nav-right {
-    justify-content: flex-start;
-    padding-left: 40px;
 }
 
 .ch-link {
@@ -347,8 +358,6 @@ a {
 
 @media (max-width: 1600px) {
     .ch-nav { gap: 20px; }
-    .ch-nav-left { padding-right: 28px; }
-    .ch-nav-right { padding-left: 28px; }
     .ch-link { font-size: 14px; letter-spacing: 0.03em; }
     .ch-cta { font-size: 14px; padding: 10px 16px; }
 }
@@ -359,8 +368,17 @@ a {
         display: none;
     }
 
+    .ch-inner {
+        display: flex;
+        justify-content: space-between;
+    }
+
     .ch-centre {
-        justify-content: flex-start;
+        padding: 0;
+    }
+
+    .ch-left {
+        display: none;
     }
 
     .ch-right .ch-cta {
@@ -402,7 +420,7 @@ a {
 
 .btn-primary {
     background-color: #1a1a1a;
-    color: #f5f2e8;
+    color: #fdfbf7;
 }
 
 .btn-primary:hover {
@@ -420,14 +438,14 @@ a {
 
 .btn-tertiary {
     background-color: #1a1a1a;
-    color: #f5f2e8;
+    color: #fdfbf7;
     border: 1px solid #1a1a1a;
     border-radius: 0;
 }
 
 .btn-tertiary:hover {
     background-color: #000;
-    color: #f5f2e8;
+    color: #fdfbf7;
     border-color: #000;
 }
 
@@ -520,7 +538,7 @@ a {
 
 .content-section {
     padding: var(--space-2xl) 0;
-    background-color: #f5f2e8;
+    background-color: #fdfbf7;
 }
 
 .content-grid {
@@ -553,7 +571,7 @@ a {
 
 /* Section 4 – Packages */
 .section-packages {
-    background: #f5f2e8;
+    background: #fdfbf7;
     color: var(--color-cream);
 }
 
@@ -610,7 +628,7 @@ a {
     border-radius: 6px;
     overflow: hidden;
     background: #e8e4d8;
-    color: #f5f2e8;
+    color: #fdfbf7;
     text-decoration: none;
     display: flex;
     flex-direction: column;
@@ -855,7 +873,7 @@ a {
 
 /* FAQ Section */
 .section-faq {
-    background: #f5f2e8;
+    background: #fdfbf7;
     padding: var(--space-2xl) 0 calc(var(--space-2xl) * 2);
 }
 
@@ -943,6 +961,12 @@ a {
     object-fit: cover;
 }
 
+.faq-avatar-img--logo {
+    object-fit: contain;
+    padding: 8px;
+    background: var(--color-bg-card);
+}
+
 .faq-avatar-info {
     display: flex;
     flex-direction: column;
@@ -976,7 +1000,7 @@ a {
 /* Section 4 – Team */
 .section-team {
     padding: var(--space-2xl) 0;
-    background: #ebe7da;
+    background: var(--color-bg-card);
 }
 
 .team-content {
@@ -1052,7 +1076,7 @@ a {
 /* Section – Testimonials Horizontal Scroll */
 .section-testimonials {
     padding: var(--space-xl) 0;
-    background: #f5f2e8;
+    background: #fdfbf7;
     overflow: hidden;
 }
 
@@ -1174,7 +1198,7 @@ a {
 /* Pakke- og klimasidene bruker en litt lysere krem enn forsiden. */
 .pkg-page .footer,
 .klima-page .footer {
-    --footer-bg: #f8f4e8;
+    --footer-bg: #fdfbf7;
 }
 
 .footer-bg {
@@ -1391,7 +1415,7 @@ a {
 }
 
 .configurator-card {
-    background: #ebe7da;
+    background: var(--color-bg-card);
     border-radius: 6px;
     width: 100%;
     max-width: 1100px;
@@ -1614,14 +1638,14 @@ a {
 
 .pill-option input:checked + .pill-label {
     background: #1a1a1a;
-    color: #f5f2e8;
+    color: #fdfbf7;
     border-color: #1a1a1a;
 }
 
 /* Checkbox pills (multi-select) */
 .pill-option input[type="checkbox"]:checked + .pill-label {
     background: #1a1a1a;
-    color: #f5f2e8;
+    color: #fdfbf7;
     border-color: #1a1a1a;
 }
 
@@ -1726,7 +1750,7 @@ a {
 
 .step-nav .btn-primary {
     background-color: #1a1a1a;
-    color: #f5f2e8;
+    color: #fdfbf7;
     border: 1px solid #1a1a1a;
 }
 
@@ -1830,7 +1854,7 @@ a {
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: #f5f2e8;
+    background: #fdfbf7;
     display: flex;
     flex-direction: column;
 }
@@ -2037,7 +2061,7 @@ a {
     align-items: center;
     gap: var(--space-md);
     padding: 1rem 2rem;
-    background: rgba(245, 242, 232, 0.9);
+    background: rgba(253, 251, 247, 0.9);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-top: 1px solid rgba(0, 0, 0, 0.06);
@@ -2394,7 +2418,7 @@ a {
    ======================================== */
 
 .package-page {
-    background: #f5f2e8;
+    background: #fdfbf7;
     min-height: 100vh;
 }
 
@@ -2657,7 +2681,7 @@ a {
 /* Footer */
 .package-footer {
     padding: var(--space-lg) 0;
-    background: #f5f2e8;
+    background: #fdfbf7;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 

@@ -41,7 +41,7 @@ export default function FAQSection() {
                   <div className="faq-answer">
                     <p>{item.answer}</p>
                     <div className="faq-avatar">
-                      <img src="/assets/images/Siv_portrett.png" alt={t.avatarAlt} className="faq-avatar-img" />
+                      <img src="/assets/logo/logo-mork.png" alt={t.avatarAlt} className="faq-avatar-img faq-avatar-img--logo" />
                       <div className="faq-avatar-info">
                         <span className="faq-avatar-name">{t.avatarName}</span>
                         <span className="faq-avatar-email">{t.avatarEmail}</span>

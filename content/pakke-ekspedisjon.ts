@@ -4,16 +4,16 @@ import { aktiviteter, morgenbadItem } from './pakker'
 
 const gallery = {
   no: [
-    { src: '/assets/images/ekspedisjon-guide.jpg', alt: 'Guide briefer gruppen før turen' },
+    { src: '/assets/images/ekspedisjon-bre.jpg', alt: 'Brevandring på Hardangerjøkulen' },
     { src: '/assets/images/ekspedisjon-sommer.jpg', alt: 'Sykkeltur mot Hardangerjøkulen' },
     { src: '/assets/images/pkg-hotellet.jpg', alt: 'Finse om sommeren' },
-    { src: '/assets/images/pkg-ekspedisjon.jpg', alt: 'Skiseiling på vidda' },
+    { src: '/assets/images/ekspedisjon-kort.jpg', alt: 'Skitur mot Hallingskarvet' },
   ],
   en: [
-    { src: '/assets/images/ekspedisjon-guide.jpg', alt: 'Guide briefing the group before the trip' },
+    { src: '/assets/images/ekspedisjon-bre.jpg', alt: 'Glacier walk on Hardangerjøkulen' },
     { src: '/assets/images/ekspedisjon-sommer.jpg', alt: 'Cycling towards Hardangerjøkulen' },
     { src: '/assets/images/pkg-hotellet.jpg', alt: 'Finse in summer' },
-    { src: '/assets/images/pkg-ekspedisjon.jpg', alt: 'Ski sailing on the plateau' },
+    { src: '/assets/images/ekspedisjon-kort.jpg', alt: 'Ski tour towards Hallingskarvet' },
   ],
 }
 
@@ -25,11 +25,11 @@ export const pakkeEkspedisjon: Record<Lang, PackageData> = {
     title: 'Ekspedisjonstur',
     subtitle: 'I fotsporene til Nansen og Amundsen',
     intro: 'Finse og omgivelsene rundt hotellet har vært base for norske polfarere i over hundre år. Her får dere kjenne på det selv, i et tempo som passer gruppen. Turene og utfordringene tilpasses deres eget ambisjonsnivå og program.',
-    heroImage: { src: '/assets/images/ekspedisjon-guide.jpg', alt: 'Guide briefer gruppen før turen' },
+    heroImage: { src: '/assets/images/ekspedisjon-bre.jpg', alt: 'Brevandring på Hardangerjøkulen' },
     gallery: gallery.no,
     includes: [
       { icon: 'bed', text: 'Overnatting i komfortable rom' },
-      { icon: 'food', text: 'Frokost, matpakke og treretters middag' },
+      { icon: 'food', text: 'Frokost, matpakke og middag basert på sesongens råvarer' },
       { icon: 'ski', text: 'Guidede turer (ski, bre eller sykkel)' },
       { icon: 'gear', text: 'Utstyr kan leies på stedet' },
       { icon: 'fire', text: 'Kvelder ved peisen' },
@@ -42,7 +42,7 @@ export const pakkeEkspedisjon: Record<Lang, PackageData> = {
           { time: '12:00', title: 'Ankomst, innsjekk og lunsj', desc: 'Lunsj serveres etter ønske.' },
           { time: '13:00', title: 'Arbeidsøkt', desc: 'Tid i møterommet fram til 16:00.' },
           { time: '16:00', title: 'Briefing', desc: 'Vi går gjennom morgendagens tur, planlegger og tilpasser utstyr.' },
-          { time: '19:00', title: 'Tre retters middag', desc: 'Med utsikt mot Hardangerjøkulen.' },
+          { time: '19:00', title: 'Middag', desc: 'Basert på sesongens råvarer, med utsikt mot Hardangerjøkulen.' },
         ],
       },
       {
@@ -64,7 +64,7 @@ export const pakkeEkspedisjon: Record<Lang, PackageData> = {
         ],
       },
     ],
-    activities: [a.no.skiseiling, a.no.skitur, a.no.truger, a.no.stjerner, a.no.rallarvegen, a.no.brevandring, a.no.fottur, a.no.morgenbad, a.no.framheim, a.no.rallarmuseet],
+    activities: [a.no.skiseiling, a.no.skitur, a.no.truger, a.no.rallarvegen, a.no.brevandring, a.no.fottur, a.no.morgenbad, a.no.framheim, a.no.rallarmuseet],
     ctaNote: 'Vi tilpasser aktivitetene etter sesong og ønsker.',
   },
   en: {
@@ -72,11 +72,11 @@ export const pakkeEkspedisjon: Record<Lang, PackageData> = {
     title: 'Expedition',
     subtitle: 'In the footsteps of Nansen and Amundsen',
     intro: 'Finse and the landscape around the hotel have been a base for Norwegian polar explorers for more than a hundred years. Here you get to feel it for yourselves, at a pace that suits the group. The trips and challenges are adapted to your own ambitions and programme.',
-    heroImage: { src: '/assets/images/ekspedisjon-guide.jpg', alt: 'Guide briefing the group before the trip' },
+    heroImage: { src: '/assets/images/ekspedisjon-bre.jpg', alt: 'Glacier walk on Hardangerjøkulen' },
     gallery: gallery.en,
     includes: [
       { icon: 'bed', text: 'Accommodation in comfortable rooms' },
-      { icon: 'food', text: 'Breakfast, packed lunch and a three-course dinner' },
+      { icon: 'food', text: 'Breakfast, packed lunch and dinner based on seasonal produce' },
       { icon: 'ski', text: 'Guided trips (ski, glacier or bike)' },
       { icon: 'gear', text: 'Equipment can be rented on site' },
       { icon: 'fire', text: 'Evenings by the fire' },
@@ -89,7 +89,7 @@ export const pakkeEkspedisjon: Record<Lang, PackageData> = {
           { time: '12:00', title: 'Arrival, check-in and lunch', desc: 'Lunch is served as you wish.' },
           { time: '13:00', title: 'Work session', desc: 'Time in the meeting room until 16:00.' },
           { time: '16:00', title: 'Briefing', desc: 'We go through tomorrow’s trip, plan the route and fit the equipment.' },
-          { time: '19:00', title: 'Three-course dinner', desc: 'With a view of Hardangerjøkulen.' },
+          { time: '19:00', title: 'Dinner', desc: 'Based on seasonal produce, with a view of Hardangerjøkulen.' },
         ],
       },
       {
@@ -111,7 +111,7 @@ export const pakkeEkspedisjon: Record<Lang, PackageData> = {
         ],
       },
     ],
-    activities: [a.en.skiseiling, a.en.skitur, a.en.truger, a.en.stjerner, a.en.rallarvegen, a.en.brevandring, a.en.fottur, a.en.morgenbad, a.en.framheim, a.en.rallarmuseet],
+    activities: [a.en.skiseiling, a.en.skitur, a.en.truger, a.en.rallarvegen, a.en.brevandring, a.en.fottur, a.en.morgenbad, a.en.framheim, a.en.rallarmuseet],
     ctaNote: 'We adapt the activities to the season and your wishes.',
   },
 }

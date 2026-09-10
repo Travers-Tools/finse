@@ -77,19 +77,22 @@ export default function Header({ showBackButton = false, faqHref = '#faq' }: Hea
       <header className="ch-header">
         <div className="ch-inner">
           <div className="ch-left">
-            {langSwitch}
-            {showBackButton ? <Link href={localePath(lang, '/')} className="ch-link ch-back">{t.tilbake}</Link> : backLink}
+            <div className="ch-left-meta">
+              {langSwitch}
+              {showBackButton ? <Link href={localePath(lang, '/')} className="ch-link ch-back">{t.tilbake}</Link> : backLink}
+            </div>
+            <nav className="ch-nav ch-nav-left" aria-label={t.menyVenstre}>{navLeft}</nav>
           </div>
 
           <div className="ch-centre">
-            <nav className="ch-nav ch-nav-left" aria-label={t.menyVenstre}>{navLeft}</nav>
             <Link href={localePath(lang, '/')} className="ch-logo" aria-label={t.logoAria}>
               <img src="/assets/logo/logo-hvit.webp" alt="Hotel Finse1222" />
             </Link>
-            <nav className="ch-nav ch-nav-right" aria-label={t.menyHoyre}>{navRight}</nav>
           </div>
 
           <div className="ch-right">
+            <nav className="ch-nav ch-nav-right" aria-label={t.menyHoyre}>{navRight}</nav>
+            <div className="ch-right-actions">
             <a href={kontaktHref} className="ch-cta">{t.kontakt}</a>
             <button
               type="button"
@@ -101,6 +104,7 @@ export default function Header({ showBackButton = false, faqHref = '#faq' }: Hea
             >
               <span /><span /><span />
             </button>
+            </div>
           </div>
         </div>
       </header>

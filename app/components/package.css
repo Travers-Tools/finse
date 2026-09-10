@@ -3,7 +3,7 @@
    ======================================== */
 
 .pkg-page {
-  --pkg-cream:        #F8F4E8;
+  --pkg-cream:        #fdfbf7;
   --pkg-cream-deep:   #F2EBD9;
   --pkg-brown-dark:   #322A20;
   --pkg-brown-mid:    #775D40;
@@ -19,7 +19,7 @@
 
   background: var(--pkg-cream);
   color: var(--pkg-text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   min-height: 100vh;
 }
 
@@ -108,7 +108,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
   color: var(--pkg-text);
@@ -160,7 +160,7 @@
 }
 
 .pkg-lightbox-counter {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   letter-spacing: 0.04em;
   color: rgba(255,255,255,0.6);
@@ -291,7 +291,7 @@
 }
 
 .pkg-eyebrow {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
   color: var(--pkg-text-soft);
@@ -300,7 +300,7 @@
 }
 
 .pkg-title {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(32px, 4.5vw, 56px);
   font-weight: 500;
   color: var(--pkg-text);
@@ -341,7 +341,7 @@
 }
 
 .pkg-block-title {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(22px, 2.3vw, 28px);
   font-weight: 500;
   color: var(--pkg-text);
@@ -351,7 +351,7 @@
 }
 
 .pkg-block-note {
-  font-family: 'DM Sans', system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   color: var(--pkg-text-muted, #6b6256);
   margin: -12px 0 24px;
@@ -362,7 +362,7 @@
 .pkg-intro-body {
   font-family: 'Crimson Pro', Georgia, serif;
   font-size: clamp(20px, 2.1vw, 26px);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--pkg-text);
   line-height: 1.4;
   margin: 0;
@@ -397,7 +397,7 @@
 }
 
 .pkg-includes-text {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 15px;
   color: var(--pkg-text);
   line-height: 1.4;
@@ -416,7 +416,7 @@
 }
 
 .pkg-suitable-chip {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
   color: var(--pkg-brown-mid);
@@ -460,7 +460,7 @@
 }
 
 .pkg-day-num {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
   color: var(--pkg-brown-mid);
@@ -468,7 +468,7 @@
 }
 
 .pkg-day-label {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 500;
   color: var(--pkg-text);
@@ -525,7 +525,7 @@
 }
 
 .pkg-day-time {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
   color: var(--pkg-text-soft);
@@ -540,14 +540,14 @@
 }
 
 .pkg-day-item-title {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 500;
   color: var(--pkg-text);
 }
 
 .pkg-day-item-desc {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   color: var(--pkg-text-muted);
   line-height: 1.55;
@@ -591,7 +591,7 @@
   background: rgba(255, 255, 255, 0.85);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.005em;
@@ -618,7 +618,7 @@
 }
 
 .pkg-activity-name {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 20px;
   font-weight: 500;
   color: var(--pkg-text);
@@ -628,7 +628,7 @@
 }
 
 .pkg-activity-desc {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   color: var(--pkg-text-muted);
   line-height: 1.6;
@@ -667,7 +667,7 @@
 }
 
 .pkg-host-name {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 20px;
   font-weight: 500;
   color: var(--pkg-text);
@@ -676,14 +676,14 @@
 }
 
 .pkg-host-role {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   color: var(--pkg-text-soft);
   margin: 0;
 }
 
 .pkg-host-intro {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   color: var(--pkg-text-muted);
   line-height: 1.65;
@@ -708,7 +708,7 @@
 }
 
 .pkg-card-title {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 26px;
   font-weight: 500;
   color: var(--pkg-text);
@@ -718,7 +718,7 @@
 }
 
 .pkg-card-body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   color: var(--pkg-text-muted);
   line-height: 1.6;
@@ -730,7 +730,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 500;
   background: var(--pkg-brown-dark);
@@ -749,7 +749,7 @@
 }
 
 .pkg-card-note {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   color: var(--pkg-text-soft);
   text-align: center;
@@ -765,7 +765,7 @@
 }
 
 .pkg-others-title {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(28px, 3.4vw, 40px);
   font-weight: 500;
   color: var(--pkg-text);
@@ -822,7 +822,7 @@
 }
 
 .pkg-other-subtitle {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   color: var(--pkg-text-soft);
   margin: 0;
@@ -830,7 +830,7 @@
 }
 
 .pkg-other-title {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(22px, 2.2vw, 28px);
   font-weight: 500;
   color: var(--pkg-text);
@@ -844,7 +844,7 @@
 }
 
 .pkg-other-arrow {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 18px;
   color: var(--pkg-brown-mid);
   flex-shrink: 0;
@@ -890,7 +890,7 @@
 }
 
 .pkg-footer-tagline {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(16px, 1.6vw, 20px);
   font-weight: 500;
   color: rgba(255,255,255,0.7);
@@ -908,7 +908,7 @@
 }
 
 .pkg-footer-link {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   color: rgba(255,255,255,0.7);
   text-decoration: none;
@@ -922,7 +922,7 @@
 }
 
 .pkg-footer-note {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   color: rgba(255,255,255,0.5);
 }

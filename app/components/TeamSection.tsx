@@ -9,7 +9,7 @@ export default function TeamSection({ lang }: { lang: Lang }) {
       <div className="container">
         <div className="team-content">
           <div className="team-image">
-            <img src="/assets/images/Siv Lyngtun.jpg" alt={t.imageAlt} />
+            <img src="/assets/images/peisestua.jpg" alt={t.imageAlt} />
           </div>
           <div className="team-text">
             <h2 className="content-title">{t.title[0]}<br />{t.title[1]}</h2>

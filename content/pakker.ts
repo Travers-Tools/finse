@@ -40,9 +40,9 @@ export const pakkeUi: Record<Lang, {
     activities: 'Opplevelser',
     periodRegex: /^(Hele året|[A-ZÆØÅ][a-zæøå]+ til [a-zæøå]+)[.:]\s*/,
     host: 'Vertskap',
-    hostName: 'Siv',
-    hostRole: 'Vert for grupper på Hotel Finse1222',
-    hostIntro: 'Vi tar imot dere på perrongen og sørger for at alt er klart når dere kommer. Si fra hva dere ønsker, så tilpasser vi.',
+    hostName: 'Vertskapet på Hotel Finse1222',
+    hostRole: 'events@hotelfinse1222.no',
+    hostIntro: 'Vi sørger for at alt er klart når dere kommer. Si fra hva dere ønsker, så tilpasser vi.',
     cardTitle: 'Skreddersy pakke',
     cardBody: 'Fortell oss hva som passer for gruppen. Vi setter sammen et forslag og svarer innen én arbeidsdag.',
     cardCta: 'Start planleggingen',
@@ -63,9 +63,9 @@ export const pakkeUi: Record<Lang, {
     activities: 'Experiences',
     periodRegex: /^(All year|[A-Z][a-z]+ to [A-Za-z]+)[.:]\s*/,
     host: 'Your hosts',
-    hostName: 'Siv',
-    hostRole: 'Host for groups at Hotel Finse1222',
-    hostIntro: 'We meet you on the platform and make sure everything is ready when you arrive. Tell us what you would like, and we adapt.',
+    hostName: 'Your hosts at Hotel Finse1222',
+    hostRole: 'events@hotelfinse1222.no',
+    hostIntro: 'We make sure everything is ready when you arrive. Tell us what you would like, and we adapt.',
     cardTitle: 'Tailor your package',
     cardBody: 'Tell us what suits your group. We put together a proposal and reply within one working day.',
     cardCta: 'Start planning',
@@ -74,19 +74,19 @@ export const pakkeUi: Record<Lang, {
   },
 }
 
-export const HOST_IMAGE = '/assets/images/Siv_portrett.png'
+export const HOST_IMAGE = '/assets/images/lobby-peis.jpg'
 
 /** Kortene under «Andre pakker». Slugs er norske på begge språk. */
 export const allePakker: Record<Lang, { slug: string; title: string; subtitle: string; image: string }[]> = {
   no: [
-    { slug: '/pakke-ekspedisjonstur', title: 'Ekspedisjonstur', subtitle: 'I fotsporene til Nansen og Amundsen', image: '/assets/images/ekspedisjon-guide.jpg' },
-    { slug: '/pakke-fokus-paa-vidda', title: 'Fokus på vidda', subtitle: 'Tid til de viktige samtalene', image: '/assets/images/R1-04554-0028.jpg' },
-    { slug: '/pakke-hotellet-for-dere', title: 'Hotellet for dere selv', subtitle: 'Når dere fortjener hele Finse', image: '/assets/images/hotellet-hero.jpg' },
+    { slug: '/pakke-ekspedisjonstur', title: 'Ekspedisjonstur', subtitle: 'I fotsporene til Nansen og Amundsen', image: '/assets/images/ekspedisjon-bre.jpg' },
+    { slug: '/pakke-fokus-paa-vidda', title: 'Fokus på vidda', subtitle: 'Tid til de viktige samtalene', image: '/assets/images/pkg-fokus-kort.jpg' },
+    { slug: '/pakke-hotellet-for-dere', title: 'Hotellet for dere selv', subtitle: 'Når dere fortjener hele Finse', image: '/assets/images/hotell-tog.jpg' },
   ],
   en: [
-    { slug: '/pakke-ekspedisjonstur', title: 'Expedition', subtitle: 'In the footsteps of Nansen and Amundsen', image: '/assets/images/ekspedisjon-guide.jpg' },
-    { slug: '/pakke-fokus-paa-vidda', title: 'Focus on the plateau', subtitle: 'Time for the conversations that matter', image: '/assets/images/R1-04554-0028.jpg' },
-    { slug: '/pakke-hotellet-for-dere', title: 'The hotel to yourselves', subtitle: 'When you deserve all of Finse', image: '/assets/images/hotellet-hero.jpg' },
+    { slug: '/pakke-ekspedisjonstur', title: 'Expedition', subtitle: 'In the footsteps of Nansen and Amundsen', image: '/assets/images/ekspedisjon-bre.jpg' },
+    { slug: '/pakke-fokus-paa-vidda', title: 'Focus on the plateau', subtitle: 'Time for the conversations that matter', image: '/assets/images/pkg-fokus-kort.jpg' },
+    { slug: '/pakke-hotellet-for-dere', title: 'The hotel to yourselves', subtitle: 'When you deserve all of Finse', image: '/assets/images/hotell-tog.jpg' },
   ],
 }
 
@@ -105,7 +105,7 @@ export const pakkeKort: Record<Lang, {
   no: [
     {
       href: '/pakke-fokus-paa-vidda',
-      image: '/assets/images/akt-fokus-vidda.jpg',
+      image: '/assets/images/pkg-fokus-kort.jpg',
       tag: 'Ledergrupper',
       title: 'Fokus på vidda',
       description: 'For team som trenger tid til de viktige samtalene, langt unna alt som maser.',
@@ -113,7 +113,7 @@ export const pakkeKort: Record<Lang, {
     },
     {
       href: '/pakke-ekspedisjonstur',
-      image: '/assets/images/ekspedisjon-guide.jpg',
+      image: '/assets/images/ekspedisjon-bre.jpg',
       imagePosition: 'center 20%',
       tag: 'Eventyr',
       title: 'Ekspedisjonstur',
@@ -122,7 +122,7 @@ export const pakkeKort: Record<Lang, {
     },
     {
       href: '/pakke-hotellet-for-dere',
-      image: '/assets/images/hotellet-hero.jpg',
+      image: '/assets/images/hotell-tog.jpg',
       tag: 'Fra 30 til 110 gjester',
       title: 'Hotellet for dere selv',
       description: 'For jubileer, kickoffs, møter, konferanser og feiringer der dere vil ha Hotel Finse1222 for dere selv.',
@@ -130,7 +130,7 @@ export const pakkeKort: Record<Lang, {
     },
     {
       href: '/configurator',
-      image: '/assets/images/skreddersom.jpg',
+      image: '/assets/images/hotell-vann.jpg',
       tag: 'Lag ditt eget',
       title: 'Skreddersøm',
       description: 'Har du andre ønsker? Vi hjelper deg å skape det perfekte oppholdet.',
@@ -141,7 +141,7 @@ export const pakkeKort: Record<Lang, {
   en: [
     {
       href: '/pakke-fokus-paa-vidda',
-      image: '/assets/images/akt-fokus-vidda.jpg',
+      image: '/assets/images/pkg-fokus-kort.jpg',
       tag: 'Leadership teams',
       title: 'Focus on the plateau',
       description: 'For teams that need time for the conversations that matter, far from everything that clamours for attention.',
@@ -149,7 +149,7 @@ export const pakkeKort: Record<Lang, {
     },
     {
       href: '/pakke-ekspedisjonstur',
-      image: '/assets/images/ekspedisjon-guide.jpg',
+      image: '/assets/images/ekspedisjon-bre.jpg',
       imagePosition: 'center 20%',
       tag: 'Adventure',
       title: 'Expedition',
@@ -158,7 +158,7 @@ export const pakkeKort: Record<Lang, {
     },
     {
       href: '/pakke-hotellet-for-dere',
-      image: '/assets/images/hotellet-hero.jpg',
+      image: '/assets/images/hotell-tog.jpg',
       tag: '30 to 110 guests',
       title: 'The hotel to yourselves',
       description: 'For anniversaries, kick-offs, meetings, conferences and celebrations where you want Hotel Finse1222 all to yourselves.',
@@ -166,7 +166,7 @@ export const pakkeKort: Record<Lang, {
     },
     {
       href: '/configurator',
-      image: '/assets/images/skreddersom.jpg',
+      image: '/assets/images/hotell-vann.jpg',
       tag: 'Build your own',
       title: 'Tailor-made',
       description: 'Have something else in mind? We help you shape the stay that suits you.',
@@ -184,7 +184,6 @@ export type AktivitetKey =
   | 'sider'
   | 'skiseiling'
   | 'morgenbad'
-  | 'stjerner'
   | 'quiz'
   | 'baalpanne'
   | 'rallarmuseet'
@@ -193,6 +192,7 @@ export type AktivitetKey =
   | 'skitur'
   | 'truger'
   | 'rallarvegen'
+  | 'sykkeltur'
   | 'brevandring'
 
 export const aktiviteter: Record<Lang, Record<AktivitetKey, PackageActivity>> = {
@@ -208,14 +208,9 @@ export const aktiviteter: Record<Lang, Record<AktivitetKey, PackageActivity>> = 
       image: '/assets/images/akt-skiseiling.jpg',
     },
     morgenbad: {
-      name: 'Morgenbad i Finsevann',
-      desc: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.',
+      name: 'Badstue og bading',
+      desc: 'Hele året. Badstue og bading i Finsevann, eller snøbading om vinteren. Bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen.',
       image: '/assets/images/akt-morgenbad.jpg',
-    },
-    stjerner: {
-      name: 'Stjernekikking',
-      desc: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.',
-      image: '/assets/images/akt-stjerner.jpg',
     },
     quiz: {
       name: 'Finsequiz',
@@ -240,7 +235,7 @@ export const aktiviteter: Record<Lang, Record<AktivitetKey, PackageActivity>> = 
     fottur: {
       name: 'Fottur i området',
       desc: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.',
-      image: '/assets/images/akt-fottur-kart.jpg',
+      image: '/assets/images/akt-fottur-sti.jpg',
     },
     skitur: {
       name: 'Skiturer i området',
@@ -252,10 +247,15 @@ export const aktiviteter: Record<Lang, Record<AktivitetKey, PackageActivity>> = 
       desc: 'Desember til mai. Truger er godt egnet for enkle turer i terrenget rundt Finse. Dette er en vinteraktivitet alle kan ta del i. Truger leies av oss.',
       image: '/assets/images/akt-truger.jpg',
     },
+    sykkeltur: {
+      name: 'Sykkeltur i området',
+      desc: 'Juli til oktober. Vi tilpasser turmål etter tid og ønske. Vi har sykler til utlån.',
+      image: '/assets/images/akt-sykkel-omraadet.jpg',
+    },
     rallarvegen: {
       name: 'Sykkeltur på Rallarvegen',
       desc: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Vi tilpasser turen etter tidsskjema og egne ønsker. Sykler og hjelmer leies fra hotellet.',
-      image: '/assets/images/akt-rallarvegen.jpg',
+      image: '/assets/images/akt-rallarvegen-sol.jpg',
     },
     brevandring: {
       name: 'Brevandring',
@@ -275,14 +275,9 @@ export const aktiviteter: Record<Lang, Record<AktivitetKey, PackageActivity>> = 
       image: '/assets/images/akt-skiseiling.jpg',
     },
     morgenbad: {
-      name: 'Morning swim in Finsevann',
-      desc: 'A morning swim, a fire pit and something hot to drink, with a view of the blue ice on Hardangerjøkulen. A simple experience with a big effect.',
+      name: 'Sauna and swimming',
+      desc: 'All year. Sauna and a swim in Lake Finsevann, or a roll in the snow in winter. A fire pit and something hot to drink, with a view of the blue ice on Hardangerjøkulen.',
       image: '/assets/images/akt-morgenbad.jpg',
-    },
-    stjerner: {
-      name: 'Stargazing',
-      desc: 'October to March. With hardly any artificial light and a wide, open sky, Finse offers exceptional conditions for experiencing the stars, the darkness and the shifting night sky. We work with an astro guide who can show you the sky in a whole new way.',
-      image: '/assets/images/akt-stjerner.jpg',
     },
     quiz: {
       name: 'Finse quiz',
@@ -307,7 +302,7 @@ export const aktiviteter: Record<Lang, Record<AktivitetKey, PackageActivity>> = 
     fottur: {
       name: 'Hiking in the area',
       desc: 'June to October. A welcome break from the meeting room. We choose the route to suit the time you have and the conditions.',
-      image: '/assets/images/akt-fottur-kart.jpg',
+      image: '/assets/images/akt-fottur-sti.jpg',
     },
     skitur: {
       name: 'Ski touring in the area',
@@ -319,10 +314,15 @@ export const aktiviteter: Record<Lang, Record<AktivitetKey, PackageActivity>> = 
       desc: 'December to May. Snowshoes are well suited to easy walks in the terrain around Finse. This is a winter activity everyone can join. Snowshoes are rented from us.',
       image: '/assets/images/akt-truger.jpg',
     },
+    sykkeltur: {
+      name: 'Cycling in the area',
+      desc: 'July to October. We adapt the route to your time and wishes. Bikes are available to borrow.',
+      image: '/assets/images/akt-sykkel-omraadet.jpg',
+    },
     rallarvegen: {
       name: 'Cycling the Rallarvegen',
       desc: 'July to September. An iconic route along the old railway construction road, with views across the Hardangervidda plateau. We adapt the ride to your schedule and wishes. Bikes and helmets are rented from the hotel.',
-      image: '/assets/images/akt-rallarvegen.jpg',
+      image: '/assets/images/akt-rallarvegen-sol.jpg',
     },
     brevandring: {
       name: 'Glacier walk',
@@ -336,12 +336,12 @@ export const aktiviteter: Record<Lang, Record<AktivitetKey, PackageActivity>> = 
 export const morgenbadItem: Record<Lang, { time: string; title: string; desc: string }> = {
   no: {
     time: '07:00',
-    title: 'Mulighet for morgenbading',
-    desc: 'Om ønskelig kan vi fyre opp bålpannen og servere kaffe til morgenfugler som vil starte dagen med et bad i Finsevann, med utsikt mot blåisen på Hardangerjøkulen.',
+    title: 'Mulighet for badstue og morgenbad',
+    desc: 'Om ønskelig fyrer vi opp badstuen og bålpannen for morgenfugler som vil starte dagen med et bad i Finsevann, eller i snøen om vinteren, med utsikt mot blåisen på Hardangerjøkulen.',
   },
   en: {
     time: '07:00',
-    title: 'Optional morning swim',
-    desc: 'If you like, we light the fire pit and serve coffee to the early birds who want to start the day with a swim in Lake Finsevann, looking out at the blue ice of Hardangerjøkulen.',
+    title: 'Optional sauna and morning swim',
+    desc: 'If you like, we heat the sauna and light the fire pit for the early birds who want to start the day with a swim in Lake Finsevann, or in the snow in winter, looking out at the blue ice of Hardangerjøkulen.',
   },
 }

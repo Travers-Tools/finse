@@ -18,19 +18,39 @@ const STEP_IMAGES = [
 
 /** Bilder per aktivitet. Nøkkelen er aktivitetens id (den norske tittelen), som også sendes til hotellet. */
 const ACTIVITY_IMAGES: Record<string, string> = {
-  'Fottur i området': '/assets/images/akt-fottur-kart.jpg',
-  'Sykkeltur på Rallarvegen': '/assets/images/akt-rallarvegen.jpg',
+  'Fottur i området': '/assets/images/akt-fottur-sti.jpg',
+  'Sykkeltur i området': '/assets/images/akt-sykkel-omraadet.jpg',
+  'Sykkeltur på Rallarvegen': '/assets/images/akt-rallarvegen-sol.jpg',
   'Brevandring': '/assets/images/akt-brevandring.jpg',
   'Skiturer i området': '/assets/images/akt-skitur.jpg',
   'Trugeturer': '/assets/images/akt-truger.jpg',
   'Skiseiling': '/assets/images/akt-skiseiling.jpg',
-  'Stjernekikking': '/assets/images/akt-stjerner.jpg',
-  'Morgenbad i Finsevann': '/assets/images/akt-morgenbad.jpg',
+  'Badstue og bading': '/assets/images/akt-morgenbad.jpg',
   'Sidersmaking': '/assets/images/akt-sider.jpg',
   'Bålpanne og after hike/ski/bike': '/assets/images/akt-baalpanne.jpg',
   'Finsequiz': '/assets/images/tog.png',
   'Rallarmuseet': '/assets/images/Finseskilt.jpg',
   'Polarhistorie i Framheim': '/assets/images/nansen.png',
+}
+
+/**
+ * Sesong per aktivitet som [første, siste] måned (1–12). Spenn som krysser
+ * nyttår er lov. Aktiviteter uten oppslag vises hele året.
+ */
+const ACTIVITY_SEASON: Record<string, [number, number]> = {
+  'Fottur i området': [6, 10],
+  'Sykkeltur i området': [7, 10],
+  'Sykkeltur på Rallarvegen': [7, 9],
+  'Brevandring': [7, 9],
+  'Skiturer i området': [1, 5],
+  'Trugeturer': [12, 5],
+  'Skiseiling': [1, 5],
+}
+function iSesong(id: string, month1: number) {
+  const s = ACTIVITY_SEASON[id]
+  if (!s) return true
+  const [fra, til] = s
+  return fra <= til ? month1 >= fra && month1 <= til : month1 >= fra || month1 <= til
 }
 
 /** Norske månedsnavn er nøkkelen som lagres i skjemaet og sendes til hotellet, uavhengig av språk. */
@@ -173,19 +193,18 @@ export default function Configurator() {
 
   const monthMax = upcomingMonths.length - MONTH_VISIBLE
 
-  // June (5) – September (8) er sommersesong, resten er vinter/skuldersesong
-  const isSommerManed = (monthIndex: number) => monthIndex >= 5 && monthIndex <= 8
-  const valgtManedIndex = (() => {
+  // Valgt måned (1–12) styrer hvilke sesongaktiviteter som vises. Uten dato vises alle.
+  const valgtManed = (() => {
     if (form.datoModus === 'datoer' && form.datoFra) {
-      return new Date(form.datoFra).getMonth()
+      return new Date(form.datoFra).getMonth() + 1
     }
     if (form.datoModus === 'fleksibel' && form.fleksibeltManed) {
-      return MONTHS.indexOf(form.fleksibeltManed.split(' ')[0])
+      return MONTHS.indexOf(form.fleksibeltManed.split(' ')[0]) + 1
     }
-    return -1
+    return 0
   })()
-  const viseSommerAktiviteter = valgtManedIndex === -1 || isSommerManed(valgtManedIndex)
-  const viseVinterAktiviteter = valgtManedIndex === -1 || !isSommerManed(valgtManedIndex)
+  const sesongAktiviteter = [...t.step6.summer, ...t.step6.winter]
+    .filter(a => valgtManed === 0 || iSesong(a.id, valgtManed))
 
   // Datovalg er påkrevd før man går videre fra steg 2
   const datoValgt = form.datoModus === 'datoer'
@@ -576,29 +595,10 @@ export default function Configurator() {
                     onMouseUp={onActMouseUp}
                     onMouseLeave={onActMouseUp}
                   >
-                    {viseSommerAktiviteter && (
+                    {sesongAktiviteter.length > 0 && (
                       <div className="konfig-act-group">
                         <div className="konfig-act-group-cards">
-                          {t.step6.summer.map(({ id, title, description }) => {
-                            const selected = isAktivitetSelected(id)
-                            return (
-                              <button key={id} className={`konfig-act-card ${selected ? 'selected' : ''}`} onClick={() => toggleAktivitet(id)}>
-                                <div className="konfig-act-card-img-wrap"><img src={ACTIVITY_IMAGES[id]} alt={title} className="konfig-act-card-img" /></div>
-                                <div className="konfig-act-card-body">
-                                  <p className="konfig-act-card-title">{title}</p>
-                                  <p className="konfig-act-card-desc">{description}</p>
-                                </div>
-                                {selected && <div className="konfig-act-card-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>}
-                              </button>
-                            )
-                          })}
-                        </div>
-                      </div>
-                    )}
-                    {viseVinterAktiviteter && (
-                      <div className="konfig-act-group">
-                        <div className="konfig-act-group-cards">
-                          {t.step6.winter.map(({ id, title, description }) => {
+                          {sesongAktiviteter.map(({ id, title, description }) => {
                             const selected = isAktivitetSelected(id)
                             return (
                               <button key={id} className={`konfig-act-card ${selected ? 'selected' : ''}`} onClick={() => toggleAktivitet(id)}>
