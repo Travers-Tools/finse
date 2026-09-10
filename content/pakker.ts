@@ -130,7 +130,7 @@ export const pakkeKort: Record<Lang, {
     },
     {
       href: '/configurator',
-      image: '/assets/images/hotell-vann.jpg',
+      image: '/assets/images/akt-fottur-kart.jpg',
       tag: 'Lag ditt eget',
       title: 'Skreddersøm',
       description: 'Har du andre ønsker? Vi hjelper deg å skape det perfekte oppholdet.',
@@ -166,7 +166,7 @@ export const pakkeKort: Record<Lang, {
     },
     {
       href: '/configurator',
-      image: '/assets/images/hotell-vann.jpg',
+      image: '/assets/images/akt-fottur-kart.jpg',
       tag: 'Build your own',
       title: 'Tailor-made',
       description: 'Have something else in mind? We help you shape the stay that suits you.',
