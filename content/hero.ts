@@ -17,7 +17,7 @@ export const hero: Record<Lang, {
   en: {
     kicker: 'Finse for business',
     title: ['Step out of the everyday,', 'at Finse'],
-    subtitle: ['Find focus and calm 1,222 metres above sea level.', 'No distractions, just you and the mountain.'],
+    subtitle: ['Find focus and calm 1,222 metres above sea level.', 'No distractions, just your group and the mountain.'],
     pakker: 'Explore packages',
     skreddersy: 'Tailor your stay',
   },

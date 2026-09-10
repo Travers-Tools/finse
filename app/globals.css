@@ -917,7 +917,8 @@ a {
     border: none;
     cursor: pointer;
     font-family: var(--font-serif);
-    font-size: 1.3rem;
+    /* Orpheus har lav x-høyde, så den trenger et hakk mer enn Crimson gjorde. */
+    font-size: 1.7rem;
     font-weight: 400;
     color: #2c2a25;
     text-align: left;

@@ -5,13 +5,13 @@ import { aktiviteter, morgenbadItem } from './pakker'
 const gallery = {
   no: [
     { src: '/assets/images/hotell-tog.jpg', alt: 'Toget stopper rett ved hotellet' },
-    { src: '/assets/images/pkg-hotellet.jpg', alt: 'Hotel Finse1222 sett ovenfra' },
+    { src: '/assets/images/kjokken.jpg', alt: 'Kokkene legger opp i kjøkkenet' },
     { src: '/assets/images/lobby-peis.jpg', alt: 'Lobby med peis' },
     { src: '/assets/images/salong.jpg', alt: 'Salong med utsikt' },
   ],
   en: [
     { src: '/assets/images/hotell-tog.jpg', alt: 'The train stops right by the hotel' },
-    { src: '/assets/images/pkg-hotellet.jpg', alt: 'Hotel Finse1222 seen from above' },
+    { src: '/assets/images/kjokken.jpg', alt: 'The chefs plating up in the kitchen' },
     { src: '/assets/images/lobby-peis.jpg', alt: 'Lobby with fireplace' },
     { src: '/assets/images/salong.jpg', alt: 'Lounge with a view' },
   ],

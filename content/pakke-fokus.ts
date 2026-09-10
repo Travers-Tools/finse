@@ -4,16 +4,16 @@ import { aktiviteter, morgenbadItem } from './pakker'
 
 const gallery = {
   no: [
-    { src: '/assets/images/fokus-hero.jpg', alt: 'Finsevann og Hardangerjøkulen en sommerdag' },
+    { src: '/assets/images/pkg-fokus-kort.jpg', alt: 'To kolleger ved Finsevann' },
     { src: '/assets/images/salong.jpg', alt: 'Salong med utsikt' },
     { src: '/assets/images/pkg-fokus.jpg', alt: 'Møterom med utsikt mot vidda' },
-    { src: '/assets/images/vidda-myrull.jpg', alt: 'Myrull på vidda' },
+    { src: '/assets/images/fokus-hero.jpg', alt: 'Finsevann og Hardangerjøkulen en sommerdag' },
   ],
   en: [
-    { src: '/assets/images/fokus-hero.jpg', alt: 'Lake Finsevann and Hardangerjøkulen on a summer day' },
+    { src: '/assets/images/pkg-fokus-kort.jpg', alt: 'Two colleagues by Lake Finsevann' },
     { src: '/assets/images/salong.jpg', alt: 'Lounge with a view' },
     { src: '/assets/images/pkg-fokus.jpg', alt: 'Meeting room looking out over the plateau' },
-    { src: '/assets/images/vidda-myrull.jpg', alt: 'Cotton grass on the plateau' },
+    { src: '/assets/images/fokus-hero.jpg', alt: 'Lake Finsevann and Hardangerjøkulen on a summer day' },
   ],
 }
 
@@ -25,7 +25,7 @@ export const pakkeFokus: Record<Lang, PackageData> = {
     title: 'Fokus på vidda',
     subtitle: 'Tid til de viktige samtalene',
     intro: 'På Finse er det toget som tar dere frem. Gå på toget i byen, gå av på vidda. For ledergrupper som trenger fokusert tid sammen, langt unna alt som maser.',
-    heroImage: { src: '/assets/images/fokus-hero.jpg', alt: 'Fokus på vidda' },
+    heroImage: { src: '/assets/images/pkg-fokus-kort.jpg', alt: 'Fokus på vidda' },
     gallery: gallery.no,
     includes: [
       { icon: 'bed', text: 'Overnatting i komfortable rom' },
@@ -72,7 +72,7 @@ export const pakkeFokus: Record<Lang, PackageData> = {
     title: 'Focus on the plateau',
     subtitle: 'Time for the conversations that matter',
     intro: 'At Finse, the train is what brings you here. Board in the city, step off on the mountain plateau. For leadership teams that need focused time together, far from everything that clamours for attention.',
-    heroImage: { src: '/assets/images/fokus-hero.jpg', alt: 'Focus on the plateau' },
+    heroImage: { src: '/assets/images/pkg-fokus-kort.jpg', alt: 'Focus on the plateau' },
     gallery: gallery.en,
     includes: [
       { icon: 'bed', text: 'Accommodation in comfortable rooms' },
