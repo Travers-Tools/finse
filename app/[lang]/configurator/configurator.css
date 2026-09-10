@@ -1326,6 +1326,8 @@ div + .konfig-flex-label {
     display: flex;
     flex: 0 0 auto;
     padding: 0;
+    /* Banneret skal ligge over skjemaet, ikke under. */
+    order: -1;
   }
 
   .konfig-img-wrap {

@@ -955,8 +955,15 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     height: auto;
+    min-height: 0;
     max-height: none;
     border-radius: 6px;
+  }
+
+  /* Bestillingskortet kommer etter innholdet på mobil, ikke før tittelen. */
+  .pkg-aside {
+    order: 1;
+    max-width: none;
   }
 
   .pkg-photo {

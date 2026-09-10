@@ -131,6 +131,7 @@ export const pakkeKort: Record<Lang, {
     {
       href: '/configurator',
       image: '/assets/images/akt-fottur-kart.jpg',
+      imagePosition: 'center 30%',
       tag: 'Lag ditt eget',
       title: 'Skreddersøm',
       description: 'Har du andre ønsker? Vi hjelper deg å skape det perfekte oppholdet.',
@@ -167,6 +168,7 @@ export const pakkeKort: Record<Lang, {
     {
       href: '/configurator',
       image: '/assets/images/akt-fottur-kart.jpg',
+      imagePosition: 'center 30%',
       tag: 'Build your own',
       title: 'Tailor-made',
       description: 'Have something else in mind? We help you shape the stay that suits you.',
