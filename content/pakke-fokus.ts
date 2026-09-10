@@ -6,14 +6,14 @@ const gallery = {
   no: [
     { src: '/assets/images/pkg-fokus-kort.jpg', alt: 'To kolleger ved Finsevann' },
     { src: '/assets/images/salong.jpg', alt: 'Salong med utsikt' },
-    { src: '/assets/images/pkg-fokus.jpg', alt: 'Møterom med utsikt mot vidda' },
     { src: '/assets/images/fokus-hero.jpg', alt: 'Finsevann og Hardangerjøkulen en sommerdag' },
+    { src: '/assets/images/pkg-fokus.jpg', alt: 'Møterom med utsikt mot vidda' },
   ],
   en: [
     { src: '/assets/images/pkg-fokus-kort.jpg', alt: 'Two colleagues by Lake Finsevann' },
     { src: '/assets/images/salong.jpg', alt: 'Lounge with a view' },
-    { src: '/assets/images/pkg-fokus.jpg', alt: 'Meeting room looking out over the plateau' },
     { src: '/assets/images/fokus-hero.jpg', alt: 'Lake Finsevann and Hardangerjøkulen on a summer day' },
+    { src: '/assets/images/pkg-fokus.jpg', alt: 'Meeting room looking out over the plateau' },
   ],
 }
 
