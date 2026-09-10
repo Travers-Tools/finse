@@ -1,35 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-
-const faqs = [
-  {
-    question: 'Hvordan kommer vi oss til Finse?',
-    answer: 'Hotellet ligger rett ved siden av Finse stasjon, som betjenes av Bergensbanen, en av verdens vakreste togstrekninger. Bergensbanen har flere daglige avganger i begge retninger, og det er mulig å leie egen togvogn eller togkupé dersom dere vil starte reisen med sosiale aktiviteter eller møter.'
-  },
-  {
-    question: 'Hvor mange gjester kan dere ta imot?',
-    answer: 'Vi har plass til opptil 110 gjester. Hotellet kan også bookes eksklusivt for deres gruppe, slik at dere får hele Hotel Finse1222 for dere selv.'
-  },
-  {
-    question: 'Hvilken tid på året er best for bedriftsopphold?',
-    answer: 'Finse er fantastisk hele året. Vinteren byr på ski, truger og nordlys. Sommeren gir midnattssol, sykling på Rallarvegen og brevandring. Høsten er rolig og perfekt for fokus.'
-  },
-  {
-    question: 'Har dere møterom og fasiliteter for seminarer?',
-    answer: 'Ja, vi har flere rom som kan tilpasses møter, workshops og presentasjoner. Vi har prosjektor, whiteboard og god wifi. Flere av rommene har fantastisk utsikt over Hardangerjøkulen og Hardangervidda.'
-  },
-  {
-    question: 'Hva er inkludert i oppholdet?',
-    answer: 'Alle opphold inkluderer overnatting, frokost, lunsj og middag med lokale råvarer. Aktiviteter og spesielle arrangementer kan skreddersys etter behov.'
-  },
-  {
-    question: 'Kan vi tilpasse programmet?',
-    answer: 'Absolutt. Vi skreddersyr oppholdet basert på deres ønsker og behov. Bruk konfiguratoren vår eller ta kontakt direkte, så lager vi et forslag sammen.'
-  },
-]
+import { useLang } from '@/lib/useLang'
+import { faq } from '@/content/faq'
 
 export default function FAQSection() {
+  const lang = useLang()
+  const t = faq[lang]
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   const toggle = (index: number) => {
@@ -41,16 +18,16 @@ export default function FAQSection() {
       <div className="container">
         <div className="faq-layout">
           <div className="faq-header">
-            <h2 className="faq-title">Disse spørsmålene<br />dukker gjerne opp.</h2>
+            <h2 className="faq-title">{t.title[0]}<br />{t.title[1]}</h2>
           </div>
           <div className="faq-list">
-            {faqs.map((faq, index) => (
+            {t.items.map((item, index) => (
               <div
                 key={index}
                 className={`faq-item ${openIndex === index ? 'faq-item-open' : ''}`}
               >
                 <button className="faq-question" onClick={() => toggle(index)}>
-                  <span>{faq.question}</span>
+                  <span>{item.question}</span>
                   <span className="faq-icon">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
                       {openIndex === index
@@ -62,12 +39,12 @@ export default function FAQSection() {
                 </button>
                 {openIndex === index && (
                   <div className="faq-answer">
-                    <p>{faq.answer}</p>
+                    <p>{item.answer}</p>
                     <div className="faq-avatar">
-                      <img src="/assets/images/Siv_portrett.png" alt="Siv" className="faq-avatar-img" />
+                      <img src="/assets/images/Siv_portrett.png" alt={t.avatarAlt} className="faq-avatar-img" />
                       <div className="faq-avatar-info">
-                        <span className="faq-avatar-name">Siv</span>
-                        <span className="faq-avatar-email">events@hotelfinse1222.no</span>
+                        <span className="faq-avatar-name">{t.avatarName}</span>
+                        <span className="faq-avatar-email">{t.avatarEmail}</span>
                       </div>
                     </div>
                   </div>

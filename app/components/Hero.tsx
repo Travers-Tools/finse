@@ -1,20 +1,24 @@
 import Link from 'next/link'
+import { localePath, type Lang } from '@/lib/i18n'
+import { hero } from '@/content/hero'
 
-export default function Hero() {
+export default function Hero({ lang }: { lang: Lang }) {
+  const t = hero[lang]
   return (
     <main className="hero">
       <div className="hero-content">
+        <p className="hero-kicker">{t.kicker}</p>
         <h1 className="hero-title">
-          Steng verden<br />
-          ute på Finse
+          <span className="hero-title-line">{t.title[0]}</span>{' '}
+          <span className="hero-title-line">{t.title[1]}</span>
         </h1>
         <p className="hero-subtitle">
-          Hold møter og arrangementer i unike omgivelser. Hotel Finse1222<br />
-          er et sted hvor det er lett å samles, tenke og knytte kontakter.
+          {t.subtitle[0]}{' '}<br />
+          {t.subtitle[1]}
         </p>
         <div className="hero-buttons">
-          <a href="#pakker" className="btn btn-tertiary">Utforsk pakker</a>
-          <Link href="/configurator" className="btn btn-outline-light">Skreddersy oppholdet</Link>
+          <a href="#pakker" className="btn btn-tertiary">{t.pakker}</a>
+          <Link href={localePath(lang, '/configurator')} className="btn btn-outline-light">{t.skreddersy}</Link>
         </div>
       </div>
     </main>

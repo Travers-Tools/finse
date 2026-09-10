@@ -1,54 +1,13 @@
-import Link from 'next/link'
+'use client'
 
-interface Package {
-  href: string
-  image: string
-  imagePosition?: string
-  imageFit?: 'cover' | 'contain'
-  tag: string
-  title: string
-  description: string
-  linkText: string
-  isCustom?: boolean
-}
+import Link from 'next/link'
+import { useLang } from '@/lib/useLang'
+import { localePath } from '@/lib/i18n'
+import { pakkeKort } from '@/content/pakker'
 
 export default function PackagesSection() {
-  const packages: Package[] = [
-    {
-      href: '/pakke-fokus-paa-vidda',
-      image: '/assets/images/akt-fokus-vidda.jpg',
-      tag: 'Ledergrupper',
-      title: 'Fokus på vidda',
-      description: 'For team som trenger tid til de viktige samtalene, langt unna alt som maser.',
-      linkText: 'Utforsk'
-    },
-    {
-      href: '/pakke-ekspedisjonstur',
-      image: '/assets/images/ekspedisjon-guide.jpg',
-      imagePosition: 'center 20%',
-      tag: 'Eventyr',
-      title: 'Ekspedisjonstur',
-      description: 'Dager fulle av turer, ski eller sykling. Kvelder foran peisen.',
-      linkText: 'Utforsk'
-    },
-    {
-      href: '/pakke-hotellet-for-dere',
-      image: '/assets/images/hotellet-hero.jpg',
-      tag: 'Fra 30 til 110 gjester',
-      title: 'Hotellet for dere selv',
-      description: 'For jubileer, kickoffs, møter, konferanser og feiringer der dere vil ha Hotel Finse1222 for dere selv.',
-      linkText: 'Utforsk'
-    },
-    {
-      href: '/configurator',
-      image: '/assets/images/skreddersom.jpg',
-      tag: 'Lag ditt eget',
-      title: 'Skreddersøm',
-      description: 'Har du andre ønsker? Vi hjelper deg å skape det perfekte oppholdet.',
-      linkText: 'Start planleggingen',
-      isCustom: true
-    }
-  ]
+  const lang = useLang()
+  const packages = pakkeKort[lang]
 
   return (
     <section className="content-section section-packages">
@@ -57,7 +16,7 @@ export default function PackagesSection() {
           {packages.map((pkg, index) => (
             <Link
               key={index}
-              href={pkg.href}
+              href={localePath(lang, pkg.href)}
               className={`package-card ${pkg.isCustom ? 'package-card-custom' : ''}`}
             >
               <div

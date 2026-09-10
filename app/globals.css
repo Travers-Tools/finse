@@ -2,6 +2,15 @@
    Hotel Finse 1222 – Design System
    ======================================== */
 
+@font-face {
+    font-family: 'Orpheus Pro';
+    src: url('/fonts/orpheus-pro.woff2') format('woff2'),
+         url('/fonts/orpheus-pro.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     /* Colors – warm, light, inviting */
     --color-bg-dark: #f5f2e8;
@@ -18,7 +27,7 @@
     --color-accent: #8b7355;
     
     /* Typography */
-    --font-serif: 'Crimson Pro', Georgia, serif;
+    --font-serif: 'Orpheus Pro', 'Crimson Pro', Georgia, serif;
     --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     
     /* Spacing */
@@ -82,85 +91,293 @@ a {
 }
 
 /* ========================================
-   Header
+   Header – speiler hotelfinse1222.no (#ch-header der)
    ======================================== */
 
-.header {
+:root {
+    --header-height: 90px;
+    --header-bg: #243538;
+    --header-fg: #fdfbf7;
+    --header-cta: #c8bf99;
+    --header-cta-hover: #b5ac87;
+    --header-cta-fg: #2e2a1e;
+    /* Hovedsiden bruker Helvetica Neue LT Pro via Adobe Fonts. Vi har ikke
+       lisensen på dette domenet, så vi faller tilbake på system-Helvetica. */
+    --font-header: 'Helvetica Neue', Helvetica, Arial, var(--font-sans);
+}
+
+.ch-header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
+    background: var(--header-bg);
+    font-family: var(--font-header);
+}
+
+.ch-inner {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    height: var(--header-height);
+    padding: 0 32px;
+    gap: 24px;
+}
+
+.ch-left,
+.ch-right {
+    flex: 0 0 auto;
+    min-width: 80px;
+    display: flex;
     align-items: center;
-    /* Mer luft over enn under: den øvre kanten er skjermkanten, så lik
-       padding oppleves som skjev. */
-    padding: 24px clamp(20px, 4vw, 40px) 12px;
-    background: rgba(245, 242, 232, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 
-.nav-left {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.nav-right {
-    flex: 1;
-    display: flex;
+.ch-right {
     justify-content: flex-end;
+    gap: 16px;
 }
 
-.logo {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.ch-left {
+    gap: 20px;
 }
 
-.logo-img {
-    height: 36px;
-    width: auto;
-}
-
-.nav-link {
-    font-size: 0.875rem;
-    letter-spacing: 0.02em;
-    opacity: 0.9;
-    transition: opacity var(--transition-fast);
-}
-
-.nav-link:hover {
-    opacity: 1;
-}
-
-.btn-planlegg {
+.ch-lang {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.75rem;
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    color: var(--color-text-light);
-    background: transparent;
-    border: 1.5px solid rgba(0, 0, 0, 0.15);
-    border-radius: 6px;
-    transition: all var(--transition-base);
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+}
+
+.ch-lang > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ch-lang-link {
+    color: rgba(253, 251, 247, 0.5);
     text-decoration: none;
+    transition: color 0.2s;
 }
 
-.btn-planlegg .label-short {
+.ch-lang-link:hover,
+.ch-lang-link.active {
+    color: var(--header-fg);
+}
+
+.ch-lang-link.active {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.ch-lang-sep {
+    color: rgba(253, 251, 247, 0.25);
+}
+
+.ch-drawer-lang {
+    margin-top: 8px;
+}
+
+.ch-link.ch-back {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: none;
+    color: rgba(253, 251, 247, 0.5);
+}
+
+.ch-link.ch-back:hover {
+    color: var(--header-fg);
+}
+
+.ch-drawer-nav .ch-back {
+    margin-top: 8px;
+    font-size: 13px;
+    text-transform: none;
+}
+
+.ch-centre {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ch-nav {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.ch-nav-left {
+    justify-content: flex-end;
+    padding-right: 40px;
+}
+
+.ch-nav-right {
+    justify-content: flex-start;
+    padding-left: 40px;
+}
+
+.ch-link {
+    color: rgba(253, 251, 247, 0.8);
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 400;
+    white-space: nowrap;
+    transition: color 0.2s;
+}
+
+.ch-link:hover {
+    color: var(--header-fg);
+}
+
+.ch-logo {
+    flex: 0 0 auto;
+    display: block;
+    line-height: 0;
+}
+
+.ch-logo img {
+    height: 63px;
+    width: auto;
+    display: block;
+}
+
+.ch-cta {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--header-cta);
+    color: var(--header-cta-fg);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.ch-cta:hover {
+    background: var(--header-cta-hover);
+}
+
+.ch-burger {
     display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
 }
 
-.btn-planlegg:hover {
-    background: rgba(0, 0, 0, 0.06);
-    border-color: rgba(0, 0, 0, 0.25);
+.ch-burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--header-fg);
+}
+
+.ch-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 101;
+}
+
+.ch-overlay.open {
+    display: block;
+}
+
+.ch-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    max-width: 85vw;
+    background: #1c292b;
+    z-index: 102;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 32px 48px;
+    font-family: var(--font-header);
+}
+
+.ch-drawer.open {
+    transform: translateX(0);
+}
+
+.ch-drawer-close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    color: rgba(253, 251, 247, 0.7);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+    margin-bottom: 32px;
+}
+
+.ch-drawer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex: 1;
+}
+
+.ch-drawer-nav .ch-link {
+    color: rgba(253, 251, 247, 0.85);
+    font-size: 16px;
+    letter-spacing: 0.06em;
+}
+
+.ch-cta-drawer {
+    margin-top: auto;
+    text-align: center;
+}
+
+@media (max-width: 1600px) {
+    .ch-nav { gap: 20px; }
+    .ch-nav-left { padding-right: 28px; }
+    .ch-nav-right { padding-left: 28px; }
+    .ch-link { font-size: 14px; letter-spacing: 0.03em; }
+    .ch-cta { font-size: 14px; padding: 10px 16px; }
+}
+
+@media (max-width: 1200px) {
+    .ch-left,
+    .ch-nav {
+        display: none;
+    }
+
+    .ch-centre {
+        justify-content: flex-start;
+    }
+
+    .ch-right .ch-cta {
+        display: none;
+    }
+
+    .ch-burger {
+        display: flex;
+    }
+
+    .ch-logo img {
+        height: 36px;
+    }
+
+    .ch-inner {
+        padding: 0 20px;
+    }
 }
 
 /* ========================================
@@ -178,7 +395,7 @@ a {
     font-weight: 500;
     letter-spacing: 0.01em;
     border: none;
-    border-radius: 6px;
+    border-radius: 0;
     cursor: pointer;
     transition: all var(--transition-base);
 }
@@ -205,7 +422,7 @@ a {
     background-color: #1a1a1a;
     color: #f5f2e8;
     border: 1px solid #1a1a1a;
-    border-radius: 6px;
+    border-radius: 0;
 }
 
 .btn-tertiary:hover {
@@ -246,17 +463,35 @@ a {
 .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 900px;
+    max-width: 1100px;
     padding: var(--space-lg);
+}
+
+.hero-kicker {
+    font-family: var(--font-header);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
 }
 
 .hero-title {
     font-family: var(--font-serif);
-    font-size: clamp(3rem, 10vw, 6rem);
+    font-size: clamp(3rem, 9vw, 5.5rem);
     font-weight: 400;
-    line-height: 1.12;
-    letter-spacing: -0.02em;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
     margin-bottom: var(--space-md);
+}
+
+/* Hver linje er skrevet for å stå hel; på brede skjermer tvinger vi det.
+   På smale skjermer får ordene flyte, så tittelen ikke blir tre linjer. */
+@media (min-width: 900px) {
+    .hero-title-line {
+        display: block;
+        white-space: nowrap;
+    }
 }
 
 .hero-subtitle {
@@ -346,7 +581,7 @@ a {
     color: var(--color-cream);
     background: rgba(255, 255, 255, 0.6);
     border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 6px;
+    border-radius: 0;
     cursor: pointer;
     transition: all var(--transition-fast);
     text-decoration: none;
@@ -518,7 +753,7 @@ a {
     background: transparent;
     color: #1a1a1a;
     border: 1px solid rgba(0, 0, 0, 0.25);
-    border-radius: 6px;
+    border-radius: 0;
     padding: 0.75rem 1.5rem;
     font-size: 0.9rem;
 }
@@ -1956,7 +2191,7 @@ a {
     background: transparent;
     color: var(--color-cream);
     border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 6px;
+    border-radius: 0;
     padding: 0.75rem 1.25rem;
     font-family: var(--font-sans);
     font-size: 0.9rem;
@@ -2005,34 +2240,24 @@ a {
 }
 
 @media (max-width: 768px) {
-    .header {
-        padding: 8px var(--space-sm);
-        gap: var(--space-xs);
+    .landing-page .hero {
+        padding-left: var(--space-sm);
+        padding-right: var(--space-sm);
     }
 
-    /* Full merkelapp får ikke plass på 390px og brøt over tre linjer,
-       som dro headeren opp i 132px. */
-    .btn-planlegg .label-full { display: none; }
-    .btn-planlegg .label-short { display: inline; }
-
-    .btn-planlegg {
-        height: 40px;
-        padding: 0 0.85rem;
-        font-size: 0.78rem;
-        white-space: nowrap;
+    .hero-title {
+        font-size: clamp(1.7rem, 7.8vw, 2.4rem);
     }
 
-    .nav-link {
-        display: inline-flex;
-        align-items: center;
-        min-height: 40px;
-        font-size: 0.8rem;
+    .hero-title-line {
+        display: block;
     }
 
-    .logo-img {
-        height: 30px;
+    /* Underteksten får flyte uten tvungne linjeskift på små skjermer. */
+    .hero-subtitle br {
+        display: none;
     }
-    
+
     .hero-content {
         padding: var(--space-md);
     }
@@ -2171,11 +2396,6 @@ a {
 .package-page {
     background: #f5f2e8;
     min-height: 100vh;
-}
-
-.header-dark {
-    background: rgba(245, 242, 232, 0.95);
-    backdrop-filter: blur(10px);
 }
 
 .package-detail {

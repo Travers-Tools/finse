@@ -7,8 +7,10 @@ import {
   hotellTekst,
   kundeMail,
   kundeTekst,
+  kundeEmne,
   type Payload,
 } from './epost'
+import { DEFAULT_LANG, isLang, localePath } from '@/lib/i18n'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -51,7 +53,9 @@ function byggLenke(req: NextRequest, p: Payload) {
   const proto = req.headers.get('x-forwarded-proto') || (host.startsWith('localhost') ? 'http' : 'https')
   const base = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, '') || `${proto}://${host}`
   const kodet = Buffer.from(JSON.stringify(p), 'utf8').toString('base64')
-  return `${base}/reise/?id=${encodeURIComponent(p.id || '')}#d=${kodet}`
+  // Engelske forespørsler får lenke til den engelske reise-siden (/en/reise/).
+  const sti = localePath(p.lang ?? DEFAULT_LANG, '/reise/')
+  return `${base}${sti}?id=${encodeURIComponent(p.id || '')}#d=${kodet}`
 }
 
 type Vedlegg = { filename: string; content: string; content_id?: string }
@@ -109,6 +113,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Navn og e-post er påkrevd' }, { status: 400 })
   }
 
+  // Språket gjesten brukte. Ukjent eller manglende verdi blir norsk.
+  p.lang = isLang(p.lang) ? p.lang : DEFAULT_LANG
+
   const lenke = byggLenke(req, p)
 
   // Til hotellet — med reply-to satt til kunden. Denne må gå gjennom;
@@ -134,7 +141,7 @@ export async function POST(req: NextRequest) {
       from: FRA,
       to: p.epost,
       reply_to: HOTEL_EPOST,
-      subject: 'Vi har mottatt forespørselen din – Hotel Finse1222',
+      subject: kundeEmne(p),
       html: kundeMail(p, lenke),
       text: kundeTekst(p, lenke),
       attachments: [{ filename: 'logo.png', content: await hentLogo(), content_id: LOGO_CID }],

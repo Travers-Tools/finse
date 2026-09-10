@@ -5,7 +5,14 @@
  * og rgba() er upålitelig. Derfor: tabeller, inline-stiler, solide hex-farger og
  * Georgia som stedfortreder for Crimson Pro. Fargene er hentet fra
  * designsystemet i globals.css og gjort om til faste verdier.
+ *
+ * Språk: varselet til hotellet er alltid norsk (med en linje om hvilket språk
+ * gjesten brukte). Bekreftelsen til kunden går på språket forespørselen ble
+ * sendt inn på, med tekster fra content/epost.ts.
  */
+
+import { DEFAULT_LANG, htmlLang, type Lang } from '@/lib/i18n'
+import { kundeEpost, spraakNavn } from '@/content/epost'
 
 const F = {
   bg:        '#f5f2e8', // --color-bg-dark
@@ -37,7 +44,10 @@ export type Payload = {
   telefon?: string
   merknad?: string
   id?: string
+  lang?: Lang
 }
+
+const spraak = (p: Payload): Lang => p.lang ?? DEFAULT_LANG
 
 const esc = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -65,8 +75,8 @@ const forhandsvisning = (t: string) => `
   <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all">${esc(t)}</div>
   <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all">&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;</div>`
 
-const dokument = (tittel: string, preheader: string, innhold: string) => `<!doctype html>
-<html lang="no">
+const dokument = (tittel: string, preheader: string, innhold: string, lang: Lang = DEFAULT_LANG) => `<!doctype html>
+<html lang="${htmlLang(lang)}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -108,6 +118,7 @@ export function hotellMail(p: Payload) {
     ['Antall gjester', p.antall],
     ['Romtyper', p.romtyper?.join(', ')],
     ['Aktiviteter', p.aktiviteter?.join(', ')],
+    ['Språk', spraakNavn[spraak(p)]],
   ]
 
   const tittel = [p.navn, p.bedrift].filter(Boolean).join(' · ') || 'Ny forespørsel'
@@ -168,6 +179,7 @@ export function hotellTekst(p: Payload) {
     ['Antall gjester', p.antall],
     ['Romtyper', p.romtyper?.join(', ')],
     ['Aktiviteter', p.aktiviteter?.join(', ')],
+    ['Språk', spraakNavn[spraak(p)]],
     ['Merknad', p.merknad],
   ]).map(([k, v]) => `${k}: ${v}`)
 
@@ -184,15 +196,23 @@ export function hotellTekst(p: Payload) {
    Her er det merkevaren møter dem. Logo, rolig serif, sitatet fra
    1914 nederst — samme som i footeren på nettsiden. */
 
-export function kundeMail(p: Payload, lenke?: string) {
-  const oppsummering: Rad[] = [
-    ['Anledning', p.anledning],
-    ['Dato', p.dato],
-    ['Varighet', p.varighet],
-    ['Antall gjester', p.antall],
-    ['Romtyper', p.romtyper?.join(', ')],
-    ['Aktiviteter', p.aktiviteter?.join(', ')],
+/** Oppsummeringsradene i kundens språk. Verdiene er data fra konfiguratoren. */
+const kundeRader = (p: Payload, lang: Lang): Rad[] => {
+  const r = kundeEpost[lang].rader
+  return [
+    [r.anledning, p.anledning],
+    [r.dato, p.dato],
+    [r.varighet, p.varighet],
+    [r.antall, p.antall],
+    [r.romtyper, p.romtyper?.join(', ')],
+    [r.aktiviteter, p.aktiviteter?.join(', ')],
   ]
+}
+
+export function kundeMail(p: Payload, lenke?: string) {
+  const lang = spraak(p)
+  const t = kundeEpost[lang]
+  const oppsummering = kundeRader(p, lang)
 
   const fornavn = (p.navn || '').trim().split(/\s+/)[0] || ''
 
@@ -211,11 +231,11 @@ export function kundeMail(p: Payload, lenke?: string) {
       </table>
 
       <h1 style="margin:0 0 16px;font-family:${SERIF};font-size:27px;line-height:1.3;font-weight:normal;color:${F.tekst};text-align:center">
-        Takk for foresp&oslash;rselen${fornavn ? `, ${esc(fornavn)}` : ''}
+        ${esc(t.takk(fornavn))}
       </h1>
 
       <p style="margin:0 0 14px;font-family:${SANS};font-size:15px;line-height:1.7;color:${F.tekst2};text-align:center">
-        Vi kommer tilbake med et forslag til en skreddersydd pakke innen &eacute;n arbeidsdag.
+        ${esc(t.svarInnen)}
       </p>
 
       <div style="height:16px;line-height:16px;font-size:0">&nbsp;</div>
@@ -228,14 +248,14 @@ export function kundeMail(p: Payload, lenke?: string) {
       <div style="height:22px;line-height:22px;font-size:0">&nbsp;</div>
 
       <p style="margin:0 0 14px;font-family:${SANS};font-size:15px;line-height:1.7;color:${F.tekst2}">
-        Her er foresp&oslash;rselen oppsummert p&aring; &eacute;n side, klar til &aring; dele med kollegaer.
+        ${esc(t.delLenke)}
       </p>
 
       <!-- Knapp bygget som tabell: Outlook rendrer ikke padding p&aring; <a>. -->
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
         <tr>
           <td style="background:${F.tekst};border-radius:6px">
-            <a href="${esc(lenke)}" style="display:inline-block;padding:13px 26px;font-family:${SANS};font-size:15px;line-height:1;color:${F.kort};text-decoration:none">Se oppsummeringen</a>
+            <a href="${esc(lenke)}" style="display:inline-block;padding:13px 26px;font-family:${SANS};font-size:15px;line-height:1;color:${F.kort};text-decoration:none">${esc(t.seOppsummering)}</a>
           </td>
         </tr>
       </table>` : ''}
@@ -245,8 +265,7 @@ export function kundeMail(p: Payload, lenke?: string) {
       <div style="height:20px;line-height:20px;font-size:0">&nbsp;</div>
 
       <p style="margin:0;font-family:${SANS};font-size:15px;line-height:1.7;color:${F.tekst2}">
-        Har dere sp&oslash;rsm&aring;l i mellomtiden, svar gjerne p&aring; denne e-posten eller ring oss p&aring;
-        <a href="tel:+4756527100" style="color:${F.brun};text-decoration:underline;white-space:nowrap">+47 56 52 71 00</a>.
+        ${esc(t.sporsmaal[0])}<a href="tel:+4756527100" style="color:${F.brun};text-decoration:underline;white-space:nowrap">+47 56 52 71 00</a>${esc(t.sporsmaal[1])}
       </p>
 
     </td>
@@ -254,45 +273,40 @@ export function kundeMail(p: Payload, lenke?: string) {
 
   <tr>
     <td style="padding:26px 20px 0;text-align:center;font-family:${SANS};font-size:12px;line-height:1.6;color:${F.dempet}">
-      Hotel Finse1222 &middot; Norges h&oslash;yestliggende hotell &middot; 1222 moh.
+      ${esc(t.bunnlinje)}
     </td>
   </tr>`
 
-  return dokument(
-    'Vi har mottatt forespørselen din',
-    'Vi tar kontakt innen én arbeidsdag.',
-    innhold,
-  )
+  return dokument(t.tittel, t.preheader, innhold, lang)
 }
 
 export function kundeTekst(p: Payload, lenke?: string) {
-  const linjer = rader([
-    ['Anledning', p.anledning],
-    ['Dato', p.dato],
-    ['Varighet', p.varighet],
-    ['Antall gjester', p.antall],
-    ['Romtyper', p.romtyper?.join(', ')],
-    ['Aktiviteter', p.aktiviteter?.join(', ')],
-  ]).map(([k, v]) => `${k}: ${v}`)
+  const lang = spraak(p)
+  const t = kundeEpost[lang]
+  const linjer = rader(kundeRader(p, lang)).map(([k, v]) => `${k}: ${v}`)
 
-  const fornavn = (p.navn || '').trim().split(/\s+/)[0]
+  const fornavn = (p.navn || '').trim().split(/\s+/)[0] || ''
 
   return [
-    `Takk for forespørselen${fornavn ? `, ${fornavn}` : ''}`,
+    t.takk(fornavn),
     '',
-    'Vi kommer tilbake med et forslag til en skreddersydd pakke innen én arbeidsdag.',
+    t.svarInnen,
     '',
     ...linjer,
     ...(lenke ? [
       '',
-      'Her er forespørselen oppsummert på én side, klar til å dele med kollegaer:',
+      t.delLenke.replace(/\.$/, ':'),
       lenke,
     ] : []),
     '',
-    'Har dere spørsmål i mellomtiden, svar gjerne på denne e-posten eller ring',
-    'oss på +47 56 52 71 00.',
+    `${t.sporsmaal[0]}+47 56 52 71 00${t.sporsmaal[1]}`,
     '',
     '—',
-    'Hotel Finse1222 · Norges høyestliggende hotell · 1222 moh.',
+    t.bunnlinje,
   ].join('\n')
+}
+
+/** Emnefeltet på bekreftelsen til kunden, i kundens språk. */
+export function kundeEmne(p: Payload) {
+  return `${kundeEpost[spraak(p)].emne} – Hotel Finse1222`
 }

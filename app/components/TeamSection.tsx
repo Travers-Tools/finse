@@ -1,28 +1,27 @@
 import Link from 'next/link'
+import { localePath, type Lang } from '@/lib/i18n'
+import { team } from '@/content/forside'
 
-export default function TeamSection() {
+export default function TeamSection({ lang }: { lang: Lang }) {
+  const t = team[lang]
   return (
     <section className="content-section section-team">
       <div className="container">
         <div className="team-content">
           <div className="team-image">
-            <img src="/assets/images/Siv Lyngtun.jpg" alt="Siv" />
+            <img src="/assets/images/Siv Lyngtun.jpg" alt={t.imageAlt} />
           </div>
           <div className="team-text">
-            <h2 className="content-title">Vi gleder oss til<br />å ta imot dere</h2>
-            <p className="content-description">
-              På Hotel Finse1222 handler det om de ekte møtene – både med naturen og
-              med hverandre. Vi sørger for at alt ligger til rette, så dere kan
-              fokusere på det som virkelig betyr noe.
-            </p>
+            <h2 className="content-title">{t.title[0]}<br />{t.title[1]}</h2>
+            <p className="content-description">{t.body}</p>
             <div className="team-signatures">
               <div className="signature">
-                <span className="signature-name">Siv</span>
-                <span className="signature-title">Vert for grupper</span>
+                <span className="signature-name">{t.name}</span>
+                <span className="signature-title">{t.role}</span>
               </div>
             </div>
-            <Link href="/configurator" className="btn btn-outline">
-              Start planleggingen
+            <Link href={localePath(lang, '/configurator')} className="btn btn-outline">
+              {t.cta}
             </Link>
           </div>
         </div>

@@ -1,85 +1,38 @@
 import Link from 'next/link'
+import { localePath, type Lang } from '@/lib/i18n'
+import { contentSections } from '@/content/forside'
 import StorySlider from './StorySlider'
 
-export default function ContentSections() {
+/* Bildestier per seksjon, i samme rekkefølge som alt-tekstene i ordboken. */
+const IMAGES: string[][] = [
+  ['/assets/images/tog.png', '/assets/images/finse1222__242.JPG', '/assets/images/tur.png'],
+  ['/assets/images/finse1222__182.JPG', '/assets/images/tak.png'],
+  ['/assets/images/kart.png', '/assets/images/nansen.png'],
+]
+
+export default function ContentSections({ lang }: { lang: Lang }) {
+  const t = contentSections[lang]
   return (
     <>
-      {/* Seksjon 1: Toget */}
-      <section id="utforsk" className="content-section">
-        <div className="container">
-          <div className="content-grid">
-            <div className="content-text">
-              <h2 className="content-title">Gå på toget i byen,<br />gå av på vidda.</h2>
-              <p className="content-description">
-                På Finse er det toget som tar deg frem. Gå på toget i byen, og gå 
-                av på vidda. Vi møter deg og din bedrift på perrongen.
-              </p>
-              <Link href="/configurator" className="btn btn-outline">
-                Skreddersy din pakke
-              </Link>
+      {t.sections.map((s, i) => (
+        <section key={i} id={i === 0 ? 'utforsk' : undefined} className="content-section">
+          <div className="container">
+            <div className="content-grid">
+              <div className="content-text">
+                <h2 className="content-title">{s.title[0]}<br />{s.title[1]}</h2>
+                <p className="content-description">{s.body}</p>
+                <Link href={localePath(lang, '/configurator')} className="btn btn-outline">
+                  {s.cta}
+                </Link>
+              </div>
+              <StorySlider
+                sliderId={String(i + 1)}
+                images={IMAGES[i].map((src, j) => ({ src, alt: s.alts[j] }))}
+              />
             </div>
-            <StorySlider 
-              sliderId="1"
-              images={[
-                { src: '/assets/images/tog.png', alt: 'Tog til Finse' },
-                { src: '/assets/images/finse1222__242.JPG', alt: 'Restaurant' },
-                { src: '/assets/images/tur.png', alt: 'På tur' }
-              ]}
-            />
           </div>
-        </div>
-      </section>
-
-      {/* Seksjon 2: Natur */}
-      <section className="content-section">
-        <div className="container">
-          <div className="content-grid">
-            <div className="content-text">
-              <h2 className="content-title">Stillhet og ro møter rå<br />natur og oppdagerlyst</h2>
-              <p className="content-description">
-                Ingen biler, ingen forstyrrelser. Bare vidda, himmelen og gode 
-                samtaler. Her får teamet rom til å tenke stort – og koble av skikkelig.
-              </p>
-              <Link href="/configurator" className="btn btn-outline">
-                Lag din bedriftspakke
-              </Link>
-            </div>
-            <StorySlider 
-              sliderId="2"
-              images={[
-                { src: '/assets/images/finse1222__182.JPG', alt: 'Avslapning' },
-                { src: '/assets/images/tak.png', alt: 'Utsikt fra Finse' }
-              ]}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Seksjon 3: Historie */}
-      <section className="content-section">
-        <div className="container">
-          <div className="content-grid">
-            <div className="content-text">
-              <h2 className="content-title">Over 100 år med<br />eventyrlyst og ambisjoner</h2>
-              <p className="content-description">
-                Siden 1909 har Hotel Finse1222 vært samlingspunkt for oppdagere, visionære og
-                ledere. Fridtjof Nansen trente her før Sydpolen. Roald Amundsen planla 
-                ekspedisjoner. I dag samles Norges fremste bedrifter for å tenke stort.
-              </p>
-              <Link href="/configurator" className="btn btn-outline">
-                Skriv din historie
-              </Link>
-            </div>
-            <StorySlider 
-              sliderId="3"
-              images={[
-                { src: '/assets/images/kart.png', alt: 'Historisk kart' },
-                { src: '/assets/images/nansen.png', alt: 'Fridtjof Nansen' }
-              ]}
-            />
-          </div>
-        </div>
-      </section>
+        </section>
+      ))}
     </>
   )
 }

@@ -3,19 +3,14 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
+import { localePath } from '@/lib/i18n'
+import { useLang } from '@/lib/useLang'
+import { klima, klimaFigures, klimaSource } from '@/content/klima'
 import './klima.css'
 
-/** Tallgrunnlaget. Ti personer, tur/retur fra Oslo. */
-export const KLIMA_FIGURES = [
-  { route: 'Oslo–Finse, tog', value: '50 kg CO₂', finse: true },
-  { route: 'Oslo–Lofoten, fly', value: '2,4 tonn CO₂' },
-  { route: 'Oslo–Svalbard, fly', value: '5,1 tonn CO₂' },
-  { route: 'Oslo–Marbella, fly', value: '7,2 tonn CO₂' },
-  { route: 'Oslo–Marbella, fly på business', value: '16,2 tonn CO₂' },
-]
-
-export const KLIMA_SOURCE =
-  'Samlet utslipp for ti personer tur/retur, beregnet med Klimatsmartsemester.se.'
+/** Tallgrunnlaget per språk. Ti personer, tur/retur fra Oslo. */
+export const KLIMA_FIGURES = klimaFigures
+export const KLIMA_SOURCE = klimaSource
 
 function TrainIcon({ size = 14 }: { size?: number }) {
   return (
@@ -41,7 +36,8 @@ function TrainIcon({ size = 14 }: { size?: number }) {
 }
 
 /** Chip som åpner klimamodalen. Brukes i pakkesidenes «passer for»-rad. */
-export function KlimaChip({ label = 'Klimasmart valg' }: { label?: string }) {
+export function KlimaChip({ label }: { label?: string }) {
+  const lang = useLang()
   const [open, setOpen] = useState(false)
 
   return (
@@ -53,7 +49,7 @@ export function KlimaChip({ label = 'Klimasmart valg' }: { label?: string }) {
         aria-haspopup="dialog"
       >
         <TrainIcon />
-        {label}
+        {label ?? klima[lang].chipLabel}
       </button>
       <KlimaModal open={open} onClose={() => setOpen(false)} />
     </span>
@@ -67,6 +63,8 @@ export function KlimaModal({
   open: boolean
   onClose: () => void
 }) {
+  const lang = useLang()
+  const t = klima[lang]
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => setMounted(true), [])
@@ -94,7 +92,7 @@ export function KlimaModal({
       className="klima klima-overlay"
       role="dialog"
       aria-modal="true"
-      aria-label="Klimaavtrykk"
+      aria-label={t.modalAria}
       onClick={onClose}
     >
       <div className="klima-modal" onClick={e => e.stopPropagation()}>
@@ -102,7 +100,7 @@ export function KlimaModal({
           type="button"
           className="klima-modal-close"
           onClick={onClose}
-          aria-label="Lukk"
+          aria-label={t.close}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
             <line x1="18" y1="6" x2="6" y2="18" />
@@ -112,22 +110,15 @@ export function KlimaModal({
 
         <span className="klima-modal-label">
           <TrainIcon size={15} />
-          Klimasmart valg
+          {t.chipLabel}
         </span>
 
-        <h2 className="klima-modal-title">
-          Finse er bare tilgjengelig med tog
-        </h2>
+        <h2 className="klima-modal-title">{t.modalTitle}</h2>
 
-        <p className="klima-modal-body">
-          Når vi reiser, ligger omtrent 75 prosent av reisens klimaavtrykk i
-          transporten. Av tog, elbil og fly er toget den mest klimavennlige måten
-          å forflytte seg på. Toget er den eneste måten å komme helt fram til
-          Finse på, og da følger det lave avtrykket med på kjøpet.
-        </p>
+        <p className="klima-modal-body">{t.modalBody}</p>
 
         <ul className="klima-figures">
-          {KLIMA_FIGURES.map(f => (
+          {KLIMA_FIGURES[lang].map(f => (
             <li
               key={f.route}
               className={`klima-figure ${f.finse ? 'is-finse' : ''}`}
@@ -138,11 +129,11 @@ export function KlimaModal({
           ))}
         </ul>
 
-        <p className="klima-figures-caption">{KLIMA_SOURCE}</p>
+        <p className="klima-figures-caption">{KLIMA_SOURCE[lang]}</p>
 
         <div className="klima-modal-foot">
-          <Link href="/klima" className="klima-link" onClick={onClose}>
-            Les hele regnestykket
+          <Link href={localePath(lang, '/klima')} className="klima-link" onClick={onClose}>
+            {t.readFull}
           </Link>
         </div>
       </div>
@@ -153,6 +144,8 @@ export function KlimaModal({
 
 /** Klimaseksjon til forsiden. Ligger under pakkegridet. */
 export default function KlimaSection() {
+  const lang = useLang()
+  const t = klima[lang]
   const [open, setOpen] = useState(false)
 
   return (
@@ -161,19 +154,16 @@ export default function KlimaSection() {
         <div className="klima-band-card">
           <span className="klima-modal-label">
             <TrainIcon size={15} />
-            Klimasmart valg
+            {t.chipLabel}
           </span>
 
           <p className="klima-band-statement">
-            En jobbsamling på Finse har et klimaavtrykk som er omtrent{' '}
-            <em>150 ganger lavere</em> enn et tilsvarende arrangement på en
-            flybasert destinasjon i Sør-Europa.
+            {t.bandStatement[0]}
+            <em>{t.bandStatement[1]}</em>
+            {t.bandStatement[2]}
           </p>
 
-          <p className="klima-band-sub">
-            Omtrent 75 prosent av en reises klimaavtrykk ligger i transporten, og
-            Finse er bare tilgjengelig med tog. Det gjelder alle oppholdene våre.
-          </p>
+          <p className="klima-band-sub">{t.bandSub}</p>
 
           <div className="klima-band-actions">
             <button
@@ -182,10 +172,10 @@ export default function KlimaSection() {
               onClick={() => setOpen(true)}
               aria-haspopup="dialog"
             >
-              Se regnestykket
+              {t.seeFigures}
             </button>
-            <Link href="/klima" className="klima-link">
-              Mer om klimaavtrykket
+            <Link href={localePath(lang, '/klima')} className="klima-link">
+              {t.moreAbout}
             </Link>
           </div>
         </div>

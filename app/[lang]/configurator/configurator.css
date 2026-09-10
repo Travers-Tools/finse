@@ -580,7 +580,7 @@
   color: #fff;
   background: #322A20;
   border: none;
-  border-radius: 12px;
+  border-radius: 0;
   padding: 14px 28px;
   cursor: pointer;
   transition: background 150ms ease;

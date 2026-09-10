@@ -6,6 +6,9 @@ import Header from './Header'
 import Footer from './Footer'
 import { Icon, IconName } from './PackageIcons'
 import { KlimaChip } from './Klima'
+import { useLang } from '@/lib/useLang'
+import { localePath } from '@/lib/i18n'
+import { pakkeUi, allePakker, HOST_IMAGE } from '@/content/pakker'
 import './package.css'
 
 export interface PackageItem {
@@ -31,6 +34,8 @@ export interface PackageActivity {
 }
 
 export interface PackageData {
+  /** Norsk sti til denne pakken, f.eks. «/pakke-fokus-paa-vidda». Brukes til å filtrere «Andre pakker». */
+  slug: string
   title: string
   subtitle: string
   intro: string
@@ -43,35 +48,9 @@ export interface PackageData {
   ctaNote: string
 }
 
-const DEFAULT_HOST = {
-  name: 'Siv',
-  role: 'Vert for grupper på Hotel Finse1222',
-  image: '/assets/images/Siv_portrett.png',
-  intro: 'Vi tar imot dere på perrongen og sørger for at alt er klart når dere kommer. Si fra hva dere ønsker, så tilpasser vi.',
-}
-
-const ALL_PACKAGES = [
-  {
-    slug: '/pakke-ekspedisjonstur',
-    title: 'Ekspedisjonstur',
-    subtitle: 'I fotsporene til Nansen og Amundsen',
-    image: '/assets/images/ekspedisjon-guide.jpg',
-  },
-  {
-    slug: '/pakke-fokus-paa-vidda',
-    title: 'Fokus på vidda',
-    subtitle: 'Tid til de viktige samtalene',
-    image: '/assets/images/R1-04554-0028.jpg',
-  },
-  {
-    slug: '/pakke-hotellet-for-dere',
-    title: 'Hotellet for dere selv',
-    subtitle: 'Når dere fortjener hele Finse',
-    image: '/assets/images/hotellet-hero.jpg',
-  },
-]
-
 export default function PackageTemplate(data: PackageData) {
+  const lang = useLang()
+  const t = pakkeUi[lang]
   const visibleImages = data.gallery.slice(0, 3)
   const [galleryOpen, setGalleryOpen] = useState(false)
   const [galleryIndex, setGalleryIndex] = useState(0)
@@ -134,7 +113,7 @@ export default function PackageTemplate(data: PackageData) {
                   <rect x="3" y="14" width="7" height="7" />
                   <rect x="14" y="14" width="7" height="7" />
                 </svg>
-                Vis alle bilder
+                {t.showAll}
               </button>
             )}
           </div>
@@ -143,14 +122,14 @@ export default function PackageTemplate(data: PackageData) {
 
       {/* ── Lightbox modal ── */}
       {galleryOpen && (
-        <div className="pkg-lightbox" role="dialog" aria-modal="true" aria-label="Alle bilder">
+        <div className="pkg-lightbox" role="dialog" aria-modal="true" aria-label={t.lightboxLabel}>
           <div className="pkg-lightbox-bar">
             <span className="pkg-lightbox-counter">{galleryIndex + 1} / {galleryCount}</span>
             <button
               type="button"
               className="pkg-lightbox-close"
               onClick={() => setGalleryOpen(false)}
-              aria-label="Lukk bildegalleri"
+              aria-label={t.close}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18" />
@@ -168,7 +147,7 @@ export default function PackageTemplate(data: PackageData) {
                 type="button"
                 className="pkg-lightbox-nav pkg-lightbox-prev"
                 onClick={showPrev}
-                aria-label="Forrige bilde"
+                aria-label={t.prev}
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="15 18 9 12 15 6" />
@@ -189,7 +168,7 @@ export default function PackageTemplate(data: PackageData) {
                 type="button"
                 className="pkg-lightbox-nav pkg-lightbox-next"
                 onClick={showNext}
-                aria-label="Neste bilde"
+                aria-label={t.next}
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="9 18 15 12 9 6" />
@@ -206,7 +185,7 @@ export default function PackageTemplate(data: PackageData) {
                   type="button"
                   className={`pkg-lightbox-thumb ${i === galleryIndex ? 'is-active' : ''}`}
                   onClick={() => setGalleryIndex(i)}
-                  aria-label={`Vis bilde ${i + 1}`}
+                  aria-label={t.showImage(i + 1)}
                 >
                   <img src={img.src} alt={img.alt} />
                 </button>
@@ -243,7 +222,7 @@ export default function PackageTemplate(data: PackageData) {
 
               {/* Includes */}
               <div className="pkg-block">
-                <h2 className="pkg-block-title">Dette er inkludert</h2>
+                <h2 className="pkg-block-title">{t.includes}</h2>
                 <ul className="pkg-includes-grid">
                   {data.includes.map((item, i) => (
                     <li key={i} className="pkg-includes-item">
@@ -257,8 +236,8 @@ export default function PackageTemplate(data: PackageData) {
 
               {/* Itinerary */}
               <div className="pkg-block">
-                <h2 className="pkg-block-title">Slik kan oppholdet se ut</h2>
-                <p className="pkg-block-note">Dette er kun et forslag. Vi tilpasser programmet etter gruppen og egne ønsker.</p>
+                <h2 className="pkg-block-title">{t.itinerary}</h2>
+                <p className="pkg-block-note">{t.itineraryNote}</p>
                 <ol className="pkg-itinerary-list">
                   {data.itinerary.map((day, i) => {
                     const isOpen = openDays.includes(i)
@@ -271,7 +250,7 @@ export default function PackageTemplate(data: PackageData) {
                           aria-expanded={isOpen}
                           aria-controls={`pkg-day-content-${i}`}
                         >
-                          <span className="pkg-day-num">Dag {i + 1}</span>
+                          <span className="pkg-day-num">{t.day(i + 1)}</span>
                           <h3 className="pkg-day-label">{day.label}</h3>
                           <span className="pkg-day-chevron" aria-hidden="true">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -304,10 +283,10 @@ export default function PackageTemplate(data: PackageData) {
               {/* Activities */}
               {data.activities.length > 0 && (
                 <div className="pkg-block">
-                  <h2 className="pkg-block-title">Opplevelser</h2>
+                  <h2 className="pkg-block-title">{t.activities}</h2>
                   <ul className="pkg-activities-grid">
                     {data.activities.map(a => {
-                      const periodMatch = a.desc.match(/^(Hele året|[A-ZÆØÅ][a-zæøå]+ til [a-zæøå]+)[.:]\s*/)
+                      const periodMatch = a.desc.match(t.periodRegex)
                       const periode = periodMatch ? periodMatch[1] : null
                       const desc = periodMatch ? a.desc.slice(periodMatch[0].length) : a.desc
                       return (
@@ -329,13 +308,13 @@ export default function PackageTemplate(data: PackageData) {
 
               {/* Host */}
               <div className="pkg-block pkg-host">
-                <h2 className="pkg-block-title">Vertskap</h2>
+                <h2 className="pkg-block-title">{t.host}</h2>
                 <div className="pkg-host-card">
-                  <img src={DEFAULT_HOST.image} alt={DEFAULT_HOST.name} className="pkg-host-img" />
+                  <img src={HOST_IMAGE} alt={t.hostName} className="pkg-host-img" />
                   <div className="pkg-host-body">
-                    <p className="pkg-host-name">{DEFAULT_HOST.name}</p>
-                    <p className="pkg-host-role">{DEFAULT_HOST.role}</p>
-                    <p className="pkg-host-intro">{DEFAULT_HOST.intro}</p>
+                    <p className="pkg-host-name">{t.hostName}</p>
+                    <p className="pkg-host-role">{t.hostRole}</p>
+                    <p className="pkg-host-intro">{t.hostIntro}</p>
                   </div>
                 </div>
               </div>
@@ -344,12 +323,12 @@ export default function PackageTemplate(data: PackageData) {
             {/* Sticky info card */}
             <aside className="pkg-aside">
               <div className="pkg-card">
-                <h3 className="pkg-card-title">Skreddersy pakke</h3>
-                <p className="pkg-card-body">Fortell oss hva som passer for gruppen. Vi setter sammen et forslag og svarer innen én arbeidsdag.</p>
-                <Link href="/configurator" className="pkg-btn">
-                  Start planleggingen
+                <h3 className="pkg-card-title">{t.cardTitle}</h3>
+                <p className="pkg-card-body">{t.cardBody}</p>
+                <Link href={localePath(lang, '/configurator')} className="pkg-btn">
+                  {t.cardCta}
                 </Link>
-                <p className="pkg-card-note">Gratis og uforpliktende</p>
+                <p className="pkg-card-note">{t.cardNote}</p>
               </div>
             </aside>
           </div>
@@ -359,10 +338,10 @@ export default function PackageTemplate(data: PackageData) {
       {/* ── Andre pakker ── */}
       <section className="pkg-others">
         <div className="pkg-inner">
-          <h2 className="pkg-others-title">Andre pakker</h2>
+          <h2 className="pkg-others-title">{t.others}</h2>
           <div className="pkg-others-grid">
-            {ALL_PACKAGES.filter(p => p.title !== data.title).map(p => (
-              <Link key={p.slug} href={p.slug} className="pkg-other">
+            {allePakker[lang].filter(p => p.slug !== data.slug).map(p => (
+              <Link key={p.slug} href={localePath(lang, p.slug)} className="pkg-other">
                 <div className="pkg-other-img">
                   <img src={p.image} alt={p.title} />
                 </div>

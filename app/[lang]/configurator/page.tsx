@@ -2,6 +2,9 @@
 
 import { useState, useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { localePath, type Lang } from '@/lib/i18n'
+import { useLang } from '@/lib/useLang'
+import { configurator, type ConfigOption } from '@/content/configurator'
 import './configurator.css'
 
 const STEP_IMAGES = [
@@ -13,43 +16,47 @@ const STEP_IMAGES = [
   '/assets/images/lobby-peis.jpg',
 ]
 
-const SOMMER_AKTIVITETER = [
-  { navn: 'Fottur i området',                     bilde: '/assets/images/akt-fottur-kart.jpg', beskrivelse: 'Juni til oktober. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold.' },
-  { navn: 'Sykkeltur på Rallarvegen',             bilde: '/assets/images/akt-rallarvegen.jpg', beskrivelse: 'Juli til september. Ikonisk rute med utsikt over Hardangervidda. Vi tilpasser turen etter tidsskjema og egne ønsker. Sykler og hjelmer leies fra hotellet.' },
-  { navn: 'Brevandring',                          bilde: '/assets/images/akt-brevandring.jpg', beskrivelse: 'Juli til september. Opplev isbreen på nært hold og utforsk blåisen på Hardangerjøkulen sammen med en erfaren guide.' },
-]
+/** Bilder per aktivitet. Nøkkelen er aktivitetens id (den norske tittelen), som også sendes til hotellet. */
+const ACTIVITY_IMAGES: Record<string, string> = {
+  'Fottur i området': '/assets/images/akt-fottur-kart.jpg',
+  'Sykkeltur på Rallarvegen': '/assets/images/akt-rallarvegen.jpg',
+  'Brevandring': '/assets/images/akt-brevandring.jpg',
+  'Skiturer i området': '/assets/images/akt-skitur.jpg',
+  'Trugeturer': '/assets/images/akt-truger.jpg',
+  'Skiseiling': '/assets/images/akt-skiseiling.jpg',
+  'Stjernekikking': '/assets/images/akt-stjerner.jpg',
+  'Morgenbad i Finsevann': '/assets/images/akt-morgenbad.jpg',
+  'Sidersmaking': '/assets/images/akt-sider.jpg',
+  'Bålpanne og after hike/ski/bike': '/assets/images/akt-baalpanne.jpg',
+  'Finsequiz': '/assets/images/tog.png',
+  'Rallarmuseet': '/assets/images/Finseskilt.jpg',
+  'Polarhistorie i Framheim': '/assets/images/nansen.png',
+}
 
-const VINTER_AKTIVITETER = [
-  { navn: 'Skiturer i området',                   bilde: '/assets/images/akt-skitur.jpg', beskrivelse: 'Januar til mai. En fin pause fra møterommet. Vi tilpasser turmålet etter tid og forhold. Utstyr kan leies av oss.' },
-  { navn: 'Trugeturer',                           bilde: '/assets/images/akt-truger.jpg', beskrivelse: 'Desember til mai. Truger er godt egnet for enkle turer i terrenget rundt Finse. Dette er en vinteraktivitet alle kan ta del i. Truger leies av oss.' },
-  { navn: 'Skiseiling',                           bilde: '/assets/images/akt-skiseiling.jpg', beskrivelse: 'Januar til mai. Skiseiling er en spennende måte å ferdes på i terrenget rundt Finse. Vinden sørger for fremdriften, og aktiviteten er forholdsvis enkel å lære. Noen timer på Finsevann gir garantert mestringsfølelse. Vi har alt nødvendig utstyr til utleie.' },
-  { navn: 'Stjernekikking',                       bilde: '/assets/images/akt-stjerner.jpg', beskrivelse: 'Oktober til mars. Med minimalt med kunstig lys og en vid, åpen himmel byr Finse på enestående forhold for å oppleve stjernene, mørket og den skiftende nattehimmelen. Vi samarbeider med en astroguide som kan vise dere himmelen på en helt ny måte.' },
-]
-
-const HELARS_AKTIVITETER = [
-  { navn: 'Morgenbad i Finsevann',                bilde: '/assets/images/akt-morgenbad.jpg', beskrivelse: 'Morgenbad, bålpanne og varmt drikke, med utsikt til blåisen på Hardangerjøkulen. En enkel opplevelse med stor effekt.' },
-  { navn: 'Sidersmaking',                         bilde: '/assets/images/akt-sider.jpg',         beskrivelse: 'Hele året. Bli bedre kjent med siderproduksjonen i Hardanger. Vi smaker og forteller historiene bak de lokale siderne.' },
-  { navn: 'Bålpanne og after hike/ski/bike',      bilde: '/assets/images/akt-baalpanne.jpg', beskrivelse: 'Hele året. Avslutt dagen ved Framheim ved Finsevann. Vi fyrer opp bålpanne og serverer snacks og god drikke.' },
-  { navn: 'Finsequiz',                            bilde: '/assets/images/tog.png', beskrivelse: 'Hele året. Kveldsunderholdning foran peisen inne på hotellet. Kategoriene tilpasses, men vi sniker alltid med noen spørsmål om natur og Finse-historie.' },
-  { navn: 'Rallarmuseet',                         bilde: '/assets/images/Finseskilt.jpg',        beskrivelse: 'Hele året. Lær om Bergensbanen og hvordan jernbanen over fjellet ble bygget av tøffe rallare og dyktige ingeniører på starten av 1900-tallet.' },
-  { navn: 'Polarhistorie i Framheim',             bilde: '/assets/images/nansen.png',            beskrivelse: 'Hele året. På Finse har vi en tro kopi av Roald Amundsens base i Antarktis. Vi tør påstå at ingen steder i Norge er bedre egnet til å få fortellingen om de store norske og internasjonale polarheltene enn inne i Framheim ved Finsevann.' },
-]
-
+/** Norske månedsnavn er nøkkelen som lagres i skjemaet og sendes til hotellet, uavhengig av språk. */
 const MONTHS = [
   'Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni',
   'Juli', 'August', 'September', 'Oktober', 'November', 'Desember',
 ]
 
+const labelOf = (options: ConfigOption[], id: string) =>
+  options.find(o => o.id === id)?.label ?? id
+
 const isoDate = (y: number, m: number, d: number) =>
   `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`
 
-const formatDate = (iso: string) => {
+/** Norsk datoformat (dd.mm.åååå) brukes i det som sendes til hotellet. */
+const formatDate = (iso: string, lang: Lang = 'no') => {
   if (!iso) return ''
   const [y, m, d] = iso.split('-')
-  return `${d}.${m}.${y}`
+  return lang === 'no' ? `${d}.${m}.${y}` : `${d}/${m}/${y}`
 }
 
 export default function Configurator() {
+  const lang = useLang()
+  const t = configurator[lang]
+  const fmt = (iso: string) => formatDate(iso, lang)
+  const allActivities = [...t.step6.summer, ...t.step6.winter, ...t.step6.allYear]
   const [step, setStep] = useState(1)
   const [dir, setDir] = useState<1 | -1>(1)
 
@@ -151,8 +158,18 @@ export default function Configurator() {
   // Upcoming 12 months for flexible mode
   const upcomingMonths = Array.from({ length: 12 }, (_, i) => {
     const d = new Date(now.getFullYear(), now.getMonth() + i, 1)
-    return `${MONTHS[d.getMonth()]} ${d.getFullYear()}`
+    return {
+      value: `${MONTHS[d.getMonth()]} ${d.getFullYear()}`,
+      monthName: t.months[d.getMonth()],
+      year: String(d.getFullYear()),
+    }
   })
+  /** Vis lagret månedsverdi («Mars 2027») på gjeldende språk. */
+  const displayMonth = (value: string) => {
+    const [name, year] = value.split(' ')
+    const idx = MONTHS.indexOf(name)
+    return idx === -1 ? value : `${t.months[idx]} ${year}`
+  }
 
   const monthMax = upcomingMonths.length - MONTH_VISIBLE
 
@@ -214,6 +231,7 @@ export default function Configurator() {
       dato,
       varighet,
       id,
+      lang,
       createdAt: new Date().toISOString(),
     }
     localStorage.setItem(id, JSON.stringify(payload))
@@ -228,19 +246,19 @@ export default function Configurator() {
     } catch (err) {
       console.error(err)
       setSender(false)
-      alert('Beklager, noe gikk galt da vi sendte forespørselen. Prøv igjen, eller kontakt oss på events@hotelfinse1222.no.')
+      alert(t.errors.sendFailed)
       return
     }
 
     const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))))
-    window.location.href = `/reise?id=${id}#d=${encoded}`
+    window.location.href = `${localePath(lang, '/reise')}?id=${id}#d=${encoded}`
   }
 
   return (
     <div className="konfig-bg">
       <div className="konfig-overlay" />
-      <a href="/" className="konfig-logo">
-        <img src="/assets/logo/logo.png" alt="Hotel Finse1222" />
+      <a href={localePath(lang, '/')} className="konfig-logo">
+        <img src="/assets/logo/logo.png" alt={t.logoAlt} />
       </a>
       <div className="konfig-card">
         <div className={`konfig-body${step === 6 ? ' konfig-body--full' : ''}`}>
@@ -252,21 +270,21 @@ export default function Configurator() {
             </div>
 
             <div className={`konfig-step ${dir > 0 ? 'slide-right' : 'slide-left'}`} key={step}>
-              <span className="konfig-indicator">Steg {step} av {TOTAL}</span>
+              <span className="konfig-indicator">{t.stepIndicator(step, TOTAL)}</span>
 
               {/* ── Step 1: Anledning ── */}
               {step === 1 && (
                 <>
-                  <h1 className="konfig-title">Hva er anledningen?</h1>
-                  <p className="konfig-subtitle">Velg det som passer best</p>
+                  <h1 className="konfig-title">{t.step1.title}</h1>
+                  <p className="konfig-subtitle">{t.step1.subtitle}</p>
                   <div className="konfig-pills">
-                    {['Ledergruppe', 'Teambuilding', 'Strategisamling', 'Kick-off', 'Julebord/firmafest', 'Konferanse', 'Privat arrangement', 'Annet'].map(opt => (
+                    {t.step1.options.map(opt => (
                       <button
-                        key={opt}
-                        className={`konfig-pill ${form.anledning === opt ? 'selected' : ''}`}
-                        onClick={() => set('anledning', opt)}
+                        key={opt.id}
+                        className={`konfig-pill ${form.anledning === opt.id ? 'selected' : ''}`}
+                        onClick={() => set('anledning', opt.id)}
                       >
-                        {opt}
+                        {opt.label}
                       </button>
                     ))}
                   </div>
@@ -274,7 +292,7 @@ export default function Configurator() {
                     <input
                       type="text"
                       className="konfig-input konfig-annet-input"
-                      placeholder="Beskriv anledningen din"
+                      placeholder={t.step1.otherPlaceholder}
                       value={form.annetAnledning}
                       onChange={e => set('annetAnledning', e.target.value)}
                       autoFocus
@@ -286,7 +304,7 @@ export default function Configurator() {
               {/* ── Step 2: Dato ── */}
               {step === 2 && (
                 <>
-                  <h1 className="konfig-title">Når ønsker dere å komme?</h1>
+                  <h1 className="konfig-title">{t.step2.title}</h1>
 
                   {/* Mode toggle */}
                   <div className="konfig-mode-toggle">
@@ -294,13 +312,13 @@ export default function Configurator() {
                       className={`konfig-mode-btn ${form.datoModus === 'datoer' ? 'active' : ''}`}
                       onClick={() => set('datoModus', 'datoer')}
                     >
-                      Datoer
+                      {t.step2.modeDates}
                     </button>
                     <button
                       className={`konfig-mode-btn ${form.datoModus === 'fleksibel' ? 'active' : ''}`}
                       onClick={() => set('datoModus', 'fleksibel')}
                     >
-                      Fleksibel
+                      {t.step2.modeFlexible}
                     </button>
                   </div>
 
@@ -308,13 +326,13 @@ export default function Configurator() {
                   {form.datoModus === 'datoer' && (
                     <>
                       <div className="konfig-cal-header">
-                        <button className="konfig-cal-nav" onClick={prevMonth} disabled={isAtMinMonth}>‹</button>
-                        <span className="konfig-cal-month">{MONTHS[calMonth]} {calYear}</span>
-                        <button className="konfig-cal-nav" onClick={nextMonth}>›</button>
+                        <button className="konfig-cal-nav" onClick={prevMonth} disabled={isAtMinMonth} aria-label={t.step2.prevMonth}>‹</button>
+                        <span className="konfig-cal-month">{t.months[calMonth]} {calYear}</span>
+                        <button className="konfig-cal-nav" onClick={nextMonth} aria-label={t.step2.nextMonth}>›</button>
                       </div>
 
                       <div className="konfig-cal-weekdays">
-                        {['Ma', 'Ti', 'On', 'To', 'Fr', 'Lø', 'Sø'].map(d => (
+                        {t.weekdays.map(d => (
                           <span key={d} className="konfig-cal-wd">{d}</span>
                         ))}
                       </div>
@@ -355,17 +373,17 @@ export default function Configurator() {
 
                       <div className="konfig-cal-status">
                         {!form.datoFra && (
-                          <span className="konfig-cal-hint">Velg ankomstdato</span>
+                          <span className="konfig-cal-hint">{t.step2.pickArrival}</span>
                         )}
                         {form.datoFra && !form.datoTil && (
                           <span className="konfig-cal-hint">
-                            Ankomst <strong>{formatDate(form.datoFra)}</strong>, velg avreisedato
+                            {t.step2.arrivalPrefix}<strong>{fmt(form.datoFra)}</strong>{t.step2.arrivalSuffix}
                           </span>
                         )}
                         {form.datoFra && form.datoTil && (
                           <span className="konfig-cal-confirmed">
-                            {formatDate(form.datoFra)} → {formatDate(form.datoTil)}
-                            <em>{nights} {nights === 1 ? 'natt' : 'netter'}</em>
+                            {fmt(form.datoFra)} → {fmt(form.datoTil)}
+                            <em>{t.nights(nights)}</em>
                           </span>
                         )}
                       </div>
@@ -375,26 +393,26 @@ export default function Configurator() {
                   {/* ── Flexible mode ── */}
                   {form.datoModus === 'fleksibel' && (
                     <>
-                      <p className="konfig-flex-label">Hvor lenge ønsker dere å bli?</p>
+                      <p className="konfig-flex-label">{t.step2.howLong}</p>
                       <div className="konfig-duration-row">
-                        {['1 natt', '2-3 netter', '4-5 netter', 'En uke', 'Over en uke'].map(opt => (
+                        {t.step2.durations.map(opt => (
                           <button
-                            key={opt}
-                            className={`konfig-duration-btn ${form.fleksibeltNetter === opt ? 'selected' : ''}`}
-                            onClick={() => set('fleksibeltNetter', opt)}
+                            key={opt.id}
+                            className={`konfig-duration-btn ${form.fleksibeltNetter === opt.id ? 'selected' : ''}`}
+                            onClick={() => set('fleksibeltNetter', opt.id)}
                           >
-                            {opt}
+                            {opt.label}
                           </button>
                         ))}
                       </div>
 
-                      <p className="konfig-flex-label">Når på året?</p>
+                      <p className="konfig-flex-label">{t.step2.whenInYear}</p>
                       <div className="konfig-month-row">
                         <button
                           className={`konfig-month-arrow ${monthOffset === 0 ? 'disabled' : ''}`}
                           onClick={() => setMonthOffset(o => Math.max(0, o - 1))}
                           disabled={monthOffset === 0}
-                          aria-label="Forrige måneder"
+                          aria-label={t.step2.prevMonths}
                         ><ChevronLeft size={18} /></button>
 
                         <div className="konfig-month-viewport">
@@ -402,13 +420,12 @@ export default function Configurator() {
                             className="konfig-month-track"
                             style={{ transform: `translateX(-${monthOffset * MONTH_SLOT}px)` }}
                           >
-                            {upcomingMonths.map(m => {
-                              const [monthName, year] = m.split(' ')
+                            {upcomingMonths.map(({ value, monthName, year }) => {
                               return (
                                 <button
-                                  key={m}
-                                  className={`konfig-month-card ${form.fleksibeltManed === m ? 'selected' : ''}`}
-                                  onClick={() => set('fleksibeltManed', m)}
+                                  key={value}
+                                  className={`konfig-month-card ${form.fleksibeltManed === value ? 'selected' : ''}`}
+                                  onClick={() => set('fleksibeltManed', value)}
                                 >
                                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                     <rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
@@ -425,27 +442,27 @@ export default function Configurator() {
                           className={`konfig-month-arrow ${monthOffset >= monthMax ? 'disabled' : ''}`}
                           onClick={() => setMonthOffset(o => Math.min(monthMax, o + 1))}
                           disabled={monthOffset >= monthMax}
-                          aria-label="Neste måneder"
+                          aria-label={t.step2.nextMonths}
                         ><ChevronRight size={18} /></button>
                       </div>
 
-                      <p className="konfig-flex-label">Når i uken kommer dere?</p>
+                      <p className="konfig-flex-label">{t.step2.whenInWeek}</p>
                       <div className="konfig-ukedel-row">
-                        {['Midt i uken', 'Helg'].map(opt => {
-                          const active = form.fleksibeltUkeDel.includes(opt)
+                        {t.step2.weekParts.map(opt => {
+                          const active = form.fleksibeltUkeDel.includes(opt.id)
                           return (
                             <button
-                              key={opt}
+                              key={opt.id}
                               className={`konfig-ukedel-btn ${active ? 'selected' : ''}`}
                               onClick={() => setForm(p => ({
                                 ...p,
                                 fleksibeltUkeDel: active
-                                  ? p.fleksibeltUkeDel.filter(v => v !== opt)
-                                  : [...p.fleksibeltUkeDel, opt],
+                                  ? p.fleksibeltUkeDel.filter(v => v !== opt.id)
+                                  : [...p.fleksibeltUkeDel, opt.id],
                               }))}
                             >
                               <span className="konfig-ukedel-check">{active ? '✓' : ''}</span>
-                              {opt}
+                              {opt.label}
                             </button>
                           )
                         })}
@@ -459,16 +476,16 @@ export default function Configurator() {
               {/* ── Step 3: Hvem kommer ── */}
               {step === 3 && (
                 <>
-                  <h1 className="konfig-title">Hvor mange kommer?</h1>
-                  <label className="konfig-label">Antall gjester</label>
+                  <h1 className="konfig-title">{t.step3.title}</h1>
+                  <label className="konfig-label">{t.step3.label}</label>
                   <div className="konfig-pills konfig-pills--3col">
-                    {['1–4', '5–15', '15–30', '30–60', '60–110', 'Over 110'].map(opt => (
+                    {t.step3.options.map(opt => (
                       <button
-                        key={opt}
-                        className={`konfig-pill ${form.antall === opt ? 'selected' : ''}`}
-                        onClick={() => set('antall', opt)}
+                        key={opt.id}
+                        className={`konfig-pill ${form.antall === opt.id ? 'selected' : ''}`}
+                        onClick={() => set('antall', opt.id)}
                       >
-                        {opt}
+                        {opt.label}
                       </button>
                     ))}
                   </div>
@@ -478,8 +495,8 @@ export default function Configurator() {
               {/* ── Step 4: Romtype ── */}
               {step === 4 && (
                 <>
-                  <h1 className="konfig-title">Hvilke romtyper ønsker dere?</h1>
-                  <p className="konfig-subtitle">Velg gjerne flere, så setter vi opp pris på ulike kombinasjoner</p>
+                  <h1 className="konfig-title">{t.step4.title}</h1>
+                  <p className="konfig-subtitle">{t.step4.subtitle}</p>
 
                   <div className="konfig-rooms konfig-rooms--grid2">
                     {[
@@ -506,7 +523,7 @@ export default function Configurator() {
                         onClick={() => toggleRomtype(id)}
                       >
                         {svg}
-                        <span className="konfig-room-name">{id}</span>
+                        <span className="konfig-room-name">{labelOf(t.step4.options, id)}</span>
                         {form.romtyper.includes(id) && <span className="konfig-room-check"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>}
                       </button>
                     ))}
@@ -517,8 +534,8 @@ export default function Configurator() {
               {/* ── Step 5: Møterom ── */}
               {step === 5 && (
                 <>
-                  <h1 className="konfig-title">Trenger dere møterom?</h1>
-                  <p className="konfig-subtitle">Valgfritt, kan legges til senere</p>
+                  <h1 className="konfig-title">{t.step5.title}</h1>
+                  <p className="konfig-subtitle">{t.step5.subtitle}</p>
 
                   <div className="konfig-rooms konfig-rooms--grid2">
                     {[
@@ -537,7 +554,7 @@ export default function Configurator() {
                         onClick={() => set('moteromVarighet', form.moteromVarighet === id ? '' : id)}
                       >
                         {svg}
-                        <span className="konfig-room-name">{id}</span>
+                        <span className="konfig-room-name">{labelOf(t.step5.options, id)}</span>
                         {form.moteromVarighet === id && <span className="konfig-room-check"><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></span>}
                       </button>
                     ))}
@@ -548,8 +565,8 @@ export default function Configurator() {
               {/* ── Step 6: Aktiviteter ── */}
               {step === 6 && (
                 <>
-                  <h1 className="konfig-title">Hva ønsker dere å oppleve?</h1>
-                  <p className="konfig-subtitle">Hotellet leier ut utstyr</p>
+                  <h1 className="konfig-title">{t.step6.title}</h1>
+                  <p className="konfig-subtitle">{t.step6.subtitle}</p>
 
                   <div
                     className="konfig-act-row"
@@ -562,14 +579,14 @@ export default function Configurator() {
                     {viseSommerAktiviteter && (
                       <div className="konfig-act-group">
                         <div className="konfig-act-group-cards">
-                          {SOMMER_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
-                            const selected = isAktivitetSelected(navn)
+                          {t.step6.summer.map(({ id, title, description }) => {
+                            const selected = isAktivitetSelected(id)
                             return (
-                              <button key={navn} className={`konfig-act-card ${selected ? 'selected' : ''}`} onClick={() => toggleAktivitet(navn)}>
-                                <div className="konfig-act-card-img-wrap"><img src={bilde} alt={navn} className="konfig-act-card-img" /></div>
+                              <button key={id} className={`konfig-act-card ${selected ? 'selected' : ''}`} onClick={() => toggleAktivitet(id)}>
+                                <div className="konfig-act-card-img-wrap"><img src={ACTIVITY_IMAGES[id]} alt={title} className="konfig-act-card-img" /></div>
                                 <div className="konfig-act-card-body">
-                                  <p className="konfig-act-card-title">{navn}</p>
-                                  <p className="konfig-act-card-desc">{beskrivelse}</p>
+                                  <p className="konfig-act-card-title">{title}</p>
+                                  <p className="konfig-act-card-desc">{description}</p>
                                 </div>
                                 {selected && <div className="konfig-act-card-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>}
                               </button>
@@ -581,14 +598,14 @@ export default function Configurator() {
                     {viseVinterAktiviteter && (
                       <div className="konfig-act-group">
                         <div className="konfig-act-group-cards">
-                          {VINTER_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
-                            const selected = isAktivitetSelected(navn)
+                          {t.step6.winter.map(({ id, title, description }) => {
+                            const selected = isAktivitetSelected(id)
                             return (
-                              <button key={navn} className={`konfig-act-card ${selected ? 'selected' : ''}`} onClick={() => toggleAktivitet(navn)}>
-                                <div className="konfig-act-card-img-wrap"><img src={bilde} alt={navn} className="konfig-act-card-img" /></div>
+                              <button key={id} className={`konfig-act-card ${selected ? 'selected' : ''}`} onClick={() => toggleAktivitet(id)}>
+                                <div className="konfig-act-card-img-wrap"><img src={ACTIVITY_IMAGES[id]} alt={title} className="konfig-act-card-img" /></div>
                                 <div className="konfig-act-card-body">
-                                  <p className="konfig-act-card-title">{navn}</p>
-                                  <p className="konfig-act-card-desc">{beskrivelse}</p>
+                                  <p className="konfig-act-card-title">{title}</p>
+                                  <p className="konfig-act-card-desc">{description}</p>
                                 </div>
                                 {selected && <div className="konfig-act-card-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>}
                               </button>
@@ -599,14 +616,14 @@ export default function Configurator() {
                     )}
                     <div className="konfig-act-group">
                       <div className="konfig-act-group-cards">
-                        {HELARS_AKTIVITETER.map(({ navn, bilde, beskrivelse }) => {
-                          const selected = isAktivitetSelected(navn)
+                        {t.step6.allYear.map(({ id, title, description }) => {
+                          const selected = isAktivitetSelected(id)
                           return (
-                            <button key={navn} className={`konfig-act-card ${selected ? 'selected' : ''}`} onClick={() => toggleAktivitet(navn)}>
-                              <div className="konfig-act-card-img-wrap"><img src={bilde} alt={navn} className="konfig-act-card-img" /></div>
+                            <button key={id} className={`konfig-act-card ${selected ? 'selected' : ''}`} onClick={() => toggleAktivitet(id)}>
+                              <div className="konfig-act-card-img-wrap"><img src={ACTIVITY_IMAGES[id]} alt={title} className="konfig-act-card-img" /></div>
                               <div className="konfig-act-card-body">
-                                <p className="konfig-act-card-title">{navn}</p>
-                                <p className="konfig-act-card-desc">{beskrivelse}</p>
+                                <p className="konfig-act-card-title">{title}</p>
+                                <p className="konfig-act-card-desc">{description}</p>
                               </div>
                               {selected && <div className="konfig-act-card-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>}
                             </button>
@@ -622,32 +639,32 @@ export default function Configurator() {
               {/* ── Step 7: Kontakt ── */}
               {step === 7 && (
                 <>
-                  <h1 className="konfig-title">La oss ta kontakt</h1>
+                  <h1 className="konfig-title">{t.step7.title}</h1>
                   <div className="konfig-form-grid">
                     <div className="konfig-field">
-                      <label className="konfig-label">Navn</label>
-                      <input type="text" className="konfig-input" placeholder="Ditt fulle navn" value={form.navn} onChange={e => set('navn', e.target.value)} />
+                      <label className="konfig-label">{t.step7.name}</label>
+                      <input type="text" className="konfig-input" placeholder={t.step7.namePlaceholder} value={form.navn} onChange={e => set('navn', e.target.value)} />
                     </div>
                     <div className="konfig-field">
-                      <label className="konfig-label">Bedrift</label>
-                      <input type="text" className="konfig-input" placeholder="Bedriftsnavn" value={form.bedrift} onChange={e => set('bedrift', e.target.value)} />
+                      <label className="konfig-label">{t.step7.company}</label>
+                      <input type="text" className="konfig-input" placeholder={t.step7.companyPlaceholder} value={form.bedrift} onChange={e => set('bedrift', e.target.value)} />
                     </div>
                     <div className="konfig-field">
-                      <label className="konfig-label">E-post</label>
-                      <input type="email" className="konfig-input" placeholder="din@epost.no" value={form.epost} onChange={e => set('epost', e.target.value)} />
+                      <label className="konfig-label">{t.step7.email}</label>
+                      <input type="email" className="konfig-input" placeholder={t.step7.emailPlaceholder} value={form.epost} onChange={e => set('epost', e.target.value)} />
                     </div>
                     <div className="konfig-field">
-                      <label className="konfig-label">Telefon</label>
-                      <input type="tel" className="konfig-input" placeholder="+47" value={form.telefon} onChange={e => set('telefon', e.target.value)} />
+                      <label className="konfig-label">{t.step7.phone}</label>
+                      <input type="tel" className="konfig-input" placeholder={t.step7.phonePlaceholder} value={form.telefon} onChange={e => set('telefon', e.target.value)} />
                     </div>
                   </div>
                   <div className="konfig-field">
-                    <textarea className="konfig-input konfig-textarea" placeholder="Noe annet vi bør vite? (valgfritt)" rows={3} value={form.merknad} onChange={e => set('merknad', e.target.value)} />
+                    <textarea className="konfig-input konfig-textarea" placeholder={t.step7.notePlaceholder} rows={3} value={form.merknad} onChange={e => set('merknad', e.target.value)} />
                   </div>
                   <button className="konfig-submit" disabled={!form.navn || !form.epost || sender} onClick={handleSubmit}>
-                    {sender ? 'Sender …' : 'Send forespørsel'}
+                    {sender ? t.step7.sending : t.step7.submit}
                   </button>
-                  <p className="konfig-hint">Vi svarer innen én arbeidsdag · Ingen binding</p>
+                  <p className="konfig-hint">{t.step7.hint}</p>
                 </>
               )}
             </div>
@@ -655,10 +672,10 @@ export default function Configurator() {
             {/* ── Shared nav — outside animated step so it never jumps ── */}
             <div className="konfig-nav">
               {step > 1
-                ? <button className="konfig-back" onClick={prev}>Tilbake</button>
+                ? <button className="konfig-back" onClick={prev}>{t.nav.back}</button>
                 : <span />
               }
-              {step < TOTAL && <button className="konfig-next" onClick={next} disabled={!kanGaVidere}>Neste</button>}
+              {step < TOTAL && <button className="konfig-next" onClick={next} disabled={!kanGaVidere}>{t.nav.next}</button>}
             </div>
           </div>
 
@@ -673,19 +690,19 @@ export default function Configurator() {
                   <div className="konfig-summary-hero">
                     <img src="/assets/images/akt-baalpanne.jpg" alt="" className="konfig-summary-hero-img" />
                     <div className="konfig-summary-hero-overlay" />
-                    <img src="/assets/logo/logo.png" alt="Hotel Finse1222" className="konfig-summary-hero-logo" />
+                    <img src="/assets/logo/logo.png" alt={t.logoAlt} className="konfig-summary-hero-logo" />
                   </div>
-                  <h3 className="konfig-summary-title">Oppsummering</h3>
+                  <h3 className="konfig-summary-title">{t.summary.title}</h3>
                   <div className="konfig-summary-list">
                     {[
-                      { label: 'Anledning', value: form.anledning === 'Annet' ? form.annetAnledning : form.anledning },
-                      { label: 'Ankomst', value: form.datoModus === 'datoer' ? formatDate(form.datoFra) : '' },
-                      { label: 'Avreise', value: form.datoModus === 'datoer' ? formatDate(form.datoTil) : '' },
-                      { label: 'Ønsket måned', value: form.datoModus === 'fleksibel' ? form.fleksibeltManed : '' },
-                      { label: 'Varighet', value: form.datoModus === 'fleksibel' ? form.fleksibeltNetter : '' },
-                      { label: 'Antall gjester', value: form.antall },
-                      { label: 'Romtype', value: form.romtyper.join(', ') },
-                      { label: 'Møterom', value: form.moteromVarighet || '' },
+                      { label: t.summary.occasion, value: form.anledning === 'Annet' ? form.annetAnledning : labelOf(t.step1.options, form.anledning) },
+                      { label: t.summary.arrival, value: form.datoModus === 'datoer' ? fmt(form.datoFra) : '' },
+                      { label: t.summary.departure, value: form.datoModus === 'datoer' ? fmt(form.datoTil) : '' },
+                      { label: t.summary.preferredMonth, value: form.datoModus === 'fleksibel' && form.fleksibeltManed ? displayMonth(form.fleksibeltManed) : '' },
+                      { label: t.summary.duration, value: form.datoModus === 'fleksibel' && form.fleksibeltNetter ? labelOf(t.step2.durations, form.fleksibeltNetter) : '' },
+                      { label: t.summary.guests, value: form.antall ? labelOf(t.step3.options, form.antall) : '' },
+                      { label: t.summary.roomType, value: form.romtyper.map(r => labelOf(t.step4.options, r)).join(', ') },
+                      { label: t.summary.meetingRoom, value: form.moteromVarighet ? labelOf(t.step5.options, form.moteromVarighet) : '' },
                     ].filter(item => item.value).map(item => (
                       <div key={item.label} className="konfig-summary-row">
                         <span className="konfig-summary-key">{item.label}</span>
@@ -694,28 +711,25 @@ export default function Configurator() {
                     ))}
                   </div>
 
-                  {form.aktiviteter.length > 0 && (() => {
-                    const alleAktiviteter = [...SOMMER_AKTIVITETER, ...VINTER_AKTIVITETER, ...HELARS_AKTIVITETER]
-                    return (
-                      <div className="konfig-summary-activities">
-                        <span className="konfig-summary-key">Aktiviteter</span>
-                        <div className="konfig-summary-activity-grid">
-                          {form.aktiviteter.map(navn => {
-                            const match = alleAktiviteter.find(a => a.navn === navn)
-                            return (
-                              <div key={navn} className="konfig-summary-activity-item">
-                                {match && <img src={match.bilde} alt={navn} />}
-                                <span>{navn}</span>
-                              </div>
-                            )
-                          })}
-                        </div>
+                  {form.aktiviteter.length > 0 && (
+                    <div className="konfig-summary-activities">
+                      <span className="konfig-summary-key">{t.summary.activities}</span>
+                      <div className="konfig-summary-activity-grid">
+                        {form.aktiviteter.map(id => {
+                          const title = allActivities.find(a => a.id === id)?.title ?? id
+                          return (
+                            <div key={id} className="konfig-summary-activity-item">
+                              {ACTIVITY_IMAGES[id] && <img src={ACTIVITY_IMAGES[id]} alt={title} />}
+                              <span>{title}</span>
+                            </div>
+                          )
+                        })}
                       </div>
-                    )
-                  })()}
+                    </div>
+                  )}
 
                   <p className="konfig-summary-note">
-                    Navneliste med matintoleranser og kjøreplan trengs 4 uker før ankomst.
+                    {t.summary.note}
                   </p>
                 </div>
               )}
