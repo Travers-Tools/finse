@@ -75,7 +75,7 @@
   height: 60vh;
   min-height: 420px;
   max-height: 560px;
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -957,7 +957,7 @@
     height: auto;
     min-height: 0;
     max-height: none;
-    border-radius: 6px;
+    border-radius: 0;
   }
 
   /* Bestillingskortet kommer etter innholdet på mobil, ikke før tittelen. */
