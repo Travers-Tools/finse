@@ -4,6 +4,7 @@ import { useState, useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { localePath, type Lang } from '@/lib/i18n'
 import { useLang } from '@/lib/useLang'
+import { track } from '@/lib/track'
 import { configurator, type ConfigOption } from '@/content/configurator'
 import './configurator.css'
 
@@ -114,6 +115,7 @@ export default function Configurator() {
   const goTo = (target: number) => {
     setDir(target > step ? 1 : -1)
     setStep(target)
+    track('konfigurator_steg', { steg: target, fra: step, retning: target > step ? 'fram' : 'tilbake' })
   }
   const next = () => { if (step < TOTAL) goTo(step + 1) }
   const prev = () => { if (step > 1) goTo(step - 1) }
@@ -262,8 +264,10 @@ export default function Configurator() {
         body: JSON.stringify(payload),
       })
       if (!res.ok) throw new Error('Send feilet')
+      track('konfigurator_sendt', { anledning: payload.anledning, datoModus: form.datoModus, lang })
     } catch (err) {
       console.error(err)
+      track('konfigurator_feil', { lang })
       setSender(false)
       alert(t.errors.sendFailed)
       return
