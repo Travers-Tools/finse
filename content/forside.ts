@@ -25,7 +25,7 @@ export const contentSections: Record<Lang, {
       },
       {
         title: ['Over 100 år med', 'eventyrlyst og ambisjoner'],
-        body: 'Siden 1909 har Hotel Finse1222 vært samlingspunkt for oppdagere, visionære og ledere. Fridtjof Nansen trente her før Sydpolen. Roald Amundsen planla ekspedisjoner. I dag samles Norges fremste bedrifter for å tenke stort.',
+        body: 'Fra Nansen til Ousland har Finse vært stedet. Nå er det deres tur.',
         cta: 'Skriv din historie',
         alts: ['Historisk kart', 'Fridtjof Nansen'],
       },
@@ -47,7 +47,7 @@ export const contentSections: Record<Lang, {
       },
       {
         title: ['Over 100 years of', 'adventure and ambition'],
-        body: 'Since 1909, Hotel Finse1222 has been a meeting place for explorers, visionaries and leaders. Fridtjof Nansen trained here before the South Pole. Roald Amundsen planned expeditions. Today, Norway’s leading companies gather here to think big.',
+        body: 'From Nansen to Ousland, Finse has been the place. Now it’s your turn.',
         cta: 'Write your story',
         alts: ['Historical map', 'Fridtjof Nansen'],
       },
