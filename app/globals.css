@@ -747,9 +747,33 @@ a {
     }
 }
 
+/* Skreddersøm-kortet lenker til konfiguratoren, ikke til en pakke: tydelig solid knapp. */
+.package-card-custom .package-link {
+    background: #fdfbf7;
+    color: #1a1a1a;
+    border-color: #fdfbf7;
+    font-weight: 500;
+    backdrop-filter: none;
+}
+
+.package-card-custom:hover .package-link {
+    background: #fff;
+    border-color: #fff;
+}
+
 @media (max-width: 640px) {
     .packages-grid {
         grid-template-columns: 1fr;
+    }
+
+    .package-name {
+        font-size: 2rem;
+    }
+
+    .package-link {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.4rem;
+        min-height: 48px;
     }
 }
 
@@ -1060,8 +1084,29 @@ a {
     
     .team-image {
         order: -1;
-        max-width: 280px;
-        margin: 0 auto;
+        max-width: none;
+        aspect-ratio: 4 / 5;
+        margin: 0;
+    }
+
+    .team-text {
+        max-width: none;
+    }
+
+    .team-text .content-title {
+        font-size: 2.9rem;
+        line-height: 1.05;
+    }
+
+    .team-text .btn-outline {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        min-height: 52px;
+        font-size: 1rem;
+        background: #1a1a1a;
+        color: #fdfbf7;
+        border-color: #1a1a1a;
     }
     
     .team-signatures {
@@ -2271,7 +2316,8 @@ a {
     }
 
     .hero-title {
-        font-size: clamp(1.7rem, 7.8vw, 2.4rem);
+        font-size: clamp(3rem, 13.5vw, 4rem);
+        line-height: 1.0;
     }
 
     .hero-title-line {
@@ -2289,7 +2335,29 @@ a {
     
     .hero-buttons {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .hero-buttons .btn,
+    .hero-buttons .btn-outline-light {
+        justify-content: center;
+        min-height: 52px;
+        font-size: 1rem;
+    }
+
+    /* «Skreddersy oppholdet» er hovedhandlingen: solid knapp, ikke tynn kant. */
+    .hero-buttons .btn-outline-light {
+        background: #1a1a1a;
+        color: #fdfbf7;
+        border-color: #1a1a1a;
+    }
+
+    .hero-buttons .btn-tertiary {
+        background: transparent;
+        color: #1a1a1a;
+        border-color: rgba(0, 0, 0, 0.3);
     }
     
     .content-section {

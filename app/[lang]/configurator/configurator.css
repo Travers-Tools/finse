@@ -17,7 +17,8 @@
 .konfig-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(240, 237, 230, 0.55);
+  /* Mørkt overlegg i headerens grønnsvarte tone, så kortet løfter seg fra bildet. */
+  background: linear-gradient(180deg, rgba(20, 34, 37, 0.72) 0%, rgba(20, 34, 37, 0.6) 100%);
   pointer-events: none;
 }
 
@@ -33,9 +34,9 @@
 .konfig-logo img {
   height: 50px;
   width: auto;
-  opacity: 0.85;
+  opacity: 0.92;
   transition: opacity 150ms ease;
-  filter: brightness(0);
+  filter: brightness(0) invert(1);
 }
 
 .konfig-logo:hover img {
@@ -51,7 +52,7 @@
   height: 640px;
   background: #fdfbf7;
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.14), 0 4px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), 0 4px 16px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   display: flex;
   flex-direction: column;
