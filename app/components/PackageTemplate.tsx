@@ -56,7 +56,6 @@ export default function PackageTemplate(data: PackageData) {
   const [galleryIndex, setGalleryIndex] = useState(0)
   const [openDays, setOpenDays] = useState<number[]>([])
   // Bunnknappen på mobil vises når tittelen er scrollet forbi og bestillingskortet ikke er i syne.
-  const [titlePassed, setTitlePassed] = useState(false)
   const [cardInView, setCardInView] = useState(false)
 
   const galleryCount = data.gallery.length
@@ -76,16 +75,11 @@ export default function PackageTemplate(data: PackageData) {
   }
 
   useEffect(() => {
-    const title = document.querySelector('.pkg-title-block')
     const card = document.querySelector('.pkg-aside')
-    if (!title || !card) return
+    if (!card) return
     const io = new IntersectionObserver(entries => {
-      for (const e of entries) {
-        if (e.target === title) setTitlePassed(!e.isIntersecting && e.boundingClientRect.top < 0)
-        if (e.target === card) setCardInView(e.isIntersecting)
-      }
+      for (const e of entries) setCardInView(e.isIntersecting)
     }, { threshold: 0 })
-    io.observe(title)
     io.observe(card)
     return () => io.disconnect()
   }, [])
@@ -377,8 +371,8 @@ export default function PackageTemplate(data: PackageData) {
       </section>
 
       {/* ── Fast bunnknapp på mobil ── */}
-      <div className={`pkg-mobile-cta ${titlePassed && !cardInView && !galleryOpen ? 'is-visible' : ''}`} aria-hidden={!(titlePassed && !cardInView)}>
-        <Link href={localePath(lang, '/configurator')} className="pkg-btn" tabIndex={titlePassed && !cardInView ? 0 : -1}>
+      <div className={`pkg-mobile-cta ${!cardInView && !galleryOpen ? 'is-visible' : ''}`} aria-hidden={cardInView || galleryOpen}>
+        <Link href={localePath(lang, '/configurator')} className="pkg-btn" tabIndex={!cardInView && !galleryOpen ? 0 : -1}>
           {t.cardCta}
         </Link>
       </div>

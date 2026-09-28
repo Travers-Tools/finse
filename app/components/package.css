@@ -996,7 +996,7 @@
     font-size: 28px;
   }
 
-  /* Fast «Start planleggingen»-knapp i bunnen på mobil, siden kortet ligger langt nede. */
+  /* Fast «Start planleggingen»-knapp i bunnen på mobil fra første sekund, siden kortet ligger langt nede. Skjules når kortet selv er synlig. */
   .pkg-mobile-cta {
     display: block;
     position: fixed;

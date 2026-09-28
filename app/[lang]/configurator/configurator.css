@@ -1382,6 +1382,83 @@ div + .konfig-flex-label {
     padding: 16px;
   }
 
+  /* Romtyper og møterom: én kolonne, kort under hverandre */
+  .konfig-rooms--grid2 {
+    grid-template-columns: 1fr;
+  }
+
+  .konfig-room--grid {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    min-height: 56px;
+  }
+
+  .konfig-room--grid .konfig-room-name {
+    font-size: 15px;
+  }
+
+  /* Fleksibel dato: ingen sideveis scroll, alt stables */
+  .konfig-duration-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    overflow: visible;
+  }
+
+  .konfig-duration-btn {
+    flex: none;
+    width: 100%;
+    padding: 14px 12px;
+    white-space: normal;
+    min-height: 48px;
+  }
+
+  .konfig-month-viewport {
+    overflow: visible;
+  }
+
+  .konfig-month-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .konfig-month-card {
+    flex: none;
+    width: 100%;
+    height: 84px;
+  }
+
+  .konfig-ukedel-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .konfig-ukedel-btn {
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  /* Steg 7: kun heltebildet vises i banneret, resten av oppsummeringen er skjult på mobil */
+  .konfig-summary {
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .konfig-summary-hero {
+    height: 140px;
+    border-radius: 0;
+  }
+
+  .konfig-summary-title,
+  .konfig-summary-list,
+  .konfig-summary-activities,
+  .konfig-summary-note {
+    display: none;
+  }
+
   .konfig-form-grid {
     grid-template-columns: 1fr;
   }
