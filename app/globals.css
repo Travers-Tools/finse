@@ -762,18 +762,38 @@ a {
 }
 
 @media (max-width: 640px) {
+    /* Brede kort på mobil: samme 16 px-marg som resten av siden, ikke 40 px */
+    .section-packages .container {
+        padding: 0 16px;
+    }
+
     .packages-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
     }
 
     .package-name {
         font-size: 2rem;
     }
 
+    .package-content {
+        padding: var(--space-lg) 20px 20px;
+    }
+
+    .package-copy {
+        max-width: none;
+        min-height: 0;
+        margin-bottom: var(--space-md);
+    }
+
+    /* CTA i full bredde inni kortet */
     .package-link {
-        font-size: 0.9rem;
-        padding: 0.8rem 1.4rem;
-        min-height: 48px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 0.9rem 1.4rem;
+        min-height: 52px;
     }
 }
 
