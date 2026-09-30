@@ -487,11 +487,11 @@ a {
 
 .hero-kicker {
     font-family: var(--font-header);
-    font-size: 12px;
-    letter-spacing: 0.14em;
+    font-size: 13px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-text-muted);
-    margin-bottom: var(--space-md);
+    margin-bottom: 0.75rem;
 }
 
 .hero-title {
