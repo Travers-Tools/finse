@@ -7,7 +7,6 @@ export default function Hero({ lang }: { lang: Lang }) {
   return (
     <main className="hero">
       <div className="hero-content">
-        <p className="hero-kicker">{t.kicker}</p>
         <h1 className="hero-title">
           <span className="hero-title-line">{t.title[0]}</span>{' '}
           <span className="hero-title-line">{t.title[1]}</span>

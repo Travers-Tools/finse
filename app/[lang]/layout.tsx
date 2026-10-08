@@ -13,8 +13,8 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
   return {
     title: en ? 'Hotel Finse1222 – Corporate bookings' : 'Hotel Finse1222 – Bedriftsbooking',
     description: en
-      ? 'Finse for business. Step out of the everyday, at Finse. Find focus and calm 1,222 metres above sea level.'
-      : 'Finse for bedrifter. Finn fokus og ro 1222 meter over havet. Ingen forstyrrelser, bare dere og fjellet.',
+      ? 'Take the team to the mountains. Corporate stays at Hotel Finse1222, as a package or tailored to you, 1,222 metres above sea level.'
+      : 'Ta med bedriften til fjells. Bedriftsopphold på Hotel Finse1222, som pakke eller skreddersydd, 1222 meter over havet.',
   }
 }
 
