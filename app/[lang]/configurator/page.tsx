@@ -8,14 +8,25 @@ import { track } from '@/lib/track'
 import { configurator, type ConfigOption } from '@/content/configurator'
 import './configurator.css'
 
-const STEP_IMAGES = [
-  '/assets/images/pkg-hotellet.jpg',
-  '/assets/images/dato-kart.jpg',
-  '/assets/images/blasalen-stoler.jpg',
-  '/assets/images/suite.jpg',
-  '/assets/images/peisestua.jpg',
-  '/assets/images/lobby-peis.jpg',
-]
+/**
+ * Rekkefølgen på skjermene. Ordboknøklene (step1–step7 i content/configurator.ts)
+ * følger den opprinnelige rekkefølgen og er ikke rørt; bare visningen er ny.
+ * Datoen kom sist fordi den var det tyngste valget å ta først, og aktivitetene
+ * kom fram fordi det er det folk faktisk vil se på.
+ */
+const SCREENS = ['anledning', 'antall', 'aktiviteter', 'rom', 'moterom', 'dato', 'kontakt'] as const
+type Screen = typeof SCREENS[number]
+
+/** Bilde i høyre kolonne per skjerm. Aktiviteter og kontakt har eget innhold der. */
+const STEP_IMAGES: Record<Screen, string | null> = {
+  anledning: '/assets/images/pkg-hotellet.jpg',
+  antall: '/assets/images/blasalen-stoler.jpg',
+  aktiviteter: null,
+  rom: '/assets/images/suite.jpg',
+  moterom: '/assets/images/peisestua.jpg',
+  dato: '/assets/images/dato-kart.jpg',
+  kontakt: null,
+}
 
 /** Bilder per aktivitet. Nøkkelen er aktivitetens id (den norske tittelen), som også sendes til hotellet. */
 const ACTIVITY_IMAGES: Record<string, string> = {
@@ -110,7 +121,8 @@ export default function Configurator() {
     merknad: '',
   })
 
-  const TOTAL = 7
+  const TOTAL = SCREENS.length
+  const screen: Screen = SCREENS[step - 1]
 
   const goTo = (target: number) => {
     setDir(target > step ? 1 : -1)
@@ -208,11 +220,11 @@ export default function Configurator() {
   const sesongAktiviteter = [...t.step6.summer, ...t.step6.winter]
     .filter(a => valgtManed === 0 || iSesong(a.id, valgtManed))
 
-  // Datovalg er påkrevd før man går videre fra steg 2
+  // Datovalg er påkrevd før man går videre fra dato-skjermen
   const datoValgt = form.datoModus === 'datoer'
     ? !!(form.datoFra && form.datoTil)
     : !!form.fleksibeltManed
-  const kanGaVidere = step !== 2 || datoValgt
+  const kanGaVidere = screen !== 'dato' || datoValgt
 
   // ── Drag-to-scroll for aktivitetsraden ──
   const actRowRef = useRef<HTMLDivElement>(null)
@@ -284,10 +296,10 @@ export default function Configurator() {
         <img src="/assets/logo/logo.png" alt={t.logoAlt} />
       </a>
       <div className="konfig-card">
-        <div className={`konfig-body${step === 6 ? ' konfig-body--full' : ''}`}>
+        <div className={`konfig-body${screen === 'aktiviteter' ? ' konfig-body--full' : ''}`}>
           <div className="konfig-left">
             <div className="konfig-segments">
-              {[1, 2, 3, 4, 5, 6, 7].map(i => (
+              {SCREENS.map((_, i0) => i0 + 1).map(i => (
                 <div key={i} className={`konfig-seg ${i <= step ? 'filled' : ''}`} />
               ))}
             </div>
@@ -296,7 +308,7 @@ export default function Configurator() {
               <span className="konfig-indicator">{t.stepIndicator(step, TOTAL)}</span>
 
               {/* ── Step 1: Anledning ── */}
-              {step === 1 && (
+              {screen === 'anledning' && (
                 <>
                   <h1 className="konfig-title">{t.step1.title}</h1>
                   <p className="konfig-subtitle">{t.step1.subtitle}</p>
@@ -325,7 +337,7 @@ export default function Configurator() {
               )}
 
               {/* ── Step 2: Dato ── */}
-              {step === 2 && (
+              {screen === 'dato' && (
                 <>
                   <h1 className="konfig-title">{t.step2.title}</h1>
 
@@ -497,7 +509,7 @@ export default function Configurator() {
               )}
 
               {/* ── Step 3: Hvem kommer ── */}
-              {step === 3 && (
+              {screen === 'antall' && (
                 <>
                   <h1 className="konfig-title">{t.step3.title}</h1>
                   <label className="konfig-label">{t.step3.label}</label>
@@ -516,7 +528,7 @@ export default function Configurator() {
               )}
 
               {/* ── Step 4: Romtype ── */}
-              {step === 4 && (
+              {screen === 'rom' && (
                 <>
                   <h1 className="konfig-title">{t.step4.title}</h1>
                   <p className="konfig-subtitle">{t.step4.subtitle}</p>
@@ -555,7 +567,7 @@ export default function Configurator() {
               )}
 
               {/* ── Step 5: Møterom ── */}
-              {step === 5 && (
+              {screen === 'moterom' && (
                 <>
                   <h1 className="konfig-title">{t.step5.title}</h1>
                   <p className="konfig-subtitle">{t.step5.subtitle}</p>
@@ -586,7 +598,7 @@ export default function Configurator() {
               )}
 
               {/* ── Step 6: Aktiviteter ── */}
-              {step === 6 && (
+              {screen === 'aktiviteter' && (
                 <>
                   <h1 className="konfig-title">{t.step6.title}</h1>
                   <p className="konfig-subtitle">{t.step6.subtitle}</p>
@@ -641,7 +653,7 @@ export default function Configurator() {
               )}
 
               {/* ── Step 7: Kontakt ── */}
-              {step === 7 && (
+              {screen === 'kontakt' && (
                 <>
                   <h1 className="konfig-title">{t.step7.title}</h1>
                   {/* Løftet må stå før feltene: folk som har valgt datoer og rom
@@ -687,10 +699,10 @@ export default function Configurator() {
           {/* ── Right column ── */}
           <div className="konfig-right">
             <div className="konfig-img-wrap">
-              {STEP_IMAGES.map((src, i) => (
-                <img key={i} src={src} alt="" className={`konfig-img ${step === i + 1 && step < 7 && step !== 6 ? 'visible' : ''}`} />
+              {SCREENS.map(name => STEP_IMAGES[name] && (
+                <img key={name} src={STEP_IMAGES[name]!} alt="" className={`konfig-img ${screen === name ? 'visible' : ''}`} />
               ))}
-              {step === 7 && (
+              {screen === 'kontakt' && (
                 <div className="konfig-summary">
                   <div className="konfig-summary-hero">
                     <img src="/assets/images/akt-baalpanne.jpg" alt="" className="konfig-summary-hero-img" />
