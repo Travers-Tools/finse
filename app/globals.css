@@ -704,19 +704,21 @@ a {
     min-height: calc(0.9rem * 1.5 * 3);
 }
 
+/* Alle fire kort har samme solide knapp. Den gjennomsiktige varianten på
+   pakkekortene druknet i bildet, så bare Skreddersøm så ut som et tilbud. */
 .package-link {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
     font-family: var(--font-sans);
     font-size: 0.8rem;
+    font-weight: 500;
     letter-spacing: 0.05em;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #1a1a1a;
+    background: #fdfbf7;
+    border: 1px solid #fdfbf7;
     padding: 0.6rem 1.25rem;
-    border-radius: 6px;
+    border-radius: 0;
     transition: all var(--transition-base);
 }
 
@@ -726,8 +728,8 @@ a {
 }
 
 .package-card:hover .package-link {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.4);
+    background: #fff;
+    border-color: #fff;
 }
 
 @media (max-width: 1200px) {
@@ -741,19 +743,6 @@ a {
 }
 
 /* Skreddersøm-kortet lenker til konfiguratoren, ikke til en pakke: tydelig solid knapp. */
-.package-card-custom .package-link {
-    background: #fdfbf7;
-    color: #1a1a1a;
-    border-color: #fdfbf7;
-    font-weight: 500;
-    backdrop-filter: none;
-}
-
-.package-card-custom:hover .package-link {
-    background: #fff;
-    border-color: #fff;
-}
-
 @media (max-width: 640px) {
     /* Brede kort på mobil: samme 16 px-marg som resten av siden, ikke 40 px */
     .section-packages .container {
@@ -1344,29 +1333,36 @@ a {
     line-height: 1.5;
 }
 
-.footer-quote {
-    max-width: 1000px;
-    /* Ekstra luft ned mot kolonnene, utover den felles gapen i footer-inner */
-    margin: 0 auto clamp(1.5rem, 4vw, 3rem);
+/* Oppfordringen øverst i footeren. Eneste vei til konfiguratoren for dem
+   som har bladd helt ned. */
+.footer-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     text-align: center;
+    padding: 0 0 clamp(1.5rem, 4vw, 2.5rem);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.footer-quote-text {
+.footer-cta-title {
     font-family: var(--font-serif);
-    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    font-size: clamp(1.5rem, 2.6vw, 2.2rem);
     font-weight: 400;
-    font-style: italic;
     color: var(--color-cream);
-    line-height: 1.4;
-    margin: 0 0 0.9rem;
+    line-height: 1.2;
+    margin: 0 0 0.25rem;
     text-wrap: balance;
 }
 
-.footer-quote-source {
+.footer-cta .btn-secondary {
+    border-radius: 0;
+}
+
+.footer-cta-note {
     font-family: var(--font-sans);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--color-text-muted);
-    letter-spacing: 0.02em;
     margin: 0;
 }
 

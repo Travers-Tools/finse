@@ -109,7 +109,7 @@ export const pakkeKort: Record<Lang, {
       tag: 'Ledergrupper',
       title: 'Fokus på vidda',
       description: 'For team som trenger tid til de viktige samtalene, langt unna alt som maser.',
-      linkText: 'Utforsk',
+      linkText: 'Se pakken',
     },
     {
       href: '/pakke-ekspedisjonstur',
@@ -118,7 +118,7 @@ export const pakkeKort: Record<Lang, {
       tag: 'Eventyr',
       title: 'Ekspedisjonstur',
       description: 'Dager fulle av turer, ski eller sykling. Kvelder foran peisen.',
-      linkText: 'Utforsk',
+      linkText: 'Se pakken',
     },
     {
       href: '/pakke-hotellet-for-dere',
@@ -126,7 +126,7 @@ export const pakkeKort: Record<Lang, {
       tag: 'Fra 30 til 110 gjester',
       title: 'Hotellet for dere selv',
       description: 'For jubileer, kickoffs, møter, konferanser og feiringer der dere vil ha Hotel Finse1222 for dere selv.',
-      linkText: 'Utforsk',
+      linkText: 'Se pakken',
     },
     {
       href: '/configurator',
@@ -146,7 +146,7 @@ export const pakkeKort: Record<Lang, {
       tag: 'Leadership teams',
       title: 'Focus on the plateau',
       description: 'For teams that need time for the conversations that matter, far from everything that clamours for attention.',
-      linkText: 'Explore',
+      linkText: 'See the package',
     },
     {
       href: '/pakke-ekspedisjonstur',
@@ -155,7 +155,7 @@ export const pakkeKort: Record<Lang, {
       tag: 'Adventure',
       title: 'Expedition',
       description: 'Days full of hiking, skiing or cycling. Evenings by the fire.',
-      linkText: 'Explore',
+      linkText: 'See the package',
     },
     {
       href: '/pakke-hotellet-for-dere',
@@ -163,7 +163,7 @@ export const pakkeKort: Record<Lang, {
       tag: '30 to 110 guests',
       title: 'The hotel to yourselves',
       description: 'For anniversaries, kick-offs, meetings, conferences and celebrations where you want Hotel Finse1222 all to yourselves.',
-      linkText: 'Explore',
+      linkText: 'See the package',
     },
     {
       href: '/configurator',
