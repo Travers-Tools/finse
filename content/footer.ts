@@ -1,8 +1,10 @@
 import type { Lang } from '@/lib/i18n'
 
 export const footer: Record<Lang, {
-  quote: string
-  quoteSource: string
+  /** Oppfordringen øverst i footeren: de som har bladd helt ned, skal ha en vei inn i konfiguratoren. */
+  ctaTitle: string
+  ctaButton: string
+  ctaNote: string
   talkTitle: string
   phone: string
   email: string
@@ -15,8 +17,9 @@ export const footer: Record<Lang, {
   toTop: string
 }> = {
   no: {
-    quote: '«...da siver noget av det ægte, uforfalskede høyfjellstemning inn i sindene.»',
-    quoteSource: 'Edvard Welle-Strand, 1914, om peisen på Hotel Finse1222',
+    ctaTitle: 'Utforsk hvordan samlingen deres kan bli',
+    ctaButton: 'Skreddersy oppholdet',
+    ctaNote: 'Uforpliktende. Dere får et forslag med pris innen én arbeidsdag.',
     talkTitle: 'Snakk med oss',
     phone: '+47 56 52 71 00',
     email: 'resepsjon@hotelfinse1222.no',
@@ -29,8 +32,9 @@ export const footer: Record<Lang, {
     toTop: 'Til toppen',
   },
   en: {
-    quote: '“...then something of the true, unspoilt high-mountain mood seeps into the mind.”',
-    quoteSource: 'Edvard Welle-Strand, 1914, on the fireplace at Hotel Finse1222',
+    ctaTitle: 'Explore what your retreat could be',
+    ctaButton: 'Tailor your stay',
+    ctaNote: 'No obligation. You get a proposal with prices within one working day.',
     talkTitle: 'Talk to us',
     phone: '+47 56 52 71 00',
     email: 'resepsjon@hotelfinse1222.no',

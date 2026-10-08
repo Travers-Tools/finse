@@ -1,6 +1,8 @@
 'use client'
 
+import Link from 'next/link'
 import { useLang } from '@/lib/useLang'
+import { localePath } from '@/lib/i18n'
 import { footer } from '@/content/footer'
 
 const SOCIALS = [
@@ -42,9 +44,10 @@ export default function Footer() {
       <div className="footer-overlay"></div>
 
       <div className="container footer-inner">
-        <div className="footer-quote">
-          <p className="footer-quote-text">{t.quote}</p>
-          <p className="footer-quote-source">{t.quoteSource}</p>
+        <div className="footer-cta">
+          <h2 className="footer-cta-title">{t.ctaTitle}</h2>
+          <Link href={localePath(lang, '/configurator')} className="btn btn-secondary btn-large">{t.ctaButton}</Link>
+          <p className="footer-cta-note">{t.ctaNote}</p>
         </div>
 
         <div className="footer-contact-grid">
