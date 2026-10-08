@@ -644,22 +644,23 @@ export default function Configurator() {
               {step === 7 && (
                 <>
                   <h1 className="konfig-title">{t.step7.title}</h1>
+                  {/* Løftet må stå før feltene: folk som har valgt datoer og rom
+                      leser skjemaet som en bestilling om ingen sier noe annet. */}
+                  <p className="konfig-promise">{t.step7.intro}</p>
                   <div className="konfig-form-grid">
                     <div className="konfig-field">
                       <label className="konfig-label">{t.step7.name}</label>
                       <input type="text" className="konfig-input" placeholder={t.step7.namePlaceholder} value={form.navn} onChange={e => set('navn', e.target.value)} />
                     </div>
                     <div className="konfig-field">
-                      <label className="konfig-label">{t.step7.company}</label>
-                      <input type="text" className="konfig-input" placeholder={t.step7.companyPlaceholder} value={form.bedrift} onChange={e => set('bedrift', e.target.value)} />
-                    </div>
-                    <div className="konfig-field">
                       <label className="konfig-label">{t.step7.email}</label>
                       <input type="email" className="konfig-input" placeholder={t.step7.emailPlaceholder} value={form.epost} onChange={e => set('epost', e.target.value)} />
                     </div>
-                    <div className="konfig-field">
-                      <label className="konfig-label">{t.step7.phone}</label>
-                      <input type="tel" className="konfig-input" placeholder={t.step7.phonePlaceholder} value={form.telefon} onChange={e => set('telefon', e.target.value)} />
+                    {/* Telefonfeltet er tatt bort: det leses som «dere kommer til å
+                        ringe meg». De som vil ringes, skriver det i merknaden. */}
+                    <div className="konfig-field konfig-field--wide">
+                      <label className="konfig-label">{t.step7.company} <span className="konfig-label-optional">({t.step7.optional})</span></label>
+                      <input type="text" className="konfig-input" placeholder={t.step7.companyPlaceholder} value={form.bedrift} onChange={e => set('bedrift', e.target.value)} />
                     </div>
                   </div>
                   <div className="konfig-field">
@@ -731,10 +732,6 @@ export default function Configurator() {
                       </div>
                     </div>
                   )}
-
-                  <p className="konfig-summary-note">
-                    {t.summary.note}
-                  </p>
                 </div>
               )}
             </div>

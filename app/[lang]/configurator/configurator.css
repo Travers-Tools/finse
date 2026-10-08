@@ -434,6 +434,20 @@
   gap: 14px;
 }
 
+.konfig-field--wide {
+  grid-column: 1 / -1;
+}
+
+/* Løftet på siste steg. Mørkere og større enn undertittelen, så det faktisk blir lest. */
+.konfig-promise {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.7);
+  margin: -6px 0 6px;
+  max-width: 44ch;
+}
+
 /* ── Divider ── */
 .konfig-divider {
   height: 1px;
@@ -741,15 +755,6 @@
   color: rgba(0,0,0,0.5);
   text-align: center;
   line-height: 1.3;
-}
-
-.konfig-summary-note {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  color: rgba(0, 0, 0, 0.3);
-  margin-top: auto;
-  padding: 12px 24px 24px;
-  line-height: 1.5;
 }
 
 /* ── Annet input (step 1) ── */
@@ -1454,8 +1459,7 @@ div + .konfig-flex-label {
 
   .konfig-summary-title,
   .konfig-summary-list,
-  .konfig-summary-activities,
-  .konfig-summary-note {
+  .konfig-summary-activities {
     display: none;
   }
 

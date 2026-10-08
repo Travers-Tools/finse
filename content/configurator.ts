@@ -52,14 +52,16 @@ export type ConfiguratorContent = {
   }
   step7: {
     title: string
+    /** Løftet om at dette ikke er en bestilling. Står rett under tittelen. */
+    intro: string
     name: string
     namePlaceholder: string
     company: string
     companyPlaceholder: string
     email: string
     emailPlaceholder: string
-    phone: string
-    phonePlaceholder: string
+    /** Suffiks i etiketten på felt som ikke må fylles ut. */
+    optional: string
     notePlaceholder: string
     sending: string
     submit: string
@@ -76,7 +78,6 @@ export type ConfiguratorContent = {
     roomType: string
     meetingRoom: string
     activities: string
-    note: string
   }
   errors: { sendFailed: string }
 }
@@ -187,22 +188,22 @@ export const configurator: Record<Lang, ConfiguratorContent> = {
       ],
     },
     step7: {
-      title: 'La oss ta kontakt',
+      title: 'Få et uforpliktende forslag',
+      intro: 'Dette er ikke en bestilling. Dere får et forslag med pris innen én arbeidsdag, og bestemmer dere etterpå.',
       name: 'Navn',
       namePlaceholder: 'Ditt fulle navn',
       company: 'Bedrift',
       companyPlaceholder: 'Bedriftsnavn',
       email: 'E-post',
       emailPlaceholder: 'din@epost.no',
-      phone: 'Telefon',
-      phonePlaceholder: '+47',
+      optional: 'valgfritt',
       notePlaceholder: 'Noe annet vi bør vite? (valgfritt)',
       sending: 'Sender …',
-      submit: 'Send forespørsel',
-      hint: 'Vi svarer innen én arbeidsdag · Ingen binding',
+      submit: 'Be om forslag',
+      hint: 'Svar innen én arbeidsdag · Ingen binding',
     },
     summary: {
-      title: 'Oppsummering',
+      title: 'Det dere ønsker',
       occasion: 'Anledning',
       arrival: 'Ankomst',
       departure: 'Avreise',
@@ -212,7 +213,6 @@ export const configurator: Record<Lang, ConfiguratorContent> = {
       roomType: 'Romtype',
       meetingRoom: 'Møterom',
       activities: 'Aktiviteter',
-      note: 'Navneliste med matintoleranser og kjøreplan trengs 4 uker før ankomst.',
     },
     errors: {
       sendFailed: 'Beklager, noe gikk galt da vi sendte forespørselen. Prøv igjen, eller kontakt oss på events@hotelfinse1222.no.',
@@ -324,22 +324,22 @@ export const configurator: Record<Lang, ConfiguratorContent> = {
       ],
     },
     step7: {
-      title: 'How can we reach you?',
+      title: 'Get a no-obligation proposal',
+      intro: 'This is not a booking. You will get a proposal with prices within one working day, and decide after that.',
       name: 'Name',
       namePlaceholder: 'Your full name',
       company: 'Company',
       companyPlaceholder: 'Company name',
       email: 'Email',
       emailPlaceholder: 'you@company.com',
-      phone: 'Phone',
-      phonePlaceholder: '+47',
+      optional: 'optional',
       notePlaceholder: 'Anything else we should know? (optional)',
       sending: 'Sending …',
-      submit: 'Send request',
-      hint: 'We reply within one working day · No obligation',
+      submit: 'Request a proposal',
+      hint: 'Reply within one working day · No obligation',
     },
     summary: {
-      title: 'Summary',
+      title: 'What you are looking for',
       occasion: 'Occasion',
       arrival: 'Arrival',
       departure: 'Departure',
@@ -349,7 +349,6 @@ export const configurator: Record<Lang, ConfiguratorContent> = {
       roomType: 'Room type',
       meetingRoom: 'Meeting room',
       activities: 'Activities',
-      note: 'We need a guest list with dietary requirements and a programme for your stay 4 weeks before arrival.',
     },
     errors: {
       sendFailed: 'Sorry, something went wrong when sending your request. Please try again, or contact us at events@hotelfinse1222.no.',

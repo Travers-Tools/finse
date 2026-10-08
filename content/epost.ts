@@ -23,6 +23,8 @@ export const kundeEpost: Record<Lang, {
   }
   delLenke: string
   seOppsummering: string
+  /** Det praktiske hotellet trenger hvis det blir en bestilling. Flyttet hit fra steg 7 i konfiguratoren. */
+  praktisk: string
   /** Delt i to rundt telefonnummeret, som er en lenke i HTML. */
   sporsmaal: [string, string]
   bunnlinje: string
@@ -43,6 +45,7 @@ export const kundeEpost: Record<Lang, {
     },
     delLenke: 'Her er forespørselen oppsummert på én side, klar til å dele med kollegaer.',
     seOppsummering: 'Se oppsummeringen',
+    praktisk: 'Blir det et opphold, trenger vi navneliste med matintoleranser og kjøreplan senest fire uker før ankomst. Det tar vi sammen når den tid kommer.',
     sporsmaal: ['Har dere spørsmål i mellomtiden, svar gjerne på denne e-posten eller ring oss på ', '.'],
     bunnlinje: 'Hotel Finse1222 · Norges høyestliggende hotell · 1222 moh.',
   },
@@ -62,6 +65,7 @@ export const kundeEpost: Record<Lang, {
     },
     delLenke: 'Here is your request summarised on a single page, ready to share with colleagues.',
     seOppsummering: 'View the summary',
+    praktisk: 'If the stay goes ahead, we will need a guest list with dietary requirements and a programme no later than four weeks before arrival. We will sort that out together when the time comes.',
     sporsmaal: ['If you have any questions in the meantime, simply reply to this e-mail or call us on ', '.'],
     bunnlinje: 'Hotel Finse1222 · Norway’s highest hotel · 1,222 m a.s.l.',
   },

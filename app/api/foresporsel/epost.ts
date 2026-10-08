@@ -264,6 +264,10 @@ export function kundeMail(p: Payload, lenke?: string) {
       ${strek}
       <div style="height:20px;line-height:20px;font-size:0">&nbsp;</div>
 
+      <p style="margin:0 0 14px;font-family:${SANS};font-size:15px;line-height:1.7;color:${F.tekst2}">
+        ${esc(t.praktisk)}
+      </p>
+
       <p style="margin:0;font-family:${SANS};font-size:15px;line-height:1.7;color:${F.tekst2}">
         ${esc(t.sporsmaal[0])}<a href="tel:+4756527100" style="color:${F.brun};text-decoration:underline;white-space:nowrap">+47 56 52 71 00</a>${esc(t.sporsmaal[1])}
       </p>
@@ -298,6 +302,8 @@ export function kundeTekst(p: Payload, lenke?: string) {
       t.delLenke.replace(/\.$/, ':'),
       lenke,
     ] : []),
+    '',
+    t.praktisk,
     '',
     `${t.sporsmaal[0]}+47 56 52 71 00${t.sporsmaal[1]}`,
     '',
